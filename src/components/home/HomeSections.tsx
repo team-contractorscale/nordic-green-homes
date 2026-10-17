@@ -119,33 +119,29 @@ export function HomeHeroSection() {
           </div>
 
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-wider text-white/70 font-semibold flex items-center justify-between">
-              <span>Gallery Highlights</span>
-              <span className="text-emerald-400 font-mono text-[11px]">
-                {activeHeroIdx + 1} / {heroImages.length}
-              </span>
+            <span className="text-xs uppercase tracking-widest text-white/80 font-bold">
+              FEATURED WORKS
             </span>
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
+            <div className="flex flex-col gap-4">
               {heroImages.map((img, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setActiveHeroIdx(idx)}
-                  className={`group relative h-20 sm:h-24 lg:h-20 rounded-lg overflow-hidden border-2 transition-all text-left flex items-center ${
+                  className={`group relative h-28 sm:h-32 lg:h-36 rounded-xl overflow-hidden transition-all duration-300 text-left ${
                     activeHeroIdx === idx
-                      ? "border-emerald-400 ring-2 ring-emerald-400/50 scale-[1.01]"
-                      : "border-white/20 opacity-70 hover:opacity-100"
+                      ? "ring-2 ring-blue-500 ring-offset-2 ring-offset-brand-dark scale-[1.01] shadow-xl"
+                      : "opacity-45 hover:opacity-80 border border-white/10"
                   }`}
                 >
                   <img
                     src={img.src}
                     alt={img.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="absolute bottom-1.5 left-2 right-2">
-                    <p className="text-[11px] font-medium text-white truncate">{img.thumbLabel}</p>
-                  </div>
+                  {activeHeroIdx !== idx && (
+                    <div className="absolute inset-0 bg-black/40 transition-opacity" />
+                  )}
                 </button>
               ))}
             </div>
