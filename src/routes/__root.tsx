@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportVibeError } from "../lib/vibe-error-reporting";
@@ -17,6 +17,7 @@ import {
   SiteFooter,
   StickyMobileCTA,
 } from "../components/layout/SiteLayout";
+import { useHydrated } from "../hooks/use-hydrated";
 
 function NotFoundComponent() {
   return (
@@ -123,6 +124,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const hydrated = useHydrated();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -134,7 +136,16 @@ function RootComponent() {
         </main>
         <SiteFooter />
         <StickyMobileCTA />
+        {hydrated ? (
+          <Suspense fallback={null}>
+            <LazyChatWidget />
+          </Suspense>
+        ) : null}
       </div>
     </QueryClientProvider>
   );
 }
+
+const LazyChatWidget = lazy(() =>
+  import("../components/chat/ChatWidget").then((m) => ({ default: m.ChatWidget })),
+);
