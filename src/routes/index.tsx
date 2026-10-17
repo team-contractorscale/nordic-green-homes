@@ -1,24 +1,83 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ASSETS } from "@/lib/content-data";
+import {
+  HomeHeroSection,
+  HomeConsultationStrip,
+  HomeBadgesSection,
+  HomeServicesGrid,
+} from "@/components/home/HomeSections";
+import {
+  HomeExpertsSection,
+  HomeTrustedPartnerSection,
+  HomeFourPillarsSection,
+  HomeDesignPartnerBanner,
+  HomeProcessSection,
+  HomeEbookSection,
+  HomeReviewsAndPortfolioSection,
+} from "@/components/home/HomeSectionsMore";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title: "Nordic Green Homes | Net-Zero Custom Homes & Renovations Fraser Valley BC",
+      },
+      {
+        name: "description",
+        content:
+          "Sustainable craftsmanship for families who demand more from their forever home. Net-Zero custom homes and high-performance renovations in Fraser Valley, Kelowna & Victoria, BC.",
+      },
+      {
+        property: "og:title",
+        content: "Nordic Green Homes | Net-Zero Custom Homes & Renovations",
+      },
+      {
+        property: "og:description",
+        content:
+          "Sustainable craftsmanship for families who demand more from their forever home. Built on verified O'Brien Contracting Ltd. standards.",
+      },
+      { property: "og:image", content: ASSETS.hero1 },
+      { name: "twitter:image", content: ASSETS.hero1 },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-vibe-blank-page-placeholder="REMOVE_THIS"
-        src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIyNCIgZmlsbD0iI2YxZWZlNyIvPjxwYXRoIGQ9Ik0xMDAgNjR2NzJNNjQgMTAwaDcyIiBzdHJva2U9IiNjOWM0YjUiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+"
-        alt="Your app will live here!"
-      />
+    <div className="bg-background text-foreground">
+      {/* 1. Architectural Hero with O'Brien headline and background rotation */}
+      <HomeHeroSection />
+
+      {/* 2. Direct Consultation bar (Book / Call / Hours) */}
+      <HomeConsultationStrip />
+
+      {/* 3. Credentials & verified builder badges */}
+      <HomeBadgesSection />
+
+      {/* 4. Core Services: "We Build What Moves Your Soul" */}
+      <HomeServicesGrid />
+
+      {/* 5. Experts in Custom Home Design (Dark architectural band with O'Brien Family) */}
+      <HomeExpertsSection />
+
+      {/* 6. Trusted Net-Zero Home Builder & Renovator (Lane & Kylie profile) */}
+      <HomeTrustedPartnerSection />
+
+      {/* 7. Four Pillars */}
+      <HomeFourPillarsSection />
+
+      {/* 8. Nordic Green Design Partner banner */}
+      <HomeDesignPartnerBanner />
+
+      {/* 9. 8-Step Process: "Building With Certainty" */}
+      <HomeProcessSection />
+
+      {/* 10. Ebook Guide: "Simple Changes to a Greener Home" */}
+      <HomeEbookSection />
+
+      {/* 11. Client Reviews ("Don't Take Our Word For It") & Signature Projects */}
+      <HomeReviewsAndPortfolioSection />
     </div>
   );
 }
