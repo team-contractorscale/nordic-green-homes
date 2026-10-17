@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportVibeError } from "../lib/vibe-error-reporting";
+import { PreviewBanner, SiteHeader, SiteFooter, StickyMobileCTA } from "../components/layout/SiteLayout";
 
 function NotFoundComponent() {
   return (
@@ -77,15 +78,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI Studio App" },
-      { name: "description", content: "AI Studio Generated Project" },
-      { name: "author", content: "AI Studio" },
-      { property: "og:title", content: "AI Studio App" },
-      { property: "og:description", content: "AI Studio Generated Project" },
+      { name: "robots", content: "noindex, nofollow" }, // Staging noindex protection
+      { name: "author", content: "Nordic Green Homes / O'Brien Contracting Ltd." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -117,8 +121,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen flex flex-col font-sans antialiased text-foreground bg-background">
+        <PreviewBanner />
+        <SiteHeader />
+        <main className="flex-1 pb-16 lg:pb-0">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <StickyMobileCTA />
+      </div>
     </QueryClientProvider>
   );
 }
