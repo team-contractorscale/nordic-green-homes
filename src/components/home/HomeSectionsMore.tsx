@@ -152,22 +152,25 @@ export function HomeFourPillarsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {/* 2-column grid as requested */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {FOUR_PILLARS.map((pillar, idx) => (
             <div
               key={idx}
-              className="bg-card rounded-xl border border-border p-6 shadow-2xs hover:shadow-sm transition-shadow flex flex-col justify-between"
+              className="bg-card rounded-xl border border-border p-7 sm:p-8 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-                  {idx === 0 && <Leaf className="w-5 h-5" />}
-                  {idx === 1 && <HomeIcon className="w-5 h-5" />}
-                  {idx === 2 && <Sparkles className="w-5 h-5" />}
-                  {idx === 3 && <ShieldCheck className="w-5 h-5" />}
+                <div className="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-5">
+                  {idx === 0 && <Leaf className="w-6 h-6" />}
+                  {idx === 1 && <HomeIcon className="w-6 h-6" />}
+                  {idx === 2 && <Sparkles className="w-6 h-6" />}
+                  {idx === 3 && <ShieldCheck className="w-6 h-6" />}
                 </div>
-                <h3 className="font-serif text-lg font-bold text-foreground">{pillar.title}</h3>
-                <p className="mt-2.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {pillar.summary}
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-foreground">
+                  {pillar.title}
+                </h3>
+                <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  {pillar.body}
                 </p>
               </div>
             </div>

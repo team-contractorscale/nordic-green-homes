@@ -30,18 +30,27 @@ export const ASSETS = {
   logo: "https://obriencontracting.ca/wp-content/uploads/2025/12/Obrien-Green-White-Logo.png",
   logoTransparentWhite:
     "https://obriencontracting.ca/wp-content/uploads/2025/12/white_logo_transparent_backgroun.png",
-  hero1: "https://obriencontracting.ca/wp-content/uploads/2025/10/Hero-1.png",
-  hero2: "https://obriencontracting.ca/wp-content/uploads/2025/10/Hero-2.png",
-  hero3: "https://obriencontracting.ca/wp-content/uploads/2025/10/Hero-3.png",
+  hero1:
+    "https://vibe.filesafe.space/1792226139280090093/assets/5b4813be-2ecf-45c4-8433-1a56b0556063.png",
+  hero2:
+    "https://vibe.filesafe.space/1792226139280090093/assets/387926f8-ddee-4f29-9cd4-bd4321cd3bd1.png",
+  hero3:
+    "https://vibe.filesafe.space/1792226139280090093/assets/bf74e08f-eb37-43e4-b9e0-1e75727e563e.png",
+  heroInterior:
+    "https://vibe.filesafe.space/1792226139280090093/assets/f304b253-bffe-4679-a4a9-d578fc81be76.jpg",
   family: "https://obriencontracting.ca/wp-content/uploads/2025/12/obrien-family.png",
   lane: "https://obriencontracting.ca/wp-content/uploads/2025/12/obrien-lane.png",
   lanePortrait: "https://obriencontracting.ca/wp-content/uploads/2025/12/DSC_7908-scaled-1.jpg",
   kyliePortrait: "https://obriencontracting.ca/wp-content/uploads/2025/12/DSC_7929-scaled-1.jpg",
-  newBuild: "https://obriencontracting.ca/wp-content/uploads/2025/12/New-Build.png",
-  houseRenovation: "https://obriencontracting.ca/wp-content/uploads/2025/12/House-Renovation.png",
-  houseOfCars: "https://obriencontracting.ca/wp-content/uploads/2025/12/House-of-Cars.png",
+  newBuild:
+    "https://vibe.filesafe.space/1792226139280090093/assets/480ea1d2-693d-458f-b4c8-f37b26b4efab.png",
+  houseRenovation:
+    "https://vibe.filesafe.space/1792226139280090093/assets/d35fffaa-be2b-45b5-bc8a-303b5ca4e87c.png",
+  houseOfCars:
+    "https://vibe.filesafe.space/1792226139280090093/assets/91d8f259-e8cd-4ee2-825f-9cb4ee66a082.png",
   customPoolBar: "https://obriencontracting.ca/wp-content/uploads/2025/12/Custom-Pool-Bar.webp",
-  backyard: "https://obriencontracting.ca/wp-content/uploads/2025/12/backyard.png",
+  backyard:
+    "https://vibe.filesafe.space/1792226139280090093/assets/8a5d9646-7c83-4d61-986e-419b0d4500e8.png",
   ebookCover: "https://obriencontracting.ca/wp-content/uploads/2025/12/eBook-Green-Ebook.png",
   futureProofingGuide:
     "https://obriencontracting.ca/wp-content/uploads/2026/01/Future-Proofind-Your-Home.png",

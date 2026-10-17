@@ -23,21 +23,54 @@ import {
   Home as HomeIcon,
 } from "lucide-react";
 import * as React from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export function HomeHeroSection() {
   const [activeHeroIdx, setActiveHeroIdx] = React.useState(0);
-  const heroImages = [ASSETS.hero1, ASSETS.hero2, ASSETS.hero3];
+  const heroImages = React.useMemo(
+    () => [
+      {
+        src: ASSETS.hero3,
+        title: "Architectural Net-Zero Residence",
+        thumbLabel: "Custom Home",
+      },
+      {
+        src: ASSETS.hero2,
+        title: "Modern Timber & Stone Design",
+        thumbLabel: "Exterior Architecture",
+      },
+      {
+        src: ASSETS.hero1,
+        title: "High-Performance Modern Living",
+        thumbLabel: "Landscape & Living",
+      },
+      {
+        src: ASSETS.heroInterior,
+        title: "Curated Interior Craftsmanship",
+        thumbLabel: "Interior Living",
+      },
+    ],
+    [],
+  );
+
+  const currentHero = heroImages[activeHeroIdx] || heroImages[0]!;
 
   return (
-    <section className="relative bg-brand-dark text-white overflow-hidden min-h-[580px] lg:min-h-[640px] flex items-center">
+    <section className="relative bg-brand-dark text-white overflow-hidden min-h-[620px] lg:min-h-[720px] flex items-center">
       <div className="absolute inset-0 z-0">
         <img
-          src={heroImages[activeHeroIdx]}
-          alt="Net-Zero Custom Home in Fraser Valley BC"
+          src={currentHero.src}
+          alt={currentHero.title}
           className="w-full h-full object-cover transition-opacity duration-700"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-brand-dark/95 via-brand-dark/80 to-brand-dark/40" />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-linear-to-r from-brand-dark/95 via-brand-dark/85 to-brand-dark/50" />
+        <div className="absolute inset-0 bg-black/35" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
@@ -90,28 +123,34 @@ export function HomeHeroSection() {
             </div>
           </div>
 
-          <div className="lg:col-span-4 hidden lg:flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-wider text-white/70 font-semibold">
-              Featured Works
+          <div className="lg:col-span-4 flex flex-col gap-3">
+            <span className="text-xs uppercase tracking-wider text-white/70 font-semibold flex items-center justify-between">
+              <span>Gallery Highlights</span>
+              <span className="text-emerald-400 font-mono text-[11px]">
+                {activeHeroIdx + 1} / {heroImages.length}
+              </span>
             </span>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
               {heroImages.map((img, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => setActiveHeroIdx(idx)}
-                  className={`relative aspect-16/9 rounded-lg overflow-hidden border-2 transition-all text-left ${
+                  className={`group relative h-20 sm:h-24 lg:h-20 rounded-lg overflow-hidden border-2 transition-all text-left flex items-center ${
                     activeHeroIdx === idx
-                      ? "border-emerald-400 ring-2 ring-emerald-400/50 scale-[1.02]"
+                      ? "border-emerald-400 ring-2 ring-emerald-400/50 scale-[1.01]"
                       : "border-white/20 opacity-70 hover:opacity-100"
                   }`}
                 >
                   <img
-                    src={img}
-                    alt={`Showcase ${idx + 1}`}
-                    className="w-full h-full object-cover"
+                    src={img.src}
+                    alt={img.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-black/20" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="absolute bottom-1.5 left-2 right-2">
+                    <p className="text-[11px] font-medium text-white truncate">{img.thumbLabel}</p>
+                  </div>
                 </button>
               ))}
             </div>
@@ -208,10 +247,43 @@ export function HomeBadgesSection() {
 }
 
 export function HomeServicesGrid() {
+  const serviceItems = [
+    {
+      title: "Custom Home Design",
+      desc: "Want a new home? We build it just how you dream it—on budget and on time.",
+      image: ASSETS.newBuild,
+      link: "/services/new-builds",
+    },
+    {
+      title: "Home Renovation",
+      desc: "Time for a change? We renovate kitchens, bathrooms, or entire houses to make them feel new again.",
+      image: ASSETS.houseRenovation,
+      link: "/services/home-renovations",
+    },
+    {
+      title: "Custom Garage Builds",
+      desc: "Want the perfect home for your cars or a new functional space? We build custom garages that fit your needs.",
+      image: ASSETS.houseOfCars,
+      link: "/services",
+    },
+    {
+      title: "Backyard Upgrades",
+      desc: "Planning to enhance your outdoor space? We specialise in upgrades like fences, decks, patios, and sheds.",
+      image: ASSETS.backyard,
+      link: "/services",
+    },
+    {
+      title: "Custom Pool Bars",
+      desc: "Outdoor entertainment pavilions and bespoke pool bars designed for seamless summer hospitality.",
+      image: ASSETS.customPoolBar,
+      link: "/services",
+    },
+  ];
+
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-xs font-semibold uppercase tracking-widest text-primary">
             What We Do
           </span>
@@ -224,127 +296,58 @@ export function HomeServicesGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {/* Custom Home Design */}
-          <div className="bg-card rounded-xl border border-border overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col group">
-            <div className="relative aspect-4/3 overflow-hidden bg-muted">
-              <img
-                src={ASSETS.newBuild}
-                alt="Custom Home Design"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="font-serif text-xl font-bold text-foreground">Custom Home Design</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Want a new home? We build it just how you dream it—on budget and on time.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-border">
-                <Link
-                  to="/services/new-builds"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+        {/* 3-Column Grid Slider */}
+        <div className="relative px-2 sm:px-10">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4 sm:-ml-6">
+              {serviceItems.map((item, idx) => (
+                <CarouselItem
+                  key={idx}
+                  className="pl-4 sm:pl-6 basis-full sm:basis-1/2 lg:basis-1/3"
                 >
-                  <span>Read More</span>
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
+                  <div className="bg-card rounded-xl border border-border overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                    <div className="relative aspect-4/3 overflow-hidden bg-muted">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h3 className="font-serif text-xl font-bold text-foreground">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                      <div className="mt-6 pt-4 border-t border-border">
+                        <Link
+                          to={item.link}
+                          className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+                        >
+                          <span>Read More</span>
+                          <ChevronRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden sm:flex">
+              <CarouselPrevious className="-left-4 sm:-left-6 bg-card border-border shadow-md" />
+              <CarouselNext className="-right-4 sm:-right-6 bg-card border-border shadow-md" />
             </div>
-          </div>
-
-          {/* Home Renovation */}
-          <div className="bg-card rounded-xl border border-border overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col group">
-            <div className="relative aspect-4/3 overflow-hidden bg-muted">
-              <img
-                src={ASSETS.houseRenovation}
-                alt="Home Renovation"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="font-serif text-xl font-bold text-foreground">Home Renovation</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Time for a change? We renovate kitchens, bathrooms, or entire houses to make them
-                  feel new again.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-border">
-                <Link
-                  to="/services/home-renovations"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-                >
-                  <span>Read More</span>
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Custom Garage Builds */}
-          <div className="bg-card rounded-xl border border-border overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col group">
-            <div className="relative aspect-4/3 overflow-hidden bg-muted">
-              <img
-                src={ASSETS.houseOfCars}
-                alt="Custom Garage Builds"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="font-serif text-xl font-bold text-foreground">
-                  Custom Garage Builds
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Want the perfect home for your cars or a new functional space? We build custom
-                  garages that fit your needs.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-border">
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-                >
-                  <span>Read More</span>
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Backyard Upgrades */}
-          <div className="bg-card rounded-xl border border-border overflow-hidden shadow-xs hover:shadow-md transition-all duration-300 flex flex-col group">
-            <div className="relative aspect-4/3 overflow-hidden bg-muted">
-              <img
-                src={ASSETS.backyard}
-                alt="Backyard Upgrades"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-6 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="font-serif text-xl font-bold text-foreground">Backyard Upgrades</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  Planning to enhance your outdoor space? We specialise in upgrades like fences,
-                  decks, patios, and sheds.
-                </p>
-              </div>
-              <div className="mt-6 pt-4 border-t border-border">
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
-                >
-                  <span>Read More</span>
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
+          </Carousel>
         </div>
       </div>
     </section>
