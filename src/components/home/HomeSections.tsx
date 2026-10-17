@@ -46,11 +46,6 @@ export function HomeHeroSection() {
         thumbLabel: "Exterior Architecture",
       },
       {
-        src: ASSETS.hero1,
-        title: "High-Performance Modern Living",
-        thumbLabel: "Landscape & Living",
-      },
-      {
         src: ASSETS.heroInterior,
         title: "Curated Interior Craftsmanship",
         thumbLabel: "Interior Living",
