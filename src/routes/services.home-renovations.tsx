@@ -9,12 +9,14 @@ export const Route = createFileRoute("/services/home-renovations")({
       { title: "Home Renovations & Transformations | Nordic Green Homes" },
       {
         name: "description",
-        content: "Whole-home, kitchen, and bathroom renovations in Chilliwack, Fraser Valley, Kelowna & Victoria. RenoMark standards, clean craftsmanship, and thermal upgrades.",
+        content:
+          "Whole-home, kitchen, and bathroom renovations in Chilliwack, Fraser Valley, Kelowna & Victoria. RenoMark standards, clean craftsmanship, and thermal upgrades.",
       },
       { property: "og:title", content: "Home Renovations & Transformations | Nordic Green Homes" },
       {
         property: "og:description",
-        content: "Elevate your existing home with disciplined craftsmanship, energy-conscious upgrades, and luxury finishes.",
+        content:
+          "Elevate your existing home with disciplined craftsmanship, energy-conscious upgrades, and luxury finishes.",
       },
       { property: "og:image", content: ASSETS.houseRenovation },
       { name: "twitter:image", content: ASSETS.houseRenovation },
@@ -37,7 +39,9 @@ function HomeRenovationsPage() {
               Transform Your Home With Craftsmanship & Certainty
             </h1>
             <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-              Whether modernizing an outdated kitchen, re-imagining a primary bath sanctuary, or undertaking a whole-home transformation, we combine disciplined carpentry with sustainable materials to make your home feel new again.
+              Whether modernizing an outdated kitchen, re-imagining a primary bath sanctuary, or
+              undertaking a whole-home transformation, we combine disciplined carpentry with
+              sustainable materials to make your home feel new again.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -70,13 +74,18 @@ function HomeRenovationsPage() {
               </h2>
               <div className="mt-4 space-y-4 text-muted-foreground text-sm leading-relaxed">
                 <p>
-                  Renovating an existing home requires deep technical care: uncovering historical framing quirks, improving insulation where it counts, and respecting your budget and living comfort.
+                  Renovating an existing home requires deep technical care: uncovering historical
+                  framing quirks, improving insulation where it counts, and respecting your budget
+                  and living comfort.
                 </p>
                 <p>
-                  As an active RenoMark member, we abide by a strict Code of Conduct: transparent pricing, written warranties, proof of liability and WCB insurance, and honest communication from start to finish.
+                  As an active RenoMark member, we abide by a strict Code of Conduct: transparent
+                  pricing, written warranties, proof of liability and WCB insurance, and honest
+                  communication from start to finish.
                 </p>
                 <p>
-                  In collaboration with interior design partner Nordic Green Design, we ensure every tile selection, custom cabinet, and lighting plan works in harmony.
+                  In collaboration with interior design partner Nordic Green Design, we ensure every
+                  tile selection, custom cabinet, and lighting plan works in harmony.
                 </p>
               </div>
 
@@ -120,7 +129,8 @@ function HomeRenovationsPage() {
             Planning a Renovation in the Fraser Valley or Vancouver Island?
           </h2>
           <p className="mt-3 text-sm text-muted-foreground max-w-xl mx-auto">
-            Discuss your scope, timing, and ideas with Lane to get transparent guidance before committing to designs or demolition.
+            Discuss your scope, timing, and ideas with Lane to get transparent guidance before
+            committing to designs or demolition.
           </p>
           <div className="mt-6">
             <Link

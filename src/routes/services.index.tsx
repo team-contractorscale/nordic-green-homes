@@ -9,12 +9,14 @@ export const Route = createFileRoute("/services/")({
       { title: "Building & Renovation Services | Nordic Green Homes" },
       {
         name: "description",
-        content: "Discover our high-performance new builds, custom home design, whole-home renovations, and custom garage builds across Fraser Valley, Kelowna & Victoria.",
+        content:
+          "Discover our high-performance new builds, custom home design, whole-home renovations, and custom garage builds across Fraser Valley, Kelowna & Victoria.",
       },
       { property: "og:title", content: "Building & Renovation Services | Nordic Green Homes" },
       {
         property: "og:description",
-        content: "High-performance net-zero builds and thoughtful renovations led by Lane O'Brien in British Columbia.",
+        content:
+          "High-performance net-zero builds and thoughtful renovations led by Lane O'Brien in British Columbia.",
       },
       { property: "og:image", content: ASSETS.hero2 },
       { name: "twitter:image", content: ASSETS.hero2 },
@@ -36,7 +38,8 @@ function ServicesOverviewPage() {
             Services Built to Move Your Soul
           </h1>
           <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            We manage every detail of your journey—from initial concept and site feasibility to final handover—ensuring disciplined craftsmanship and healthy, energy-efficient living.
+            We manage every detail of your journey—from initial concept and site feasibility to
+            final handover—ensuring disciplined craftsmanship and healthy, energy-efficient living.
           </p>
         </div>
       </section>
@@ -107,7 +110,8 @@ function ServicesOverviewPage() {
                 Ready to plan your next building project?
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Connect directly with Lane O'Brien to review site feasibility, building goals, and budget expectations.
+                Connect directly with Lane O'Brien to review site feasibility, building goals, and
+                budget expectations.
               </p>
             </div>
             <Link

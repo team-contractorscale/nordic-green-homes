@@ -12,7 +12,8 @@ export function PreviewBanner() {
             Internal Pilot Preview
           </span>
           <span className="hidden sm:inline text-white/70">
-            Nordic Green Homes — Private architecture preview based on verified O'Brien Contracting Ltd. standards.
+            Nordic Green Homes — Private architecture preview based on verified O'Brien Contracting
+            Ltd. standards.
           </span>
         </div>
         <div className="flex items-center gap-4 text-xs font-mono text-white/60">
@@ -305,7 +306,10 @@ export function SiteHeader() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <div className="mt-3 text-center text-xs text-muted-foreground">
-              Call us: <a href={BRAND.phoneTel} className="underline text-foreground">{BRAND.phone}</a>
+              Call us:{" "}
+              <a href={BRAND.phoneTel} className="underline text-foreground">
+                {BRAND.phone}
+              </a>
             </div>
           </div>
         </div>
@@ -337,7 +341,8 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="text-sm text-white/70 leading-relaxed">
-              Our commitment to green building practices means you can trust us to deliver a home that is as kind to the planet as it is to you and your family.
+              Our commitment to green building practices means you can trust us to deliver a home
+              that is as kind to the planet as it is to you and your family.
             </p>
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 text-xs text-emerald-400 font-medium">
@@ -354,12 +359,18 @@ export function SiteFooter() {
             </h3>
             <ul className="space-y-2.5 text-sm text-white/70">
               <li>
-                <Link to="/services/new-builds" className="hover:text-emerald-300 transition-colors">
+                <Link
+                  to="/services/new-builds"
+                  className="hover:text-emerald-300 transition-colors"
+                >
                   New Builds & Custom Homes
                 </Link>
               </li>
               <li>
-                <Link to="/services/home-renovations" className="hover:text-emerald-300 transition-colors">
+                <Link
+                  to="/services/home-renovations"
+                  className="hover:text-emerald-300 transition-colors"
+                >
                   Home Renovations
                 </Link>
               </li>
@@ -433,13 +444,14 @@ export function SiteFooter() {
               </div>
               <div className="flex items-start gap-2.5">
                 <Mail className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <a href={`mailto:${BRAND.email}`} className="hover:text-emerald-300 transition-colors">
+                <a
+                  href={`mailto:${BRAND.email}`}
+                  className="hover:text-emerald-300 transition-colors"
+                >
                   {BRAND.email}
                 </a>
               </div>
-              <div className="pt-2 text-xs text-white/50">
-                Operating Hours: {BRAND.hours}
-              </div>
+              <div className="pt-2 text-xs text-white/50">Operating Hours: {BRAND.hours}</div>
             </div>
           </div>
         </div>
@@ -447,7 +459,8 @@ export function SiteFooter() {
         {/* Legal & Attribution Sub-Footer */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-4">
           <div>
-            © {new Date().getFullYear()} {BRAND.name} (Pilot for {BRAND.sourceCompany}). All rights reserved.
+            © {new Date().getFullYear()} {BRAND.name} (Pilot for {BRAND.sourceCompany}). All rights
+            reserved.
           </div>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="hover:text-white/80 transition-colors">
@@ -493,9 +506,5 @@ export function PageContainer({
   children: React.ReactNode;
   className?: string;
 }) {
-  return (
-    <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>;
 }

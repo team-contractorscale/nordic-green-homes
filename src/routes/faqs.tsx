@@ -10,12 +10,14 @@ export const Route = createFileRoute("/faqs")({
       { title: "Frequently Asked Questions | Nordic Green Homes" },
       {
         name: "description",
-        content: "Answers to common questions about Net-Zero custom home building, energy codes, remodeling, permits, and timelines in Fraser Valley and BC.",
+        content:
+          "Answers to common questions about Net-Zero custom home building, energy codes, remodeling, permits, and timelines in Fraser Valley and BC.",
       },
       { property: "og:title", content: "Frequently Asked Questions | Nordic Green Homes" },
       {
         property: "og:description",
-        content: "Clear answers on Net-Zero standards, building process, budget transparency, and service areas.",
+        content:
+          "Clear answers on Net-Zero standards, building process, budget transparency, and service areas.",
       },
       { property: "og:image", content: ASSETS.hero2 },
       { name: "twitter:image", content: ASSETS.hero2 },
@@ -43,7 +45,8 @@ function FaqsPage() {
             Frequently Asked Questions
           </h1>
           <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Building or renovating a home is a significant investment. Here are answers to common questions about our building science, process, and working together.
+            Building or renovating a home is a significant investment. Here are answers to common
+            questions about our building science, process, and working together.
           </p>
         </div>
       </section>
@@ -88,7 +91,8 @@ function FaqsPage() {
               Have a question not covered here?
             </h3>
             <p className="text-sm text-muted-foreground mt-2">
-              We're happy to walk through your specific lot, building permits, or architectural ideas.
+              We're happy to walk through your specific lot, building permits, or architectural
+              ideas.
             </p>
             <div className="mt-5">
               <Link

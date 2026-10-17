@@ -9,12 +9,14 @@ export const Route = createFileRoute("/process")({
       { title: "Our 8-Step Building Process | Nordic Green Homes" },
       {
         name: "description",
-        content: "Explore our proven 8-step construction process from initial consultation to final walkthrough and warranty. Work directly with Lane O'Brien with transparent certainty.",
+        content:
+          "Explore our proven 8-step construction process from initial consultation to final walkthrough and warranty. Work directly with Lane O'Brien with transparent certainty.",
       },
       { property: "og:title", content: "Our 8-Step Building Process | Nordic Green Homes" },
       {
         property: "og:description",
-        content: "Building with certainty: Consultation, Design, Material Selection, Permitting, Pre-Con, Construction, Walkthrough, and Warranty.",
+        content:
+          "Building with certainty: Consultation, Design, Material Selection, Permitting, Pre-Con, Construction, Walkthrough, and Warranty.",
       },
       { property: "og:image", content: ASSETS.hero3 },
       { name: "twitter:image", content: ASSETS.hero3 },
@@ -36,7 +38,8 @@ function ProcessPage() {
             Building With Certainty: Our Straightforward Approach
           </h1>
           <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            At Nordic Green Homes & O'Brien Contracting, you work directly with Lane through every step of our proven 8-stage methodology. No hand-offs, no unexpected surprises.
+            At Nordic Green Homes & O'Brien Contracting, you work directly with Lane through every
+            step of our proven 8-stage methodology. No hand-offs, no unexpected surprises.
           </p>
         </div>
       </section>
@@ -83,12 +86,30 @@ function ProcessPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { title: "On-Time Delivery", desc: "Adhering strictly to schedules with regular milestone status updates." },
-                { title: "Open Communication", desc: "Direct phone, email, and on-site access to Lane O'Brien throughout." },
-                { title: "Dependable Service", desc: "Fully licensed, insured, and verified RenoMark contractor accountability." },
-                { title: "Superior Craftsmanship", desc: "Red Seal carpenter standards, durable materials, and zero shortcuts." },
-                { title: "Personalised Designs", desc: "Customized to your family's daily rhythms, accessibility, and tastes." },
-                { title: "Transparent Pricing", desc: "Detailed breakdowns before construction with no unexpected hidden costs." },
+                {
+                  title: "On-Time Delivery",
+                  desc: "Adhering strictly to schedules with regular milestone status updates.",
+                },
+                {
+                  title: "Open Communication",
+                  desc: "Direct phone, email, and on-site access to Lane O'Brien throughout.",
+                },
+                {
+                  title: "Dependable Service",
+                  desc: "Fully licensed, insured, and verified RenoMark contractor accountability.",
+                },
+                {
+                  title: "Superior Craftsmanship",
+                  desc: "Red Seal carpenter standards, durable materials, and zero shortcuts.",
+                },
+                {
+                  title: "Personalised Designs",
+                  desc: "Customized to your family's daily rhythms, accessibility, and tastes.",
+                },
+                {
+                  title: "Transparent Pricing",
+                  desc: "Detailed breakdowns before construction with no unexpected hidden costs.",
+                },
               ].map((g, idx) => (
                 <div key={idx} className="p-6 rounded-lg bg-muted/40 border border-border">
                   <div className="flex items-center gap-2 text-primary font-semibold text-sm">

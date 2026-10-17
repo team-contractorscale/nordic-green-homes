@@ -11,7 +11,12 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportVibeError } from "../lib/vibe-error-reporting";
-import { PreviewBanner, SiteHeader, SiteFooter, StickyMobileCTA } from "../components/layout/SiteLayout";
+import {
+  PreviewBanner,
+  SiteHeader,
+  SiteFooter,
+  StickyMobileCTA,
+} from "../components/layout/SiteLayout";
 
 function NotFoundComponent() {
   return (

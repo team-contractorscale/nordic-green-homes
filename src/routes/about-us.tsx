@@ -9,12 +9,14 @@ export const Route = createFileRoute("/about-us")({
       { title: "About Us | Nordic Green Homes & O'Brien Contracting" },
       {
         name: "description",
-        content: "Meet Lane & Kylie O'Brien. Net-Zero trained builder and interior design partners crafting sustainable, family-oriented homes in Fraser Valley, Kelowna & Victoria, BC.",
+        content:
+          "Meet Lane & Kylie O'Brien. Net-Zero trained builder and interior design partners crafting sustainable, family-oriented homes in Fraser Valley, Kelowna & Victoria, BC.",
       },
       { property: "og:title", content: "About Us | Nordic Green Homes & O'Brien Contracting" },
       {
         property: "og:description",
-        content: "Founded on the principles of sustainability, family, and luxury. Craftsmanship rooted in integrity.",
+        content:
+          "Founded on the principles of sustainability, family, and luxury. Craftsmanship rooted in integrity.",
       },
       { property: "og:image", content: ASSETS.family },
       { name: "twitter:image", content: ASSETS.family },
@@ -36,7 +38,8 @@ function AboutPage() {
             Building Legacies, Grounded in Stewardship
           </h1>
           <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Welcome to Nordic Green Homes, a vision brought to life by Lane and Kylie O'Brien. Founded on the principles of sustainability, family, and bespoke luxury.
+            Welcome to Nordic Green Homes, a vision brought to life by Lane and Kylie O'Brien.
+            Founded on the principles of sustainability, family, and bespoke luxury.
           </p>
         </div>
       </section>
@@ -57,7 +60,8 @@ function AboutPage() {
                   Free Homeowner's Guide
                 </h3>
                 <p className="text-xs text-muted-foreground mt-2 max-w-sm">
-                  Inside: how smart technology, renewable energy, healthy indoor air, and resilient assemblies future-proof your family home.
+                  Inside: how smart technology, renewable energy, healthy indoor air, and resilient
+                  assemblies future-proof your family home.
                 </p>
                 <a
                   href={BRAND.freePdfGuideUrl}
@@ -81,21 +85,40 @@ function AboutPage() {
               </h2>
               <div className="mt-4 space-y-4 text-muted-foreground text-sm leading-relaxed">
                 <p>
-                  Our journey began with a simple belief: that building homes could be done differently—better for our families, our community, and our planet. With Lane's expertise as a Net-Zero trained builder and Red Seal carpenter, and Kylie's flair for interior design through Nordic Green Design, we've created a unique approach that blends sustainable building science with luxurious finishes.
+                  Our journey began with a simple belief: that building homes could be done
+                  differently—better for our families, our community, and our planet. With Lane's
+                  expertise as a Net-Zero trained builder and Red Seal carpenter, and Kylie's flair
+                  for interior design through Nordic Green Design, we've created a unique approach
+                  that blends sustainable building science with luxurious finishes.
                 </p>
                 <p>
-                  Our homes are not only energy-efficient and environmentally responsible; they are quiet, comfortable, light-filled spaces designed for everyday family life.
+                  Our homes are not only energy-efficient and environmentally responsible; they are
+                  quiet, comfortable, light-filled spaces designed for everyday family life.
                 </p>
                 <p>
-                  We understand that starting a construction project is a milestone life step. That's why we prioritize clear communication and transparency from the get-go. Our process is designed to be straightforward and stress-free.
+                  We understand that starting a construction project is a milestone life step.
+                  That's why we prioritize clear communication and transparency from the get-go. Our
+                  process is designed to be straightforward and stress-free.
                 </p>
               </div>
 
               {/* Verified Badges Row */}
               <div className="mt-8 pt-6 border-t border-border flex flex-wrap items-center gap-6">
-                <img src={ASSETS.renoMarkLogo} alt="RenoMark Member" className="h-10 w-auto object-contain" />
-                <img src={ASSETS.abbotsfordVotesWinner} alt="Abbotsford Votes 2023 Winner" className="h-10 w-auto object-contain" />
-                <img src={ASSETS.asSeenOnLogo} alt="As Seen On" className="h-8 w-auto object-contain opacity-80" />
+                <img
+                  src={ASSETS.renoMarkLogo}
+                  alt="RenoMark Member"
+                  className="h-10 w-auto object-contain"
+                />
+                <img
+                  src={ASSETS.abbotsfordVotesWinner}
+                  alt="Abbotsford Votes 2023 Winner"
+                  className="h-10 w-auto object-contain"
+                />
+                <img
+                  src={ASSETS.asSeenOnLogo}
+                  alt="As Seen On"
+                  className="h-8 w-auto object-contain opacity-80"
+                />
               </div>
             </div>
           </div>
@@ -113,7 +136,8 @@ function AboutPage() {
               Meet Lane & Kylie O'Brien
             </h2>
             <p className="mt-3 text-sm text-muted-foreground">
-              Husband and wife partners dedicated to healthy, long-lasting homes for British Columbia families.
+              Husband and wife partners dedicated to healthy, long-lasting homes for British
+              Columbia families.
             </p>
           </div>
 
@@ -135,13 +159,20 @@ function AboutPage() {
                   </span>
                   <div className="mt-4 text-sm text-muted-foreground space-y-3 leading-relaxed">
                     <p>
-                      A Saskatchewan prairie boy who found his true home in British Columbia! Lane is a Net-Zero trained builder with a solid foundation as a Red Seal Journeyman Carpenter.
+                      A Saskatchewan prairie boy who found his true home in British Columbia! Lane
+                      is a Net-Zero trained builder with a solid foundation as a Red Seal Journeyman
+                      Carpenter.
                     </p>
                     <p>
-                      After years working with conventional construction companies, Lane grew frustrated by the volume of construction waste and lack of envelope performance in standard homes. He launched his own company to build better, high-performance homes that stand up to BC's climate.
+                      After years working with conventional construction companies, Lane grew
+                      frustrated by the volume of construction waste and lack of envelope
+                      performance in standard homes. He launched his own company to build better,
+                      high-performance homes that stand up to BC's climate.
                     </p>
                     <p>
-                      A loving father of three and devoted husband, he is deeply active in the local builders association and continually advances building science standards across our projects.
+                      A loving father of three and devoted husband, he is deeply active in the local
+                      builders association and continually advances building science standards
+                      across our projects.
                     </p>
                   </div>
                 </div>
@@ -165,13 +196,19 @@ function AboutPage() {
                   </span>
                   <div className="mt-4 text-sm text-muted-foreground space-y-3 leading-relaxed">
                     <p>
-                      A BC native who partnered with Lane in life and in business! With a previous background in law, Kylie shifted to her creative calling in interior design, earning certification through the Interior Design Institute.
+                      A BC native who partnered with Lane in life and in business! With a previous
+                      background in law, Kylie shifted to her creative calling in interior design,
+                      earning certification through the Interior Design Institute.
                     </p>
                     <p>
-                      Kylie directs our design partner firm, Nordic Green Design. She is passionate about eco-friendly, non-toxic materials, tactile timber selections, and serene Scandinavian aesthetics that feel warm and inviting.
+                      Kylie directs our design partner firm, Nordic Green Design. She is passionate
+                      about eco-friendly, non-toxic materials, tactile timber selections, and serene
+                      Scandinavian aesthetics that feel warm and inviting.
                     </p>
                     <p>
-                      Lane and Kylie collaborate on all new home and renovation projects, ensuring that structural building envelope science and interior elegance blend seamlessly.
+                      Lane and Kylie collaborate on all new home and renovation projects, ensuring
+                      that structural building envelope science and interior elegance blend
+                      seamlessly.
                     </p>
                   </div>
                 </div>

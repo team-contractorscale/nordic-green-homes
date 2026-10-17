@@ -1,5 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, ASSETS } from "@/lib/content-data";
+import {
+  postTrackingEvent,
+  getTrackingSessionId,
+  TRACKING_IDS,
+  CUSTOM_FIELD_IDS,
+} from "@/lib/form-tracking";
 import { Phone, Mail, MapPin, Clock, ShieldCheck, CheckCircle2 } from "lucide-react";
 import * as React from "react";
 
@@ -9,12 +15,14 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact & Discovery Call | Nordic Green Homes" },
       {
         name: "description",
-        content: "Schedule your complimentary 15-minute discovery call with Lane O'Brien. Serving Chilliwack, Fraser Valley, Kelowna & Victoria, BC.",
+        content:
+          "Schedule your complimentary 15-minute discovery call with Lane O'Brien. Serving Chilliwack, Fraser Valley, Kelowna & Victoria, BC.",
       },
       { property: "og:title", content: "Contact & Discovery Call | Nordic Green Homes" },
       {
         property: "og:description",
-        content: "Tell us about your next custom home, new build, or renovation project in British Columbia.",
+        content:
+          "Tell us about your next custom home, new build, or renovation project in British Columbia.",
       },
       { property: "og:image", content: ASSETS.hero1 },
       { name: "twitter:image", content: ASSETS.hero1 },
@@ -39,7 +47,70 @@ function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Safety requirement: Internal preview mode does not post to live CRM workflows without prior audit.
+    if (!formData.consent) return;
+
+    // Split "Full Name" into first/last for standard CRM keys.
+    const nameParts = formData.name.trim().split(/\s+/);
+    const first_name = nameParts[0] ?? "";
+    const last_name = nameParts.slice(1).join(" ") || "";
+
+    const trackingPayload = {
+      type: "external_form_submission",
+      timestamp: Date.now(),
+      formId: "discovery-call-request",
+      formData: {
+        first_name,
+        last_name,
+        email: formData.email,
+        phone: formData.phone,
+      },
+      formLabels: {
+        first_name: "First Name",
+        last_name: "Last Name",
+        email: "Email Address",
+        phone: "Phone Number",
+      },
+      url: window.location.href,
+      title: document.title,
+      path: window.location.pathname,
+      userAgent: navigator.userAgent,
+      trackingId: TRACKING_IDS.trackingId,
+      locationId: TRACKING_IDS.locationId,
+      projectId: TRACKING_IDS.projectId,
+      sessionId: getTrackingSessionId(),
+      properties: {
+        deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "mobile" : "desktop",
+        source: "ai_studio",
+        projectId: TRACKING_IDS.projectId,
+        formName: "Discovery Call Request",
+      },
+    };
+
+    postTrackingEvent(trackingPayload, {
+      customFields: {
+        [CUSTOM_FIELD_IDS.projectType]: {
+          value: formData.projectType,
+          label: "Project Type",
+        },
+        [CUSTOM_FIELD_IDS.targetTimeline]: {
+          value: formData.timeline,
+          label: "Target Timeline",
+        },
+        [CUSTOM_FIELD_IDS.estimatedBudget]: {
+          value: formData.budget,
+          label: "Estimated Budget",
+        },
+        [CUSTOM_FIELD_IDS.propertyLocation]: {
+          value: formData.location,
+          label: "Property Location",
+        },
+        [CUSTOM_FIELD_IDS.projectDetails]: {
+          value: formData.details,
+          label: "Project Details",
+        },
+      },
+    });
+
     setSubmitted(true);
   };
 
@@ -55,7 +126,8 @@ function ContactPage() {
             Tell Us About Your Next Project
           </h1>
           <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Planning a custom home, renovation, or addition? Share a few details and Lane O'Brien will connect directly with you to discuss feasibility and next steps.
+            Planning a custom home, renovation, or addition? Share a few details and Lane O'Brien
+            will connect directly with you to discuss feasibility and next steps.
           </p>
         </div>
       </section>
@@ -74,7 +146,8 @@ function ContactPage() {
                   We're Here to Help
                 </h2>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                  Unlike large builders with layers of sales representatives, your project consultation connects directly with Lane O'Brien.
+                  Unlike large builders with layers of sales representatives, your project
+                  consultation connects directly with Lane O'Brien.
                 </p>
               </div>
 
@@ -83,7 +156,10 @@ function ContactPage() {
                   <Phone className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs font-medium text-muted-foreground block">Phone</span>
-                    <a href={BRAND.phoneTel} className="text-sm font-semibold text-foreground hover:underline">
+                    <a
+                      href={BRAND.phoneTel}
+                      className="text-sm font-semibold text-foreground hover:underline"
+                    >
                       {BRAND.phone}
                     </a>
                   </div>
@@ -93,7 +169,10 @@ function ContactPage() {
                   <Mail className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs font-medium text-muted-foreground block">Email</span>
-                    <a href={`mailto:${BRAND.email}`} className="text-sm font-semibold text-foreground hover:underline">
+                    <a
+                      href={`mailto:${BRAND.email}`}
+                      className="text-sm font-semibold text-foreground hover:underline"
+                    >
                       {BRAND.email}
                     </a>
                   </div>
@@ -102,7 +181,9 @@ function ContactPage() {
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-card border border-border">
                   <MapPin className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground block">Primary Location</span>
+                    <span className="text-xs font-medium text-muted-foreground block">
+                      Primary Location
+                    </span>
                     <span className="text-sm font-semibold text-foreground">{BRAND.location}</span>
                     <span className="text-xs text-muted-foreground block mt-0.5">
                       Serving Fraser Valley, Kelowna, Victoria & surrounding BC
@@ -113,7 +194,9 @@ function ContactPage() {
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-card border border-border">
                   <Clock className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs font-medium text-muted-foreground block">Office Hours</span>
+                    <span className="text-xs font-medium text-muted-foreground block">
+                      Office Hours
+                    </span>
                     <span className="text-sm font-semibold text-foreground">{BRAND.hours}</span>
                   </div>
                 </div>
@@ -125,7 +208,8 @@ function ContactPage() {
                   <span>Verified Builder Protection</span>
                 </div>
                 <p className="leading-relaxed opacity-90">
-                  Full provincial licensing, comprehensive general liability coverage, WorkSafeBC in good standing, and RenoMark Code of Conduct warranty backing.
+                  Full provincial licensing, comprehensive general liability coverage, WorkSafeBC in
+                  good standing, and RenoMark Code of Conduct warranty backing.
                 </p>
               </div>
             </div>
@@ -142,7 +226,9 @@ function ContactPage() {
                       Inquiry Received (Preview Mode)
                     </h3>
                     <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-                      Thank you for testing the discovery request form. In this unpublished sandbox environment, live CRM webhooks remain safely paused to protect production workflows.
+                      Thank you for testing the discovery request form. In this unpublished sandbox
+                      environment, live CRM webhooks remain safely paused to protect production
+                      workflows.
                     </p>
                     <button
                       type="button"
@@ -213,7 +299,9 @@ function ContactPage() {
                         </label>
                         <select
                           value={formData.projectType}
-                          onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, projectType: e.target.value })
+                          }
                           className="w-full px-3 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
                         >
                           <option>New Build / Custom Home</option>
@@ -290,8 +378,12 @@ function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
                         className="mt-1 rounded border-input text-primary focus:ring-primary"
                       />
-                      <label htmlFor="consent-check" className="text-xs text-muted-foreground leading-normal">
-                        I consent to receive communication from Nordic Green Homes / O'Brien Contracting Ltd. regarding my discovery consultation request.
+                      <label
+                        htmlFor="consent-check"
+                        className="text-xs text-muted-foreground leading-normal"
+                      >
+                        I consent to receive communication from Nordic Green Homes / O'Brien
+                        Contracting Ltd. regarding my discovery consultation request.
                       </label>
                     </div>
 

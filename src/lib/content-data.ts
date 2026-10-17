@@ -9,17 +9,27 @@ export const BRAND = {
   phoneTel: "tel:+12366095772",
   email: "lane@obriencontracting.ca",
   location: "Chilliwack, BC",
-  serviceAreas: ["Fraser Valley", "Kelowna", "Victoria", "Chilliwack", "Abbotsford", "Surrounding BC Areas"],
+  serviceAreas: [
+    "Fraser Valley",
+    "Kelowna",
+    "Victoria",
+    "Chilliwack",
+    "Abbotsford",
+    "Surrounding BC Areas",
+  ],
   hours: "9AM - 5PM (Mon-Fri)",
   directors: "Lane & Kylie O'Brien",
-  directorTitle: "Founder & Net-Zero Trained Builder | Interior Design Partner (Nordic Green Design)",
+  directorTitle:
+    "Founder & Net-Zero Trained Builder | Interior Design Partner (Nordic Green Design)",
   primaryCtaText: "Book a complimentary 15-minute discovery call",
-  freePdfGuideUrl: "https://storage.googleapis.com/msgsndr/yHohxdtdZLdf0DUv8x7z/media/6969d656b34b64593cfb3166.pdf",
+  freePdfGuideUrl:
+    "https://storage.googleapis.com/msgsndr/yHohxdtdZLdf0DUv8x7z/media/6969d656b34b64593cfb3166.pdf",
 };
 
 export const ASSETS = {
   logo: "https://obriencontracting.ca/wp-content/uploads/2025/12/Obrien-Green-White-Logo.png",
-  logoTransparentWhite: "https://obriencontracting.ca/wp-content/uploads/2025/12/white_logo_transparent_backgroun.png",
+  logoTransparentWhite:
+    "https://obriencontracting.ca/wp-content/uploads/2025/12/white_logo_transparent_backgroun.png",
   hero1: "https://obriencontracting.ca/wp-content/uploads/2025/10/Hero-1.png",
   hero2: "https://obriencontracting.ca/wp-content/uploads/2025/10/Hero-2.png",
   hero3: "https://obriencontracting.ca/wp-content/uploads/2025/10/Hero-3.png",
@@ -33,9 +43,12 @@ export const ASSETS = {
   customPoolBar: "https://obriencontracting.ca/wp-content/uploads/2025/12/Custom-Pool-Bar.webp",
   backyard: "https://obriencontracting.ca/wp-content/uploads/2025/12/backyard.png",
   ebookCover: "https://obriencontracting.ca/wp-content/uploads/2025/12/eBook-Green-Ebook.png",
-  futureProofingGuide: "https://obriencontracting.ca/wp-content/uploads/2026/01/Future-Proofind-Your-Home.png",
-  renoMarkLogo: "https://obriencontracting.ca/wp-content/uploads/2025/12/RenoMarkLogo-Green-web-1-1.png",
-  abbotsfordVotesWinner: "https://obriencontracting.ca/wp-content/uploads/2025/12/Abbotsford-Votes-2023-Winner-1.png",
+  futureProofingGuide:
+    "https://obriencontracting.ca/wp-content/uploads/2026/01/Future-Proofind-Your-Home.png",
+  renoMarkLogo:
+    "https://obriencontracting.ca/wp-content/uploads/2025/12/RenoMarkLogo-Green-web-1-1.png",
+  abbotsfordVotesWinner:
+    "https://obriencontracting.ca/wp-content/uploads/2025/12/Abbotsford-Votes-2023-Winner-1.png",
   badgeImage45: "https://obriencontracting.ca/wp-content/uploads/2025/12/image-45.png",
   badgeImage46: "https://obriencontracting.ca/wp-content/uploads/2025/12/image-46.png",
   badgeImage47: "https://obriencontracting.ca/wp-content/uploads/2025/12/image-47.png",
@@ -45,25 +58,29 @@ export const ASSETS = {
 export const FOUR_PILLARS = [
   {
     title: "Sustainability Without Compromise",
-    summary: "Net-zero and high-performance building methods delivering lower operating costs, cleaner indoor air, and durable assemblies.",
+    summary:
+      "Net-zero and high-performance building methods delivering lower operating costs, cleaner indoor air, and durable assemblies.",
     body: "Lane's training as a Net-Zero builder and our commitment to high-performance construction mean your home will deliver measurable results: consistent comfort, healthier air, lower energy costs, and a reduced environmental footprint. We prove it with energy modelling, third-party certifications, and disciplined building envelope assemblies.",
     icon: "leaf",
   },
   {
     title: "Built for Your Family's Future",
-    summary: "Spaces designed for health, acoustic quiet, and functional longevity as your family grows and evolves over generations.",
+    summary:
+      "Spaces designed for health, acoustic quiet, and functional longevity as your family grows and evolves over generations.",
     body: "Your family is at the heart of every decision we make. We design and build homes that support the life you want to live: spaces that are healthy, quiet, and comfortable year-round. From air quality to layout, every detail is crafted with your loved ones in mind.",
     icon: "home",
   },
   {
     title: "Bespoke Luxury, Tailored to You",
-    summary: "Architectural individuality paired with natural textures, refined detailing, and purposeful spaces that feel like a true sanctuary.",
+    summary:
+      "Architectural individuality paired with natural textures, refined detailing, and purposeful spaces that feel like a true sanctuary.",
     body: "Luxury means never compromising. We blend bespoke design, premium finishes, and thoughtful details to create homes that reflect your unique style and elevate your everyday life. Whether it's a custom architectural element, timeless timber, or an unexpected detail, luxury is about feeling completely at home.",
     icon: "sparkles",
   },
   {
     title: "Guided by Faith and Integrity",
-    summary: "Honest stewardship, transparent pricing, and direct communication with Lane throughout the entire project lifespan.",
+    summary:
+      "Honest stewardship, transparent pricing, and direct communication with Lane throughout the entire project lifespan.",
     body: "Our work is rooted in faith, integrity, and service. Lane and Kylie believe that building homes is about more than construction. It's about stewardship, honesty, and creating spaces where families can flourish. Faith guides how we work, how we serve, and how we treat every client and craftsman.",
     icon: "shield-check",
   },
@@ -116,8 +133,10 @@ export const SERVICES = [
   {
     slug: "new-builds",
     title: "New Builds & Custom Homes",
-    shortDesc: "High-performance, net-zero custom homes tailored to your lifestyle, built on budget and on time.",
-    fullDesc: "From initial concept and site feasibility to final handover, we manage every detail of your custom new build. Led by Lane O'Brien, our team implements airtight envelopes, balanced ventilation, and refined architectural design to create homes built to last for generations.",
+    shortDesc:
+      "High-performance, net-zero custom homes tailored to your lifestyle, built on budget and on time.",
+    fullDesc:
+      "From initial concept and site feasibility to final handover, we manage every detail of your custom new build. Led by Lane O'Brien, our team implements airtight envelopes, balanced ventilation, and refined architectural design to create homes built to last for generations.",
     image: ASSETS.newBuild,
     features: [
       "Site feasibility & solar orientation planning",
@@ -130,8 +149,10 @@ export const SERVICES = [
   {
     slug: "home-renovations",
     title: "Home Renovations",
-    shortDesc: "Full-scale home transformations, kitchens, and architectural upgrades that modernize comfort and efficiency.",
-    fullDesc: "Whether updating a dated floorplan, re-engineering your building envelope, or renovating your kitchen and primary suite, we combine disciplined craftsmanship with sustainable materials to make your existing home feel brand new.",
+    shortDesc:
+      "Full-scale home transformations, kitchens, and architectural upgrades that modernize comfort and efficiency.",
+    fullDesc:
+      "Whether updating a dated floorplan, re-engineering your building envelope, or renovating your kitchen and primary suite, we combine disciplined craftsmanship with sustainable materials to make your existing home feel brand new.",
     image: ASSETS.houseRenovation,
     features: [
       "Whole-home and structural renovations",
@@ -144,8 +165,10 @@ export const SERVICES = [
   {
     slug: "custom-garage-builds",
     title: "Custom Garage Builds",
-    shortDesc: "Architecturally matched detached garages, workshop suites, and car collection spaces built to rigorous specs.",
-    fullDesc: "From dedicated car collection galleries to functional multi-purpose workshops and carriage houses, we construct durable, climate-controlled garages that complement your main residence.",
+    shortDesc:
+      "Architecturally matched detached garages, workshop suites, and car collection spaces built to rigorous specs.",
+    fullDesc:
+      "From dedicated car collection galleries to functional multi-purpose workshops and carriage houses, we construct durable, climate-controlled garages that complement your main residence.",
     image: ASSETS.houseOfCars,
     features: [
       "Custom multi-bay layouts and timber framing accents",
@@ -158,8 +181,10 @@ export const SERVICES = [
   {
     slug: "backyard-upgrades",
     title: "Backyard Upgrades",
-    shortDesc: "Outdoor living environments, timber decks, pergolas, custom sheds, and private resort-style retreats.",
-    fullDesc: "Elevate your property's exterior with custom timber craftsmanship, covered patios, architectural fencing, and detached garden retreats that blend naturally with British Columbia landscapes.",
+    shortDesc:
+      "Outdoor living environments, timber decks, pergolas, custom sheds, and private resort-style retreats.",
+    fullDesc:
+      "Elevate your property's exterior with custom timber craftsmanship, covered patios, architectural fencing, and detached garden retreats that blend naturally with British Columbia landscapes.",
     image: ASSETS.backyard,
     features: [
       "Custom cedar and composite decks",
@@ -172,8 +197,10 @@ export const SERVICES = [
   {
     slug: "custom-pool-bars",
     title: "Custom Pool Bars & Cabanas",
-    shortDesc: "Outdoor entertainment pavilions and bespoke pool bars designed for seamless summer hospitality.",
-    fullDesc: "Custom-crafted outdoor pool bars, cabanas, and covered service areas with durable stone and timber finishes that turn your backyard into the ultimate gathering place.",
+    shortDesc:
+      "Outdoor entertainment pavilions and bespoke pool bars designed for seamless summer hospitality.",
+    fullDesc:
+      "Custom-crafted outdoor pool bars, cabanas, and covered service areas with durable stone and timber finishes that turn your backyard into the ultimate gathering place.",
     image: ASSETS.customPoolBar,
     features: [
       "Weather-resistant cabinetry and granite/stone counters",
@@ -232,7 +259,8 @@ export const PROJECTS_GALLERY = [
     type: "Home Renovation",
     location: "Chilliwack, BC",
     status: "Completed (Source Verified)",
-    image: "https://obriencontracting.ca/wp-content/uploads/2025/12/144189453_1946069295535654_263749928670396645_n.jpg",
+    image:
+      "https://obriencontracting.ca/wp-content/uploads/2025/12/144189453_1946069295535654_263749928670396645_n.jpg",
     alt: "Refined kitchen renovation with shaker cabinetry and subway tile",
     desc: "Total kitchen gut and rebuild with custom cabinetry, durable stone countertops, and optimized workflow ergonomics.",
   },

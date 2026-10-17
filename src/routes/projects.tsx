@@ -9,12 +9,14 @@ export const Route = createFileRoute("/projects")({
       { title: "Verified Projects Gallery | Nordic Green Homes" },
       {
         name: "description",
-        content: "Explore verified home renovations, bathrooms, custom garages, and outdoor living projects completed by O'Brien Contracting Ltd. in Fraser Valley, BC.",
+        content:
+          "Explore verified home renovations, bathrooms, custom garages, and outdoor living projects completed by O'Brien Contracting Ltd. in Fraser Valley, BC.",
       },
       { property: "og:title", content: "Verified Projects Gallery | Nordic Green Homes" },
       {
         property: "og:description",
-        content: "Real craftsmanship, genuine photography from O'Brien Contracting Ltd. in British Columbia.",
+        content:
+          "Real craftsmanship, genuine photography from O'Brien Contracting Ltd. in British Columbia.",
       },
       { property: "og:image", content: ASSETS.hero1 },
       { name: "twitter:image", content: ASSETS.hero1 },
@@ -36,7 +38,8 @@ function ProjectsPage() {
             Real Work, Real Homes
           </h1>
           <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Every photo shown here is from completed projects by O'Brien Contracting Ltd. in Chilliwack, the Fraser Valley, and surrounding BC communities.
+            Every photo shown here is from completed projects by O'Brien Contracting Ltd. in
+            Chilliwack, the Fraser Valley, and surrounding BC communities.
           </p>
         </div>
       </section>
@@ -67,9 +70,7 @@ function ProjectsPage() {
                       <MapPin className="w-3.5 h-3.5 text-emerald-600" />
                       <span>{p.location}</span>
                     </div>
-                    <h2 className="font-serif text-lg font-bold text-foreground">
-                      {p.title}
-                    </h2>
+                    <h2 className="font-serif text-lg font-bold text-foreground">{p.title}</h2>
                     <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
                       {p.desc}
                     </p>
@@ -91,7 +92,8 @@ function ProjectsPage() {
               Have a Project in Mind?
             </h3>
             <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
-              Whether you're starting with bare land or renovating an existing home, let's explore your possibilities on a 15-minute call.
+              Whether you're starting with bare land or renovating an existing home, let's explore
+              your possibilities on a 15-minute call.
             </p>
             <div className="mt-6">
               <Link
