@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, ASSETS, FOUR_PILLARS } from "@/lib/content-data";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Download, Award, Shield, Heart, Sparkles, CheckCircle2 } from "lucide-react";
 
@@ -28,21 +29,13 @@ export const Route = createFileRoute("/about-us")({
 function AboutPage() {
   return (
     <div>
-      {/* Hero Banner */}
-      <section className="bg-brand-dark text-white py-16 md:py-20 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            About Our Family & Mission
-          </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Building Legacies, Grounded in Stewardship
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Welcome to Nordic Green Homes, a vision brought to life by Lane and Kylie O'Brien.
-            Founded on the principles of sustainability, family, and bespoke luxury.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        image={ASSETS.family}
+        imageAlt="Lane and Kylie O'Brien with their family outside their British Columbia home"
+        eyebrow="About Our Family & Mission"
+        title="Building Legacies, Grounded in Stewardship"
+        description="Welcome to Nordic Green Homes, a vision brought to life by Lane and Kylie O'Brien. Founded on the principles of sustainability, family, and bespoke luxury."
+      />
 
       {/* Origin Story & Free Guide */}
       <section className="py-16 md:py-24 bg-background">

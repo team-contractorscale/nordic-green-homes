@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, FAQS, ASSETS } from "@/lib/content-data";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, HelpCircle } from "lucide-react";
 import * as React from "react";
@@ -35,21 +36,13 @@ function FaqsPage() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white py-16 md:py-20 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            Got Questions?
-          </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Frequently Asked Questions
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Building or renovating a home is a significant investment. Here are answers to common
-            questions about our building science, process, and working together.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        image={ASSETS.heroInterior}
+        imageAlt="Bright, sustainable interior of a Nordic Green home with timber detailing"
+        eyebrow="Got Questions?"
+        title="Frequently Asked Questions"
+        description="Building or renovating a home is a significant investment. Here are answers to common questions about our building science, process, and working together."
+      />
 
       {/* Accordion FAQ list */}
       <section className="py-16 md:py-24 bg-background">

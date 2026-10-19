@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { NAV, PLACEHOLDER, REFERENCE_BASE, SERVICES } from "@/lib/home-content";
@@ -59,7 +59,6 @@ function HeaderCta({ className = "" }: { className?: string }) {
 
 export function SiteHeader() {
   const [open, setOpen] = React.useState(false);
-  const isHome = useLocation({ select: (l) => l.pathname === "/" });
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -69,12 +68,13 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // One glass bar holds logo, links and CTA. Over the home hero it's clear glass; once scrolled
-  // (or on inner pages, where it sits in flow) it fills with brand green so it stays readable.
-  const solid = !isHome || scrolled;
+  // One glass bar holds logo, links and CTA. It floats over each page's image
+  // hero (the PageHeader) so the navigation reads as living inside the page
+  // header; once scrolled it fills with brand green so it stays readable.
+  const solid = scrolled;
 
   return (
-    <header className={`sticky top-0 z-50 ${isHome ? "h-0" : "bg-background"}`}>
+    <header className="sticky top-0 z-50 h-0">
       <div className={`wrap transition-[padding] duration-300 ${solid ? "py-2" : "py-4"}`}>
         <div
           className={`flex items-center justify-between gap-4 rounded-full border py-2 pl-4 pr-2 backdrop-blur-md transition-colors duration-300 sm:pl-5 ${

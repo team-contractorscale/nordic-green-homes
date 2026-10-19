@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, ASSETS } from "@/lib/content-data";
 import { Link } from "@tanstack/react-router";
 import { CheckCircle2, ArrowRight, ShieldCheck, Flame, Wind, Sun } from "lucide-react";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export const Route = createFileRoute("/services/new-builds")({
   head: () => ({
@@ -28,38 +29,28 @@ export const Route = createFileRoute("/services/new-builds")({
 function NewBuildsPage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative bg-brand-dark text-white py-20 border-b border-white/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-medium tracking-wide uppercase mb-4">
-              Net-Zero Custom Homes
-            </div>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-              High-Performance Custom Homes Built to Last
-            </h1>
-            <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-              We engineer and craft high-performance forever homes that exceed standard building
-              codes. Led by Lane O'Brien, a Net-Zero trained builder and Red Seal Journeyman
-              Carpenter, we deliver measurable comfort, low energy demand, and enduring beauty.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
-                className="px-6 py-3 rounded-md bg-emerald-700 text-white font-medium text-sm hover:bg-emerald-600 transition-colors shadow"
-              >
-                {BRAND.primaryCtaText}
-              </Link>
-              <Link
-                to="/process"
-                className="px-6 py-3 rounded-md bg-white/10 text-white font-medium text-sm hover:bg-white/20 transition-colors border border-white/20"
-              >
-                Explore Build Process
-              </Link>
-            </div>
-          </div>
+      <PageHeader
+        image={ASSETS.newBuild}
+        imageAlt="High-performance custom home exterior with timber and stone detailing in the Fraser Valley"
+        eyebrow="Net-Zero Custom Homes"
+        title="High-Performance Custom Homes Built to Last"
+        description="We engineer and craft high-performance forever homes that exceed standard building codes. Led by Lane O'Brien, a Net-Zero trained builder and Red Seal Journeyman Carpenter, we deliver measurable comfort, low energy demand, and enduring beauty."
+      >
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <Link
+            to="/contact"
+            className="px-6 py-3 rounded-md bg-emerald-700 text-white font-medium text-sm hover:bg-emerald-600 transition-colors shadow"
+          >
+            {BRAND.primaryCtaText}
+          </Link>
+          <Link
+            to="/process"
+            className="px-6 py-3 rounded-md bg-white/10 text-white font-medium text-sm hover:bg-white/20 transition-colors border border-white/20"
+          >
+            Explore Build Process
+          </Link>
         </div>
-      </section>
+      </PageHeader>
 
       {/* Main Narrative & Building Science */}
       <section className="py-16 md:py-24 bg-background">

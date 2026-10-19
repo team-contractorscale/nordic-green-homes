@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, SERVICES, ASSETS } from "@/lib/content-data";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -28,21 +29,13 @@ export const Route = createFileRoute("/services/")({
 function ServicesOverviewPage() {
   return (
     <div>
-      {/* Header Banner */}
-      <section className="bg-brand-dark text-white py-16 md:py-20 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            What We Do
-          </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Services Built to Move Your Soul
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            We manage every detail of your journey—from initial concept and site feasibility to
-            final handover—ensuring disciplined craftsmanship and healthy, energy-efficient living.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        image={ASSETS.hero2}
+        imageAlt="Architectural exterior of a custom Nordic Green home with timber and stone detailing"
+        eyebrow="What We Do"
+        title="Services Built to Move Your Soul"
+        description="We manage every detail of your journey—from initial concept and site feasibility to final handover—ensuring disciplined craftsmanship and healthy, energy-efficient living."
+      />
 
       {/* Services Grid */}
       <section className="py-16 md:py-24 bg-background">

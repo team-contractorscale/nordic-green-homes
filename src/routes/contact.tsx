@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, ASSETS } from "@/lib/content-data";
+import { PageHeader } from "@/components/layout/PageHeader";
 import {
   postTrackingEvent,
   getTrackingSessionId,
@@ -116,21 +117,13 @@ function ContactPage() {
 
   return (
     <div>
-      {/* Header */}
-      <section className="bg-brand-dark text-white py-16 md:py-20 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            Complimentary Consultation
-          </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Tell Us About Your Next Project
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Planning a custom home, renovation, or addition? Share a few details and Lane O'Brien
-            will connect directly with you to discuss feasibility and next steps.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        image={ASSETS.hero1}
+        imageAlt="Custom home exterior built by O'Brien Contracting in British Columbia"
+        eyebrow="Complimentary Consultation"
+        title="Tell Us About Your Next Project"
+        description="Planning a custom home, renovation, or addition? Share a few details and Lane O'Brien will connect directly with you to discuss feasibility and next steps."
+      />
 
       {/* Main Content */}
       <section className="py-16 md:py-24 bg-background">

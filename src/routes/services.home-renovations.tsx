@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, ASSETS } from "@/lib/content-data";
 import { Link } from "@tanstack/react-router";
 import { CheckCircle2, ArrowRight, ShieldCheck, Home, Sparkles } from "lucide-react";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export const Route = createFileRoute("/services/home-renovations")({
   head: () => ({
@@ -28,38 +29,28 @@ export const Route = createFileRoute("/services/home-renovations")({
 function HomeRenovationsPage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative bg-brand-dark text-white py-20 border-b border-white/10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-medium tracking-wide uppercase mb-4">
-              RenoMark™ Certified Standards
-            </div>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-              Transform Your Home With Craftsmanship & Certainty
-            </h1>
-            <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-              Whether modernizing an outdated kitchen, re-imagining a primary bath sanctuary, or
-              undertaking a whole-home transformation, we combine disciplined carpentry with
-              sustainable materials to make your home feel new again.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
-                className="px-6 py-3 rounded-md bg-emerald-700 text-white font-medium text-sm hover:bg-emerald-600 transition-colors shadow"
-              >
-                {BRAND.primaryCtaText}
-              </Link>
-              <Link
-                to="/projects"
-                className="px-6 py-3 rounded-md bg-white/10 text-white font-medium text-sm hover:bg-white/20 transition-colors border border-white/20"
-              >
-                View Renovation Gallery
-              </Link>
-            </div>
-          </div>
+      <PageHeader
+        image={ASSETS.houseRenovation}
+        imageAlt="Whole-home renovation with modern kitchen and living space in the Fraser Valley"
+        eyebrow="RenoMark™ Certified Standards"
+        title="Transform Your Home With Craftsmanship & Certainty"
+        description="Whether modernizing an outdated kitchen, re-imagining a primary bath sanctuary, or undertaking a whole-home transformation, we combine disciplined carpentry with sustainable materials to make your home feel new again."
+      >
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <Link
+            to="/contact"
+            className="px-6 py-3 rounded-md bg-emerald-700 text-white font-medium text-sm hover:bg-emerald-600 transition-colors shadow"
+          >
+            {BRAND.primaryCtaText}
+          </Link>
+          <Link
+            to="/projects"
+            className="px-6 py-3 rounded-md bg-white/10 text-white font-medium text-sm hover:bg-white/20 transition-colors border border-white/20"
+          >
+            View Renovation Gallery
+          </Link>
         </div>
-      </section>
+      </PageHeader>
 
       {/* Renovation Pillars */}
       <section className="py-16 md:py-24 bg-background">

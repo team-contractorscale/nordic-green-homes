@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, PROJECTS_GALLERY, ASSETS } from "@/lib/content-data";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin, ShieldCheck } from "lucide-react";
 
@@ -28,21 +29,13 @@ export const Route = createFileRoute("/projects")({
 function ProjectsPage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white py-16 md:py-20 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            Portfolio of Craftsmanship
-          </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Real Work, Real Homes
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            Every photo shown here is from completed projects by O'Brien Contracting Ltd. in
-            Chilliwack, the Fraser Valley, and surrounding BC communities.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        image={ASSETS.hero1}
+        imageAlt="Completed custom home project by O'Brien Contracting in the Fraser Valley, BC"
+        eyebrow="Portfolio of Craftsmanship"
+        title="Real Work, Real Homes"
+        description="Every photo shown here is from completed projects by O'Brien Contracting Ltd. in Chilliwack, the Fraser Valley, and surrounding BC communities."
+      />
 
       {/* Projects Grid */}
       <section className="py-16 md:py-24 bg-background">

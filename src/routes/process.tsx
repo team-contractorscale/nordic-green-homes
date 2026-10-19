@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, PROCESS_STEPS, ASSETS } from "@/lib/content-data";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -28,21 +29,13 @@ export const Route = createFileRoute("/process")({
 function ProcessPage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-brand-dark text-white py-16 md:py-20 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <span className="text-xs font-semibold uppercase tracking-widest text-emerald-400">
-            How We Work
-          </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Building With Certainty: Our Straightforward Approach
-          </h1>
-          <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
-            At Nordic Green Homes & O'Brien Contracting, you work directly with Lane through every
-            step of our proven 8-stage methodology. No hand-offs, no unexpected surprises.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        image={ASSETS.hero3}
+        imageAlt="New-build home exterior under construction with timber framing and stone details"
+        eyebrow="How We Work"
+        title="Building With Certainty: Our Straightforward Approach"
+        description="At Nordic Green Homes & O'Brien Contracting, you work directly with Lane through every step of our proven 8-stage methodology. No hand-offs, no unexpected surprises."
+      />
 
       {/* 8 Process Steps Detailed */}
       <section className="py-16 md:py-24 bg-background">
