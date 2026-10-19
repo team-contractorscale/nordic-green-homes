@@ -136,10 +136,10 @@
   }
 }
 
-/* One container width sitewide (Web Template convention, narrowed for an editorial measure). */
+/* One container width sitewide. 1400px max per the pilot brief. */
 .wrap {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1400px;
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
