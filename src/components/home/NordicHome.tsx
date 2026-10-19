@@ -415,7 +415,18 @@ export function HomeProcess() {
 
 export function HomeAssurance() {
   return (
-    <section className="bg-primary py-24 text-primary-foreground sm:py-32">
+    <section className="relative isolate overflow-hidden py-24 text-primary-foreground sm:py-32">
+      {/* Background image with green opacity overlay */}
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={IMAGES.interior.src}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-primary/90" />
+      </div>
       <div className="wrap grid items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Eyebrow dark>{ASSURANCE.eyebrow}</Eyebrow>
