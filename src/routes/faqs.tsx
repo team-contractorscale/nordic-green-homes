@@ -70,7 +70,7 @@ function FaqsPage() {
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="px-6 pb-6 pt-1 text-sm text-muted-foreground leading-relaxed border-t border-border/40">
+                    <div className="px-6 pb-6 pt-1 text-base text-muted-foreground leading-relaxed border-t border-border/40">
                       {faq.a}
                     </div>
                   )}
@@ -83,7 +83,7 @@ function FaqsPage() {
             <h3 className="font-serif text-xl font-bold text-foreground">
               Have a question not covered here?
             </h3>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-base text-muted-foreground mt-2">
               We're happy to walk through your specific lot, building permits, or architectural
               ideas.
             </p>

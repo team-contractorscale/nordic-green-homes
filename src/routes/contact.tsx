@@ -138,7 +138,7 @@ function ContactPage() {
                 <h2 className="font-serif text-2xl font-bold text-foreground mt-1">
                   We're Here to Help
                 </h2>
-                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                <p className="text-base text-muted-foreground mt-2 leading-relaxed">
                   Unlike large builders with layers of sales representatives, your project
                   consultation connects directly with Lane O'Brien.
                 </p>
@@ -218,7 +218,7 @@ function ContactPage() {
                     <h3 className="font-serif text-2xl font-bold text-foreground">
                       Inquiry Received (Preview Mode)
                     </h3>
-                    <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+                    <p className="text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
                       Thank you for testing the discovery request form. In this unpublished sandbox
                       environment, live CRM webhooks remain safely paused to protect production
                       workflows.

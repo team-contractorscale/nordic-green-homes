@@ -58,7 +58,7 @@ function ProcessPage() {
                   <h2 className="font-serif text-xl sm:text-2xl font-bold text-foreground">
                     {step.title}
                   </h2>
-                  <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  <p className="mt-3 text-base text-muted-foreground leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
@@ -109,7 +109,7 @@ function ProcessPage() {
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>{g.title}</span>
                   </div>
-                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{g.desc}</p>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{g.desc}</p>
                 </div>
               ))}
             </div>

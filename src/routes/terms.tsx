@@ -31,7 +31,7 @@ function TermsPage() {
       />
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6 text-sm text-foreground/80 leading-relaxed">
+          <div className="space-y-6 text-base text-foreground/80 leading-relaxed">
             <p>
               Welcome to the internal preview website for {BRAND.name}, developed in affiliation
               with {BRAND.sourceCompany}. By accessing this site, you acknowledge that content and

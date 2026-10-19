@@ -60,7 +60,7 @@ function ServicesOverviewPage() {
                     <h2 className="font-serif text-xl font-bold text-foreground">
                       {service.title}
                     </h2>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    <p className="mt-2 text-base text-muted-foreground leading-relaxed">
                       {service.shortDesc}
                     </p>
                     <ul className="mt-4 space-y-2">
@@ -102,7 +102,7 @@ function ServicesOverviewPage() {
               <h3 className="font-serif text-2xl font-bold text-foreground">
                 Ready to plan your next building project?
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p className="mt-2 text-base text-muted-foreground">
                 Connect directly with Lane O'Brien to review site feasibility, building goals, and
                 budget expectations.
               </p>

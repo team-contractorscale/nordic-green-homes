@@ -63,7 +63,7 @@ function HomeRenovationsPage() {
               <h2 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-foreground">
                 Upgrading Function, Comfort, and Efficiency
               </h2>
-              <div className="mt-4 space-y-4 text-muted-foreground text-sm leading-relaxed">
+              <div className="mt-4 space-y-4 text-muted-foreground text-base leading-relaxed">
                 <p>
                   Renovating an existing home requires deep technical care: uncovering historical
                   framing quirks, improving insulation where it counts, and respecting your budget
@@ -119,7 +119,7 @@ function HomeRenovationsPage() {
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground">
             Planning a Renovation in the Fraser Valley or Vancouver Island?
           </h2>
-          <p className="mt-3 text-sm text-muted-foreground max-w-xl mx-auto">
+          <p className="mt-3 text-base text-muted-foreground max-w-xl mx-auto">
             Discuss your scope, timing, and ideas with Lane to get transparent guidance before
             committing to designs or demolition.
           </p>

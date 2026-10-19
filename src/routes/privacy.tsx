@@ -31,7 +31,7 @@ function PrivacyPage() {
       />
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6 text-sm text-foreground/80 leading-relaxed">
+          <div className="space-y-6 text-base text-foreground/80 leading-relaxed">
             <p>
               At {BRAND.name} (operating in affiliation with {BRAND.sourceCompany}), we respect your
               privacy and are committed to protecting any personal information you provide when

@@ -64,9 +64,7 @@ function ProjectsPage() {
                       <span>{p.location}</span>
                     </div>
                     <h2 className="font-serif text-lg font-bold text-foreground">{p.title}</h2>
-                    <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      {p.desc}
-                    </p>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1 text-emerald-700 font-medium">
@@ -84,7 +82,7 @@ function ProjectsPage() {
             <h3 className="font-serif text-2xl font-bold text-foreground">
               Have a Project in Mind?
             </h3>
-            <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-2 text-base text-muted-foreground max-w-lg mx-auto">
               Whether you're starting with bare land or renovating an existing home, let's explore
               your possibilities on a 15-minute call.
             </p>

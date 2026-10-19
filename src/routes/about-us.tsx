@@ -76,7 +76,7 @@ function AboutPage() {
               <h2 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-foreground">
                 Trusted Net-Zero Home Builder & Renovator
               </h2>
-              <div className="mt-4 space-y-4 text-muted-foreground text-sm leading-relaxed">
+              <div className="mt-4 space-y-4 text-muted-foreground text-base leading-relaxed">
                 <p>
                   Our journey began with a simple belief: that building homes could be done
                   differently—better for our families, our community, and our planet. With Lane's
@@ -128,7 +128,7 @@ function AboutPage() {
             <h2 className="mt-2 font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               Meet Lane & Kylie O'Brien
             </h2>
-            <p className="mt-3 text-sm text-muted-foreground">
+            <p className="mt-3 text-base text-muted-foreground">
               Husband and wife partners dedicated to healthy, long-lasting homes for British
               Columbia families.
             </p>
@@ -150,7 +150,7 @@ function AboutPage() {
                   <span className="text-xs font-semibold text-emerald-700 tracking-wide uppercase block mt-1">
                     Founder, Net-Zero Trained Builder & Red Seal Carpenter
                   </span>
-                  <div className="mt-4 text-sm text-muted-foreground space-y-3 leading-relaxed">
+                  <div className="mt-4 text-base text-muted-foreground space-y-3 leading-relaxed">
                     <p>
                       A Saskatchewan prairie boy who found his true home in British Columbia! Lane
                       is a Net-Zero trained builder with a solid foundation as a Red Seal Journeyman
@@ -187,7 +187,7 @@ function AboutPage() {
                   <span className="text-xs font-semibold text-emerald-700 tracking-wide uppercase block mt-1">
                     Interior Design Partner | Founder of Nordic Green Design
                   </span>
-                  <div className="mt-4 text-sm text-muted-foreground space-y-3 leading-relaxed">
+                  <div className="mt-4 text-base text-muted-foreground space-y-3 leading-relaxed">
                     <p>
                       A BC native who partnered with Lane in life and in business! With a previous
                       background in law, Kylie shifted to her creative calling in interior design,
@@ -227,7 +227,7 @@ function AboutPage() {
             {FOUR_PILLARS.map((p, i) => (
               <div key={i} className="p-8 rounded-xl bg-card border border-border shadow-2xs">
                 <h3 className="font-serif text-xl font-bold text-foreground">{p.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.body}</p>
+                <p className="mt-3 text-base text-muted-foreground leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>

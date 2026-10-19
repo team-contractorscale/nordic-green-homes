@@ -63,7 +63,7 @@ function NewBuildsPage() {
               <h2 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-foreground">
                 How We Approach Your Custom New Build
               </h2>
-              <div className="mt-4 space-y-4 text-muted-foreground text-sm leading-relaxed">
+              <div className="mt-4 space-y-4 text-muted-foreground text-base leading-relaxed">
                 <p>
                   Every custom home begins with a deep exploration of your family's daily lifestyle,
                   the nuances of your building site, and your long-term energy goals. We don't take
@@ -172,7 +172,7 @@ function NewBuildsPage() {
                 <h3 className="font-serif text-base font-semibold text-foreground mt-2">
                   {st.title}
                 </h3>
-                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{st.desc}</p>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{st.desc}</p>
               </div>
             ))}
           </div>
