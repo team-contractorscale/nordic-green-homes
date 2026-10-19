@@ -15,11 +15,12 @@ export const PLACEHOLDER = {
   serviceArea: "[Public service area — pending confirmation]",
   legalEntity: "[Legal entity, licence & warranty wording — pending]",
   bookingOwner: "[Booking & enquiry recipient — pending]",
-  relationship: "[Nordic Green Homes ↔ Nordic Green Design relationship wording — pending]",
+  relationship:
+    "[Nordic Green Homes (new entity) · Nordic Green Design (separate) · O'Brien Contracting remains open during transition — exact public/legal wording pending]",
   assurance: "[Green Mastery Assurance scope & any net-zero wording — pending approval]",
-  projects: "[Approved project images & attribution — pending]",
+  projects: "[Approved project images, names, locations & attribution — pending]",
   testimonials: "[Approved testimonials — none confirmed yet]",
-  guide: "[Future-Proofing Your Home guide — file to be recovered, checked & rebranded]",
+  guide: "[Future-Proofing Your Home guide — file to be recovered, checked, rebranded & confirmed]",
   services: "[Garages & backyard upgrades — held until service priority is confirmed]",
 } as const;
 

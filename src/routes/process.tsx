@@ -7,17 +7,17 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: "Our 8-Step Building Process | Nordic Green Homes" },
+      { title: "Our Building Process | Nordic Green Homes" },
       {
         name: "description",
         content:
-          "Explore our proven 8-step construction process from initial consultation to final walkthrough and warranty. Work directly with Lane O'Brien with transparent certainty.",
+          "A clear construction process from initial consultation to final walkthrough and ongoing care. Work directly with Lane O'Brien — internal pilot.",
       },
-      { property: "og:title", content: "Our 8-Step Building Process | Nordic Green Homes" },
+      { property: "og:title", content: "Our Building Process | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Building with certainty: Consultation, Design, Material Selection, Permitting, Pre-Con, Construction, Walkthrough, and Warranty.",
+          "A clear path from first conversation to handover: consultation, design, materials, permits, pre-construction, construction, walkthrough and care.",
       },
       { property: "og:image", content: ASSETS.hero3 },
       { name: "twitter:image", content: ASSETS.hero3 },
@@ -31,10 +31,10 @@ function ProcessPage() {
     <div>
       <PageHeader
         image={ASSETS.hero3}
-        imageAlt="New-build home exterior under construction with timber framing and stone details"
-        eyebrow="How We Work"
-        title="Building With Certainty: Our Straightforward Approach"
-        description="At Nordic Green Homes & O'Brien Contracting, you work directly with Lane through every step of our proven 8-stage methodology. No hand-offs, no unexpected surprises."
+        imageAlt="New-build home exterior under construction with timber framing and stone details (reference image)"
+        eyebrow="How We Work · Draft"
+        title="A Clear, Straightforward Approach"
+        description="You work directly with Lane through each stage of the process. No hand-offs, no unexpected surprises. Licensing, certification and warranty wording are pending confirmation."
       />
 
       {/* 8 Process Steps Detailed */}
@@ -81,7 +81,7 @@ function ProcessPage() {
               {[
                 {
                   title: "On-Time Delivery",
-                  desc: "Adhering strictly to schedules with regular milestone status updates.",
+                  desc: "Clear schedules with regular milestone status updates.",
                 },
                 {
                   title: "Open Communication",
@@ -89,15 +89,15 @@ function ProcessPage() {
                 },
                 {
                   title: "Dependable Service",
-                  desc: "Fully licensed, insured, and verified RenoMark contractor accountability.",
+                  desc: "Licensing, insurance and trade memberships are pending confirmation.",
                 },
                 {
                   title: "Superior Craftsmanship",
-                  desc: "Red Seal carpenter standards, durable materials, and zero shortcuts.",
+                  desc: "Durable materials and a no-shortcuts approach to the build.",
                 },
                 {
                   title: "Personalised Designs",
-                  desc: "Customized to your family's daily rhythms, accessibility, and tastes.",
+                  desc: "Tailored to your family's daily rhythms, accessibility, and tastes.",
                 },
                 {
                   title: "Transparent Pricing",

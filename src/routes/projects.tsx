@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, PROJECTS_GALLERY, ASSETS } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, MapPin, ImageIcon } from "lucide-react";
+import { Placeholder } from "@/components/home/NordicHome";
+import { PLACEHOLDER } from "@/lib/home-content";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -31,15 +33,19 @@ function ProjectsPage() {
     <div>
       <PageHeader
         image={ASSETS.hero1}
-        imageAlt="Completed custom home project by O'Brien Contracting in the Fraser Valley, BC"
-        eyebrow="Portfolio of Craftsmanship"
-        title="Real Work, Real Homes"
-        description="Every photo shown here is from completed projects by O'Brien Contracting Ltd. in Chilliwack, the Fraser Valley, and surrounding BC communities."
+        imageAlt="Architectural exterior of a custom home in British Columbia (reference image)"
+        eyebrow="Reference Projects · Pending"
+        title="Reference Work"
+        description="The images shown here are reference material only — from O'Brien Contracting Ltd. projects and related photography. Project names, locations, completion status and attribution are pending verification and are not presented as completed Nordic Green Homes work."
       />
 
       {/* Projects Grid */}
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-wrap gap-3">
+            <Placeholder>{PLACEHOLDER.projects}</Placeholder>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS_GALLERY.map((p) => (
               <div
@@ -56,19 +62,28 @@ function ProjectsPage() {
                   <div className="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-white text-[11px] font-medium backdrop-blur-xs">
                     {p.type}
                   </div>
+                  <span
+                    title="Reference image — not confirmed as completed Nordic Green Homes work."
+                    className="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-full bg-black/70 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur-sm"
+                  >
+                    <ImageIcon className="w-3 h-3" />
+                    Reference only
+                  </span>
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1.5">
                       <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>{p.location}</span>
+                      <span>
+                        {p.location} <span className="text-muted-foreground/70">(reference)</span>
+                      </span>
                     </div>
                     <h2 className="font-serif text-lg font-bold text-foreground">{p.title}</h2>
                     <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="inline-flex items-center gap-1 text-emerald-700 font-medium">
-                      <ShieldCheck className="w-3.5 h-3.5" />
+                    <span className="inline-flex items-center gap-1 font-medium">
+                      <span className="inline-block size-2 rounded-full bg-gold" aria-hidden />
                       <span>{p.status}</span>
                     </span>
                   </div>

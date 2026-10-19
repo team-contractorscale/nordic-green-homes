@@ -12,13 +12,13 @@ export const Route = createFileRoute("/faqs")({
       {
         name: "description",
         content:
-          "Answers to common questions about Net-Zero custom home building, energy codes, remodeling, permits, and timelines in Fraser Valley and BC.",
+          "Answers to common questions about high-performance custom home building, energy codes, remodeling, permits and timelines in British Columbia — internal pilot.",
       },
       { property: "og:title", content: "Frequently Asked Questions | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Clear answers on Net-Zero standards, building process, budget transparency, and service areas.",
+          "Clear answers on high-performance building, the building process, budget transparency and service areas.",
       },
       { property: "og:image", content: ASSETS.hero2 },
       { name: "twitter:image", content: ASSETS.hero2 },
@@ -38,10 +38,10 @@ function FaqsPage() {
     <div>
       <PageHeader
         image={ASSETS.heroInterior}
-        imageAlt="Bright, sustainable interior of a Nordic Green home with timber detailing"
-        eyebrow="Got Questions?"
+        imageAlt="Bright, sustainable interior of a Nordic Green home with timber detailing (reference image)"
+        eyebrow="Got Questions? · Draft"
         title="Frequently Asked Questions"
-        description="Building or renovating a home is a significant investment. Here are answers to common questions about our building science, process, and working together."
+        description="Building or renovating a home is a significant investment. Here are answers to common questions about our building practice, process and working together. Service-area and certification details are pending confirmation."
       />
 
       {/* Accordion FAQ list */}

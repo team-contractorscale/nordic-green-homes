@@ -7,17 +7,17 @@ import { PageHeader } from "@/components/layout/PageHeader";
 export const Route = createFileRoute("/services/new-builds")({
   head: () => ({
     meta: [
-      { title: "Net-Zero Custom Homes & New Builds | Nordic Green Homes" },
+      { title: "New Builds & Custom Homes | Nordic Green Homes" },
       {
         name: "description",
         content:
-          "High-performance custom homes in Fraser Valley, Kelowna & Victoria. Net-Zero trained building science, thermal comfort, and disciplined craftsmanship.",
+          "High-performance custom homes for British Columbia families. Careful envelope detailing, balanced ventilation and refined architectural design — internal pilot.",
       },
-      { property: "og:title", content: "Net-Zero Custom Homes & New Builds | Nordic Green Homes" },
+      { property: "og:title", content: "New Builds & Custom Homes | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Discover our tailored custom home construction process led by Net-Zero trained builder Lane O'Brien.",
+          "Custom home construction led by Lane O'Brien — internal pilot, details pending confirmation.",
       },
       { property: "og:image", content: ASSETS.newBuild },
       { name: "twitter:image", content: ASSETS.newBuild },
@@ -31,15 +31,15 @@ function NewBuildsPage() {
     <div>
       <PageHeader
         image={ASSETS.newBuild}
-        imageAlt="High-performance custom home exterior with timber and stone detailing in the Fraser Valley"
-        eyebrow="Net-Zero Custom Homes"
+        imageAlt="High-performance custom home exterior with timber and stone detailing (reference image)"
+        eyebrow="New Builds · Draft"
         title="High-Performance Custom Homes Built to Last"
-        description="We engineer and craft high-performance forever homes that exceed standard building codes. Led by Lane O'Brien, a Net-Zero trained builder and Red Seal Journeyman Carpenter, we deliver measurable comfort, low energy demand, and enduring beauty."
+        description="We design and craft high-performance forever homes with careful envelope detailing and refined architectural design. Led by Lane O'Brien, the team delivers considered comfort and enduring beauty. Licensing, certification and performance claims are pending confirmation."
       >
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
             to="/contact"
-            className="px-6 py-3 rounded-md bg-emerald-700 text-white font-medium text-sm hover:bg-emerald-600 transition-colors shadow"
+            className="px-6 py-3 rounded-md bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors shadow"
           >
             {BRAND.primaryCtaText}
           </Link>
@@ -58,7 +58,7 @@ function NewBuildsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-                Building Science & Craftsmanship
+                Building Science &amp; Craftsmanship
               </span>
               <h2 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-foreground">
                 How We Approach Your Custom New Build
@@ -70,15 +70,13 @@ function NewBuildsPage() {
                   shortcuts on the building envelope.
                 </p>
                 <p>
-                  With Lane O'Brien's Net-Zero training, your home is designed from the foundation
-                  up as a balanced system. By optimizing airtightness, continuous insulation, and
-                  balanced mechanical ventilation (HRV), we eliminate drafts, cold spots, and
-                  excessive utility bills.
+                  Your home is designed from the foundation up as a balanced system. By paying
+                  attention to airtightness, continuous insulation, and balanced mechanical
+                  ventilation, we aim to reduce drafts, cold spots, and excessive utility bills.
                 </p>
                 <p>
-                  Throughout construction, Lane works directly with you and your design team to
-                  ensure complete transparency in material selections, budgeting, and milestone
-                  timelines.
+                  Throughout construction, Lane works directly with you and your design team to keep
+                  material selections, budgeting, and milestone timelines transparent.
                 </p>
               </div>
 
@@ -87,28 +85,28 @@ function NewBuildsPage() {
                   <Flame className="w-5 h-5 text-emerald-600 mb-2" />
                   <h3 className="font-semibold text-sm text-foreground">Thermal Envelope</h3>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Continuous exterior insulation & triple glazing preventing heat loss.
+                    Continuous exterior insulation &amp; efficient glazing to limit heat loss.
                   </p>
                 </div>
                 <div className="p-4 rounded-lg bg-card border border-border">
                   <Wind className="w-5 h-5 text-emerald-600 mb-2" />
                   <h3 className="font-semibold text-sm text-foreground">Continuous Fresh Air</h3>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Dedicated heat recovery ventilation (HRV) for filtered, allergen-free air.
+                    Balanced ventilation for filtered, fresher indoor air.
                   </p>
                 </div>
                 <div className="p-4 rounded-lg bg-card border border-border">
                   <Sun className="w-5 h-5 text-emerald-600 mb-2" />
                   <h3 className="font-semibold text-sm text-foreground">Solar Orientation</h3>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Passive solar gain and roof design prepped for solar generation.
+                    Passive solar considerations and roof design that can support solar later.
                   </p>
                 </div>
                 <div className="p-4 rounded-lg bg-card border border-border">
                   <ShieldCheck className="w-5 h-5 text-emerald-600 mb-2" />
-                  <h3 className="font-semibold text-sm text-foreground">Green Mastery Assurance</h3>
+                  <h3 className="font-semibold text-sm text-foreground">Quality Assurance</h3>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Verified airtightness testing and rigorous construction inspection.
+                    Careful inspection and verification through construction.
                   </p>
                 </div>
               </div>
@@ -118,14 +116,15 @@ function NewBuildsPage() {
               <div className="rounded-lg overflow-hidden border border-border shadow-md">
                 <img
                   src={ASSETS.newBuild}
-                  alt="Custom high-performance home exterior in Fraser Valley"
+                  alt="Custom high-performance home exterior in Fraser Valley (reference image)"
                   className="w-full h-auto object-cover"
+                  loading="lazy"
                 />
               </div>
-              <div className="mt-4 p-4 rounded-lg bg-muted text-xs text-muted-foreground border border-border">
-                <span className="font-semibold text-foreground">Source Project: </span>
-                High-performance custom build executed by O'Brien Contracting Ltd. in Fraser Valley,
-                BC.
+              <div className="mt-4 p-4 rounded-lg bg-muted text-xs text-muted-foreground border border-dashed border-gold bg-gold/5">
+                <span className="font-semibold text-foreground">Reference image. </span>
+                Shown for layout and style review only. Not confirmed as completed Nordic Green
+                Homes work.
               </div>
             </div>
           </div>
@@ -159,7 +158,7 @@ function NewBuildsPage() {
               {
                 step: "03",
                 title: "Envelope & Framing",
-                desc: "Precision framing by Red Seal carpenters, airtight membrane, and high-performance insulation.",
+                desc: "Precision framing, airtight membrane, and high-performance insulation.",
               },
               {
                 step: "04",

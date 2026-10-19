@@ -1,29 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, ASSETS } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { Placeholder } from "@/components/home/NordicHome";
+import { PLACEHOLDER, REFERENCE_BASE } from "@/lib/home-content";
 import {
   postTrackingEvent,
   getTrackingSessionId,
   TRACKING_IDS,
   CUSTOM_FIELD_IDS,
 } from "@/lib/form-tracking";
-import { Phone, Mail, MapPin, Clock, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Info, CheckCircle2 } from "lucide-react";
 import * as React from "react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Discovery Call | Nordic Green Homes" },
+      { title: "Contact & Discovery Call (Draft) | Nordic Green Homes" },
       {
         name: "description",
         content:
-          "Schedule your complimentary 15-minute discovery call with Lane O'Brien. Serving Chilliwack, Fraser Valley, Kelowna & Victoria, BC.",
+          "Internal pilot contact page for Nordic Green Homes. Contact details are pending confirmation; the form is disabled.",
       },
-      { property: "og:title", content: "Contact & Discovery Call | Nordic Green Homes" },
+      { property: "og:title", content: "Contact & Discovery Call (Draft) | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Tell us about your next custom home, new build, or renovation project in British Columbia.",
+          "Internal pilot contact page for Nordic Green Homes. Contact details pending confirmation; form disabled.",
       },
       { property: "og:image", content: ASSETS.hero1 },
       { name: "twitter:image", content: ASSETS.hero1 },
@@ -119,10 +121,10 @@ function ContactPage() {
     <div>
       <PageHeader
         image={ASSETS.hero1}
-        imageAlt="Custom home exterior built by O'Brien Contracting in British Columbia"
-        eyebrow="Complimentary Consultation"
+        imageAlt="Architectural exterior of a custom home in British Columbia (reference image)"
+        eyebrow="Complimentary Consultation · Draft"
         title="Tell Us About Your Next Project"
-        description="Planning a custom home, renovation, or addition? Share a few details and Lane O'Brien will connect directly with you to discuss feasibility and next steps."
+        description="Planning a custom home, renovation, or addition? Share a few details. Contact details and booking ownership are pending confirmation — the form below is disabled in this internal pilot."
       />
 
       {/* Main Content */}
@@ -140,8 +142,11 @@ function ContactPage() {
                 </h2>
                 <p className="text-base text-muted-foreground mt-2 leading-relaxed">
                   Unlike large builders with layers of sales representatives, your project
-                  consultation connects directly with Lane O'Brien.
+                  consultation is intended to connect directly with Lane O'Brien.
                 </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Placeholder>{PLACEHOLDER.bookingOwner}</Placeholder>
+                </div>
               </div>
 
               <div className="space-y-4">
@@ -149,12 +154,9 @@ function ContactPage() {
                   <Phone className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs font-medium text-muted-foreground block">Phone</span>
-                    <a
-                      href={BRAND.phoneTel}
-                      className="text-sm font-semibold text-foreground hover:underline"
-                    >
-                      {BRAND.phone}
-                    </a>
+                    <div className="mt-1">
+                      <Placeholder>{PLACEHOLDER.phone}</Placeholder>
+                    </div>
                   </div>
                 </div>
 
@@ -162,25 +164,25 @@ function ContactPage() {
                   <Mail className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs font-medium text-muted-foreground block">Email</span>
-                    <a
-                      href={`mailto:${BRAND.email}`}
-                      className="text-sm font-semibold text-foreground hover:underline"
-                    >
-                      {BRAND.email}
-                    </a>
+                    <div className="mt-1">
+                      <Placeholder>{PLACEHOLDER.email}</Placeholder>
+                    </div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-4 rounded-lg bg-card border border-border">
-                  <MapPin className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
+                  <MapPin className="5 h-5 text-emerald-700 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs font-medium text-muted-foreground block">
                       Primary Location
                     </span>
-                    <span className="text-sm font-semibold text-foreground">{BRAND.location}</span>
-                    <span className="text-xs text-muted-foreground block mt-0.5">
-                      Serving Fraser Valley, Kelowna, Victoria & surrounding BC
+                    <span className="text-sm font-semibold text-foreground">
+                      {REFERENCE_BASE}{" "}
+                      <span className="text-muted-foreground font-normal">(reference)</span>
                     </span>
+                    <div className="mt-1.5 flex flex-wrap gap-2">
+                      <Placeholder>{PLACEHOLDER.serviceArea}</Placeholder>
+                    </div>
                   </div>
                 </div>
 
@@ -195,15 +197,19 @@ function ContactPage() {
                 </div>
               </div>
 
-              <div className="p-5 rounded-lg bg-emerald-950/10 border border-emerald-900/20 text-xs text-emerald-950 dark:text-emerald-300 space-y-2">
-                <div className="flex items-center gap-2 font-semibold">
-                  <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                  <span>Verified Builder Protection</span>
+              <div className="p-5 rounded-lg border border-dashed border-gold bg-gold/5 text-sm text-foreground/80 space-y-2">
+                <div className="flex items-center gap-2 font-semibold text-foreground">
+                  <Info className="w-4 h-4 text-primary" />
+                  <span>Licensing &amp; insurance — pending</span>
                 </div>
-                <p className="leading-relaxed opacity-90">
-                  Full provincial licensing, comprehensive general liability coverage, WorkSafeBC in
-                  good standing, and RenoMark Code of Conduct warranty backing.
+                <p className="leading-relaxed">
+                  Provincial licensing, liability insurance, RenoMark and warranty wording are not
+                  approved Nordic Green Homes claims yet.
                 </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <Placeholder>{PLACEHOLDER.legalEntity}</Placeholder>
+                  <Placeholder>{PLACEHOLDER.assurance}</Placeholder>
+                </div>
               </div>
             </div>
 
@@ -232,13 +238,25 @@ function ContactPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-4" aria-disabled="true">
                     <div className="border-b border-border pb-3 mb-4">
                       <h3 className="font-serif text-lg font-bold text-foreground">
                         Book Your 15-Minute Discovery Call
                       </h3>
                       <p className="text-xs text-muted-foreground mt-0.5">
                         Fill out the short consultation details below. It only takes 2 minutes.
+                      </p>
+                    </div>
+
+                    <div className="rounded-lg border border-dashed border-gold bg-gold/5 p-3 text-xs text-foreground/80">
+                      <div className="flex items-center gap-2 font-semibold text-foreground">
+                        <Info className="w-3.5 h-3.5 text-primary" />
+                        <span>Form disabled — internal pilot</span>
+                      </div>
+                      <p className="mt-1.5 leading-relaxed">
+                        CRM routing, consent wording and booking ownership for Nordic Green Homes
+                        are pending audit. No data is sent. The form below is read-only for layout
+                        review.
                       </p>
                     </div>
 
@@ -249,11 +267,12 @@ function ContactPage() {
                         </label>
                         <input
                           type="text"
+                          disabled
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="Jane Doe"
-                          className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                          className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                         />
                       </div>
                       <div>
@@ -262,11 +281,12 @@ function ContactPage() {
                         </label>
                         <input
                           type="tel"
+                          disabled
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="+1 (604) 555-0199"
-                          className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                          className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                         />
                       </div>
                     </div>
@@ -277,11 +297,12 @@ function ContactPage() {
                       </label>
                       <input
                         type="email"
+                        disabled
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="jane@example.com"
-                        className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                        className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                       />
                     </div>
 
@@ -291,11 +312,12 @@ function ContactPage() {
                           Project Type
                         </label>
                         <select
+                          disabled
                           value={formData.projectType}
                           onChange={(e) =>
                             setFormData({ ...formData, projectType: e.target.value })
                           }
-                          className="w-full px-3 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                          className="w-full px-3 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                         >
                           <option>New Build / Custom Home</option>
                           <option>Home Renovation / Addition</option>
@@ -308,9 +330,10 @@ function ContactPage() {
                           Target Timeline
                         </label>
                         <select
+                          disabled
                           value={formData.timeline}
                           onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                          className="w-full px-3 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                          className="w-full px-3 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                         >
                           <option>Immediately (1-3 months)</option>
                           <option>3 - 6 months</option>
@@ -326,9 +349,10 @@ function ContactPage() {
                           Estimated Budget
                         </label>
                         <select
+                          disabled
                           value={formData.budget}
                           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                          className="w-full px-3 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                          className="w-full px-3 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                         >
                           <option>$100k - $250k (Renovations)</option>
                           <option>$250k - $500k</option>
@@ -342,10 +366,11 @@ function ContactPage() {
                         </label>
                         <input
                           type="text"
+                          disabled
                           value={formData.location}
                           onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                           placeholder="e.g. Chilliwack, Abbotsford, Kelowna"
-                          className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                          className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                         />
                       </div>
                     </div>
@@ -356,36 +381,38 @@ function ContactPage() {
                       </label>
                       <textarea
                         rows={3}
+                        disabled
                         value={formData.details}
                         onChange={(e) => setFormData({ ...formData, details: e.target.value })}
                         placeholder="Lot size, architectural preferences, must-have features..."
-                        className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-background text-foreground focus:outline-hidden focus:ring-2 focus:ring-primary"
+                        className="w-full px-3.5 py-2 text-sm rounded-md border border-input bg-muted/60 text-muted-foreground cursor-not-allowed focus:outline-hidden focus:ring-2 focus:ring-primary"
                       />
                     </div>
 
-                    <div className="flex items-start gap-2 pt-2">
-                      <input
-                        type="checkbox"
-                        id="consent-check"
-                        checked={formData.consent}
-                        onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-                        className="mt-1 rounded border-input text-primary focus:ring-primary"
-                      />
-                      <label
-                        htmlFor="consent-check"
-                        className="text-xs text-muted-foreground leading-normal"
-                      >
-                        I consent to receive communication from Nordic Green Homes / O'Brien
-                        Contracting Ltd. regarding my discovery consultation request.
-                      </label>
+                    <div className="rounded-lg border border-dashed border-gold bg-gold/5 p-3 text-xs text-foreground/80 space-y-2">
+                      <p className="leading-relaxed">
+                        Consent wording for Nordic Green Homes is pending legal review and is not
+                        shown here. The previous combined-entity consent line has been removed until
+                        routing and ownership are confirmed.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <Placeholder>{PLACEHOLDER.legalEntity}</Placeholder>
+                        <Placeholder>{PLACEHOLDER.bookingOwner}</Placeholder>
+                      </div>
                     </div>
 
                     <button
-                      type="submit"
-                      className="w-full py-3 px-6 rounded-md bg-primary text-primary-foreground font-medium text-sm shadow hover:bg-primary/90 transition-all focus:outline-hidden focus:ring-2 focus:ring-primary"
+                      type="button"
+                      disabled
+                      className="w-full py-3 px-6 rounded-md bg-muted text-muted-foreground font-medium text-sm border border-dashed border-gold cursor-not-allowed"
+                      aria-describedby="form-disabled-note"
                     >
-                      Submit Discovery Request
+                      Submit disabled — pending CRM &amp; consent audit
                     </button>
+                    <p id="form-disabled-note" className="sr-only">
+                      The discovery form is disabled in this internal pilot. CRM routing, consent
+                      wording and booking ownership are pending audit, so no data is sent.
+                    </p>
                   </form>
                 )}
               </div>

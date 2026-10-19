@@ -11,13 +11,13 @@ export const Route = createFileRoute("/services/")({
       {
         name: "description",
         content:
-          "Discover our high-performance new builds, custom home design, whole-home renovations, and custom garage builds across Fraser Valley, Kelowna & Victoria.",
+          "New builds, custom home design, whole-home renovations, custom garages and backyard upgrades for British Columbia families. Internal pilot.",
       },
       { property: "og:title", content: "Building & Renovation Services | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "High-performance net-zero builds and thoughtful renovations led by Lane O'Brien in British Columbia.",
+          "High-performance builds and thoughtful renovations led by Lane O'Brien in British Columbia — internal pilot.",
       },
       { property: "og:image", content: ASSETS.hero2 },
       { name: "twitter:image", content: ASSETS.hero2 },
@@ -31,10 +31,10 @@ function ServicesOverviewPage() {
     <div>
       <PageHeader
         image={ASSETS.hero2}
-        imageAlt="Architectural exterior of a custom Nordic Green home with timber and stone detailing"
-        eyebrow="What We Do"
+        imageAlt="Architectural exterior of a custom Nordic Green home with timber and stone detailing (reference image)"
+        eyebrow="What We Do · Draft"
         title="Services Built to Move Your Soul"
-        description="We manage every detail of your journey—from initial concept and site feasibility to final handover—ensuring disciplined craftsmanship and healthy, energy-efficient living."
+        description="We manage every detail of your journey — from initial concept and site feasibility to final handover — with disciplined craftsmanship and healthy, considered living. Certification and performance claims are pending confirmation."
       />
 
       {/* Services Grid */}

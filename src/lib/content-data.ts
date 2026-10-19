@@ -1,26 +1,27 @@
 // Verified Brand Assets and Content from O'Brien Contracting Source
+//
+// Internal pilot — unpublished. Live-looking claims copied from the O'Brien
+// source site (licence, insurance, certifications, net-zero results, warranty,
+// service areas, booking ownership, project completion, testimonials) are NOT
+// approved Nordic Green Homes copy and are held as placeholders pending client
+// confirmation. Nothing here should read as an approved public claim.
+
 export const BRAND = {
   name: "Nordic Green Homes",
   sourceCompany: "O'Brien Contracting Ltd.",
-  tagline: "Net-Zero Custom Homes & Renovations",
+  tagline: "Custom Homes & Renovations",
   headline: "Sustainable craftsmanship for families who demand more from their forever home.",
-  phone: "+1 236-609-5772",
-  phoneFormatted: "+1 (236) 609-5772",
-  phoneTel: "tel:+12366095772",
-  email: "lane@obriencontracting.ca",
+  // Live contact details are held pending client confirmation — rendered in the
+  // UI as placeholder chips, never as approved Nordic Green Homes contact info.
+  phone: "",
+  phoneFormatted: "[Public phone — pending client confirmation]",
+  phoneTel: "",
+  email: "[Public email — pending client confirmation]",
   location: "Chilliwack, BC",
-  serviceAreas: [
-    "Fraser Valley",
-    "Kelowna",
-    "Victoria",
-    "Chilliwack",
-    "Abbotsford",
-    "Surrounding BC Areas",
-  ],
+  serviceAreas: [] as string[],
   hours: "9AM - 5PM (Mon-Fri)",
   directors: "Lane & Kylie O'Brien",
-  directorTitle:
-    "Founder & Net-Zero Trained Builder | Interior Design Partner (Nordic Green Design)",
+  directorTitle: "Founder & Builder | Interior Design Partner (Nordic Green Design)",
   primaryCtaText: "Book a complimentary 15-minute discovery call",
   freePdfGuideUrl:
     "https://storage.googleapis.com/msgsndr/yHohxdtdZLdf0DUv8x7z/media/6969d656b34b64593cfb3166.pdf",
@@ -68,8 +69,8 @@ export const FOUR_PILLARS = [
   {
     title: "Sustainability Without Compromise",
     summary:
-      "Net-zero and high-performance building methods delivering lower operating costs, cleaner indoor air, and durable assemblies.",
-    body: "Lane's training as a Net-Zero builder and our commitment to high-performance construction mean your home will deliver measurable results: consistent comfort, healthier air, lower energy costs, and a reduced environmental footprint. We prove it with energy modelling, third-party certifications, and disciplined building envelope assemblies.",
+      "High-performance building practice aimed at lower operating costs, cleaner indoor air and durable assemblies.",
+    body: "Sustainable building practice sits at the centre of how we design and build: careful envelope detailing, considered material choices, and construction methods chosen with comfort, indoor air quality and long-term running costs in mind. No net-zero, certification or performance claims are made here until they are confirmed for Nordic Green Homes.",
     icon: "leaf",
   },
   {
@@ -89,7 +90,7 @@ export const FOUR_PILLARS = [
   {
     title: "Guided by Faith and Integrity",
     summary:
-      "Honest stewardship, transparent pricing, and direct communication with Lane throughout the entire project lifespan.",
+      "Honest stewardship, transparent pricing, and direct communication throughout the entire project lifespan.",
     body: "Our work is rooted in faith, integrity, and service. Lane and Kylie believe that building homes is about more than construction. It's about stewardship, honesty, and creating spaces where families can flourish. Faith guides how we work, how we serve, and how we treat every client and craftsman.",
     icon: "shield-check",
   },
@@ -109,12 +110,12 @@ export const PROCESS_STEPS = [
   {
     step: 3,
     title: "Material Selection",
-    desc: "With the design in hand, we assist in choosing the right materials. Balancing durability, maintenance, aesthetics, and budget, we recommend options that best fit your project's goals, ensuring the end result is both stunning and sustainable.",
+    desc: "With the design in hand, we assist in choosing the right materials. Balancing durability, maintenance, aesthetics, and budget, we recommend options that best fit your project's goals, ensuring the end result is both considered and sustainable.",
   },
   {
     step: 4,
     title: "Permitting & Approvals",
-    desc: "Navigating the municipal permitting process can be complex, but we've got it covered. We manage all the paperwork, ensuring your project complies with local building codes, Step Code, and regulations, so you can focus on the exciting parts.",
+    desc: "Navigating the municipal permitting process can be complex, but we've got it covered. We manage the paperwork, keeping your project aligned with local building codes and regulations, so you can focus on the exciting parts.",
   },
   {
     step: 5,
@@ -124,17 +125,17 @@ export const PROCESS_STEPS = [
   {
     step: 6,
     title: "Construction & Craftsmanship",
-    desc: "Our commitment to transparency means you receive a clear breakdown of costs. With everything approved, we begin construction. Our team of skilled builders and Red Seal craftsmen construct your home to the highest standards.",
+    desc: "Our commitment to transparency means you receive a clear breakdown of costs. With everything approved, we begin construction. Our team of skilled builders constructs your home to a high standard.",
   },
   {
     step: 7,
     title: "Final Walkthrough",
-    desc: "Quality and satisfaction are paramount. We conduct a detailed final walkthrough with you to ensure every aspect of your project meets our rigorous standards and your expectations. This step guarantees your home is exactly as you envisioned.",
+    desc: "Quality and satisfaction are paramount. We conduct a detailed final walkthrough with you to ensure every aspect of your project meets our standards and your expectations. This step helps make sure your home is exactly as you envisioned.",
   },
   {
     step: 8,
     title: "Maintenance & Warranty",
-    desc: "We stand behind our work with a robust warranty and provide seasonal maintenance advice to keep your home in pristine condition. Our aim is for your home to remain a source of pride and joy for years to come.",
+    desc: "We stand behind our work and provide seasonal maintenance advice to keep your home in good condition. Our aim is for your home to remain a source of pride and joy for years to come.",
   },
 ];
 
@@ -143,15 +144,15 @@ export const SERVICES = [
     slug: "new-builds",
     title: "New Builds & Custom Homes",
     shortDesc:
-      "High-performance, net-zero custom homes tailored to your lifestyle, built on budget and on time.",
+      "High-performance custom homes tailored to your lifestyle, built on budget and on time.",
     fullDesc:
-      "From initial concept and site feasibility to final handover, we manage every detail of your custom new build. Led by Lane O'Brien, our team implements airtight envelopes, balanced ventilation, and refined architectural design to create homes built to last for generations.",
+      "From initial concept and site feasibility to final handover, we manage every detail of your custom new build. Our team applies careful envelope detailing, balanced ventilation and refined architectural design to create homes built to last for generations.",
     image: ASSETS.newBuild,
     features: [
-      "Site feasibility & solar orientation planning",
-      "Net-Zero trained building envelope science",
-      "Triple-pane high-efficiency glazing & continuous insulation",
-      "Healthy indoor air quality systems (HRV/ERV)",
+      "Site feasibility & orientation planning",
+      "High-performance building envelope practice",
+      "Energy-efficient glazing & continuous insulation",
+      "Healthy indoor air & balanced ventilation",
       "Clear cost schedules and transparent communication",
     ],
   },
@@ -161,14 +162,14 @@ export const SERVICES = [
     shortDesc:
       "Full-scale home transformations, kitchens, and architectural upgrades that modernize comfort and efficiency.",
     fullDesc:
-      "Whether updating a dated floorplan, re-engineering your building envelope, or renovating your kitchen and primary suite, we combine disciplined craftsmanship with sustainable materials to make your existing home feel brand new.",
+      "Whether updating a dated floorplan, reworking your building envelope, or renovating your kitchen and primary suite, we combine disciplined craftsmanship with sustainable materials to make your existing home feel brand new.",
     image: ASSETS.houseRenovation,
     features: [
       "Whole-home and structural renovations",
       "High-end kitchen & bathroom transformations",
       "Thermal comfort & insulation upgrades",
       "Space reconfigurations for modern family living",
-      "RenoMark member standards & transparent accountability",
+      "Transparent accountability throughout",
     ],
   },
   {
@@ -191,7 +192,7 @@ export const SERVICES = [
     slug: "backyard-upgrades",
     title: "Backyard Upgrades",
     shortDesc:
-      "Outdoor living environments, timber decks, pergolas, custom sheds, and private resort-style retreats.",
+      "Outdoor living environments, timber decks, pergolas, custom sheds, and private retreat-style spaces.",
     fullDesc:
       "Elevate your property's exterior with custom timber craftsmanship, covered patios, architectural fencing, and detached garden retreats that blend naturally with British Columbia landscapes.",
     image: ASSETS.backyard,
@@ -212,7 +213,7 @@ export const SERVICES = [
       "Custom-crafted outdoor pool bars, cabanas, and covered service areas with durable stone and timber finishes that turn your backyard into the ultimate gathering place.",
     image: ASSETS.customPoolBar,
     features: [
-      "Weather-resistant cabinetry and granite/stone counters",
+      "Weather-resistant cabinetry and stone counters",
       "Covered seating and integrated outdoor kitchen prep",
       "Architectural lighting and outdoor audio integration",
       "Durable timber roof structures for all-season longevity",
@@ -224,67 +225,70 @@ export const SERVICES = [
 export const PROJECTS_GALLERY = [
   {
     id: "proj-1",
-    title: "Modern Farmhouse Ensuite & Bath Transformation",
+    title: "Modern Bathroom Transformation",
     type: "Home Renovation",
     location: "Chilliwack, BC",
-    status: "Completed (Source Verified)",
+    status: "Reference · pending verification",
     image: "https://obriencontracting.ca/wp-content/uploads/2025/12/2020-05-1410.53.57.jpg",
-    alt: "Custom walk-in tiled shower with frameless glass and modern fixtures",
-    desc: "Complete primary bathroom overhaul featuring floor-to-ceiling porcelain tile, custom niche, and frameless glass enclosure.",
+    alt: "Custom walk-in tiled shower with frameless glass and modern fixtures (reference image)",
+    desc: "Bathroom overhaul featuring floor-to-ceiling porcelain tile, custom niche, and frameless glass enclosure.",
   },
   {
     id: "proj-2",
-    title: "Freestanding Soaker Tub & Spa Bathroom",
+    title: "Soaker Tub & Spa Bathroom",
     type: "Home Renovation",
     location: "Chilliwack, BC",
-    status: "Completed (Source Verified)",
+    status: "Reference · pending verification",
     image: "https://obriencontracting.ca/wp-content/uploads/2025/12/2020-05-1410.54.13.jpg",
-    alt: "Freestanding soaker tub in modern spa bathroom renovation",
-    desc: "Luxury bath renovation featuring minimalist freestanding tub, natural daylighting, and refined modern trim.",
+    alt: "Freestanding soaker tub in modern spa bathroom renovation (reference image)",
+    desc: "Bath renovation featuring a minimalist freestanding tub, natural daylighting, and refined modern trim.",
   },
   {
     id: "proj-3",
-    title: "Outdoor Living Pavilion & Custom Stone Bar",
+    title: "Outdoor Living Pavilion & Stone Bar",
     type: "Backyard Upgrade / Custom Pool Bar",
     location: "Fraser Valley, BC",
-    status: "Completed (Source Verified)",
+    status: "Reference · pending verification",
     image: "https://obriencontracting.ca/wp-content/uploads/2025/12/2020-05-1410.56.24.jpg",
-    alt: "Custom covered timber patio with natural stone bar and outdoor kitchen",
-    desc: "Heavy timber outdoor pavilion with stone clad breakfast bar, tongue-and-groove ceiling, and integrated dining area.",
+    alt: "Custom covered timber patio with natural stone bar and outdoor kitchen (reference image)",
+    desc: "Heavy timber outdoor pavilion with stone-clad breakfast bar, tongue-and-groove ceiling, and integrated dining area.",
   },
   {
     id: "proj-4",
     title: "Covered Patio Entertainment Lounge",
     type: "Backyard Upgrade",
     location: "Fraser Valley, BC",
-    status: "Completed (Source Verified)",
+    status: "Reference · pending verification",
     image: "https://obriencontracting.ca/wp-content/uploads/2025/12/2020-05-1410.56.35.jpg",
-    alt: "Covered patio lounge with chandelier and timber framing",
+    alt: "Covered patio lounge with chandelier and timber framing (reference image)",
     desc: "All-season outdoor lounge space designed with custom cedar beams, slate surfaces, and mood lighting.",
   },
   {
     id: "proj-5",
-    title: "High-Performance Modern Kitchen Transformation",
+    title: "Kitchen Transformation",
     type: "Home Renovation",
     location: "Chilliwack, BC",
-    status: "Completed (Source Verified)",
+    status: "Reference · pending verification",
     image:
       "https://obriencontracting.ca/wp-content/uploads/2025/12/144189453_1946069295535654_263749928670396645_n.jpg",
-    alt: "Refined kitchen renovation with shaker cabinetry and subway tile",
-    desc: "Total kitchen gut and rebuild with custom cabinetry, durable stone countertops, and optimized workflow ergonomics.",
+    alt: "Refined kitchen renovation with shaker cabinetry and subway tile (reference image)",
+    desc: "Kitchen rebuild with custom cabinetry, durable stone countertops, and optimized workflow ergonomics.",
   },
   {
     id: "proj-6",
-    title: "House of Cars Detached Workshop & Garage",
+    title: "Detached Workshop & Garage",
     type: "Custom Garage Build",
     location: "Chilliwack, BC",
-    status: "Completed (Source Verified)",
+    status: "Reference · pending verification",
     image: ASSETS.houseOfCars,
-    alt: "Custom multi-bay garage exterior with cedar accents and bold siding",
-    desc: "Signature multi-bay custom garage and workshop designed to house vehicle collections with mezzanine storage.",
+    alt: "Custom multi-bay garage exterior with cedar accents and bold siding (reference image)",
+    desc: "Multi-bay custom garage and workshop designed to house vehicle collections with mezzanine storage.",
   },
 ];
 
+// O'Brien Contracting testimonials from the source site. Held for Nordic Green
+// Homes — not rendered as approved Nordic testimonials. The home page shows a
+// placeholder chip until approved testimonials are supplied.
 export const SOURCE_TESTIMONIALS = [
   {
     name: "Quentin Smith",
@@ -326,16 +330,16 @@ export const SOURCE_TESTIMONIALS = [
 
 export const FAQS = [
   {
-    q: "What makes a home Net-Zero or high-performance?",
-    a: "A Net-Zero home produces as much clean energy as it consumes over the course of a year. It achieves this first through an ultra-tight, heavily insulated building envelope, high-efficiency triple-pane windows, and balanced heat recovery ventilation (HRV), followed by renewable energy systems such as solar panels.",
+    q: "What makes a home high-performance?",
+    a: "A high-performance home starts with a tight, well-insulated building envelope, efficient glazing and balanced ventilation, then adds renewable energy systems such as solar where it makes sense for your site. The aim is consistent comfort, cleaner indoor air and lower running costs.",
   },
   {
     q: "Who manages the day-to-day build process?",
-    a: "Unlike large production builders who pass you off between multiple project managers, you collaborate directly with Lane O'Brien through every stage—from feasibility and design through permitting, construction, and final walkthrough.",
+    a: "You collaborate directly with Lane O'Brien through every stage — from feasibility and design through permitting, construction, and final walkthrough.",
   },
   {
     q: "Do you build outside of Chilliwack?",
-    a: "Yes. Our core service areas are the Fraser Valley, Kelowna, Victoria, Abbotsford, and surrounding British Columbia regions, depending on project scale and site feasibility.",
+    a: "Our service areas for Nordic Green Homes are being confirmed. Reference areas from the source site include the Fraser Valley, Kelowna, Victoria, Abbotsford and surrounding British Columbia regions, depending on project scale and site feasibility.",
   },
   {
     q: "Can you help with design and floorplans before construction starts?",
@@ -343,7 +347,7 @@ export const FAQS = [
   },
   {
     q: "How do you manage permits and municipal building code requirements?",
-    a: "We manage all municipal permitting, engineering coordination, and compliance with the BC Energy Step Code, handling the documentation so your project proceeds without administrative delays.",
+    a: "We handle municipal permitting and engineering coordination, with experience working through local building code and energy-step requirements, so the documentation side of your project proceeds without administrative delays.",
   },
   {
     q: "What is the first step to get started?",

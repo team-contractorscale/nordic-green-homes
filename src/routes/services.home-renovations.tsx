@@ -11,13 +11,13 @@ export const Route = createFileRoute("/services/home-renovations")({
       {
         name: "description",
         content:
-          "Whole-home, kitchen, and bathroom renovations in Chilliwack, Fraser Valley, Kelowna & Victoria. RenoMark standards, clean craftsmanship, and thermal upgrades.",
+          "Whole-home, kitchen, and bathroom renovations for British Columbia families. Clean craftsmanship, thermal upgrades and transparent communication — internal pilot.",
       },
       { property: "og:title", content: "Home Renovations & Transformations | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Elevate your existing home with disciplined craftsmanship, energy-conscious upgrades, and luxury finishes.",
+          "Elevate your existing home with disciplined craftsmanship, energy-conscious upgrades, and considered finishes — internal pilot.",
       },
       { property: "og:image", content: ASSETS.houseRenovation },
       { name: "twitter:image", content: ASSETS.houseRenovation },
@@ -31,15 +31,15 @@ function HomeRenovationsPage() {
     <div>
       <PageHeader
         image={ASSETS.houseRenovation}
-        imageAlt="Whole-home renovation with modern kitchen and living space in the Fraser Valley"
-        eyebrow="RenoMark™ Certified Standards"
-        title="Transform Your Home With Craftsmanship & Certainty"
-        description="Whether modernizing an outdated kitchen, re-imagining a primary bath sanctuary, or undertaking a whole-home transformation, we combine disciplined carpentry with sustainable materials to make your home feel new again."
+        imageAlt="Whole-home renovation with modern kitchen and living space in the Fraser Valley (reference image)"
+        eyebrow="Home Renovations · Draft"
+        title="Transform Your Home With Craftsmanship & Care"
+        description="Whether modernizing an outdated kitchen, re-imagining a primary bath, or undertaking a whole-home transformation, we combine disciplined carpentry with sustainable materials to make your home feel new again. RenoMark, insurance and warranty wording are pending confirmation."
       >
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
             to="/contact"
-            className="px-6 py-3 rounded-md bg-emerald-700 text-white font-medium text-sm hover:bg-emerald-600 transition-colors shadow"
+            className="px-6 py-3 rounded-md bg-primary text-white font-medium text-sm hover:bg-primary/90 transition-colors shadow"
           >
             {BRAND.primaryCtaText}
           </Link>
@@ -70,9 +70,10 @@ function HomeRenovationsPage() {
                   and living comfort.
                 </p>
                 <p>
-                  As an active RenoMark member, we abide by a strict Code of Conduct: transparent
-                  pricing, written warranties, proof of liability and WCB insurance, and honest
-                  communication from start to finish.
+                  Renovating an existing home is intended to be transparent and accountable: clear
+                  pricing, written expectations, and honest communication from start to finish.
+                  RenoMark membership, liability insurance and warranty wording are pending
+                  confirmation and not claimed here yet.
                 </p>
                 <p>
                   In collaboration with interior design partner Nordic Green Design, we ensure every
@@ -104,9 +105,10 @@ function HomeRenovationsPage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="p-4 rounded-lg bg-muted text-xs text-muted-foreground border border-border">
-                <span className="font-semibold text-foreground">Source Renovation: </span>
-                Real transformation completed by O'Brien Contracting Ltd. in Fraser Valley, BC.
+              <div className="p-4 rounded-lg bg-muted text-xs text-muted-foreground border border-dashed border-gold bg-gold/5">
+                <span className="font-semibold text-foreground">Reference image. </span>
+                Shown for layout and style review only. Not confirmed as completed Nordic Green
+                Homes work.
               </div>
             </div>
           </div>

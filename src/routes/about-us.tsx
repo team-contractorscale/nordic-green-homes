@@ -2,22 +2,24 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BRAND, ASSETS, FOUR_PILLARS } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Download, Award, Shield, Heart, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Download, Info } from "lucide-react";
+import { Placeholder } from "@/components/home/NordicHome";
+import { PLACEHOLDER } from "@/lib/home-content";
 
 export const Route = createFileRoute("/about-us")({
   head: () => ({
     meta: [
-      { title: "About Us | Nordic Green Homes & O'Brien Contracting" },
+      { title: "About Us | Nordic Green Homes" },
       {
         name: "description",
         content:
-          "Meet Lane & Kylie O'Brien. Net-Zero trained builder and interior design partners crafting sustainable, family-oriented homes in Fraser Valley, Kelowna & Victoria, BC.",
+          "Nordic Green Homes is a new entity, building alongside Nordic Green Design. About the team, approach and pending details for the internal pilot.",
       },
-      { property: "og:title", content: "About Us | Nordic Green Homes & O'Brien Contracting" },
+      { property: "og:title", content: "About Us | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Founded on the principles of sustainability, family, and luxury. Craftsmanship rooted in integrity.",
+          "Nordic Green Homes is a new entity building alongside Nordic Green Design. Internal pilot — details pending.",
       },
       { property: "og:image", content: ASSETS.family },
       { name: "twitter:image", content: ASSETS.family },
@@ -31,40 +33,41 @@ function AboutPage() {
     <div>
       <PageHeader
         image={ASSETS.family}
-        imageAlt="Lane and Kylie O'Brien with their family outside their British Columbia home"
-        eyebrow="About Our Family & Mission"
+        imageAlt="Lane and Kylie O'Brien with their family outside their British Columbia home (reference image)"
+        eyebrow="About Us · Internal pilot"
         title="Building Legacies, Grounded in Stewardship"
-        description="Welcome to Nordic Green Homes, a vision brought to life by Lane and Kylie O'Brien. Founded on the principles of sustainability, family, and bespoke luxury."
+        description="Nordic Green Homes is a new entity, building alongside Nordic Green Design. The team, legal entity and contact details below are pending confirmation."
       />
 
       {/* Origin Story & Free Guide */}
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Guide Card Preview */}
+            {/* Guide Card Preview — pending recovery & rebrand */}
             <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm flex flex-col items-center text-center">
-                <img
-                  src={ASSETS.futureProofingGuide}
-                  alt="Future-Proofing Your Home Guide cover"
-                  className="w-48 sm:w-56 h-auto object-contain rounded-md shadow-md mb-6"
-                />
-                <h3 className="font-serif text-lg font-bold text-foreground">
-                  Free Homeowner's Guide
+              <div className="bg-card border border-dashed border-gold bg-gold/5 rounded-xl p-6 sm:p-8 shadow-sm flex flex-col items-center text-center">
+                <div className="mb-4 w-full">
+                  <Placeholder>{PLACEHOLDER.guide}</Placeholder>
+                </div>
+                <div className="flex aspect-[3/4] w-44 items-center justify-center rounded-md bg-muted border border-border text-center">
+                  <span className="px-4 text-xs text-muted-foreground">Cover pending</span>
+                </div>
+                <h3 className="font-serif text-lg font-bold text-foreground mt-5">
+                  Future-Proofing Your Home
                 </h3>
                 <p className="text-xs text-muted-foreground mt-2 max-w-sm">
-                  Inside: how smart technology, renewable energy, healthy indoor air, and resilient
-                  assemblies future-proof your family home.
+                  The revised guide was supplied in January. The file is being recovered, inspected,
+                  rebranded and confirmed for delivery and attribution before the download is
+                  re-enabled.
                 </p>
-                <a
-                  href={BRAND.freePdfGuideUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-primary text-primary-foreground text-xs sm:text-sm font-medium shadow hover:bg-primary/90 transition-all"
+                <button
+                  type="button"
+                  disabled
+                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-muted text-muted-foreground text-xs sm:text-sm font-medium border border-dashed border-gold cursor-not-allowed"
                 >
                   <Download className="w-4 h-4" />
-                  <span>Download Free PDF Guide</span>
-                </a>
+                  <span>Download — pending rebrand</span>
+                </button>
               </div>
             </div>
 
@@ -74,44 +77,57 @@ function AboutPage() {
                 Our Journey
               </span>
               <h2 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-foreground">
-                Trusted Net-Zero Home Builder & Renovator
+                A new home-building entity
               </h2>
               <div className="mt-4 space-y-4 text-muted-foreground text-base leading-relaxed">
                 <p>
                   Our journey began with a simple belief: that building homes could be done
-                  differently—better for our families, our community, and our planet. With Lane's
-                  expertise as a Net-Zero trained builder and Red Seal carpenter, and Kylie's flair
-                  for interior design through Nordic Green Design, we've created a unique approach
-                  that blends sustainable building science with luxurious finishes.
+                  differently — better for our families, our community, and our planet. Nordic Green
+                  Homes brings together careful building practice and considered design for families
+                  planning their forever home.
                 </p>
                 <p>
-                  Our homes are not only energy-efficient and environmentally responsible; they are
-                  quiet, comfortable, light-filled spaces designed for everyday family life.
+                  We design and build homes that aim to be energy-efficient and environmentally
+                  thoughtful; quiet, comfortable, light-filled spaces designed for everyday family
+                  life.
                 </p>
                 <p>
                   We understand that starting a construction project is a milestone life step.
-                  That's why we prioritize clear communication and transparency from the get-go. Our
-                  process is designed to be straightforward and stress-free.
+                  That's why we prioritise clear communication and transparency from the outset,
+                  with a process designed to be straightforward and stress-free.
                 </p>
               </div>
 
-              {/* Verified Badges Row */}
-              <div className="mt-8 pt-6 border-t border-border flex flex-wrap items-center gap-6">
-                <img
-                  src={ASSETS.renoMarkLogo}
-                  alt="RenoMark Member"
-                  className="h-10 w-auto object-contain"
-                />
-                <img
-                  src={ASSETS.abbotsfordVotesWinner}
-                  alt="Abbotsford Votes 2023 Winner"
-                  className="h-10 w-auto object-contain"
-                />
-                <img
-                  src={ASSETS.asSeenOnLogo}
-                  alt="As Seen On"
-                  className="h-8 w-auto object-contain opacity-80"
-                />
+              {/* Relationship wording — narrowed per client confirmation */}
+              <div className="mt-8 border-l-2 border-gold pl-5">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                  Who we are
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Nordic Green Homes is a new entity. Nordic Green Design operates separately
+                  alongside it, and Nordic Green Homes is the master brand. O'Brien Contracting Ltd.
+                  remains open during the transition. The exact public and legal wording is pending.
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Placeholder>{PLACEHOLDER.relationship}</Placeholder>
+                  <Placeholder>{PLACEHOLDER.legalEntity}</Placeholder>
+                </div>
+              </div>
+
+              {/* Credentials & badges — held pending confirmation */}
+              <div className="mt-8 pt-6 border-t border-border">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
+                  <Info className="w-4 h-4" />
+                  <span>Credentials &amp; badges — pending</span>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  RenoMark, Abbotsford Votes, As Seen On, Red Seal, WorkSafeBC, licensing and
+                  warranty wording are not approved Nordic Green Homes claims yet and are not
+                  displayed here.
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Placeholder>{PLACEHOLDER.assurance}</Placeholder>
+                </div>
               </div>
             </div>
           </div>
@@ -140,33 +156,37 @@ function AboutPage() {
               <div className="aspect-4/3 overflow-hidden bg-muted">
                 <img
                   src={ASSETS.lanePortrait}
-                  alt="Lane O'Brien - Net-Zero Builder & Red Seal Journeyman Carpenter"
+                  alt="Lane O'Brien (reference image — pending approval)"
                   className="w-full h-full object-cover object-top"
+                  loading="lazy"
                 />
               </div>
               <div className="p-8 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-serif text-2xl font-bold text-foreground">Lane O'Brien</h3>
                   <span className="text-xs font-semibold text-emerald-700 tracking-wide uppercase block mt-1">
-                    Founder, Net-Zero Trained Builder & Red Seal Carpenter
+                    Founder &amp; builder
                   </span>
                   <div className="mt-4 text-base text-muted-foreground space-y-3 leading-relaxed">
                     <p>
-                      A Saskatchewan prairie boy who found his true home in British Columbia! Lane
-                      is a Net-Zero trained builder with a solid foundation as a Red Seal Journeyman
-                      Carpenter.
+                      A Saskatchewan prairie boy who found his true home in British Columbia. Lane
+                      builds with a focus on careful, high-performance construction practice.
                     </p>
                     <p>
                       After years working with conventional construction companies, Lane grew
                       frustrated by the volume of construction waste and lack of envelope
-                      performance in standard homes. He launched his own company to build better,
-                      high-performance homes that stand up to BC's climate.
+                      performance in standard homes. He set out to build better homes that stand up
+                      to BC's climate.
                     </p>
                     <p>
-                      A loving father of three and devoted husband, he is deeply active in the local
-                      builders association and continually advances building science standards
-                      across our projects.
+                      A loving father of three and devoted husband, he stays close to the local
+                      building community and keeps building-practice standards front of mind across
+                      projects.
                     </p>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Placeholder>{PLACEHOLDER.legalEntity}</Placeholder>
+                    <Placeholder>{PLACEHOLDER.assurance}</Placeholder>
                   </div>
                 </div>
               </div>
@@ -177,32 +197,35 @@ function AboutPage() {
               <div className="aspect-4/3 overflow-hidden bg-muted">
                 <img
                   src={ASSETS.kyliePortrait}
-                  alt="Kylie O'Brien - Interior Designer & Partner"
+                  alt="Kylie O'Brien (reference image — pending approval)"
                   className="w-full h-full object-cover object-top"
+                  loading="lazy"
                 />
               </div>
               <div className="p-8 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-serif text-2xl font-bold text-foreground">Kylie O'Brien</h3>
                   <span className="text-xs font-semibold text-emerald-700 tracking-wide uppercase block mt-1">
-                    Interior Design Partner | Founder of Nordic Green Design
+                    Interior design partner · Nordic Green Design
                   </span>
                   <div className="mt-4 text-base text-muted-foreground space-y-3 leading-relaxed">
                     <p>
-                      A BC native who partnered with Lane in life and in business! With a previous
-                      background in law, Kylie shifted to her creative calling in interior design,
-                      earning certification through the Interior Design Institute.
+                      A BC native who partnered with Lane in life and in business. With a previous
+                      background in law, Kylie shifted to her creative calling in interior design.
                     </p>
                     <p>
-                      Kylie directs our design partner firm, Nordic Green Design. She is passionate
-                      about eco-friendly, non-toxic materials, tactile timber selections, and serene
-                      Scandinavian aesthetics that feel warm and inviting.
+                      Kylie leads design work through Nordic Green Design, a separate entity that
+                      operates alongside Nordic Green Homes. She is drawn to eco-friendly, non-toxic
+                      materials, tactile timber selections, and serene Scandinavian aesthetics that
+                      feel warm and inviting.
                     </p>
                     <p>
-                      Lane and Kylie collaborate on all new home and renovation projects, ensuring
-                      that structural building envelope science and interior elegance blend
-                      seamlessly.
+                      Lane and Kylie collaborate on new home and renovation projects, so structural
+                      building practice and interior elegance can blend together.
                     </p>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <Placeholder>{PLACEHOLDER.relationship}</Placeholder>
                   </div>
                 </div>
               </div>

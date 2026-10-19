@@ -16,6 +16,7 @@ import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesHomeRenovationsRouteImport } from './routes/services.home-renovations'
@@ -56,6 +57,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/services/home-renovations': typeof ServicesHomeRenovationsRoute
   '/services/new-builds': typeof ServicesNewBuildsRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/services/home-renovations': typeof ServicesHomeRenovationsRoute
   '/services/new-builds': typeof ServicesNewBuildsRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/services/home-renovations': typeof ServicesHomeRenovationsRoute
   '/services/new-builds': typeof ServicesNewBuildsRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/process'
     | '/projects'
+    | '/sitemap.xml'
     | '/terms'
     | '/services/home-renovations'
     | '/services/new-builds'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/process'
     | '/projects'
+    | '/sitemap.xml'
     | '/terms'
     | '/services/home-renovations'
     | '/services/new-builds'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/process'
     | '/projects'
+    | '/sitemap.xml'
     | '/terms'
     | '/services/home-renovations'
     | '/services/new-builds'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
   ProjectsRoute: typeof ProjectsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ServicesHomeRenovationsRoute: typeof ServicesHomeRenovationsRoute
   ServicesNewBuildsRoute: typeof ServicesNewBuildsRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
   ProjectsRoute: ProjectsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ServicesHomeRenovationsRoute: ServicesHomeRenovationsRoute,
   ServicesNewBuildsRoute: ServicesNewBuildsRoute,
