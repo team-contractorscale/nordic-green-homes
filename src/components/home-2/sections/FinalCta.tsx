@@ -4,6 +4,13 @@ import { Eyebrow, RefTag } from "./Hero";
 import { Placeholder } from "@/components/home/NordicHome";
 import { CONSULTATION, IMAGES, PLACEHOLDER } from "@/lib/home-content";
 
+/**
+ * FinalCta — the closing consultation moment, dark green.
+ *
+ * Image-led, with the gold primary CTA and the CRM-off notice. Kept dark to
+ * bookend the hero. Pending placeholders for phone, email and booking owner
+ * stay visible.
+ */
 export function FinalCta() {
   return (
     <section
@@ -15,13 +22,14 @@ export function FinalCta() {
         alt=""
         aria-hidden="true"
         loading="lazy"
-        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-40"
+        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-35"
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(110deg,rgb(13_61_50/0.96)_0%,rgb(18_85_69/0.82)_55%,rgb(13_61_50/0.6)_100%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(110deg,rgb(13_61_50/0.96)_0%,rgb(18_85_69/0.78)_55%,rgb(13_61_50/0.7)_100%)]"
       />
       <RefTag image={IMAGES.poolRender} className="bottom-4 right-4" />
+
       <div className="wrap py-24 text-center lg:py-32">
         <div className="mx-auto max-w-2xl">
           <Eyebrow tone="gold">{CONSULTATION.eyebrow}</Eyebrow>
@@ -37,6 +45,7 @@ export function FinalCta() {
           >
             {CONSULTATION.body}
           </p>
+
           <div
             data-anim="reveal"
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
@@ -57,6 +66,7 @@ export function FinalCta() {
               Contact the team <ArrowUpRight className="size-4" />
             </Link>
           </div>
+
           <p data-anim="reveal" className="mt-8 text-xs text-white/60">
             Internal pilot: enquiry forms and CRM submission are switched off.
           </p>

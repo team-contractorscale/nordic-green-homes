@@ -2,6 +2,14 @@ import { Eyebrow } from "./Hero";
 import { Placeholder } from "@/components/home/NordicHome";
 import { IMAGES, INTRO, PLACEHOLDER, type RefImage } from "@/lib/home-content";
 
+/**
+ * ApproachSection — "One complete home", rebalanced.
+ *
+ * The earlier draft used an inconsistent 7/5/5/4/3 col-span mix that made
+ * images vary wildly in size. Here every facet is the same shape: a fixed
+ * ~18rem image column + text, alternating which side the image sits on.
+ * Consistent aspect-[3/2] tiles, hover zoom + gold number, light card frames.
+ */
 const FACETS: ReadonlyArray<{
   k: string;
   title: string;
@@ -42,66 +50,65 @@ const FACETS: ReadonlyArray<{
 
 export function ApproachSection() {
   return (
-    <section data-anim="approach" className="relative overflow-hidden bg-[#f4efe8] text-slate">
-      <div className="wrap py-24 lg:py-32">
-        <div className="max-w-3xl">
-          <Eyebrow>One complete home</Eyebrow>
-          <h2
-            data-anim="reveal"
-            className="mt-5 font-serif text-[clamp(2.2rem,3vw+1rem,3.6rem)] leading-[1.04] tracking-[-0.02em] text-foreground"
-          >
-            Design, materials and building practice,
-            <span className="text-primary"> considered as one.</span>
-          </h2>
-          <p
-            data-anim="reveal"
-            className="mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-          >
-            {INTRO.relationship.body}
-          </p>
-        </div>
-
-        <div className="mt-16 grid gap-8 lg:grid-cols-12">
-          {FACETS.map((f, i) => (
-            <article
-              key={f.k}
-              data-facet
-              className={`relative overflow-hidden rounded-md bg-white/70 p-6 shadow-sm sm:p-8 ${
-                i === 0
-                  ? "lg:col-span-7"
-                  : i === 1
-                    ? "lg:col-span-5"
-                    : i === 2
-                      ? "lg:col-span-5"
-                      : i === 3
-                        ? "lg:col-span-4"
-                        : "lg:col-span-3"
-              }`}
+    <section
+      data-anim="approach"
+      className="relative overflow-hidden bg-secondary/60 py-24 text-foreground lg:py-32"
+    >
+      <div className="wrap grid gap-14 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-28">
+            <Eyebrow>One complete home</Eyebrow>
+            <h2
+              data-anim="reveal"
+              className="mt-5 font-serif text-[clamp(2.2rem,3vw+1rem,3.4rem)] leading-[1.04] tracking-[-0.02em]"
             >
-              <div className="flex items-center gap-3">
-                <span className="font-serif text-3xl text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-lg font-bold text-foreground">{f.title}</h3>
-              </div>
-              <p className="mt-4 max-w-prose text-base leading-relaxed text-muted-foreground">
-                {f.body}
-              </p>
-              <div className="mt-6 overflow-hidden rounded-sm">
-                <img
-                  src={f.image.src}
-                  alt={f.image.alt}
-                  loading="lazy"
-                  className="aspect-[16/9] w-full object-cover [clip-path:inset(10%_10%_10%_10%)]"
-                  data-reveal-img
-                />
-              </div>
-            </article>
-          ))}
+              Design, materials and building practice,{" "}
+              <span className="text-primary">considered as one.</span>
+            </h2>
+            <p
+              data-anim="reveal"
+              className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground"
+            >
+              {INTRO.relationship.body}
+            </p>
+            <div className="mt-6">
+              <Placeholder>{PLACEHOLDER.assurance}</Placeholder>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-3">
-          <Placeholder>{PLACEHOLDER.assurance}</Placeholder>
+        <div className="lg:col-span-8 lg:col-start-5">
+          <div className="space-y-6">
+            {FACETS.map((f, i) => {
+              const flip = i % 2 === 1;
+              return (
+                <article
+                  key={f.k}
+                  data-facet
+                  className="group grid gap-6 overflow-hidden rounded-md border border-border bg-background p-5 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-lg sm:grid-cols-[minmax(0,18rem)_1fr] sm:p-6"
+                >
+                  <div className={`overflow-hidden rounded-sm ${flip ? "sm:order-2" : ""}`}>
+                    <img
+                      src={f.image.src}
+                      alt={f.image.alt}
+                      loading="lazy"
+                      data-reveal-img
+                      className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                    />
+                  </div>
+                  <div className={flip ? "sm:order-1" : ""}>
+                    <span className="font-serif text-2xl text-gold">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-1 text-lg font-bold text-foreground">{f.title}</h3>
+                    <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
+                      {f.body}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

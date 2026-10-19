@@ -9,6 +9,15 @@ const SERVICE_HREF: Record<(typeof SERVICES)[number]["key"], string> = {
   renovations: "/services/home-renovations",
 };
 
+/**
+ * ServicesSection — the one strong green "moment".
+ *
+ * Desktop: GSAP-pinned horizontal scroll through three tall service panels,
+ * each with a slow image zoom on hover, a darkening gradient, and a gold
+ * "Explore" affordance. Mobile: the same three as a clean stacked grid.
+ * This is where the brand colour earns its weight; the surrounding sections
+ * stay light so this stands out.
+ */
 export function ServicesSection() {
   return (
     <section data-anim="services" className="relative bg-primary text-white">
@@ -21,15 +30,14 @@ export function ServicesSection() {
               data-anim="reveal"
               className="mt-5 font-serif text-[clamp(2.2rem,3vw+1rem,3.4rem)] leading-[1.05] tracking-[-0.02em]"
             >
-              Three ways we build
-              <span className="text-gold"> your forever home.</span>
+              Three ways we build <span className="text-gold">your forever home.</span>
             </h2>
           </div>
         </div>
         <div className="relative overflow-hidden">
           <div
             data-services-track
-            className="flex gap-8 px-[max(1.5rem,calc((100vw-1400px)/2+2rem))] pb-24"
+            className="flex gap-8 px-[max(1.5rem,calc((100vw-1400px)/2+2rem))] pb-28"
           >
             {SERVICES.map((s) => {
               const img: RefImage = s.image;
@@ -37,17 +45,17 @@ export function ServicesSection() {
                 <Link
                   key={s.key}
                   to={SERVICE_HREF[s.key]}
-                  className="group relative flex h-[60vh] min-w-[min(78vw,46rem)] shrink-0 overflow-hidden rounded-md"
+                  className="group relative flex h-[60vh] min-w-[min(78vw,46rem)] shrink-0 overflow-hidden rounded-md border border-white/10 transition-all duration-300 hover:border-gold/50"
                 >
                   <img
                     src={img.src}
                     alt={img.alt}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[9000ms] ease-out group-hover:scale-[1.06]"
+                    className="h-full w-full object-cover transition-transform duration-[12000ms] ease-out group-hover:scale-[1.05]"
                   />
                   <div
                     aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"
                   />
                   <div className="absolute inset-x-0 bottom-0 p-8">
                     <h3 className="font-serif text-3xl">{s.title}</h3>
@@ -55,7 +63,8 @@ export function ServicesSection() {
                       {s.body}
                     </p>
                     <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-gold">
-                      Explore {s.title.toLowerCase()} <ArrowUpRight className="size-4" />
+                      Explore {s.title.toLowerCase()}{" "}
+                      <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </span>
                   </div>
                   <RefTag image={img} className="right-4 top-4" />
@@ -69,9 +78,10 @@ export function ServicesSection() {
                 </p>
                 <Link
                   to="/services"
-                  className="mt-6 inline-flex items-center gap-2 text-base font-bold text-gold underline underline-offset-4"
+                  className="group mt-6 inline-flex items-center gap-2 text-base font-bold text-gold underline underline-offset-4"
                 >
-                  See all services <MoveRight className="size-4" />
+                  See all services{" "}
+                  <MoveRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
@@ -87,8 +97,7 @@ export function ServicesSection() {
             data-anim="reveal"
             className="mt-5 font-serif text-[clamp(2rem,2.5vw+1rem,3rem)] leading-[1.06] tracking-[-0.02em]"
           >
-            Three ways we build
-            <span className="text-gold"> your forever home.</span>
+            Three ways we build <span className="text-gold">your forever home.</span>
           </h2>
           <div className="mt-10 grid gap-6">
             {SERVICES.map((s) => {
@@ -97,18 +106,18 @@ export function ServicesSection() {
                 <Link
                   key={s.key}
                   to={SERVICE_HREF[s.key]}
-                  className="group relative overflow-hidden rounded-md"
+                  className="group relative overflow-hidden rounded-md border border-white/10"
                 >
                   <div className="relative">
                     <img
                       src={img.src}
                       alt={img.alt}
                       loading="lazy"
-                      className="aspect-[4/3] w-full object-cover"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                     <div
                       aria-hidden
-                      className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"
+                      className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
                     />
                     <RefTag image={img} className="right-3 top-3" />
                     <div className="absolute inset-x-0 bottom-0 p-5">
@@ -123,9 +132,10 @@ export function ServicesSection() {
           <div className="mt-8">
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-base font-bold text-gold underline underline-offset-4"
+              className="group inline-flex items-center gap-2 text-base font-bold text-gold underline underline-offset-4"
             >
-              See all services <MoveRight className="size-4" />
+              See all services{" "}
+              <MoveRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

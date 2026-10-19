@@ -35,40 +35,44 @@ export function RefTag({ image, className = "" }: { image: RefImage; className?:
   );
 }
 
+/**
+ * CinematicHero — the emotional promise.
+ *
+ * Editorial split: oversized promise on a dark-green ground (left), a tall
+ * arched architectural image panel (right) with the Three.js wireframe drifting
+ * behind everything. The green is concentrated on the left for legibility;
+ * the right lets the render breathe.
+ */
 export function CinematicHero() {
   return (
     <section
       data-anim="hero"
       className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-brand-dark text-white"
     >
-      <ArchitecturalCanvas className="absolute inset-0 -z-20 h-full w-full opacity-70" />
-      <img
-        src={IMAGES.interior.src}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 -z-30 h-full w-full object-cover opacity-25"
+      <ArchitecturalCanvas className="absolute inset-0 -z-20 h-full w-full opacity-55" />
+      {/* legibility gradient, heavier on the text side */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(13_61_50/0.95)_0%,rgb(13_61_50/0.8)_38%,rgb(18_85_69/0.2)_66%,rgb(18_85_69/0.05)_100%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(13_61_50/0.96)_0%,rgb(18_85_69/0.82)_40%,rgb(18_85_69/0.4)_72%,rgb(13_61_50/0.6)_100%)]"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-44 bg-gradient-to-b from-black/40 to-transparent"
+        className="absolute inset-x-0 top-0 -z-10 h-44 bg-gradient-to-b from-black/45 to-transparent"
       />
 
-      <div className="wrap flex flex-1 items-center pb-40 pt-44 lg:pt-40">
-        <div className="max-w-[44rem]">
+      <div className="wrap grid flex-1 items-center gap-10 pb-32 pt-36 lg:grid-cols-12 lg:pt-40">
+        {/* emotional promise */}
+        <div className="lg:col-span-7">
           <p
             data-anim="hero-eyebrow"
-            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.22em] text-gold"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold uppercase tracking-[0.22em] text-gold backdrop-blur-md"
           >
             <Leaf className="size-4" aria-hidden />
             {HERO.eyebrow}
           </p>
           <h1
             data-anim="hero-title"
-            className="mt-7 font-serif text-[clamp(2.9rem,6.5vw,6.5rem)] leading-[0.98] tracking-[-0.03em]"
+            className="mt-7 font-serif text-[clamp(2.9rem,6.2vw,6.2rem)] leading-[0.98] tracking-[-0.03em]"
           >
             Where sustainability
             <br />
@@ -76,12 +80,12 @@ export function CinematicHero() {
           </h1>
           <p
             data-anim="hero-body"
-            className="mt-8 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
+            className="mt-7 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
           >
             {HERO.body}
           </p>
 
-          <div data-anim="hero-cta" className="mt-10 flex flex-wrap items-center gap-4">
+          <div data-anim="hero-cta" className="mt-9 flex flex-wrap items-center gap-4">
             <Link
               to="/contact"
               className="group inline-flex h-14 items-center gap-3 rounded-full border border-white/30 bg-white/10 py-1.5 pl-7 pr-1.5 text-base font-bold text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.03] hover:bg-white/15"
@@ -98,6 +102,18 @@ export function CinematicHero() {
               Begin the story
               <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
+          </div>
+        </div>
+
+        {/* architectural image panel — the render breathes here */}
+        <div data-anim="hero-panel" className="relative lg:col-span-5">
+          <div className="arch relative aspect-[4/5] w-full overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
+            <img
+              src={IMAGES.nordicHaus.src}
+              alt={IMAGES.nordicHaus.alt}
+              className="h-full w-full object-cover"
+            />
+            <RefTag image={IMAGES.nordicHaus} className="bottom-4 left-4" />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CinematicHero } from "./sections/Hero";
+import { ValuesMarquee } from "./sections/Marquee";
 import { PhilosophySection } from "./sections/Philosophy";
 import { ApproachSection } from "./sections/Approach";
 import { ServicesSection } from "./sections/Services";
@@ -15,8 +16,10 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * CinematicHome — the /home-2 orchestrator.
  *
- * Sections live in ./sections/* (each focused + reviewable). GSAP wiring is
- * the only thing kept here. All animation respects prefers-reduced-motion:
+ * Colour rhythm is deliberately rebalanced away from the earlier all-green
+ * draft: dark bookends (hero + final CTA), one strong green "moment" (the
+ * pinned services scroll), and warm light/mist sections between. GSAP wiring
+ * is the only thing kept here. All animation respects prefers-reduced-motion:
  * under reduced motion, content snaps to its final visible state and the
  * pinned horizontal services scroll is disabled.
  */
@@ -41,7 +44,8 @@ export function CinematicHome() {
         .from('[data-anim="hero-title"]', { y: 60, opacity: 0, duration: 1.1 }, "-=0.3")
         .from('[data-anim="hero-body"]', { y: 28, opacity: 0, duration: 0.8 }, "-=0.6")
         .from('[data-anim="hero-cta"]', { y: 24, opacity: 0, duration: 0.7 }, "-=0.4")
-        .from('[data-anim="hero-cue"]', { opacity: 0, duration: 0.6 }, "-=0.2");
+        .from('[data-anim="hero-panel"]', { opacity: 0, scale: 0.95, duration: 1.2 }, "-=0.9")
+        .from('[data-anim="hero-cue"]', { opacity: 0, duration: 0.6 }, "-=0.3");
 
       /* ---- Generic section-intro reveals ---- */
       gsap.utils.toArray<HTMLElement>('[data-anim="reveal"]').forEach((el) => {
@@ -56,6 +60,7 @@ export function CinematicHome() {
 
       /* ---- Image clip reveals + subtle inner parallax ---- */
       gsap.utils.toArray<HTMLElement>("[data-reveal-img]").forEach((img) => {
+        gsap.set(img, { clipPath: "inset(8% 8% 8% 8%)" });
         gsap.to(img, {
           clipPath: "inset(0% 0% 0% 0%)",
           duration: 1.1,
@@ -150,6 +155,7 @@ export function CinematicHome() {
   return (
     <div ref={rootRef} className="cinematic-home">
       <CinematicHero />
+      <ValuesMarquee />
       <PhilosophySection />
       <ApproachSection />
       <ServicesSection />

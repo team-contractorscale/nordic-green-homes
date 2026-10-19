@@ -154,11 +154,28 @@
   border-radius: 999px 999px var(--radius) var(--radius);
 }
 
+/* Cinematic values marquee (Home 2) — pure-CSS, SSR-safe, zero-JS. */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee-x 30s linear infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+  .marquee-track {
+    animation: none;
   }
 }
