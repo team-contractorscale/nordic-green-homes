@@ -5,20 +5,29 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Nordic Green Homes / O'Brien Contracting Design System
- * Primary Forest Emerald: #1B3F30 / oklch(0.32 0.07 155)
- * Deep Forest Dark: #0E241A / oklch(0.22 0.05 155)
- * Secondary Muted Sage: #4A6B5B / oklch(0.50 0.06 155)
- * Warm Off-White Canvas: #FBFBFA / oklch(0.985 0.005 95)
- * Warm Sand/Stone Accent: #E8E5DD / oklch(0.92 0.012 90)
- * Charcoal Accent: #1F2421 / oklch(0.25 0.015 155)
+ * Nordic Green Homes — design direction (internal pilot, not client-approved).
+ * Palette and fonts taken from the current nordicgreendesign.ca brand (Squarespace site.css),
+ * confirmed against the brand screenshot supplied 2026-10-19:
+ *
+ *   White       #FFFFFF  page ground
+ *   Black       #000000  headings
+ *   Gold        #BB895C  accent (site --accent): rules, buttons, large display text only
+ *   Slate green #365347  body copy, small labels (site --darkAccent)
+ *   Deep green  #125545  anchor: header, dark bands, footer (site header background)
+ *   Grey        #808080  captions   ·  Light grey #A9A9A9 dividers
+ *   Mist        #E2E5E4  alternate section ground (site --lightAccent)
+ *
+ * Fonts: Alice (headings) + Almarai (everything else).
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "Almarai", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Alice", ui-serif, Georgia, serif;
+  /* Fixed radius tokens, same as the CS Web Template (§4): chips · cards · image tiles · panels. */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
@@ -41,6 +50,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-slate: var(--slate);
+  --color-grey: var(--grey);
+  --color-overlay: var(--overlay);
   --color-brand-forest: var(--brand-forest);
   --color-brand-sage: var(--brand-sage);
   --color-brand-sand: var(--brand-sand);
@@ -48,31 +61,36 @@
 }
 
 :root {
-  --radius: 0.375rem;
-  --background: oklch(0.99 0.003 95);
-  --foreground: oklch(0.22 0.02 155);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.02 155);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.02 155);
-  --primary: oklch(0.32 0.07 155); /* Deep Forest Green */
-  --primary-foreground: oklch(0.99 0.003 95);
-  --secondary: oklch(0.94 0.015 95); /* Warm Sand Muted */
-  --secondary-foreground: oklch(0.25 0.04 155);
-  --muted: oklch(0.96 0.008 95);
-  --muted-foreground: oklch(0.48 0.02 155);
-  --accent: oklch(0.92 0.015 95);
-  --accent-foreground: oklch(0.22 0.05 155);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.89 0.01 95);
-  --input: oklch(0.89 0.01 95);
-  --ring: oklch(0.32 0.07 155);
+  --radius: 0.25rem;
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #125545;
+  --primary-foreground: #ffffff;
+  --secondary: #e2e5e4;
+  --secondary-foreground: #000000;
+  --muted: #e2e5e4;
+  --muted-foreground: #365347;
+  --accent: #e2e5e4;
+  --accent-foreground: #000000;
+  --destructive: #a5432c;
+  --destructive-foreground: #ffffff;
+  --border: #e2e5e4;
+  --input: #a9a9a9;
+  --ring: #bb895c;
 
-  --brand-forest: oklch(0.32 0.07 155);
-  --brand-sage: oklch(0.52 0.06 155);
-  --brand-sand: oklch(0.94 0.015 95);
-  --brand-dark: oklch(0.18 0.03 155);
+  --gold: #bb895c;
+  --slate: #365347;
+  --grey: #808080;
+  --overlay: #0b1f19;
+
+  --brand-forest: #125545;
+  --brand-sage: #365347;
+  --brand-sand: #e2e5e4;
+  --brand-dark: #0d3d32;
 }
 
 .dark {
@@ -110,6 +128,37 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: var(--font-sans);
+  }
+
+  html {
+    scroll-padding-top: 7rem;
+  }
+}
+
+/* One container width sitewide (Web Template convention, narrowed for an editorial measure). */
+.wrap {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .wrap {
+    padding-inline: 2rem;
+  }
+}
+
+/* The one "subtle curve": an arched image frame echoing Nordic doorways. Used sparingly. */
+.arch {
+  border-radius: 999px 999px var(--radius) var(--radius);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

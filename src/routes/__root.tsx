@@ -18,6 +18,7 @@ import {
   StickyMobileCTA,
 } from "../components/layout/SiteLayout";
 import { useHydrated } from "../hooks/use-hydrated";
+import { PILOT_CRM_ENABLED } from "../lib/form-tracking";
 
 function NotFoundComponent() {
   return (
@@ -85,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "robots", content: "noindex, nofollow" }, // Staging noindex protection
-      { name: "author", content: "Nordic Green Homes / O'Brien Contracting Ltd." },
+      { name: "author", content: "Nordic Green Homes" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -94,7 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Alice&family=Almarai:wght@300;400;700;800&display=swap",
       },
       {
         rel: "stylesheet",
@@ -128,15 +129,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col font-sans antialiased text-foreground bg-background">
+      <div className="min-h-screen flex flex-col pb-[4.25rem] font-sans antialiased text-foreground bg-primary lg:pb-0">
         <PreviewBanner />
         <SiteHeader />
-        <main className="flex-1 pb-16 lg:pb-0">
+        <main className="flex-1 bg-background">
           <Outlet />
         </main>
         <SiteFooter />
         <StickyMobileCTA />
-        {hydrated ? (
+        {hydrated && PILOT_CRM_ENABLED ? (
           <Suspense fallback={null}>
             <LazyChatWidget />
           </Suspense>
