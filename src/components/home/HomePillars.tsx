@@ -1,21 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
-import { PILLARS } from "@/lib/home-content";
-import { Eyebrow } from "./shared";
+import { IMAGES, PILLARS } from "@/lib/home-content";
+import { Eyebrow, RefTag } from "./shared";
 
 /* ---------- 4. Pillars — "What guides us" ----------
- * A warm, light editorial section with balanced rhythm. Four principles in a
- * 2×2 grid of equal cards — intentionally uniform so the section reads as one
- * calm, designed block rather than uneven columns. Each card carries a
- * line-art mark in a circular badge, an oversized faint index number, and a
- * gold top accent that draws in on hover. The section ground uses layered
- * warm/brand radial washes (sage + gold) so it feels alive without being a
- * flat green band. Hover lifts the card, tints the border gold, swaps the mark
- * to gold, and blooms a soft glow.
+ * Editorial split: a sticky feature image on the left (parallax + clip
+ * reveal) beside the four principles on the right as a tight 2×2 card grid.
+ * Warm layered sage + gold radial washes on a light ground — alive without
+ * being a flat green band. Each card carries a line-art mark in a circular
+ * badge, an oversized index number, and a gold top accent that draws in on
+ * hover. A floating caption card anchors the image with a brand voice line.
  */
 
-// Small line-art marks so each principle reads as its own idea without an icon library.
 const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
   Sustainability: (
     <svg
@@ -78,86 +75,112 @@ const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
 
 export function HomePillars() {
   return (
-    <section className="relative overflow-hidden bg-secondary/60 py-20 text-foreground sm:py-24">
-      {/* warm layered radial washes (sage + gold) — alive, not a flat green band */}
+    <section className="relative overflow-hidden bg-secondary/40 py-20 sm:py-24">
+      {/* warm layered radial washes — sage + gold, not a flat green band */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_70%_at_8%_0%,rgb(18_85_69/0.07),transparent_62%),radial-gradient(ellipse_45%_60%_at_100%_100%,rgb(187_137_92/0.08),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_60%_at_0%_20%,rgb(18_85_69/0.06),transparent_60%),radial-gradient(ellipse_45%_55%_at_100%_90%,rgb(187_137_92/0.07),transparent_58%)]"
       />
       {/* faint serif watermark for editorial warmth */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -top-4 right-0 hidden select-none font-serif text-[14rem] leading-none text-primary/[0.04] lg:block"
+        className="pointer-events-none absolute -top-6 right-6 hidden select-none font-serif text-[12rem] leading-none text-primary/[0.04] lg:block"
       >
         Values
       </span>
 
-      <div className="wrap">
-        {/* Tighter header: eyebrow + title left, supporting copy + link right */}
-        <div className="grid items-end gap-5 sm:grid-cols-12">
-          <div className="sm:col-span-7">
-            <Eyebrow>What guides us</Eyebrow>
-            <h2
+      <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-center">
+        {/* Left: sticky feature image with floating caption */}
+        <div className="lg:col-span-5">
+          <div className="relative lg:sticky lg:top-28">
+            <div
+              data-reveal-img
+              className="arch relative aspect-[4/5] overflow-hidden rounded-lg bg-muted"
+            >
+              <img
+                data-parallax
+                src={IMAGES.office.src}
+                alt={IMAGES.office.alt}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+              <RefTag image={IMAGES.office} className="bottom-4 left-4" />
+            </div>
+            {/* floating caption card — brand voice line */}
+            <div
               data-anim="reveal"
-              className="mt-3 font-serif text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-foreground"
+              className="absolute -bottom-5 right-2 hidden max-w-[15rem] rounded-lg border border-border bg-card p-4 shadow-xl shadow-primary/10 lg:block"
             >
-              Four principles behind every home
-            </h2>
-          </div>
-          <div className="sm:col-span-5">
-            <p data-anim="reveal" className="text-base leading-relaxed text-muted-foreground">
-              The values that shape every decision, from the first sketch to the day you move in —
-              not a checklist, but the way we think about a home before a single plan is drawn.
-            </p>
-            <Link
-              to="/about-us"
-              className="group mt-4 inline-flex shrink-0 items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-gold"
-            >
-              More about us
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
+              <p className="font-serif text-base leading-snug text-primary">
+                A home should feel considered, not contrived.
+              </p>
+              <p className="mt-1.5 text-[0.7rem] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                Our approach
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Balanced 2×2 grid of equal cards */}
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {PILLARS.map((p, i) => (
-            <article
-              key={p.title}
-              data-pillar
-              className="group relative flex items-start gap-6 overflow-hidden rounded-lg border border-border bg-card p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-xl hover:shadow-primary/10 sm:p-8"
-            >
-              {/* gold top accent bar — draws in on hover */}
-              <span
-                aria-hidden
-                className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
-              />
-              {/* hover glow blob */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-gold/10 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
-              />
+        {/* Right: principles */}
+        <div className="lg:col-span-7">
+          <Eyebrow>What guides us</Eyebrow>
+          <h2
+            data-anim="reveal"
+            className="mt-4 font-serif text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-foreground"
+          >
+            Four principles behind every home
+          </h2>
+          <p
+            data-anim="reveal"
+            className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground"
+          >
+            The values that shape every decision, from the first sketch to the day you move in — not
+            a checklist, but the way we think about a home before a single plan is drawn.
+          </p>
 
-              {/* circular mark badge */}
-              <span className="grid size-14 shrink-0 place-items-center rounded-full border border-border bg-secondary text-gold/80 transition-all duration-500 group-hover:border-gold/40 group-hover:bg-gold/10 group-hover:text-gold">
-                <span className="size-7">{PILLAR_MARK[p.title]}</span>
-              </span>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {PILLARS.map((p, i) => (
+              <article
+                key={p.title}
+                data-pillar
+                className="group relative overflow-hidden rounded-lg border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-xl hover:shadow-primary/10"
+              >
+                {/* gold top accent — draws in on hover */}
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
+                />
+                {/* hover glow blob */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-12 -top-12 size-32 rounded-full bg-gold/10 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
+                />
 
-              <div className="min-w-0">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-lg font-bold text-foreground transition-colors duration-300 group-hover:text-primary sm:text-xl">
-                    {p.title}
-                  </h3>
-                  <span className="font-serif text-4xl leading-none text-primary/15 transition-all duration-500 group-hover:text-gold/45 sm:text-5xl">
+                <div className="flex items-center justify-between">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-full border border-border bg-secondary text-gold/80 transition-all duration-500 group-hover:border-gold/40 group-hover:bg-gold/10 group-hover:text-gold">
+                    <span className="size-6">{PILLAR_MARK[p.title]}</span>
+                  </span>
+                  <span className="font-serif text-3xl leading-none text-primary/15 transition-colors duration-500 group-hover:text-gold/50">
                     0{i + 1}
                   </span>
                 </div>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">
+                <h3 className="mt-4 text-lg font-bold text-foreground transition-colors duration-300 group-hover:text-primary">
+                  {p.title}
+                </h3>
+                <p className="mt-2 text-base leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">
                   {p.body}
                 </p>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
+
+          <Link
+            to="/about-us"
+            className="group mt-8 inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-gold"
+          >
+            More about us
+            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
     </section>

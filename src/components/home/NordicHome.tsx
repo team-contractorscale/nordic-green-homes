@@ -24,9 +24,9 @@ import {
 
 /* Nordic Green Homes — home page barrel + inline sections.
  *
- * The big, frequently-edited sections (Hero, Pillars, Process) live in their
- * own focused modules and are re-exported here so existing imports keep
- * resolving. Shared primitives come from ./shared.
+ * The big, frequently-edited sections (Hero, Pillars, Process, Guide) live
+ * in their own focused modules and are re-exported here so existing imports
+ * keep resolving. Shared primitives come from ./shared.
  */
 
 export { HomeHero } from "./HomeHero";
@@ -164,20 +164,27 @@ export function HomeAssurance() {
   );
 }
 
-/* ---------- 7. Projects + reviews slot ---------- */
+/* ---------- 7. Projects — "Selected work" ----------
+ * A balanced editorial grid: a large feature image on the left spanning the
+ * full height, with two smaller images stacked on the right. Each tile has
+ * a gradient overlay + caption that strengthens on hover, and a zoom on the
+ * image. Clip-reveals stagger in on scroll (data-reveal-img). Reference tags
+ * stay top-right.
+ */
 
 export function HomeProjects() {
   return (
-    <section className="bg-secondary/70 py-20 sm:py-24">
+    <section className="bg-background py-20 sm:py-24">
       <div className="wrap">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <Eyebrow>Selected work</Eyebrow>
             <h2 data-anim="reveal" className={`${H2} mt-4`}>
               Design and build, in detail
             </h2>
-            <p data-anim="reveal" className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Every image is labelled as a photo or a concept render.
+            <p data-anim="reveal" className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Every image is labelled as a photo or a concept render — and marked reference only
+              while project approval is pending.
             </p>
           </div>
           <Link to="/projects" className={TEXT_LINK}>
@@ -185,43 +192,73 @@ export function HomeProjects() {
           </Link>
         </div>
 
-        {/* Balanced asymmetric grid: one feature + two stacked */}
-        <div className="mt-12 grid gap-5 md:grid-cols-12 md:grid-rows-2">
+        <div className="mt-10 grid gap-4 lg:grid-cols-12">
+          {/* Feature — full height on the left */}
           <div
             data-reveal-img
-            className="relative overflow-hidden rounded-lg bg-muted md:col-span-7 md:row-span-2"
+            className="group relative min-h-[24rem] overflow-hidden rounded-lg bg-muted lg:col-span-7 lg:min-h-[32rem]"
           >
             <img
               src={IMAGES.entry.src}
               alt={IMAGES.entry.alt}
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <RefTag image={IMAGES.entry} className="bottom-4 left-4" />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95"
+            />
+            <div className="absolute inset-x-5 bottom-5 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">
+                Front entry
+              </p>
+              <p className="mt-1 font-serif text-xl leading-snug text-white sm:text-2xl">
+                Marble, timber &amp; original artwork
+              </p>
+            </div>
+            <RefTag image={IMAGES.entry} className="top-4 right-4" />
           </div>
-          <div
-            data-reveal-img
-            className="relative overflow-hidden rounded-lg bg-muted md:col-span-5"
-          >
-            <img
-              src={IMAGES.obrienReno.src}
-              alt={IMAGES.obrienReno.alt}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-            />
-            <RefTag image={IMAGES.obrienReno} className="bottom-4 left-4" />
-          </div>
-          <div
-            data-reveal-img
-            className="relative overflow-hidden rounded-lg bg-muted md:col-span-5"
-          >
-            <img
-              src={IMAGES.obrienPoolBar.src}
-              alt={IMAGES.obrienPoolBar.alt}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-            />
-            <RefTag image={IMAGES.obrienPoolBar} className="bottom-4 left-4" />
+
+          {/* Two smaller, stacked on the right */}
+          <div className="grid gap-4 lg:col-span-5">
+            <div
+              data-reveal-img
+              className="group relative min-h-[14rem] overflow-hidden rounded-lg bg-muted lg:min-h-[15.5rem]"
+            >
+              <img
+                src={IMAGES.obrienReno.src}
+                alt={IMAGES.obrienReno.alt}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95"
+              />
+              <div className="absolute inset-x-4 bottom-4 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
+                <p className="font-serif text-lg text-white">Kitchen renovation</p>
+              </div>
+              <RefTag image={IMAGES.obrienReno} className="top-3 right-3" />
+            </div>
+            <div
+              data-reveal-img
+              className="group relative min-h-[14rem] overflow-hidden rounded-lg bg-muted lg:min-h-[15.5rem]"
+            >
+              <img
+                src={IMAGES.obrienPoolBar.src}
+                alt={IMAGES.obrienPoolBar.alt}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95"
+              />
+              <div className="absolute inset-x-4 bottom-4 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
+                <p className="font-serif text-lg text-white">Outdoor bar &amp; patio</p>
+              </div>
+              <RefTag image={IMAGES.obrienPoolBar} className="top-3 right-3" />
+            </div>
           </div>
         </div>
 

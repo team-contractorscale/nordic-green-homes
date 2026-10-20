@@ -2,22 +2,21 @@ import { ArrowRight } from "lucide-react";
 import { Eyebrow, H2, Placeholder } from "@/components/home/NordicHome";
 import { GUIDE, PLACEHOLDER } from "@/lib/home-content";
 
-/**
- * HomeGuide — the "Future-Proofing Your Home" guide section.
- *
- * Redesigned as a cohesive horizontal band: a dark cover card on the left
- * (with a corner accent that sweeps in on hover, a bottom gradient for depth
- * and a logo zoom) beside a numbered topic list on the right where each item
- * lifts, tints its border gold and flips its number to gold on hover. The
- * download stays disabled with a pending-recovery note. The cover card lifts
- * in on scroll (data-guide-card) and each topic chip staggers in
- * (data-guide-topic) — both wired in useHomeMotion.
+/* ---------- 8. Guide — "Future-Proofing Your Home" ----------
+ * A cohesive horizontal band on a light ground: a dark cover card on the
+ * left (with a corner accent that sweeps in on hover, a bottom gradient for
+ * depth and a logo zoom) beside a numbered topic list on the right where
+ * each item lifts, tints its border gold and flips its number to gold on
+ * hover. The download stays disabled with a pending-recovery note. The
+ * cover card lifts in on scroll (data-guide-card) and each topic chip
+ * staggers in (data-guide-topic) — both wired in useHomeMotion.
  */
+
 export function HomeGuide() {
   return (
-    <section className="relative overflow-hidden bg-background py-20 sm:py-24">
+    <section className="relative overflow-hidden bg-secondary/40 py-20 sm:py-24">
       <div className="wrap">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
           {/* Draft cover built from the supplied logo — a layout stand-in, not the real guide cover. */}
           <div className="lg:col-span-5">
             <div
@@ -57,12 +56,15 @@ export function HomeGuide() {
           </div>
 
           {/* Content */}
-          <div className="lg:col-span-6 lg:col-start-7">
+          <div className="lg:col-span-7">
             <Eyebrow>{GUIDE.eyebrow}</Eyebrow>
             <h2 data-anim="reveal" className={`${H2} mt-4`}>
               {GUIDE.title}
             </h2>
-            <p data-anim="reveal" className="mt-6 text-base leading-relaxed text-muted-foreground">
+            <p
+              data-anim="reveal"
+              className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground"
+            >
               {GUIDE.body}
             </p>
 
@@ -82,7 +84,7 @@ export function HomeGuide() {
               ))}
             </ul>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <span
                 aria-disabled
                 className="inline-flex h-12 cursor-not-allowed items-center rounded-full border border-primary/30 px-6 text-base font-bold text-primary/60 transition-colors duration-300 hover:border-primary/50 hover:text-primary/80"
@@ -91,7 +93,7 @@ export function HomeGuide() {
               </span>
               <Placeholder>{PLACEHOLDER.guide}</Placeholder>
             </div>
-            <p className="mt-6 flex items-center gap-2 text-xs text-muted-foreground">
+            <p className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
               <ArrowRight className="size-3.5 text-gold" aria-hidden />
               The guide file is being recovered, checked and rebranded before release.
             </p>
