@@ -168,13 +168,15 @@ export function HomeAssurance() {
 
 export function HomeProjects() {
   return (
-    <section className="py-24 sm:py-28">
+    <section className="bg-secondary/70 py-20 sm:py-24">
       <div className="wrap">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <Eyebrow>Selected work</Eyebrow>
-            <h2 className={`${H2} mt-4`}>Design and build, in detail</h2>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+            <h2 data-anim="reveal" className={`${H2} mt-4`}>
+              Design and build, in detail
+            </h2>
+            <p data-anim="reveal" className="mt-5 text-base leading-relaxed text-muted-foreground">
               Every image is labelled as a photo or a concept render.
             </p>
           </div>
@@ -183,13 +185,44 @@ export function HomeProjects() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:gap-6 md:grid-cols-12 md:grid-rows-2">
-          <RefImg
-            image={IMAGES.entry}
-            className="aspect-[4/3] rounded-lg md:col-span-7 md:row-span-2 md:aspect-auto"
-          />
-          <RefImg image={IMAGES.obrienReno} className="aspect-[4/3] rounded-lg md:col-span-5" />
-          <RefImg image={IMAGES.obrienPoolBar} className="aspect-[4/3] rounded-lg md:col-span-5" />
+        {/* Balanced asymmetric grid: one feature + two stacked */}
+        <div className="mt-12 grid gap-5 md:grid-cols-12 md:grid-rows-2">
+          <div
+            data-reveal-img
+            className="relative overflow-hidden rounded-lg bg-muted md:col-span-7 md:row-span-2"
+          >
+            <img
+              src={IMAGES.entry.src}
+              alt={IMAGES.entry.alt}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <RefTag image={IMAGES.entry} className="bottom-4 left-4" />
+          </div>
+          <div
+            data-reveal-img
+            className="relative overflow-hidden rounded-lg bg-muted md:col-span-5"
+          >
+            <img
+              src={IMAGES.obrienReno.src}
+              alt={IMAGES.obrienReno.alt}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <RefTag image={IMAGES.obrienReno} className="bottom-4 left-4" />
+          </div>
+          <div
+            data-reveal-img
+            className="relative overflow-hidden rounded-lg bg-muted md:col-span-5"
+          >
+            <img
+              src={IMAGES.obrienPoolBar.src}
+              alt={IMAGES.obrienPoolBar.alt}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <RefTag image={IMAGES.obrienPoolBar} className="bottom-4 left-4" />
+          </div>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">

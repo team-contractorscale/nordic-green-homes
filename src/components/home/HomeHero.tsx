@@ -129,18 +129,14 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* slide controls: enlarged square image thumbnails — NO background, NON-rounded, pinned in the hero */}
+      {/* slide controls: large rounded image thumbnails — pinned inside the hero, always visible */}
       <div
         data-anim="hero-nav"
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-4 lg:bottom-auto lg:left-auto lg:right-10 lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2"
+        className="absolute bottom-7 left-1/2 flex -translate-x-1/2 items-center gap-4 lg:bottom-auto lg:left-auto lg:right-12 lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2"
         role="group"
         aria-label="Hero images"
       >
-        <span className="hidden font-serif text-sm tracking-[0.25em] text-white/55 lg:block">
-          <span className="text-base text-gold">{String(active + 1).padStart(2, "0")}</span>
-          <span className="text-white/30"> / {String(slides.length).padStart(2, "0")}</span>
-        </span>
-        <div className="flex items-center gap-3 lg:flex-col">
+        <div className="flex items-center gap-4 lg:flex-col">
           {slides.map((img, i) => (
             <button
               key={img.src}
@@ -148,10 +144,8 @@ export function HomeHero() {
               onClick={() => setActive(i)}
               aria-label={`Show image ${i + 1} of ${slides.length}: ${img.alt}`}
               aria-current={i === active}
-              className={`group relative block h-16 w-24 overflow-hidden rounded-none outline-none transition-all duration-500 lg:h-24 lg:w-32 ${
-                i === active
-                  ? "ring-2 ring-gold ring-offset-2 ring-offset-primary"
-                  : "ring-1 ring-white/25 hover:ring-2 hover:ring-white/60"
+              className={`group relative block h-20 w-28 overflow-hidden rounded-xl outline-none ring-1 ring-white/20 transition-all duration-500 hover:ring-2 hover:ring-white/70 lg:h-28 lg:w-44 ${
+                i === active ? "ring-2 ring-gold ring-offset-2 ring-offset-primary" : ""
               }`}
             >
               <img
@@ -160,11 +154,11 @@ export function HomeHero() {
                 aria-hidden
                 loading={i === 0 ? "eager" : "lazy"}
                 className={`h-full w-full object-cover transition-all duration-700 ${
-                  i === active ? "opacity-100" : "opacity-45 group-hover:opacity-90"
+                  i === active ? "opacity-100" : "opacity-50 group-hover:opacity-95"
                 }`}
               />
               {i === active && (
-                <span aria-hidden className="absolute inset-y-0 left-0 w-1 origin-top bg-gold" />
+                <span aria-hidden className="absolute inset-0 rounded-xl ring-4 ring-gold/20" />
               )}
             </button>
           ))}

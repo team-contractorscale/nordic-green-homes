@@ -5,23 +5,24 @@ import { GUIDE, PLACEHOLDER } from "@/lib/home-content";
 /**
  * HomeGuide — the "Future-Proofing Your Home" guide section.
  *
- * Complete redesign: dark cover card with a corner accent that sweeps in on
- * hover, a bottom gradient for depth and a logo zoom; a numbered topic list
- * where each item lifts, tints its border gold and flips its number to gold on
- * hover; the download stays disabled with a pending-recovery note. The cover
- * card lifts in on scroll (data-guide-card) and each topic chip staggers in
+ * Redesigned as a cohesive horizontal band: a dark cover card on the left
+ * (with a corner accent that sweeps in on hover, a bottom gradient for depth
+ * and a logo zoom) beside a numbered topic list on the right where each item
+ * lifts, tints its border gold and flips its number to gold on hover. The
+ * download stays disabled with a pending-recovery note. The cover card lifts
+ * in on scroll (data-guide-card) and each topic chip staggers in
  * (data-guide-topic) — both wired in useHomeMotion.
  */
 export function HomeGuide() {
   return (
-    <section className="relative overflow-hidden bg-secondary/70 py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-background py-20 sm:py-24">
       <div className="wrap">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           {/* Draft cover built from the supplied logo — a layout stand-in, not the real guide cover. */}
           <div className="lg:col-span-5">
             <div
               data-guide-card
-              className="group relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-lg bg-primary p-8 shadow-2xl shadow-primary/20 transition-all duration-700 hover:-translate-y-2 hover:shadow-primary/40"
+              className="group relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-lg bg-primary p-8 shadow-2xl shadow-primary/20 transition-all duration-700 hover:-translate-y-2 hover:shadow-primary/40"
             >
               {/* corner accent that sweeps in on hover */}
               <span
@@ -43,10 +44,10 @@ export function HomeGuide() {
                 <img
                   src="/brand/nordic-logo-light.png"
                   alt=""
-                  className="mt-6 w-40 transition-transform duration-700 group-hover:scale-110"
+                  className="mt-4 w-36 transition-transform duration-700 group-hover:scale-110"
                 />
                 <div>
-                  <p className="font-serif text-3xl leading-tight">{GUIDE.title}</p>
+                  <p className="font-serif text-2xl leading-tight sm:text-3xl">{GUIDE.title}</p>
                   <span className="mt-4 block text-xs font-bold uppercase tracking-[0.2em] text-white/60">
                     Draft cover · placeholder
                   </span>
@@ -71,7 +72,7 @@ export function HomeGuide() {
                 <li
                   key={t}
                   data-guide-topic
-                  className="group/topic flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3.5 text-sm font-bold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/40 hover:bg-gold/5 hover:text-primary"
+                  className="group/topic flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3.5 text-base font-bold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/40 hover:bg-gold/5 hover:text-primary"
                 >
                   <span className="grid size-7 shrink-0 place-items-center rounded-full bg-secondary font-serif text-xs text-primary transition-all duration-300 group-hover/topic:bg-gold group-hover/topic:text-black">
                     {i + 1}

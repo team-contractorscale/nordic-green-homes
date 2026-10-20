@@ -25,7 +25,7 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
       if (reduce) {
         gsap.set("[data-anim]", { opacity: 1, y: 0, x: 0 });
         gsap.set("[data-reveal-img]", { clipPath: "inset(0% 0% 0% 0%)" });
-        gsap.set("[data-rail-fill]", { scaleY: 1, transformOrigin: "top center" });
+        gsap.set("[data-rail-fill]", { scaleX: 1, transformOrigin: "left center" });
         gsap.set("[data-guide-topic]", { opacity: 1, x: 0 });
         gsap.set("[data-parallax]", { y: 0 });
         return;
@@ -87,7 +87,7 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
         );
       });
 
-      /* ---- Pillar cards: staggered entrance, reversible on scroll-up ---- */
+      /* ---- Pillar cards: staggered entrance, stays visible after entering ---- */
       gsap.utils.toArray<HTMLElement>("[data-pillar]").forEach((el, i) => {
         gsap.from(el, {
           y: 40,
@@ -95,30 +95,30 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
           duration: 0.8,
           ease: "power3.out",
           delay: i * 0.05,
-          scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none reverse" },
+          scrollTrigger: { trigger: el, start: "top 88%", toggleActions: "play none none none" },
         });
       });
 
-      /* ---- Process: scrubbed vertical gold rail fill (centre timeline) ---- */
+      /* ---- Process: scrubbed horizontal gold rail fill (left-to-right timeline) ---- */
       const rail = root.querySelector<HTMLElement>("[data-rail]");
       const fill = root.querySelector<HTMLElement>("[data-rail-fill]");
       if (rail && fill) {
-        gsap.set(fill, { scaleY: 0, transformOrigin: "top center" });
+        gsap.set(fill, { scaleX: 0, transformOrigin: "left center" });
         gsap.to(fill, {
-          scaleY: 1,
+          scaleX: 1,
           ease: "none",
-          scrollTrigger: { trigger: rail, start: "top 70%", end: "bottom 90%", scrub: true },
+          scrollTrigger: { trigger: rail, start: "top 75%", end: "bottom 90%", scrub: true },
         });
       }
 
-      /* ---- Process stages: reveal each as it scrolls in ---- */
+      /* ---- Process stages: reveal each as it scrolls in, stays visible ---- */
       gsap.utils.toArray<HTMLElement>("[data-stage]").forEach((el) => {
         gsap.from(el, {
           y: 36,
           opacity: 0,
           duration: 0.8,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none reverse" },
+          scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" },
         });
       });
 
