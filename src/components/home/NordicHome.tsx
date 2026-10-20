@@ -32,6 +32,7 @@ import {
 export { HomeHero } from "./HomeHero";
 export { HomePillars } from "./HomePillars";
 export { HomeProcess } from "./HomeProcess";
+export { HomeProjects } from "./HomeProjects";
 export {
   Placeholder,
   RefTag,
@@ -51,14 +52,20 @@ export function HomeIntro() {
       <div className="wrap grid items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Eyebrow>{INTRO.eyebrow}</Eyebrow>
-          <h2 className={`${H2} mt-4`}>{INTRO.title}</h2>
+          <h2 data-reveal className={`${H2} mt-4`}>
+            {INTRO.title}
+          </h2>
           <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
             {INTRO.body.map((p) => (
-              <p key={p}>{p}</p>
+              <p key={p} data-reveal>
+                {p}
+              </p>
             ))}
           </div>
-          <p className="mt-8 font-serif text-xl text-primary">{INTRO.people}</p>
-          <div className="mt-8 border-l-2 border-gold pl-5">
+          <p data-reveal className="mt-8 font-serif text-xl text-primary">
+            {INTRO.people}
+          </p>
+          <div data-reveal="left" className="mt-8 border-l-2 border-gold pl-5">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
               {INTRO.relationship.label}
             </p>
@@ -69,11 +76,13 @@ export function HomeIntro() {
               <Placeholder>{PLACEHOLDER.relationship}</Placeholder>
             </div>
           </div>
-          <Link to="/about-us" className={`mt-8 ${TEXT_LINK}`}>
-            About Nordic Green Homes <ArrowUpRight className="size-4" />
-          </Link>
+          <div data-reveal className="mt-8">
+            <Link to="/about-us" className={TEXT_LINK}>
+              About Nordic Green Homes <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
         </div>
-        <div className="lg:col-span-5 lg:col-start-8">
+        <div data-reveal-img className="lg:col-span-5 lg:col-start-8">
           <RefImg
             image={IMAGES.intro}
             className="arch aspect-[4/5] w-full"
@@ -100,16 +109,20 @@ export function HomeServices() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <Eyebrow>What we build</Eyebrow>
-            <h2 className={`${H2} mt-4`}>New builds, custom homes and renovations</h2>
+            <h2 data-reveal className={`${H2} mt-4`}>
+              New builds, custom homes and renovations
+            </h2>
           </div>
-          <Link to="/services" className={TEXT_LINK}>
-            All services <ArrowUpRight className="size-4" />
-          </Link>
+          <div data-reveal="right">
+            <Link to="/services" className={TEXT_LINK}>
+              All services <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {SERVICES.map((s) => (
-            <Link key={s.key} to={SERVICE_LINKS[s.key]} className="group block">
+            <Link key={s.key} to={SERVICE_LINKS[s.key]} data-reveal className="group block">
               <RefImg image={s.image} className="aspect-[4/5] rounded-lg" />
               <h3 className={`mt-6 ${H3}`}>{s.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
@@ -121,7 +134,7 @@ export function HomeServices() {
           ))}
         </div>
 
-        <div className="mt-12">
+        <div data-reveal className="mt-12">
           <Placeholder>{PLACEHOLDER.services}</Placeholder>
         </div>
       </div>
@@ -137,134 +150,33 @@ export function HomeAssurance() {
       {/* Background image with green opacity overlay */}
       <div className="absolute inset-0 -z-10">
         <img
+          data-parallax
           src={IMAGES.interior.src}
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="h-full w-full object-cover"
+          className="absolute inset-x-0 -top-[8%] h-[116%] w-full object-cover"
         />
         <div className="absolute inset-0 bg-primary/90" />
       </div>
       <div className="wrap grid items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Eyebrow dark>{ASSURANCE.eyebrow}</Eyebrow>
-          <h2 className={`${H2} mt-4`}>{ASSURANCE.title}</h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85">
+          <h2 data-reveal className={`${H2} mt-4`}>
+            {ASSURANCE.title}
+          </h2>
+          <p
+            data-reveal
+            className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85"
+          >
             {ASSURANCE.body}
           </p>
-          <div className="mt-8">
+          <div data-reveal className="mt-8">
             <Placeholder dark>{PLACEHOLDER.assurance}</Placeholder>
           </div>
         </div>
-        <div className="lg:col-span-5 lg:col-start-8">
+        <div data-reveal="right" className="lg:col-span-5 lg:col-start-8">
           <RefImg image={IMAGES.interior} className="aspect-[5/4] rounded-lg" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- 7. Projects — "Selected work" ----------
- * A balanced editorial grid: a large feature image on the left spanning the
- * full height, with two smaller images stacked on the right. Each tile has
- * a gradient overlay + caption that strengthens on hover, and a zoom on the
- * image. Clip-reveals stagger in on scroll (data-reveal-img). Reference tags
- * stay top-right.
- */
-
-export function HomeProjects() {
-  return (
-    <section className="bg-background py-20 sm:py-24">
-      <div className="wrap">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <Eyebrow>Selected work</Eyebrow>
-            <h2 data-anim="reveal" className={`${H2} mt-4`}>
-              Design and build, in detail
-            </h2>
-            <p data-anim="reveal" className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Every image is labelled as a photo or a concept render — and marked reference only
-              while project approval is pending.
-            </p>
-          </div>
-          <Link to="/projects" className={TEXT_LINK}>
-            View projects <ArrowUpRight className="size-4" />
-          </Link>
-        </div>
-
-        <div className="mt-10 grid gap-4 lg:grid-cols-12">
-          {/* Feature — full height on the left */}
-          <div
-            data-reveal-img
-            className="group relative min-h-[24rem] overflow-hidden rounded-lg bg-muted lg:col-span-7 lg:min-h-[32rem]"
-          >
-            <img
-              src={IMAGES.entry.src}
-              alt={IMAGES.entry.alt}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95"
-            />
-            <div className="absolute inset-x-5 bottom-5 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">
-                Front entry
-              </p>
-              <p className="mt-1 font-serif text-xl leading-snug text-white sm:text-2xl">
-                Marble, timber &amp; original artwork
-              </p>
-            </div>
-            <RefTag image={IMAGES.entry} className="top-4 right-4" />
-          </div>
-
-          {/* Two smaller, stacked on the right */}
-          <div className="grid gap-4 lg:col-span-5">
-            <div
-              data-reveal-img
-              className="group relative min-h-[14rem] overflow-hidden rounded-lg bg-muted lg:min-h-[15.5rem]"
-            >
-              <img
-                src={IMAGES.obrienReno.src}
-                alt={IMAGES.obrienReno.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95"
-              />
-              <div className="absolute inset-x-4 bottom-4 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
-                <p className="font-serif text-lg text-white">Kitchen renovation</p>
-              </div>
-              <RefTag image={IMAGES.obrienReno} className="top-3 right-3" />
-            </div>
-            <div
-              data-reveal-img
-              className="group relative min-h-[14rem] overflow-hidden rounded-lg bg-muted lg:min-h-[15.5rem]"
-            >
-              <img
-                src={IMAGES.obrienPoolBar.src}
-                alt={IMAGES.obrienPoolBar.alt}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95"
-              />
-              <div className="absolute inset-x-4 bottom-4 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
-                <p className="font-serif text-lg text-white">Outdoor bar &amp; patio</p>
-              </div>
-              <RefTag image={IMAGES.obrienPoolBar} className="top-3 right-3" />
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Placeholder>{PLACEHOLDER.projects}</Placeholder>
-          <Placeholder>{PLACEHOLDER.testimonials}</Placeholder>
         </div>
       </div>
     </section>
@@ -287,9 +199,12 @@ function Detail({ label, children }: { label: string; children: ReactNode }) {
 
 export function HomeConsultation() {
   return (
-    <section className="bg-[linear-gradient(to_bottom,color-mix(in_srgb,var(--secondary)_70%,white)_55%,var(--primary)_55%)] pt-8">
+    <section className="bg-[linear-gradient(to_bottom,var(--background)_55%,var(--primary)_55%)] pt-8">
       <div className="wrap">
-        <div className="relative isolate overflow-hidden rounded-xl text-white shadow-2xl shadow-black/20">
+        <div
+          data-reveal="scale"
+          className="relative isolate overflow-hidden rounded-xl text-white shadow-2xl shadow-black/20"
+        >
           <img
             src={IMAGES.poolRender.src}
             alt=""
@@ -303,11 +218,13 @@ export function HomeConsultation() {
           <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-center lg:gap-16 lg:p-14">
             <div>
               <Eyebrow dark>{CONSULTATION.eyebrow}</Eyebrow>
-              <h2 className={`${H2} mt-4`}>{CONSULTATION.title}</h2>
-              <p className="mt-4 max-w-[34rem] text-base leading-relaxed text-white/90">
+              <h2 data-reveal className={`${H2} mt-4`}>
+                {CONSULTATION.title}
+              </h2>
+              <p data-reveal className="mt-4 max-w-[34rem] text-base leading-relaxed text-white/90">
                 {CONSULTATION.body}
               </p>
-              <div className="mt-8">
+              <div data-reveal className="mt-8">
                 <ConsultationButton tone="gold" />
               </div>
               <p className="mt-4 text-xs text-white/70">
@@ -315,7 +232,10 @@ export function HomeConsultation() {
               </p>
             </div>
 
-            <dl className="grid gap-6 rounded-lg border border-white/15 bg-black/20 p-6 backdrop-blur-md sm:grid-cols-2">
+            <dl
+              data-reveal="right"
+              className="grid gap-6 rounded-lg border border-white/15 bg-black/20 p-6 backdrop-blur-md sm:grid-cols-2"
+            >
               <Detail label="Phone">
                 <Placeholder dark>{PLACEHOLDER.phone}</Placeholder>
               </Detail>

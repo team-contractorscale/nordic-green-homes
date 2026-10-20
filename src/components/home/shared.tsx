@@ -22,6 +22,22 @@ export function Placeholder({ children, dark = false }: { children: ReactNode; d
   );
 }
 
+// Responsive sources for Squarespace-hosted images (?format=NNNw), capped at the file's native
+// width so the browser never asks for — or stretches to — more pixels than actually exist.
+export function srcSetFor(image: RefImage): string | undefined {
+  if (!image.src.includes("squarespace-cdn")) return undefined;
+  const base = image.src.split("?")[0];
+  const steps = [750, 1000, 1500].filter((x) => x < image.w);
+  return [
+    ...steps.map((x) => `${base}?format=${x}w ${x}w`),
+    `${base}?format=2500w ${image.w}w`,
+  ].join(", ");
+}
+
+export function imgProps(image: RefImage, sizes = "100vw") {
+  return { src: image.src, srcSet: srcSetFor(image), sizes, alt: image.alt };
+}
+
 export function RefTag({ image, className = "" }: { image: RefImage; className?: string }) {
   return (
     <span
@@ -37,16 +53,17 @@ export function RefImg({
   image,
   className = "",
   tagClassName = "left-3 top-3",
+  sizes = "(min-width: 1024px) 33vw, 100vw",
 }: {
   image: RefImage;
   className?: string;
   tagClassName?: string;
+  sizes?: string;
 }) {
   return (
     <div className={`relative overflow-hidden bg-muted ${className}`}>
       <img
-        src={image.src}
-        alt={image.alt}
+        {...imgProps(image, sizes)}
         loading="lazy"
         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
       />
@@ -58,6 +75,7 @@ export function RefImg({
 export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return (
     <p
+      data-reveal="left"
       className={`flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] ${
         dark ? "text-white" : "text-primary"
       }`}

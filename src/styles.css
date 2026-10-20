@@ -168,6 +168,16 @@
   will-change: transform;
 }
 
+/* Home 2 hero "scroll to build" cue */
+@keyframes scroll-cue {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(200%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

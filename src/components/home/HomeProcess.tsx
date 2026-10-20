@@ -1,120 +1,131 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { PROCESS } from "@/lib/home-content";
-import { ConsultationButton, Eyebrow, TEXT_LINK } from "./shared";
+import { IMAGES, PROCESS, type RefImage } from "@/lib/home-content";
+import { ConsultationButton, Eyebrow, RefTag, TEXT_LINK, imgProps } from "./shared";
 
 /* ---------- 5. Process — "How we work" ----------
- * Horizontal layout: a single row of five equal stage cards connected by a
- * gold rail that scrubs left-to-right as the section scrolls (GSAP, wired in
- * useHomeMotion via [data-rail] / [data-rail-fill]). Each card has a numbered
- * badge, a large ghost index, title, body and selection tags. Cards lift,
- * gain a gold border + glow, and the badge fills gold on hover. Below lg the
- * row collapses to a single left-rail column. Reveals are one-shot
- * (play none none none) so a stage stays visible once it has entered.
+ * Sticky stacking cards. Desktop: a sticky intro column on the left with a stage index and a
+ * gold progress line; on the right each stage card is `position: sticky` with a slightly
+ * deeper top offset, so cards slide up and stack. As the next card covers the previous one,
+ * GSAP scrubs the covered card down in scale and dims it ([data-stack-card] / [data-stack-dim]).
+ * The stage index highlights the stage in view ([data-stage-nav]). Mobile: plain card list.
  */
+
+const STAGE_IMAGE: RefImage[] = [
+  IMAGES.interior,
+  IMAGES.customHomes,
+  IMAGES.hausSide,
+  IMAGES.newBuilds,
+  IMAGES.hero,
+];
 
 export function HomeProcess() {
   return (
-    <section id="process" className="relative overflow-hidden bg-background py-20 sm:py-24">
-      {/* subtle radial wash for depth without a solid band */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_50%_50%,rgb(18_85_69/0.04),transparent_60%)]"
-      />
-      <div className="wrap">
-        {/* Tighter header row */}
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
+    <section id="process" className="relative bg-secondary/50 py-24 sm:py-28">
+      <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
+        {/* sticky intro + stage index */}
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-32">
             <Eyebrow>How we work</Eyebrow>
             <h2
               data-anim="reveal"
-              className="mt-4 font-serif text-[clamp(2rem,3.6vw,3.25rem)] leading-[1.05] tracking-[-0.02em]"
+              className="mt-4 font-serif text-[clamp(2rem,2vw+1rem,3rem)] leading-[1.1] tracking-[-0.01em]"
             >
               A clear path from first conversation to handover
             </h2>
-            <p
-              data-anim="reveal"
-              className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground"
-            >
-              Five stages, laid out up front, so you know what to expect at each step — and how one
-              stage leads into the next.
+            <p data-anim="reveal" className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Five stages, laid out up front, so you know what to expect at each step.
             </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <ConsultationButton />
-            <Link to="/process" className={TEXT_LINK}>
-              The full process <ArrowUpRight className="size-4" />
-            </Link>
-          </div>
-        </div>
 
-        {/* Horizontal stage rail */}
-        <div data-rail className="relative mt-12">
-          {/* rail track + gold fill (desktop) */}
-          <div
-            aria-hidden
-            className="absolute left-0 right-0 top-8 hidden h-px bg-border lg:block"
-          />
-          <div
-            aria-hidden
-            data-rail-fill
-            className="absolute left-0 top-8 hidden h-px origin-left bg-gold lg:block"
-            style={{ transform: "scaleX(0)" }}
-          />
-
-          <ol className="grid gap-4 lg:grid-cols-5 lg:gap-4">
-            {PROCESS.map((step, i) => (
-              <li key={step.title} data-stage className="group relative flex flex-col lg:pt-14">
-                {/* mobile vertical rail + node */}
-                <span
-                  aria-hidden
-                  className="absolute left-[1.375rem] top-0 z-10 grid size-3.5 -translate-x-1/2 place-items-center rounded-full bg-primary ring-4 ring-background lg:hidden"
-                />
-                <span
-                  aria-hidden
-                  className="absolute left-[1.375rem] top-4 bottom-0 w-px -translate-x-1/2 bg-border lg:hidden"
-                />
-
-                {/* desktop node on the rail */}
-                <span
-                  aria-hidden
-                  className="absolute left-0 top-8 z-10 hidden size-4 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-border bg-background transition-all duration-500 group-hover:border-gold group-hover:bg-gold lg:grid"
+            <ol data-stack-nav data-reveal className="relative mt-8 hidden space-y-1 pl-6 lg:block">
+              <span aria-hidden className="absolute bottom-2 left-0 top-2 w-px bg-border" />
+              <span
+                aria-hidden
+                data-stack-fill
+                className="absolute bottom-2 left-0 top-2 w-px origin-top bg-gold"
+                style={{ transform: "scaleY(0)" }}
+              />
+              {PROCESS.map((step, i) => (
+                <li
+                  key={step.title}
+                  data-stage-nav
+                  data-active={i === 0}
+                  className="group/nav flex items-center gap-3 py-1.5 text-base text-muted-foreground transition-colors duration-300 data-[active=true]:font-bold data-[active=true]:text-primary"
                 >
-                  <span className="absolute inset-0 rounded-full bg-gold/0 transition-all duration-500 group-hover:scale-150 group-hover:bg-gold/30" />
-                </span>
+                  <span className="font-serif text-sm text-gold/60 transition-colors group-data-[active=true]/nav:text-gold">
+                    0{i + 1}
+                  </span>
+                  {step.title}
+                </li>
+              ))}
+            </ol>
 
-                {/* card */}
-                <div className="ml-12 rounded-lg border border-border bg-card p-5 transition-all duration-500 group-hover:-translate-y-1.5 group-hover:border-gold/40 group-hover:shadow-xl group-hover:shadow-primary/10 lg:ml-0">
-                  <div className="flex items-center justify-between">
-                    <span className="grid size-9 shrink-0 place-items-center rounded-full bg-secondary font-serif text-sm font-bold text-muted-foreground transition-all duration-500 group-hover:bg-gold group-hover:text-black">
-                      {i + 1}
-                    </span>
-                    <span
-                      aria-hidden
-                      className="font-serif text-4xl leading-none text-primary/10 transition-colors duration-500 group-hover:text-gold/25"
-                    >
-                      0{i + 1}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 text-base font-bold text-foreground transition-colors duration-300 group-hover:text-primary">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {step.includes.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary transition-colors duration-300 group-hover:bg-gold/15 group-hover:text-gold"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+            <div data-reveal className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <ConsultationButton />
+              <Link to="/process" className={TEXT_LINK}>
+                The full process <ArrowUpRight className="size-4" />
+              </Link>
+            </div>
+          </div>
         </div>
+
+        {/* stacking cards */}
+        <ol data-stack className="space-y-6 lg:col-span-8 lg:space-y-10">
+          {PROCESS.map((step, i) => {
+            const img = STAGE_IMAGE[i] ?? IMAGES.hero;
+            return (
+              <li
+                key={step.title}
+                data-stack-card
+                className="lg:sticky"
+                style={{ top: `calc(7.5rem + ${i * 1.25}rem)` }}
+              >
+                <article className="group relative grid overflow-hidden rounded-lg border border-border bg-card shadow-xl shadow-primary/5 transition-shadow duration-500 hover:shadow-2xl hover:shadow-primary/15 md:min-h-[22rem] md:grid-cols-[1.1fr_1fr]">
+                  <div className="relative flex flex-col p-7 sm:p-9">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <span className="font-serif text-6xl leading-none text-gold transition-transform duration-500 group-hover:-translate-y-1">
+                        0{i + 1}
+                      </span>
+                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                        Stage {i + 1} of {PROCESS.length}
+                      </span>
+                    </div>
+                    <h3 className="mt-6 font-serif text-[clamp(1.5rem,1vw+1rem,2rem)] leading-tight text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                      {step.body}
+                    </p>
+                    <div className="mt-auto flex flex-wrap gap-2 pt-6">
+                      {step.includes.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-sm font-bold text-primary transition-colors duration-300 group-hover:border-gold/40 group-hover:bg-gold/10"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="relative min-h-[14rem] overflow-hidden md:min-h-0">
+                    <img
+                      {...imgProps(img, "(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw")}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                    />
+                    <RefTag image={img} className="bottom-3 left-3" />
+                  </div>
+                  {/* dimmed by GSAP as the next card stacks over this one */}
+                  <span
+                    aria-hidden
+                    data-stack-dim
+                    className="pointer-events-none absolute inset-0 bg-brand-dark opacity-0"
+                  />
+                </article>
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );

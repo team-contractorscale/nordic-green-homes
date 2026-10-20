@@ -2,14 +2,13 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Leaf } from "lucide-react";
 import { useEffect, useState } from "react";
 import { HERO, IMAGES } from "@/lib/home-content";
-import { RefTag } from "./shared";
+import { RefTag, imgProps } from "./shared";
 
 /* ---------- 1. Hero ----------
  * Full-bleed photo slideshow in Nordic colours. Readability comes from a
  * brand-green gradient behind the copy, not from the photo.
  *
- * Slide navigation: enlarged image thumbnails with NO background styling and
- * NON-rounded (square) corners. Each thumb indicates the active slide (gold
+ * Slide navigation: image thumbnails with softly rounded (16px) corners. Each thumb indicates the active slide (gold
  * ring + full opacity + gold edge) and controls it on click. The nav is
  * absolutely positioned inside the section, so it always stays within the hero
  * bounds on every viewport.
@@ -51,7 +50,7 @@ export function HomeHero() {
           }`}
         >
           <img
-            src={img.src}
+            {...imgProps(img, "100vw")}
             alt={i === 0 ? img.alt : ""}
             className={`h-full w-full object-cover transition-transform duration-[8000ms] ease-out ${
               i === active ? "scale-105" : "scale-100"
@@ -71,7 +70,7 @@ export function HomeHero() {
       />
 
       <div className="wrap flex flex-1 items-center pb-44 pt-36 sm:pb-44 lg:pt-40">
-        <div className="max-w-2xl">
+        <div data-hero-content className="max-w-2xl">
           <p
             data-anim="hero-eyebrow"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-md"
@@ -144,12 +143,12 @@ export function HomeHero() {
               onClick={() => setActive(i)}
               aria-label={`Show image ${i + 1} of ${slides.length}: ${img.alt}`}
               aria-current={i === active}
-              className={`group relative block h-20 w-28 overflow-hidden rounded-xl outline-none ring-1 ring-white/20 transition-all duration-500 hover:ring-2 hover:ring-white/70 lg:h-28 lg:w-44 ${
+              className={`group relative block h-20 w-28 overflow-hidden rounded-md outline-none ring-1 ring-white/20 transition-all duration-500 hover:ring-2 hover:ring-white/70 lg:h-28 lg:w-44 ${
                 i === active ? "ring-2 ring-gold ring-offset-2 ring-offset-primary" : ""
               }`}
             >
               <img
-                src={img.src}
+                {...imgProps(img, "176px")}
                 alt=""
                 aria-hidden
                 loading={i === 0 ? "eager" : "lazy"}
@@ -158,7 +157,7 @@ export function HomeHero() {
                 }`}
               />
               {i === active && (
-                <span aria-hidden className="absolute inset-0 rounded-xl ring-4 ring-gold/20" />
+                <span aria-hidden className="absolute inset-0 rounded-md ring-4 ring-gold/20" />
               )}
             </button>
           ))}

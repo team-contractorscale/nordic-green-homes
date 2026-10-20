@@ -37,6 +37,9 @@ export type RefImage = {
   // "Origin unverified" = image on a live site that may be stock; never present it as their work.
   kind: "Concept render" | "Photo" | "Origin unverified";
   source: string;
+  // Native pixel width of the original file. Drives srcset and decides which slots an image may
+  // fill: ~960px photos go in small tiles only; 1920px renders can go large without blurring.
+  w: number;
 };
 
 export const IMAGES = {
@@ -45,78 +48,126 @@ export const IMAGES = {
     alt: "Concept render of a two-storey farmhouse-style home with gabled roofline and stone facade",
     kind: "Concept render",
     source: "nordicgreendesign.ca · Modern Belgian Farmhouse plan",
+    w: 1920,
   },
   intro: {
     src: `${NGD}/ada349e5-d950-4734-bcc1-e6f544bd6fbb/IMG_5578.WEBP?format=1500w`,
     alt: "Bright entry hall with arched openings and black-and-white marble floor",
     kind: "Photo",
     source: "nordicgreendesign.ca · Design portfolio",
+    w: 1080,
   },
   newBuilds: {
     src: `${NGD}/0ec178ed-3ee1-4c54-87bd-eeaea4165cbc/1_3+-+Photo.jpg?format=1500w`,
     alt: "Concept render of a contemporary gabled home with vertical timber cladding and stone base",
     kind: "Concept render",
     source: "nordicgreendesign.ca · Nordic Haus plan",
+    w: 1920,
   },
   customHomes: {
     src: `${NGD}/801d5f5c-cb07-43e7-85e5-59cdf2ddf92c/23-10-03+-+Front+Left+Perspective.jpg?format=1500w`,
     alt: "Concept render of a board-and-batten farmhouse at dusk with landscaped front garden",
     kind: "Concept render",
     source: "nordicgreendesign.ca · Modern Belgian Farmhouse plan",
+    w: 1920,
   },
   renovations: {
     src: `${NGD}/8f96ce42-8cf0-4da2-8ec8-0afdec9c187c/IMG_5326.WEBP?format=1500w`,
     alt: "Renovated hallway with dark timber barn doors and wide-plank flooring",
     kind: "Photo",
     source: "nordicgreendesign.ca · Renovation design",
+    w: 960,
   },
   interior: {
     src: `${NGD}/0225a776-fd6b-4eaf-9484-73e3334434de/IMG_7561.jpg?format=1500w`,
     alt: "Media room with built-in cabinetry, coffered ceiling and soft neutral seating",
     kind: "Photo",
     source: "nordicgreendesign.ca · Design portfolio",
+    w: 1284,
   },
   entry: {
     src: `${NGD}/55e1c8f0-fef3-488d-981d-373cd4ee4b98/IMG_5322.WEBP?format=1500w`,
     alt: "Front entry with chequered marble floor, timber bench and original artwork",
     kind: "Photo",
     source: "nordicgreendesign.ca · Design portfolio",
+    w: 960,
   },
   nordicHaus: {
     src: `${NGD}/52fa5a68-c27f-4c32-a4f6-c58ad8e965cf/1_2+-+Photo.jpg?format=2500w`,
     alt: "Concept render of a modern gabled home with dark standing-seam cladding, timber and stone",
     kind: "Concept render",
     source: "nordicgreendesign.ca · Nordic Haus plan",
+    w: 1920,
   },
   poolRender: {
     src: `${NGD}/8f4baf9e-7b8e-4b7d-acfb-6faa0e2911cc/23-10-06+-+Rear+Porch+Perspective.jpg?format=2500w`,
     alt: "Concept render of a stone farmhouse rear porch with pergola overlooking a pool",
     kind: "Concept render",
     source: "nordicgreendesign.ca · Modern Belgian Farmhouse plan",
+    w: 1920,
   },
   obrienKitchen: {
     src: `${OB}/2025/10/Hero-2.png.webp`,
     alt: "Bright white kitchen with island, glass-front cabinets and timber floor",
     kind: "Origin unverified",
     source: "obriencontracting.ca · homepage hero banner (possibly stock)",
+    w: 2240,
   },
   obrienPoolBar: {
     src: `${OB}/2025/12/143732770_1946069238868993_8364835802107115038_n.jpg`,
     alt: "Covered outdoor bar with stone base, timber ceiling and bar seating beside a patio",
     kind: "Photo",
     source: "obriencontracting.ca · O'Brien Contracting project",
+    w: 960,
   },
   obrienReno: {
     src: `${OB}/2025/12/314603326_553240643476346_4953318663269826168_n.jpeg`,
     alt: "Renovated kitchen with white shaker cabinets, stone-look backsplash and gas range",
     kind: "Photo",
     source: "obriencontracting.ca · O'Brien Contracting project",
+    w: 1000,
   },
   office: {
     src: `${NGD}/3d0f1b89-3fcf-466c-b53f-46f692ead5e2/IMG_5333.WEBP?format=1500w`,
     alt: "Home office with sage-green walls, built-in shelving and garden door",
     kind: "Photo",
     source: "nordicgreendesign.ca · Design portfolio",
+    w: 960,
+  },
+  hausPatio: {
+    src: `${NGD}/4f00ec4b-71af-4905-afde-3acf199b1cd5/1_22+-+Photo.jpg?format=2500w`,
+    alt: "Concept render of a covered patio opening into a timber-lined living room",
+    kind: "Concept render",
+    source: "nordicgreendesign.ca · Nordic Haus plan",
+    w: 1920,
+  },
+  hausSide: {
+    src: `${NGD}/47e8f025-387e-4a11-bdd7-0fff7e9bb4c6/1_19+-+Photo.jpg?format=2500w`,
+    alt: "Concept render of a timber-clad home with stone base and a planted side walkway",
+    kind: "Concept render",
+    source: "nordicgreendesign.ca · Nordic Haus plan",
+    w: 1920,
+  },
+  hausGarden: {
+    src: `${NGD}/7c3f5cf0-6635-4f0e-8c4a-3a809d7bee93/1_24+-+Photo.jpg?format=2500w`,
+    alt: "Concept render of a stone wall and timber deck path through a lush side garden",
+    kind: "Concept render",
+    source: "nordicgreendesign.ca · Nordic Haus plan",
+    w: 1920,
+  },
+  hausRear: {
+    src: `${NGD}/91b37dcd-b3a3-4309-8ec9-d394469d2b5a/1_17+-+Photo.jpg?format=2500w`,
+    alt: "Concept render of the rear of a gabled home with timber cladding and a stone-clad terrace",
+    kind: "Concept render",
+    source: "nordicgreendesign.ca · Nordic Haus plan",
+    w: 1920,
+  },
+  farmhouseRear: {
+    src: `${NGD}/a370208d-18d0-4a81-93f2-629f2c909642/23-10-06+-+Rear+Right+Perspective.jpg?format=2500w`,
+    alt: "Concept render of a stone and board-and-batten farmhouse with a covered rear porch",
+    kind: "Concept render",
+    source: "nordicgreendesign.ca · Modern Belgian Farmhouse plan",
+    w: 1920,
   },
 } satisfies Record<string, RefImage>;
 

@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CinematicHome } from "@/components/home-2/CinematicHome";
-import { ASSETS } from "@/lib/content-data";
+import { StoryHome } from "@/components/home-2/StoryHome";
+import { IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION =
-  "Nordic Green Homes — a cinematic look at sustainable craftsmanship for families who want more from their forever home. Custom homes, new builds and renovations.";
+  "Nordic Green Homes — a home in five chapters: sustainable craftsmanship for families who want more from their forever home. Custom homes, new builds and renovations.";
 
-const TITLE = "Nordic Green Homes — Cinematic | Where Sustainability Meets Style";
+const TITLE = "Nordic Green Homes — A Home in Five Chapters | Where Sustainability Meets Style";
 
 export const Route = createFileRoute("/home-2")({
   head: () => ({
@@ -17,9 +17,9 @@ export const Route = createFileRoute("/home-2")({
       { property: "og:type", content: "website" },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: ASSETS.hero1 },
+      { property: "og:image", content: IMAGES.hero.src },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: ASSETS.hero1 },
+      { name: "twitter:image", content: IMAGES.hero.src },
     ],
     links: [{ rel: "canonical", href: "/home-2" }],
   }),
@@ -27,5 +27,5 @@ export const Route = createFileRoute("/home-2")({
 });
 
 function HomeTwo() {
-  return <CinematicHome />;
+  return <StoryHome />;
 }

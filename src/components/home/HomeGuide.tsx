@@ -1,103 +1,177 @@
-import { ArrowRight } from "lucide-react";
-import { Eyebrow, H2, Placeholder } from "@/components/home/NordicHome";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import type { CSSProperties } from "react";
 import { GUIDE, PLACEHOLDER } from "@/lib/home-content";
+import { Eyebrow, H2, Placeholder } from "./shared";
 
 /* ---------- 8. Guide — "Future-Proofing Your Home" ----------
- * A cohesive horizontal band on a light ground: a dark cover card on the
- * left (with a corner accent that sweeps in on hover, a bottom gradient for
- * depth and a logo zoom) beside a numbered topic list on the right where
- * each item lifts, tints its border gold and flips its number to gold on
- * hover. The download stays disabled with a pending-recovery note. The
- * cover card lifts in on scroll (data-guide-card) and each topic chip
- * staggers in (data-guide-topic) — both wired in useHomeMotion.
+ * A 3D book (CSS 3D, so the title stays crisp) on a glowing stage. GSAP in useHomeMotion:
+ * the book turns toward the reader as the section scrolls in ([data-book-scroll], scrub),
+ * tilts with the pointer ([data-book-stage] → [data-book], quickTo) and floats gently.
+ * Topic rows get a gold sweep on hover and stagger in on scroll ([data-guide-topic]).
+ * The cover is a draft stand-in built from the supplied logo, not the real guide cover.
  */
+
+const W = 272; // px — book face
+const H = 360;
+const D = 34; // thickness
+
+const face: CSSProperties = { position: "absolute", backfaceVisibility: "hidden" };
 
 export function HomeGuide() {
   return (
-    <section className="relative overflow-hidden bg-secondary/40 py-20 sm:py-24">
-      <div className="wrap">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
-          {/* Draft cover built from the supplied logo — a layout stand-in, not the real guide cover. */}
-          <div className="lg:col-span-5">
-            <div
-              data-guide-card
-              className="group relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-lg bg-primary p-8 shadow-2xl shadow-primary/20 transition-all duration-700 hover:-translate-y-2 hover:shadow-primary/40"
-            >
-              {/* corner accent that sweeps in on hover */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute right-0 top-0 h-24 w-24 origin-top-right scale-0 rounded-bl-[3rem] bg-gold/20 transition-transform duration-700 group-hover:scale-100"
-              />
-              {/* bottom gradient for depth */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/25 to-transparent"
-              />
-              {/* hover glow */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -right-12 -top-12 size-44 rounded-full bg-gold/[0.08] opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
-              />
+    <section className="relative overflow-hidden bg-background py-24 sm:py-28">
+      <div className="wrap relative grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
+        {/* book stage */}
+        <div data-reveal="scale" className="lg:col-span-5">
+          <div
+            data-book-stage
+            className="relative mx-auto grid aspect-square w-full max-w-[28rem] place-items-center"
+            style={{ perspective: "1400px" }}
+          >
+            <span
+              aria-hidden
+              className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgb(187_137_92/0.28),transparent_65%)]"
+            />
+            <span aria-hidden className="absolute inset-[14%] rounded-full border border-gold/30" />
+            <span
+              aria-hidden
+              className="absolute inset-[24%] rounded-full border border-dashed border-primary/15"
+            />
+            <span
+              aria-hidden
+              className="absolute bottom-[9%] h-6 w-1/2 rounded-full bg-black/25 blur-xl"
+            />
 
-              <div className="relative flex h-full flex-col items-center justify-between text-center text-primary-foreground">
-                <img
-                  src="/brand/nordic-logo-light.png"
-                  alt=""
-                  className="mt-4 w-36 transition-transform duration-700 group-hover:scale-110"
-                />
-                <div>
-                  <p className="font-serif text-2xl leading-tight sm:text-3xl">{GUIDE.title}</p>
-                  <span className="mt-4 block text-xs font-bold uppercase tracking-[0.2em] text-white/60">
-                    Draft cover · placeholder
-                  </span>
+            <div data-book-scroll style={{ transformStyle: "preserve-3d" }}>
+              <div
+                data-book
+                className="relative"
+                style={{
+                  width: W,
+                  height: H,
+                  transformStyle: "preserve-3d",
+                  transform: "rotateY(-24deg) rotateX(6deg)",
+                }}
+              >
+                {/* front cover */}
+                <div
+                  className="flex flex-col items-center justify-between overflow-hidden rounded-r-md bg-primary p-7 text-center text-white shadow-2xl"
+                  style={{ ...face, inset: 0, transform: `translateZ(${D / 2}px)` }}
+                >
+                  <span
+                    aria-hidden
+                    className="absolute inset-y-0 left-3 w-px bg-gradient-to-b from-white/0 via-white/25 to-white/0"
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/25 to-transparent"
+                  />
+                  <img src="/brand/nordic-logo-light.png" alt="" className="relative mt-2 w-32" />
+                  <div className="relative">
+                    <span aria-hidden className="mx-auto mb-4 block h-px w-10 bg-gold" />
+                    <p className="font-serif text-2xl leading-tight">{GUIDE.title}</p>
+                    <p className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
+                      Draft cover · placeholder
+                    </p>
+                  </div>
                 </div>
+                {/* back */}
+                <div
+                  className="rounded-l-md bg-brand-dark"
+                  style={{
+                    ...face,
+                    inset: 0,
+                    transform: `translateZ(${-D / 2}px) rotateY(180deg)`,
+                  }}
+                />
+                {/* spine */}
+                <div
+                  className="bg-gradient-to-r from-brand-dark to-primary"
+                  style={{
+                    ...face,
+                    top: 0,
+                    left: -D / 2,
+                    width: D,
+                    height: H,
+                    transform: "rotateY(-90deg)",
+                  }}
+                />
+                {/* page block */}
+                <div
+                  className="bg-[repeating-linear-gradient(90deg,#f4f4f2_0_2px,#e2e5e4_2px_3px)]"
+                  style={{
+                    ...face,
+                    top: 4,
+                    left: W - D / 2 - 3,
+                    width: D - 2,
+                    height: H - 8,
+                    transform: "rotateY(90deg)",
+                  }}
+                />
+                {/* top edge */}
+                <div
+                  className="bg-[repeating-linear-gradient(0deg,#f4f4f2_0_2px,#e2e5e4_2px_3px)]"
+                  style={{
+                    ...face,
+                    left: 0,
+                    top: -D / 2,
+                    width: W - 3,
+                    height: D,
+                    transform: "rotateX(90deg)",
+                  }}
+                />
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Content */}
-          <div className="lg:col-span-7">
-            <Eyebrow>{GUIDE.eyebrow}</Eyebrow>
-            <h2 data-anim="reveal" className={`${H2} mt-4`}>
-              {GUIDE.title}
-            </h2>
-            <p
-              data-anim="reveal"
-              className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground"
-            >
-              {GUIDE.body}
-            </p>
+        {/* content */}
+        <div className="lg:col-span-6 lg:col-start-7">
+          <Eyebrow>{GUIDE.eyebrow}</Eyebrow>
+          <h2 data-anim="reveal" className={`${H2} mt-4`}>
+            {GUIDE.title}
+          </h2>
+          <p
+            data-anim="reveal"
+            className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground"
+          >
+            {GUIDE.body} Here's what it will cover:
+          </p>
 
-            {/* numbered topic list with hover states */}
-            <ul className="mt-8 grid gap-2.5 sm:grid-cols-2">
-              {GUIDE.topics.map((t, i) => (
-                <li
-                  key={t}
-                  data-guide-topic
-                  className="group/topic flex items-center gap-3 rounded-lg border border-border bg-card px-4 py-3.5 text-base font-bold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/40 hover:bg-gold/5 hover:text-primary"
-                >
-                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-secondary font-serif text-xs text-primary transition-all duration-300 group-hover/topic:bg-gold group-hover/topic:text-black">
-                    {i + 1}
+          <ul className="mt-8 border-t border-border">
+            {GUIDE.topics.map((t, i) => (
+              <li key={t} data-guide-topic>
+                <div className="group/topic relative flex items-center gap-5 overflow-hidden border-b border-border px-2 py-4">
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 origin-left scale-x-0 bg-gradient-to-r from-gold/15 to-transparent transition-transform duration-500 ease-out group-hover/topic:scale-x-100"
+                  />
+                  <span className="relative font-serif text-lg text-gold">0{i + 1}</span>
+                  <span className="relative flex-1 text-lg font-bold text-foreground transition-transform duration-500 group-hover/topic:translate-x-2">
+                    {t}
                   </span>
-                  {t}
-                </li>
-              ))}
-            </ul>
+                  <ArrowUpRight
+                    aria-hidden
+                    className="relative size-5 text-primary/40 transition-all duration-500 group-hover/topic:rotate-45 group-hover/topic:text-gold"
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <span
-                aria-disabled
-                className="inline-flex h-12 cursor-not-allowed items-center rounded-full border border-primary/30 px-6 text-base font-bold text-primary/60 transition-colors duration-300 hover:border-primary/50 hover:text-primary/80"
-              >
-                Guide coming soon
-              </span>
-              <Placeholder>{PLACEHOLDER.guide}</Placeholder>
-            </div>
-            <p className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
-              <ArrowRight className="size-3.5 text-gold" aria-hidden />
-              The guide file is being recovered, checked and rebranded before release.
-            </p>
+          <div data-reveal className="mt-8 flex flex-wrap items-center gap-4">
+            <span
+              aria-disabled
+              className="inline-flex h-12 cursor-not-allowed items-center rounded-full border border-primary/30 px-6 text-base font-bold text-primary/60"
+            >
+              Guide coming soon
+            </span>
+            <Placeholder>{PLACEHOLDER.guide}</Placeholder>
           </div>
+          <p className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
+            <ArrowRight className="size-3.5 text-gold" aria-hidden />
+            The guide file is being recovered, checked and rebranded before release.
+          </p>
         </div>
       </div>
     </section>
