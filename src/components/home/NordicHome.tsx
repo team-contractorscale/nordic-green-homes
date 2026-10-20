@@ -4,7 +4,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import {
   ASSURANCE,
   CONSULTATION,
-  GUIDE,
   HERO,
   IMAGES,
   INTRO,
@@ -123,13 +122,15 @@ const SLIDE_MS = 7000;
 
 // Full-bleed photo slideshow (layout direction: econest.pixcelsthemes.com) in Nordic colours.
 // Readability comes from a brand-green gradient behind the copy, not from the photo.
+// Slide navigation is rendered as small image thumbnails — they both indicate and control the
+// active slide (image-thumbnail nav replaces the earlier bullet dots).
 export function HomeHero() {
   const slides = HERO.slides;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    // No autoplay for reduced-motion users; dots still work.
+    // No autoplay for reduced-motion users; thumbnails still work.
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const t = window.setTimeout(() => setActive((i) => (i + 1) % slides.length), SLIDE_MS);
     return () => window.clearTimeout(t);
@@ -169,20 +170,31 @@ export function HomeHero() {
         className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/35 to-transparent"
       />
 
-      <div className="wrap flex flex-1 items-center pb-36 pt-36 sm:pb-44 lg:pt-40">
+      <div className="wrap flex flex-1 items-center pb-44 pt-36 sm:pb-44 lg:pt-40">
         <div className="max-w-2xl">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-md">
+          <p
+            data-anim="hero-eyebrow"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-md"
+          >
             <Leaf className="size-4 text-gold" aria-hidden />
             {HERO.eyebrow}
           </p>
-          <h1 className="mt-6 font-serif text-[clamp(2.5rem,4vw+1rem,4.25rem)] leading-[1.04] tracking-[-0.03em]">
+          <h1
+            data-anim="hero-title"
+            className="mt-6 font-serif text-[clamp(2.5rem,4vw+1rem,4.25rem)] leading-[1.04] tracking-[-0.03em]"
+          >
             {HERO.titleLead}
             <br />
             <span className="text-gold">{HERO.titleAccent}</span>
           </h1>
-          <p className="mt-6 max-w-[34rem] text-base leading-relaxed text-white/90">{HERO.body}</p>
+          <p
+            data-anim="hero-body"
+            className="mt-6 max-w-[34rem] text-base leading-relaxed text-white/90"
+          >
+            {HERO.body}
+          </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <div data-anim="hero-cta" className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Link
               to="/contact"
               className="group inline-flex h-14 items-center gap-4 rounded-full border border-white/40 bg-white/10 py-1.5 pl-6 pr-1.5 text-base font-bold text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.04] hover:bg-white/20"
@@ -201,7 +213,7 @@ export function HomeHero() {
             </a>
           </div>
 
-          <ul className="mt-10 flex flex-wrap gap-2">
+          <ul data-anim="hero-links" className="mt-10 flex flex-wrap gap-2">
             {HERO_LINKS.map((l) => (
               <li key={l.label}>
                 <Link
@@ -217,9 +229,10 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* slide controls: vertical on desktop, glass pill on mobile */}
+      {/* slide controls: image-thumbnail nav — the active slide grows + gains a gold ring */}
       <div
-        className="absolute bottom-28 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/15 bg-black/30 px-4 py-2.5 backdrop-blur-md sm:bottom-32 lg:bottom-auto lg:left-auto lg:right-8 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:flex-col lg:px-2.5 lg:py-4"
+        data-anim="hero-nav"
+        className="absolute bottom-28 left-1/2 flex -translate-x-1/2 items-center gap-3 sm:bottom-32 lg:bottom-auto lg:left-auto lg:right-8 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:flex-col lg:gap-3"
         role="group"
         aria-label="Hero images"
       >
@@ -228,14 +241,22 @@ export function HomeHero() {
             key={img.src}
             type="button"
             onClick={() => setActive(i)}
-            aria-label={`Show image ${i + 1} of ${slides.length}`}
+            aria-label={`Show image ${i + 1} of ${slides.length}: ${img.alt}`}
             aria-current={i === active}
-            className={`rounded-full transition-all duration-300 ${
-              i === active
-                ? "size-3 bg-gold ring-4 ring-gold/30"
-                : "size-2.5 bg-white/60 hover:bg-white"
+            className={`group relative h-12 w-16 overflow-hidden rounded-full ring-2 transition-all duration-300 ${
+              i === active ? "ring-gold" : "ring-white/25 hover:ring-white/70"
             }`}
-          />
+          >
+            <img
+              src={img.src}
+              alt=""
+              aria-hidden
+              loading={i === 0 ? "eager" : "lazy"}
+              className={`h-full w-full object-cover transition-all duration-500 ${
+                i === active ? "opacity-100 scale-105" : "opacity-60 group-hover:opacity-90"
+              }`}
+            />
+          </button>
         ))}
       </div>
 
@@ -345,21 +366,115 @@ export function HomeServices() {
 
 /* ---------- 4. Pillars ---------- */
 
+// Small line-art marks so each principle reads as its own idea without an icon library.
+const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
+  Sustainability: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M12 21c5-3 7-7 7-12 0-2-1-4-3-5-1 3-3 4-4 5-2 2-3 4-3 7 0 2 1 4 3 5Z" />
+      <path d="M12 21V11" />
+    </svg>
+  ),
+  Family: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <circle cx="8" cy="7" r="2.4" />
+      <circle cx="16" cy="7" r="2.4" />
+      <path d="M4 20c0-3 2-5 4-5s4 2 4 5" />
+      <path d="M12 20c0-3 2-5 4-5s4 2 4 5" />
+    </svg>
+  ),
+  "Bespoke luxury": (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M12 3l2.4 5 5.6.6-4 3.8 1.2 5.6L12 15.8 6.8 18l1.2-5.6-4-3.8 5.6-.6L12 3Z" />
+    </svg>
+  ),
+  "Faith & integrity": (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M12 3l7 3v5c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6l7-3Z" />
+      <path d="M9.5 11.5l2 2 3.5-3.5" />
+    </svg>
+  ),
+};
+
 export function HomePillars() {
   return (
-    <section className="py-24 sm:py-28">
+    <section className="relative overflow-hidden py-24 sm:py-28">
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/40 to-background"
+      />
       <div className="wrap">
-        <div className="max-w-2xl">
-          <Eyebrow>What guides us</Eyebrow>
-          <h2 className={`${H2} mt-4`}>Four principles behind every home</h2>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <Eyebrow>What guides us</Eyebrow>
+            <h2 data-anim="reveal" className={`${H2} mt-4`}>
+              Four principles behind every home
+            </h2>
+            <p
+              data-anim="reveal"
+              className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground"
+            >
+              The values that shape every decision, from the first sketch to the day you move in.
+            </p>
+          </div>
+          <Link to="/about-us" className={`${TEXT_LINK} shrink-0`}>
+            More about us <ArrowUpRight className="size-4" />
+          </Link>
         </div>
-        <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PILLARS.map((p, i) => (
-            <div key={p.title} className="border-t border-border pt-6">
-              <span className="font-serif text-3xl text-gold">0{i + 1}</span>
-              <h3 className={`mt-4 ${H3}`}>{p.title}</h3>
+            <article
+              key={p.title}
+              data-pillar
+              className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-xl hover:shadow-primary/5"
+            >
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
+              />
+              <span className="grid size-12 place-items-center rounded-full bg-secondary text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+                <span className="size-6">{PILLAR_MARK[p.title]}</span>
+              </span>
+              <span className="mt-6 font-serif text-3xl text-gold/70 transition-colors duration-300 group-hover:text-gold">
+                0{i + 1}
+              </span>
+              <h3 className={`mt-3 ${H3} transition-colors duration-300 group-hover:text-primary`}>
+                {p.title}
+              </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </div>
+            </article>
           ))}
         </div>
       </div>
@@ -376,8 +491,13 @@ export function HomeProcess() {
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-32">
             <Eyebrow>How we work</Eyebrow>
-            <h2 className={`${H2} mt-4`}>A clear path from first conversation to handover</h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+            <h2 data-anim="reveal" className={`${H2} mt-4`}>
+              A clear path from first conversation to handover
+            </h2>
+            <p
+              data-anim="reveal"
+              className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground"
+            >
               Five stages, laid out up front, so you know what to expect at each step.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
@@ -389,15 +509,25 @@ export function HomeProcess() {
           </div>
         </div>
 
-        <ol className="relative lg:col-span-6 lg:col-start-7">
-          <span className="absolute bottom-6 left-[1.4rem] top-6 w-px bg-gold/50" aria-hidden />
+        <ol data-rail className="relative lg:col-span-6 lg:col-start-7">
+          {/* static track */}
+          <span aria-hidden className="absolute bottom-6 left-[1.4rem] top-6 w-px bg-border" />
+          {/* gold fill — scrubbed by useHomeMotion */}
+          <span
+            aria-hidden
+            data-rail-fill
+            className="absolute bottom-6 left-[1.4rem] top-6 w-0.5 origin-top bg-gold"
+            style={{ transform: "scaleY(0)" }}
+          />
           {PROCESS.map((step, i) => (
-            <li key={step.title} className="relative flex gap-6 pb-12 last:pb-0">
-              <span className="relative z-10 grid size-11 shrink-0 place-items-center rounded-full border border-gold bg-background font-serif text-lg text-primary">
+            <li key={step.title} data-stage className="group relative flex gap-6 pb-12 last:pb-0">
+              <span className="relative z-10 grid size-11 shrink-0 place-items-center rounded-full border border-gold bg-background font-serif text-lg text-primary transition-all duration-300 group-hover:bg-gold group-hover:text-black">
                 {i + 1}
               </span>
-              <div className="pt-1.5">
-                <h3 className={H3}>{step.title}</h3>
+              <div className="rounded-lg border border-border bg-background p-5 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-gold/40 group-hover:shadow-md">
+                <h3 className={`${H3} transition-colors duration-300 group-hover:text-primary`}>
+                  {step.title}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
                 <p className="mt-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
                   {step.includes.join(" · ")}
@@ -483,48 +613,10 @@ export function HomeProjects() {
   );
 }
 
-/* ---------- 8. Guide ---------- */
-
-export function HomeGuide() {
-  return (
-    <section className="bg-secondary/70 py-24 sm:py-28">
-      <div className="wrap grid items-center gap-14 lg:grid-cols-12">
-        {/* Draft cover built from the supplied logo — a layout stand-in, not the real guide cover. */}
-        <div className="mx-auto w-full max-w-sm lg:col-span-4 lg:col-start-2">
-          <div className="relative flex aspect-[3/4] flex-col items-center justify-between rounded-lg bg-primary p-8 text-center text-primary-foreground shadow-xl shadow-primary/20">
-            <img src="/brand/nordic-logo-light.png" alt="" className="mt-4 w-40 opacity-95" />
-            <p className="font-serif text-3xl leading-tight">{GUIDE.title}</p>
-            <span className="text-xs font-bold uppercase tracking-[0.15em] text-white/75">
-              Draft cover · placeholder
-            </span>
-          </div>
-        </div>
-        <div className="lg:col-span-6 lg:col-start-7">
-          <Eyebrow>{GUIDE.eyebrow}</Eyebrow>
-          <h2 className={`${H2} mt-4`}>{GUIDE.title}</h2>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">{GUIDE.body}</p>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-            {GUIDE.topics.map((t) => (
-              <li key={t} className="flex items-center gap-3 text-sm">
-                <span className="size-1.5 rounded-full bg-gold" aria-hidden />
-                {t}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <span
-              aria-disabled
-              className="inline-flex h-12 cursor-not-allowed items-center rounded-full border border-primary/30 px-6 text-base font-bold text-primary/60"
-            >
-              Guide coming soon
-            </span>
-            <Placeholder>{PLACEHOLDER.guide}</Placeholder>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+/* ---------- 8. Guide ----------
+ * HomeGuide now lives in its own module (src/components/home/HomeGuide.tsx)
+ * so this file stays focused. It is imported by src/routes/index.tsx.
+ */
 
 /* ---------- 9. Consultation ----------
  * One CTA card on a photo, straddling the page/footer seam (white above, footer green below),
