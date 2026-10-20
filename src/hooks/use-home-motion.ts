@@ -25,9 +25,21 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
       if (reduce) {
         gsap.set("[data-anim]", { opacity: 1, y: 0, x: 0 });
         gsap.set("[data-reveal-img]", { clipPath: "inset(0% 0% 0% 0%)" });
-        gsap.set("[data-rail-fill]", { scaleX: 1, transformOrigin: "left center" });
+        gsap.set("[data-rail-fill]", { scaleY: 1, transformOrigin: "top center" });
         gsap.set("[data-guide-topic]", { opacity: 1, x: 0 });
+        gsap.set("[data-parallax]", { y: 0 });
         return;
+      }
+
+      /* ---- Top-of-page scroll-progress indicator (gold) ---- */
+      const bar = root.querySelector<HTMLElement>("[data-scroll-bar]");
+      if (bar) {
+        gsap.set(bar, { scaleX: 0, transformOrigin: "left center" });
+        gsap.to(bar, {
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: { trigger: root, start: "top top", end: "bottom bottom", scrub: true },
+        });
       }
 
       /* ---- Hero entrance timeline ---- */
@@ -62,6 +74,19 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
         });
       });
 
+      /* ---- Subtle parallax on hero background images (depth) ---- */
+      gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { yPercent: -6 },
+          {
+            yPercent: 6,
+            ease: "none",
+            scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+          },
+        );
+      });
+
       /* ---- Pillar cards: staggered entrance, reversible on scroll-up ---- */
       gsap.utils.toArray<HTMLElement>("[data-pillar]").forEach((el, i) => {
         gsap.from(el, {
@@ -74,15 +99,15 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
         });
       });
 
-      /* ---- Process: scrubbed horizontal gold rail fill ---- */
+      /* ---- Process: scrubbed vertical gold rail fill (centre timeline) ---- */
       const rail = root.querySelector<HTMLElement>("[data-rail]");
       const fill = root.querySelector<HTMLElement>("[data-rail-fill]");
       if (rail && fill) {
-        gsap.set(fill, { scaleX: 0, transformOrigin: "left center" });
+        gsap.set(fill, { scaleY: 0, transformOrigin: "top center" });
         gsap.to(fill, {
-          scaleX: 1,
+          scaleY: 1,
           ease: "none",
-          scrollTrigger: { trigger: rail, start: "top 80%", end: "bottom 85%", scrub: true },
+          scrollTrigger: { trigger: rail, start: "top 70%", end: "bottom 90%", scrub: true },
         });
       }
 

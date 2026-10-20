@@ -8,10 +8,11 @@ import { RefTag } from "./shared";
  * Full-bleed photo slideshow in Nordic colours. Readability comes from a
  * brand-green gradient behind the copy, not from the photo.
  *
- * Slide navigation: enlarged image thumbnails in a glass pill. Each thumb
- * indicates the active slide (gold ring + zoom) and controls it on click.
- * The nav is absolutely positioned inside the section, so it always stays
- * within the hero bounds on every viewport.
+ * Slide navigation: enlarged image thumbnails with NO background styling and
+ * NON-rounded (square) corners. Each thumb indicates the active slide (gold
+ * ring + full opacity + gold edge) and controls it on click. The nav is
+ * absolutely positioned inside the section, so it always stays within the hero
+ * bounds on every viewport.
  */
 
 const HERO_LINKS = [
@@ -43,6 +44,7 @@ export function HomeHero() {
       {slides.map((img, i) => (
         <div
           key={img.src}
+          data-parallax
           aria-hidden={i !== active}
           className={`absolute inset-0 -z-20 transition-opacity duration-[1200ms] ${
             i === active ? "opacity-100" : "opacity-0"
@@ -127,18 +129,18 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* slide controls: enlarged image-thumbnail nav — pinned within the hero, always visible */}
+      {/* slide controls: enlarged square image thumbnails — NO background, NON-rounded, pinned in the hero */}
       <div
         data-anim="hero-nav"
-        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 lg:bottom-auto lg:left-auto lg:right-12 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0"
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-4 lg:bottom-auto lg:left-auto lg:right-10 lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2"
         role="group"
         aria-label="Hero images"
       >
-        <span className="hidden font-serif text-sm tracking-[0.2em] text-white/50 lg:block">
-          <span className="text-lg text-gold">{String(active + 1).padStart(2, "0")}</span>
+        <span className="hidden font-serif text-sm tracking-[0.25em] text-white/55 lg:block">
+          <span className="text-base text-gold">{String(active + 1).padStart(2, "0")}</span>
           <span className="text-white/30"> / {String(slides.length).padStart(2, "0")}</span>
         </span>
-        <div className="flex items-center gap-3 rounded-full border border-white/10 bg-black/30 p-2 backdrop-blur-md lg:flex-col lg:p-2.5">
+        <div className="flex items-center gap-3 lg:flex-col">
           {slides.map((img, i) => (
             <button
               key={img.src}
@@ -146,8 +148,10 @@ export function HomeHero() {
               onClick={() => setActive(i)}
               aria-label={`Show image ${i + 1} of ${slides.length}: ${img.alt}`}
               aria-current={i === active}
-              className={`group relative h-16 w-24 overflow-hidden rounded-full ring-2 transition-all duration-500 lg:h-20 lg:w-28 ${
-                i === active ? "scale-105 ring-gold" : "ring-white/20 hover:ring-white/60"
+              className={`group relative block h-16 w-24 overflow-hidden rounded-none outline-none transition-all duration-500 lg:h-24 lg:w-32 ${
+                i === active
+                  ? "ring-2 ring-gold ring-offset-2 ring-offset-primary"
+                  : "ring-1 ring-white/25 hover:ring-2 hover:ring-white/60"
               }`}
             >
               <img
@@ -156,13 +160,11 @@ export function HomeHero() {
                 aria-hidden
                 loading={i === 0 ? "eager" : "lazy"}
                 className={`h-full w-full object-cover transition-all duration-700 ${
-                  i === active
-                    ? "scale-110 opacity-100"
-                    : "opacity-50 group-hover:scale-105 group-hover:opacity-90"
+                  i === active ? "opacity-100" : "opacity-45 group-hover:opacity-90"
                 }`}
               />
               {i === active && (
-                <span aria-hidden className="absolute inset-0 rounded-full ring-4 ring-gold/25" />
+                <span aria-hidden className="absolute inset-y-0 left-0 w-1 origin-top bg-gold" />
               )}
             </button>
           ))}

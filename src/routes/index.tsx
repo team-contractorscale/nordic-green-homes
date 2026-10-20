@@ -36,6 +36,10 @@ function Index() {
   const ref = useHomeMotion<HTMLDivElement>();
   return (
     <div ref={ref} className="home-root">
+      {/* Gold scroll-progress indicator pinned to the top of the page */}
+      <div aria-hidden className="fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-gold/0">
+        <div data-scroll-bar className="h-full w-full origin-left bg-gold" />
+      </div>
       <HomeHero />
       <HomeIntro />
       <HomeServices />
