@@ -1,282 +1,47 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Leaf } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import type { ReactNode } from "react";
 import {
   ASSURANCE,
   CONSULTATION,
-  HERO,
   IMAGES,
   INTRO,
-  PILLARS,
   PLACEHOLDER,
-  PROCESS,
   REFERENCE_BASE,
   REFERENCE_SERVICE_AREA,
   SERVICES,
-  type RefImage,
 } from "@/lib/home-content";
+import {
+  ConsultationButton,
+  Eyebrow,
+  H2,
+  H3,
+  Placeholder,
+  RefImg,
+  RefTag,
+  TEXT_LINK,
+} from "./shared";
 
-/* ---------- shared bits ----------
- * Type scale and CTA treatment copied from the CS Web Template (DESIGN.md §3, §5):
- *   H1  clamp(2.5rem,4vw+1rem,4.25rem) · H2 clamp(2rem,2vw+1rem,3rem) · H3 text-lg
- *   Body text-base (one lead paragraph per section) · Small text-sm (cards/lists) · Micro text-xs
- *   Eyebrow text-sm uppercase 0.2em + dot · Buttons rounded-full, text-base semibold, icon chip
- * Headings H1/H2 use Alice (brand); H3 + UI use Almarai, mirroring the template's sans H3.
+/* Nordic Green Homes — home page barrel + inline sections.
+ *
+ * The big, frequently-edited sections (Hero, Pillars, Process) live in their
+ * own focused modules and are re-exported here so existing imports keep
+ * resolving. Shared primitives come from ./shared.
  */
 
-// Visible marker for anything the client hasn't confirmed. Never style this as real copy.
-export function Placeholder({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return (
-    <span
-      className={`inline-flex items-center rounded-full border border-dashed px-3.5 py-1.5 text-xs font-bold ${
-        dark ? "border-gold bg-white/10 text-white" : "border-gold bg-gold/10 text-slate"
-      }`}
-    >
-      {children}
-    </span>
-  );
-}
-
-function RefTag({ image, className = "" }: { image: RefImage; className?: string }) {
-  return (
-    <span
-      title={`Source: ${image.source}. Not approved for public use.`}
-      className={`absolute z-10 rounded-full bg-black/70 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm ${className}`}
-    >
-      {image.kind} · Reference only
-    </span>
-  );
-}
-
-function RefImg({
-  image,
-  className = "",
-  tagClassName = "left-3 top-3",
-}: {
-  image: RefImage;
-  className?: string;
-  tagClassName?: string;
-}) {
-  return (
-    <div className={`relative overflow-hidden bg-muted ${className}`}>
-      <img
-        src={image.src}
-        alt={image.alt}
-        loading="lazy"
-        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-      />
-      <RefTag image={image} className={tagClassName} />
-    </div>
-  );
-}
-
-export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return (
-    <p
-      className={`flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] ${
-        dark ? "text-white" : "text-primary"
-      }`}
-    >
-      <span className="size-1.5 rounded-full bg-gold" aria-hidden />
-      {children}
-    </p>
-  );
-}
-
-export const H2 = "font-serif text-[clamp(2rem,2vw+1rem,3rem)] leading-[1.1] tracking-[-0.01em]";
-const H3 = "text-lg font-bold";
-const TEXT_LINK =
-  "group inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-slate";
-
-export function ConsultationButton({ tone = "green" }: { tone?: "green" | "gold" }) {
-  return (
-    <Link
-      to="/contact"
-      className={`group inline-flex h-12 items-center gap-3 rounded-full py-1 pl-6 pr-1.5 text-base font-bold shadow-md shadow-black/0 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg ${
-        tone === "gold"
-          ? "bg-gold text-black hover:shadow-gold/40"
-          : "bg-primary text-primary-foreground hover:shadow-primary/30"
-      }`}
-    >
-      {CONSULTATION.cta}
-      <span
-        className={`flex size-9 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5 group-hover:rotate-45 ${
-          tone === "gold" ? "bg-primary text-white" : "bg-gold text-black"
-        }`}
-      >
-        <ArrowRight className="size-4" />
-      </span>
-    </Link>
-  );
-}
-
-/* ---------- 1. Hero ---------- */
-
-const HERO_LINKS = [
-  { label: "New builds", to: "/services/new-builds" },
-  { label: "Custom homes", to: "/services/new-builds" },
-  { label: "Renovations", to: "/services/home-renovations" },
-] as const;
-
-const SLIDE_MS = 7000;
-
-// Full-bleed photo slideshow (layout direction: econest.pixcelsthemes.com) in Nordic colours.
-// Readability comes from a brand-green gradient behind the copy, not from the photo.
-// Slide navigation is rendered as small image thumbnails — they both indicate and control the
-// active slide (image-thumbnail nav replaces the earlier bullet dots).
-export function HomeHero() {
-  const slides = HERO.slides;
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    // No autoplay for reduced-motion users; thumbnails still work.
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = window.setTimeout(() => setActive((i) => (i + 1) % slides.length), SLIDE_MS);
-    return () => window.clearTimeout(t);
-  }, [active, paused, slides.length]);
-
-  return (
-    <section
-      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-primary text-white"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      {slides.map((img, i) => (
-        <div
-          key={img.src}
-          aria-hidden={i !== active}
-          className={`absolute inset-0 -z-20 transition-opacity duration-[1200ms] ${
-            i === active ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img
-            src={img.src}
-            alt={i === 0 ? img.alt : ""}
-            className={`h-full w-full object-cover transition-transform duration-[8000ms] ease-out ${
-              i === active ? "scale-105" : "scale-100"
-            }`}
-            fetchPriority={i === 0 ? "high" : "low"}
-          />
-        </div>
-      ))}
-      {/* brand-green gradient: solid behind the copy, clear over the photo */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(13_61_50/0.95)_0%,rgb(18_85_69/0.85)_32%,rgb(18_85_69/0.35)_62%,rgb(18_85_69/0.05)_100%)] max-lg:bg-[linear-gradient(180deg,rgb(13_61_50/0.75)_0%,rgb(18_85_69/0.7)_45%,rgb(13_61_50/0.92)_100%)]"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/35 to-transparent"
-      />
-
-      <div className="wrap flex flex-1 items-center pb-44 pt-36 sm:pb-44 lg:pt-40">
-        <div className="max-w-2xl">
-          <p
-            data-anim="hero-eyebrow"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-md"
-          >
-            <Leaf className="size-4 text-gold" aria-hidden />
-            {HERO.eyebrow}
-          </p>
-          <h1
-            data-anim="hero-title"
-            className="mt-6 font-serif text-[clamp(2.5rem,4vw+1rem,4.25rem)] leading-[1.04] tracking-[-0.03em]"
-          >
-            {HERO.titleLead}
-            <br />
-            <span className="text-gold">{HERO.titleAccent}</span>
-          </h1>
-          <p
-            data-anim="hero-body"
-            className="mt-6 max-w-[34rem] text-base leading-relaxed text-white/90"
-          >
-            {HERO.body}
-          </p>
-
-          <div data-anim="hero-cta" className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Link
-              to="/contact"
-              className="group inline-flex h-14 items-center gap-4 rounded-full border border-white/40 bg-white/10 py-1.5 pl-6 pr-1.5 text-base font-bold text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.04] hover:bg-white/20"
-            >
-              {HERO.cta}
-              <span className="flex size-11 items-center justify-center rounded-full bg-gold text-black transition-transform duration-300 group-hover:rotate-45">
-                <ArrowRight className="size-4" />
-              </span>
-            </Link>
-            <a
-              href="#process"
-              className="group inline-flex items-center gap-2 text-base font-bold text-white underline underline-offset-4 hover:text-white/85"
-            >
-              {HERO.secondary}
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
-            </a>
-          </div>
-
-          <ul data-anim="hero-links" className="mt-10 flex flex-wrap gap-2">
-            {HERO_LINKS.map((l) => (
-              <li key={l.label}>
-                <Link
-                  to={l.to}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/15 px-3.5 py-1.5 text-sm font-bold text-white backdrop-blur-md transition-colors hover:border-gold hover:bg-gold hover:text-black"
-                >
-                  {l.label}
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* slide controls: image-thumbnail nav — the active slide grows + gains a gold ring */}
-      <div
-        data-anim="hero-nav"
-        className="absolute bottom-28 left-1/2 flex -translate-x-1/2 items-center gap-3 sm:bottom-32 lg:bottom-auto lg:left-auto lg:right-8 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:flex-col lg:gap-3"
-        role="group"
-        aria-label="Hero images"
-      >
-        {slides.map((img, i) => (
-          <button
-            key={img.src}
-            type="button"
-            onClick={() => setActive(i)}
-            aria-label={`Show image ${i + 1} of ${slides.length}: ${img.alt}`}
-            aria-current={i === active}
-            className={`group relative h-12 w-16 overflow-hidden rounded-full ring-2 transition-all duration-300 ${
-              i === active ? "ring-gold" : "ring-white/25 hover:ring-white/70"
-            }`}
-          >
-            <img
-              src={img.src}
-              alt=""
-              aria-hidden
-              loading={i === 0 ? "eager" : "lazy"}
-              className={`h-full w-full object-cover transition-all duration-500 ${
-                i === active ? "opacity-100 scale-105" : "opacity-60 group-hover:opacity-90"
-              }`}
-            />
-          </button>
-        ))}
-      </div>
-
-      <RefTag
-        image={slides[active] ?? IMAGES.hero}
-        className="bottom-[4.5rem] right-4 sm:bottom-24 sm:right-6"
-      />
-
-      {/* curved bottom edge into the white section below */}
-      <svg
-        aria-hidden
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-        className="absolute inset-x-0 bottom-0 h-14 w-full fill-background sm:h-20"
-      >
-        <path d="M0 70C180 115 360 120 540 96S900 20 1080 30s300 50 360 62V120H0Z" />
-      </svg>
-    </section>
-  );
-}
+export { HomeHero } from "./HomeHero";
+export { HomePillars } from "./HomePillars";
+export { HomeProcess } from "./HomeProcess";
+export {
+  Placeholder,
+  RefTag,
+  RefImg,
+  Eyebrow,
+  H2,
+  H3,
+  TEXT_LINK,
+  ConsultationButton,
+} from "./shared";
 
 /* ---------- 2. Intro / positioning ---------- */
 
@@ -364,183 +129,6 @@ export function HomeServices() {
   );
 }
 
-/* ---------- 4. Pillars ---------- */
-
-// Small line-art marks so each principle reads as its own idea without an icon library.
-const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
-  Sustainability: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M12 21c5-3 7-7 7-12 0-2-1-4-3-5-1 3-3 4-4 5-2 2-3 4-3 7 0 2 1 4 3 5Z" />
-      <path d="M12 21V11" />
-    </svg>
-  ),
-  Family: (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="8" cy="7" r="2.4" />
-      <circle cx="16" cy="7" r="2.4" />
-      <path d="M4 20c0-3 2-5 4-5s4 2 4 5" />
-      <path d="M12 20c0-3 2-5 4-5s4 2 4 5" />
-    </svg>
-  ),
-  "Bespoke luxury": (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M12 3l2.4 5 5.6.6-4 3.8 1.2 5.6L12 15.8 6.8 18l1.2-5.6-4-3.8 5.6-.6L12 3Z" />
-    </svg>
-  ),
-  "Faith & integrity": (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M12 3l7 3v5c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6l7-3Z" />
-      <path d="M9.5 11.5l2 2 3.5-3.5" />
-    </svg>
-  ),
-};
-
-export function HomePillars() {
-  return (
-    <section className="relative overflow-hidden py-24 sm:py-28">
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/40 to-background"
-      />
-      <div className="wrap">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
-            <Eyebrow>What guides us</Eyebrow>
-            <h2 data-anim="reveal" className={`${H2} mt-4`}>
-              Four principles behind every home
-            </h2>
-            <p
-              data-anim="reveal"
-              className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground"
-            >
-              The values that shape every decision, from the first sketch to the day you move in.
-            </p>
-          </div>
-          <Link to="/about-us" className={`${TEXT_LINK} shrink-0`}>
-            More about us <ArrowUpRight className="size-4" />
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {PILLARS.map((p, i) => (
-            <article
-              key={p.title}
-              data-pillar
-              className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-xl hover:shadow-primary/5"
-            >
-              <span
-                aria-hidden
-                className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
-              />
-              <span className="grid size-12 place-items-center rounded-full bg-secondary text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
-                <span className="size-6">{PILLAR_MARK[p.title]}</span>
-              </span>
-              <span className="mt-6 font-serif text-3xl text-gold/70 transition-colors duration-300 group-hover:text-gold">
-                0{i + 1}
-              </span>
-              <h3 className={`mt-3 ${H3} transition-colors duration-300 group-hover:text-primary`}>
-                {p.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- 5. Process ---------- */
-
-export function HomeProcess() {
-  return (
-    <section id="process" className="bg-secondary/70 py-24 sm:py-28">
-      <div className="wrap grid gap-14 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-32">
-            <Eyebrow>How we work</Eyebrow>
-            <h2 data-anim="reveal" className={`${H2} mt-4`}>
-              A clear path from first conversation to handover
-            </h2>
-            <p
-              data-anim="reveal"
-              className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground"
-            >
-              Five stages, laid out up front, so you know what to expect at each step.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4">
-              <ConsultationButton />
-              <Link to="/process" className={TEXT_LINK}>
-                The full process
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <ol data-rail className="relative lg:col-span-6 lg:col-start-7">
-          {/* static track */}
-          <span aria-hidden className="absolute bottom-6 left-[1.4rem] top-6 w-px bg-border" />
-          {/* gold fill — scrubbed by useHomeMotion */}
-          <span
-            aria-hidden
-            data-rail-fill
-            className="absolute bottom-6 left-[1.4rem] top-6 w-0.5 origin-top bg-gold"
-            style={{ transform: "scaleY(0)" }}
-          />
-          {PROCESS.map((step, i) => (
-            <li key={step.title} data-stage className="group relative flex gap-6 pb-12 last:pb-0">
-              <span className="relative z-10 grid size-11 shrink-0 place-items-center rounded-full border border-gold bg-background font-serif text-lg text-primary transition-all duration-300 group-hover:bg-gold group-hover:text-black">
-                {i + 1}
-              </span>
-              <div className="rounded-lg border border-border bg-background p-5 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-gold/40 group-hover:shadow-md">
-                <h3 className={`${H3} transition-colors duration-300 group-hover:text-primary`}>
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-                <p className="mt-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-                  {step.includes.join(" · ")}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- 6. Green Mastery Assurance ---------- */
 
 export function HomeAssurance() {
@@ -612,11 +200,6 @@ export function HomeProjects() {
     </section>
   );
 }
-
-/* ---------- 8. Guide ----------
- * HomeGuide now lives in its own module (src/components/home/HomeGuide.tsx)
- * so this file stays focused. It is imported by src/routes/index.tsx.
- */
 
 /* ---------- 9. Consultation ----------
  * One CTA card on a photo, straddling the page/footer seam (white above, footer green below),

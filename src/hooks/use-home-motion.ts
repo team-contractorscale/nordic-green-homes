@@ -23,9 +23,10 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
 
     const ctx = gsap.context(() => {
       if (reduce) {
-        gsap.set("[data-anim]", { opacity: 1, y: 0 });
+        gsap.set("[data-anim]", { opacity: 1, y: 0, x: 0 });
         gsap.set("[data-reveal-img]", { clipPath: "inset(0% 0% 0% 0%)" });
-        gsap.set("[data-rail-fill]", { scaleY: 1, transformOrigin: "top center" });
+        gsap.set("[data-rail-fill]", { scaleX: 1, transformOrigin: "left center" });
+        gsap.set("[data-guide-topic]", { opacity: 1, x: 0 });
         return;
       }
 
@@ -73,26 +74,38 @@ export function useHomeMotion<T extends HTMLElement = HTMLDivElement>() {
         });
       });
 
-      /* ---- Process: scrubbed gold rail fill ---- */
+      /* ---- Process: scrubbed horizontal gold rail fill ---- */
       const rail = root.querySelector<HTMLElement>("[data-rail]");
       const fill = root.querySelector<HTMLElement>("[data-rail-fill]");
       if (rail && fill) {
-        gsap.set(fill, { scaleY: 0, transformOrigin: "top center" });
+        gsap.set(fill, { scaleX: 0, transformOrigin: "left center" });
         gsap.to(fill, {
-          scaleY: 1,
+          scaleX: 1,
           ease: "none",
-          scrollTrigger: { trigger: rail, start: "top 70%", end: "bottom 80%", scrub: true },
+          scrollTrigger: { trigger: rail, start: "top 80%", end: "bottom 85%", scrub: true },
         });
       }
 
       /* ---- Process stages: reveal each as it scrolls in ---- */
       gsap.utils.toArray<HTMLElement>("[data-stage]").forEach((el) => {
         gsap.from(el, {
-          y: 30,
+          y: 36,
           opacity: 0,
-          duration: 0.7,
+          duration: 0.8,
           ease: "power3.out",
           scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none reverse" },
+        });
+      });
+
+      /* ---- Guide topic chips: staggered slide-in ---- */
+      gsap.utils.toArray<HTMLElement>("[data-guide-topic]").forEach((el, i) => {
+        gsap.from(el, {
+          x: -18,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          delay: i * 0.06,
+          scrollTrigger: { trigger: el, start: "top 94%", toggleActions: "play none none none" },
         });
       });
 
