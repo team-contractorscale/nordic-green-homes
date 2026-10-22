@@ -52,8 +52,8 @@ function Index() {
       <HomeAssurance />
       <HomeProjects />
       <HomeGuide />
-      <HomeConsultation />
       <HomeFaqs />
+      <HomeConsultation />
     </div>
   );
 }
