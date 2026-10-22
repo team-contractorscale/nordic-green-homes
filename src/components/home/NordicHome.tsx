@@ -227,7 +227,13 @@ function Detail({ label, children }: { label: string; children: ReactNode }) {
 
 export function HomeConsultation() {
   return (
-    <section className="bg-[linear-gradient(to_bottom,var(--background)_55%,var(--primary)_55%)] pt-8">
+    <section
+      className="pt-8"
+      style={{
+        background:
+          "linear-gradient(to bottom, var(--secondary) 0%, var(--secondary) 48%, var(--primary) 58%)",
+      }}
+    >
       <div className="wrap">
         <div
           data-reveal="scale"
