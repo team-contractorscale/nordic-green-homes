@@ -10,7 +10,7 @@ type TrackingImageDataField = { dataUrl?: string; label: string };
 
 // Internal pilot: nothing may reach the live CRM until the enquiry workflow is tested and approved.
 // Gates every form submission (postTrackingEvent) and the chat widget mount in __root.tsx.
-export const PILOT_CRM_ENABLED = false;
+export const PILOT_CRM_ENABLED = true;
 
 const TRACKING_ENDPOINT = "https://backend.leadconnectorhq.com/external-tracking/events";
 

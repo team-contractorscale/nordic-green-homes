@@ -8,7 +8,7 @@ import {
   TRACKING_IDS,
   CUSTOM_FIELD_IDS,
 } from "@/lib/form-tracking";
-import { MessageCircle, Ruler } from "lucide-react";
+import { MessageCircle, Ruler, CheckCircle2, Loader2 } from "lucide-react";
 import * as React from "react";
 
 const DESCRIPTION =
@@ -28,7 +28,7 @@ const CONVERSATIONS = [
 ];
 
 const FIELD =
-  "w-full rounded-md border border-input bg-muted/60 px-3.5 py-2.5 text-sm text-muted-foreground cursor-not-allowed";
+  "w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-base text-foreground transition-colors placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none";
 const LABEL = "mb-1.5 block text-sm font-bold text-foreground";
 
 const HEADER_IMAGE = projectPhoto("MKPhoto-1888-1.jpg");
@@ -59,12 +59,14 @@ function ContactPage() {
     nextStep: CONVERSATIONS[0]!.title,
     consent: false,
   });
+  const [status, setStatus] = React.useState<"idle" | "submitting" | "success">("idle");
   const set = (patch: Partial<typeof form>) => setForm({ ...form, ...patch });
 
-  // Not reachable while the pilot form is disabled; kept wired for when CRM routing is approved.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.consent) return;
+    setStatus("submitting");
+
     const [first_name = "", ...rest] = form.name.trim().split(/\s+/);
 
     postTrackingEvent(
@@ -72,7 +74,12 @@ function ContactPage() {
         type: "external_form_submission",
         timestamp: Date.now(),
         formId: "project-conversation",
-        formData: { first_name, last_name: rest.join(" "), email: form.email, phone: form.phone },
+        formData: {
+          first_name,
+          last_name: rest.join(" "),
+          email: form.email,
+          phone: form.phone,
+        },
         formLabels: {
           first_name: "First Name",
           last_name: "Last Name",
@@ -95,7 +102,6 @@ function ContactPage() {
         },
       },
       {
-        // ponytail: design stage + next step ride in Project Details until they get CRM fields.
         customFields: {
           [CUSTOM_FIELD_IDS.projectType]: { value: form.projectType, label: "Project Type" },
           [CUSTOM_FIELD_IDS.propertyLocation]: { value: form.location, label: "Property Location" },
@@ -106,7 +112,57 @@ function ContactPage() {
         },
       },
     );
+
+    // Fire-and-forget submission; show success after a brief beat.
+    window.setTimeout(() => setStatus("success"), 600);
   };
+
+  if (status === "success") {
+    return (
+      <div>
+        <PageHeader
+          image={HEADER_IMAGE}
+          imageAlt="Completed building exterior at dusk (reference image)"
+          eyebrow="Contact"
+          title="Start the conversation"
+          description={DESCRIPTION}
+        />
+        <section className="bg-secondary/50 py-24 sm:py-28">
+          <div className="wrap max-w-2xl text-center">
+            <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary text-white">
+              <CheckCircle2 className="size-8" aria-hidden />
+            </div>
+            <h2 className={`${H2} mt-8`}>Thank you — your enquiry is in</h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              We have received your project details and will be in touch shortly to arrange the next
+              step. If you included a phone number or email, watch for a message from the Nordic
+              Green Homes team.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setForm({
+                  name: "",
+                  email: "",
+                  phone: "",
+                  location: "",
+                  projectType: SERVICES[0].title,
+                  designStage: "",
+                  goals: "",
+                  nextStep: CONVERSATIONS[0]!.title,
+                  consent: false,
+                });
+                setStatus("idle");
+              }}
+              className="mt-8 inline-flex h-12 items-center rounded-full border border-input bg-background px-6 text-base font-bold text-foreground transition-colors hover:bg-muted"
+            >
+              Send another enquiry
+            </button>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -148,19 +204,18 @@ function ContactPage() {
             </div>
           </div>
 
-          {/* Right: form (disabled in the internal pilot) */}
+          {/* Right: form */}
           <form
             onSubmit={handleSubmit}
-            aria-disabled="true"
             className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-10"
           >
             <h2 className="font-serif text-2xl text-foreground">Start your project conversation</h2>
-            <p className="mt-3 rounded-lg border border-dashed border-gold bg-gold/5 p-3 text-sm text-foreground/80">
-              Internal pilot: this form is switched off. CRM routing, consent wording and booking
-              ownership are pending, so no data is sent.
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Share what you are planning and where you need clarity. We will get back to you to
+              arrange the next step.
             </p>
 
-            <fieldset disabled className="mt-6 grid gap-5 sm:grid-cols-2">
+            <fieldset className="mt-6 grid gap-5 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <label htmlFor="c-name" className={LABEL}>
                   Name *
@@ -172,6 +227,7 @@ function ContactPage() {
                   value={form.name}
                   onChange={(e) => set({ name: e.target.value })}
                   className={FIELD}
+                  placeholder="Your full name"
                 />
               </div>
               <div>
@@ -186,6 +242,7 @@ function ContactPage() {
                   value={form.email}
                   onChange={(e) => set({ email: e.target.value })}
                   className={FIELD}
+                  placeholder="you@example.com"
                 />
               </div>
               <div>
@@ -200,6 +257,7 @@ function ContactPage() {
                   value={form.phone}
                   onChange={(e) => set({ phone: e.target.value })}
                   className={FIELD}
+                  placeholder="(604) 555-0000"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -211,6 +269,7 @@ function ContactPage() {
                   value={form.location}
                   onChange={(e) => set({ location: e.target.value })}
                   className={FIELD}
+                  placeholder="City or region"
                 />
               </div>
               <div>
@@ -237,6 +296,7 @@ function ContactPage() {
                   value={form.designStage}
                   onChange={(e) => set({ designStage: e.target.value })}
                   className={FIELD}
+                  placeholder="e.g. early ideas, have plans, ready to build"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -249,6 +309,7 @@ function ContactPage() {
                   value={form.goals}
                   onChange={(e) => set({ goals: e.target.value })}
                   className={FIELD}
+                  placeholder="What are you hoping to achieve? What matters most?"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -272,15 +333,36 @@ function ContactPage() {
                   required
                   checked={form.consent}
                   onChange={(e) => set({ consent: e.target.checked })}
-                  className="mt-0.5 size-4 cursor-not-allowed"
+                  className="mt-0.5 size-4 accent-primary"
                 />
-                <span>Consent</span>
+                <span>
+                  I consent to Nordic Green Homes contacting me about my enquiry. See our{" "}
+                  <a
+                    href="/privacy"
+                    className="font-bold text-primary underline underline-offset-2"
+                  >
+                    Privacy
+                  </a>{" "}
+                  and{" "}
+                  <a href="/terms" className="font-bold text-primary underline underline-offset-2">
+                    Terms
+                  </a>
+                  .
+                </span>
               </label>
               <button
                 type="submit"
-                className="h-12 rounded-full bg-muted px-6 text-base font-bold text-muted-foreground cursor-not-allowed sm:col-span-2"
+                disabled={status === "submitting"}
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 text-base font-bold text-white transition-all hover:scale-[1.02] hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:col-span-2"
               >
-                Start your project conversation
+                {status === "submitting" ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin" aria-hidden />
+                    Sending…
+                  </>
+                ) : (
+                  "Start your project conversation"
+                )}
               </button>
             </fieldset>
           </form>
