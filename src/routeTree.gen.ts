@@ -17,6 +17,7 @@ import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AboutUsIndexRouteImport } from './routes/about-us.index'
 import { Route as AboutUsOurGuaranteeRouteImport } from './routes/about-us.our-guarantee'
 import { Route as AboutUsWhyChooseUsRouteImport } from './routes/about-us.why-choose-us'
@@ -76,6 +77,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
@@ -228,6 +235,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
@@ -259,6 +267,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
@@ -291,6 +300,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/terms'
+    | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
     | '/floorplans/modern-belgian-farmhouse'
@@ -321,6 +331,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/terms'
+    | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
     | '/floorplans/modern-belgian-farmhouse'
@@ -351,6 +362,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/terms'
+    | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
     | '/floorplans/modern-belgian-farmhouse'
@@ -382,6 +394,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  ThankYouRoute: typeof ThankYouRoute
   AboutUsOurGuaranteeRoute: typeof AboutUsOurGuaranteeRoute
   AboutUsWhyChooseUsRoute: typeof AboutUsWhyChooseUsRoute
   FloorplansModernBelgianFarmhouseRoute: typeof FloorplansModernBelgianFarmhouseRoute
@@ -460,6 +473,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about-us/': {
@@ -614,6 +634,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  ThankYouRoute: ThankYouRoute,
   AboutUsOurGuaranteeRoute: AboutUsOurGuaranteeRoute,
   AboutUsWhyChooseUsRoute: AboutUsWhyChooseUsRoute,
   FloorplansModernBelgianFarmhouseRoute: FloorplansModernBelgianFarmhouseRoute,

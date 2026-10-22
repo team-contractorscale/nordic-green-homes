@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { H2 } from "@/components/home/NordicHome";
 import { SERVICES, projectPhoto } from "@/lib/home-content";
@@ -8,7 +8,7 @@ import {
   TRACKING_IDS,
   CUSTOM_FIELD_IDS,
 } from "@/lib/form-tracking";
-import { MessageCircle, Ruler, CheckCircle2, Loader2 } from "lucide-react";
+import { MessageCircle, Ruler, Loader2 } from "lucide-react";
 import * as React from "react";
 
 const DESCRIPTION =
@@ -59,7 +59,8 @@ function ContactPage() {
     nextStep: CONVERSATIONS[0]!.title,
     consent: false,
   });
-  const [status, setStatus] = React.useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = React.useState<"idle" | "submitting">("idle");
+  const navigate = useNavigate();
   const set = (patch: Partial<typeof form>) => setForm({ ...form, ...patch });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -113,56 +114,9 @@ function ContactPage() {
       },
     );
 
-    // Fire-and-forget submission; show success after a brief beat.
-    window.setTimeout(() => setStatus("success"), 600);
+    // Fire-and-forget submission; navigate to the thank-you page after a brief beat.
+    window.setTimeout(() => navigate({ to: "/thank-you" }), 600);
   };
-
-  if (status === "success") {
-    return (
-      <div>
-        <PageHeader
-          image={HEADER_IMAGE}
-          imageAlt="Completed building exterior at dusk (reference image)"
-          eyebrow="Contact"
-          title="Start the conversation"
-          description={DESCRIPTION}
-        />
-        <section className="bg-secondary/50 py-24 sm:py-28">
-          <div className="wrap max-w-2xl text-center">
-            <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary text-white">
-              <CheckCircle2 className="size-8" aria-hidden />
-            </div>
-            <h2 className={`${H2} mt-8`}>Thank you — your enquiry is in</h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              We have received your project details and will be in touch shortly to arrange the next
-              step. If you included a phone number or email, watch for a message from the Nordic
-              Green Homes team.
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                setForm({
-                  name: "",
-                  email: "",
-                  phone: "",
-                  location: "",
-                  projectType: SERVICES[0].title,
-                  designStage: "",
-                  goals: "",
-                  nextStep: CONVERSATIONS[0]!.title,
-                  consent: false,
-                });
-                setStatus("idle");
-              }}
-              className="mt-8 inline-flex h-12 items-center rounded-full border border-input bg-background px-6 text-base font-bold text-foreground transition-colors hover:bg-muted"
-            >
-              Send another enquiry
-            </button>
-          </div>
-        </section>
-      </div>
-    );
-  }
 
   return (
     <div>
