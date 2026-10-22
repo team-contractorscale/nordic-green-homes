@@ -138,7 +138,7 @@ export function HomeServices() {
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
+          {SERVICES.slice(0, 3).map((s) => (
             <Link key={s.key} to={SERVICE_LINKS[s.key]} data-reveal className="group flex flex-col">
               <RefImg image={s.image} className="aspect-[4/5] rounded-lg" />
               <h3 className={`mt-6 ${H3}`}>{s.title}</h3>
@@ -227,7 +227,7 @@ function Detail({ label, children }: { label: string; children: ReactNode }) {
 
 export function HomeConsultation() {
   return (
-    <section className="bg-secondary/50 pt-8">
+    <section className="relative z-10 bg-secondary/50 pt-8">
       <div className="wrap pb-24">
         <div
           data-reveal="scale"
