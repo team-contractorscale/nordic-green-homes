@@ -227,13 +227,7 @@ function Detail({ label, children }: { label: string; children: ReactNode }) {
 
 export function HomeConsultation() {
   return (
-    <section
-      className="pt-8"
-      style={{
-        background:
-          "linear-gradient(to bottom, var(--secondary) 0%, var(--secondary) 48%, var(--primary) 58%)",
-      }}
-    >
+    <section className="bg-secondary/50 pt-8">
       <div className="wrap">
         <div
           data-reveal="scale"
@@ -268,7 +262,7 @@ export function HomeConsultation() {
 
             <dl
               data-reveal="right"
-              className="grid gap-6 rounded-lg border border-white/15 bg-black/20 p-6 backdrop-blur-md sm:grid-cols-2"
+              className="grid gap-6 rounded-lg border border-white/15 p-6 sm:grid-cols-2"
             >
               <Detail label="Phone">
                 <Placeholder dark>{PLACEHOLDER.phone}</Placeholder>
