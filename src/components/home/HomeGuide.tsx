@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 import { GUIDE, PLACEHOLDER } from "@/lib/home-content";
 import { Eyebrow, H2, Placeholder } from "./shared";
 
-/* ---------- 8. Guide — "Future-Proofing Your Home" ----------
+/* ---------- 8. Guide — "Future-proofing your home" ----------
  * A 3D book (CSS 3D, so the title stays crisp) on a glowing stage. GSAP in useHomeMotion:
  * the book turns toward the reader as the section scrolls in ([data-book-scroll], scrub),
  * tilts with the pointer ([data-book-stage] → [data-book], quickTo) and floats gently.
@@ -135,24 +135,27 @@ export function HomeGuide() {
             data-anim="reveal"
             className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground"
           >
-            {GUIDE.body} Here's what it will cover:
+            {GUIDE.body}
           </p>
 
           <ul className="mt-8 border-t border-border">
             {GUIDE.topics.map((t, i) => (
-              <li key={t} data-guide-topic>
-                <div className="group/topic relative flex items-center gap-5 overflow-hidden border-b border-border px-2 py-4">
+              <li key={t.title} data-guide-topic>
+                <div className="group/topic relative flex items-start gap-5 overflow-hidden border-b border-border px-2 py-5">
                   <span
                     aria-hidden
                     className="absolute inset-0 origin-left scale-x-0 bg-gradient-to-r from-gold/15 to-transparent transition-transform duration-500 ease-out group-hover/topic:scale-x-100"
                   />
                   <span className="relative font-serif text-lg text-gold">0{i + 1}</span>
-                  <span className="relative flex-1 text-lg font-bold text-foreground transition-transform duration-500 group-hover/topic:translate-x-2">
-                    {t}
-                  </span>
+                  <div className="relative flex-1">
+                    <p className="text-base font-bold text-foreground transition-transform duration-500 group-hover/topic:translate-x-2">
+                      {t.title}
+                    </p>
+                    <p className="mt-1 text-base leading-relaxed text-muted-foreground">{t.body}</p>
+                  </div>
                   <ArrowUpRight
                     aria-hidden
-                    className="relative size-5 text-primary/40 transition-all duration-500 group-hover/topic:rotate-45 group-hover/topic:text-gold"
+                    className="relative mt-1 size-5 shrink-0 text-primary/40 transition-all duration-500 group-hover/topic:rotate-45 group-hover/topic:text-gold"
                   />
                 </div>
               </li>
@@ -164,7 +167,7 @@ export function HomeGuide() {
               aria-disabled
               className="inline-flex h-12 cursor-not-allowed items-center rounded-full border border-primary/30 px-6 text-base font-bold text-primary/60"
             >
-              Guide coming soon
+              {GUIDE.cta}
             </span>
             <Placeholder>{PLACEHOLDER.guide}</Placeholder>
           </div>

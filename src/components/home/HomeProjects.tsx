@@ -67,10 +67,17 @@ export function HomeProjects() {
               Design and build, in detail
             </h2>
             <p data-anim="reveal" className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Every image is labelled as a photo or a concept render, and marked reference only
-              while project approval is pending.
+              A covered porch. A framed view. An entry that opens into the home. Explore the spaces
+              and details that catch your eye as you gather ideas for your own brief.
             </p>
-            <p className="mt-6 hidden items-center gap-2 text-sm font-bold text-primary lg:flex">
+            <Link
+              to="/projects"
+              className="group mt-6 inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-gold"
+            >
+              View projects
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+            <p className="mt-4 hidden items-center gap-2 text-sm font-bold text-primary lg:flex">
               Keep scrolling <ArrowRight className="size-4 animate-pulse" />
             </p>
           </div>

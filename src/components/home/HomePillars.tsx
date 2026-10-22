@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import { IMAGES, PILLARS, type RefImage } from "@/lib/home-content";
 import { Eyebrow, RefTag, imgProps } from "./shared";
 
-/* ---------- 4. Pillars — "What guides us" ----------
+/* ---------- 4. Pillars — "What guides the work" ----------
  * Expanding image panels on a deep-green band. Desktop: four panels in a row; the hovered /
  * focused / tapped one grows (flex-grow) to reveal its principle, the rest collapse to slim
  * columns with a vertical title. Mobile: stacked cards, everything visible.
@@ -13,7 +13,7 @@ import { Eyebrow, RefTag, imgProps } from "./shared";
  */
 
 const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
-  Sustainability: (
+  "Considered design": (
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -23,11 +23,11 @@ const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M12 21c5-3 7-7 7-12 0-2-1-4-3-5-1 3-3 4-4 5-2 2-3 4-3 7 0 2 1 4 3 5Z" />
-      <path d="M12 21V11" />
+      <circle cx="12" cy="12" r="9" />
+      <path d="M15.5 8.5l-2 5-5 2 2-5 5-2Z" />
     </svg>
   ),
-  Family: (
+  "Clear decisions": (
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -37,13 +37,11 @@ const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
       strokeLinejoin="round"
       aria-hidden
     >
-      <circle cx="8" cy="7" r="2.4" />
-      <circle cx="16" cy="7" r="2.4" />
-      <path d="M4 20c0-3 2-5 4-5s4 2 4 5" />
-      <path d="M12 20c0-3 2-5 4-5s4 2 4 5" />
+      <circle cx="12" cy="12" r="9" />
+      <path d="M8 12l3 3 5-5" />
     </svg>
   ),
-  "Bespoke luxury": (
+  "Responsible performance": (
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -53,10 +51,12 @@ const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M12 3l2.4 5 5.6.6-4 3.8 1.2 5.6L12 15.8 6.8 18l1.2-5.6-4-3.8 5.6-.6L12 3Z" />
+      <path d="M12 21a9 9 0 1 1 9-9" />
+      <path d="M12 12l4-3" />
+      <circle cx="12" cy="12" r="1" />
     </svg>
   ),
-  "Faith & integrity": (
+  "Coordinated planning": (
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -66,17 +66,19 @@ const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
       strokeLinejoin="round"
       aria-hidden
     >
-      <path d="M12 3l7 3v5c0 4-3 7.5-7 9-4-1.5-7-5-7-9V6l7-3Z" />
-      <path d="M9.5 11.5l2 2 3.5-3.5" />
+      <rect x="4" y="4" width="6" height="6" rx="1" />
+      <rect x="14" y="4" width="6" height="6" rx="1" />
+      <rect x="4" y="14" width="6" height="6" rx="1" />
+      <rect x="14" y="14" width="6" height="6" rx="1" />
     </svg>
   ),
 };
 
 const PILLAR_IMAGE: Record<(typeof PILLARS)[number]["title"], RefImage> = {
-  Sustainability: IMAGES.hausGarden,
-  Family: IMAGES.hausPatio,
-  "Bespoke luxury": IMAGES.poolRender,
-  "Faith & integrity": IMAGES.farmhouseRear,
+  "Considered design": IMAGES.hausGarden,
+  "Clear decisions": IMAGES.hausSide,
+  "Responsible performance": IMAGES.hausRear,
+  "Coordinated planning": IMAGES.farmhouseRear,
 };
 
 export function HomePillars() {
@@ -91,12 +93,12 @@ export function HomePillars() {
       <div className="wrap relative">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <Eyebrow dark>What guides us</Eyebrow>
+            <Eyebrow dark>What guides the work</Eyebrow>
             <h2
               data-anim="reveal"
               className="mt-4 font-serif text-[clamp(2rem,2vw+1rem,3rem)] leading-[1.1] tracking-[-0.01em]"
             >
-              Four principles behind every home
+              Four principles behind a considered home
             </h2>
           </div>
           <div data-anim="reveal" className="lg:col-span-5">

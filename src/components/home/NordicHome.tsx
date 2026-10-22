@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import type { ReactNode } from "react";
+import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
+import { useState, type ReactNode } from "react";
 import {
   ASSURANCE,
   CONSULTATION,
+  FAQS,
   IMAGES,
   INTRO,
   PLACEHOLDER,
@@ -55,17 +56,31 @@ export function HomeIntro() {
           <h2 data-reveal className={`${H2} mt-4`}>
             {INTRO.title}
           </h2>
-          <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
+          <p data-reveal className="mt-6 text-lg leading-relaxed text-foreground/90">
+            {INTRO.lead}
+          </p>
+          <div className="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground">
             {INTRO.body.map((p) => (
               <p key={p} data-reveal>
                 {p}
               </p>
             ))}
           </div>
+
+          {/* Design and build, considered together */}
+          <div data-reveal="left" className="mt-8 border-l-2 border-gold pl-5">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              {INTRO.designBuild.label}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              {INTRO.designBuild.body}
+            </p>
+          </div>
+
           <p data-reveal className="mt-8 font-serif text-xl text-primary">
             {INTRO.people}
           </p>
-          <div data-reveal="left" className="mt-8 border-l-2 border-gold pl-5">
+          <div data-reveal="left" className="mt-4 border-l-2 border-gold/50 pl-5">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
               {INTRO.relationship.label}
             </p>
@@ -96,11 +111,13 @@ export function HomeIntro() {
 
 /* ---------- 3. Services ---------- */
 
-const SERVICE_LINKS = {
-  newBuilds: "/services/new-builds",
-  customHomes: "/services/new-builds",
-  renovations: "/services/home-renovations",
-} as const;
+const SERVICE_LINKS: Record<(typeof SERVICES)[number]["key"], string> = {
+  luxuryCustomHomes: "/services/new-builds",
+  gardenSuites: "/services",
+  passiveHome: "/services",
+  highPerformance: "/services",
+  designInteriors: "/services",
+};
 
 export function HomeServices() {
   return (
@@ -110,7 +127,7 @@ export function HomeServices() {
           <div className="max-w-2xl">
             <Eyebrow>What we build</Eyebrow>
             <h2 data-reveal className={`${H2} mt-4`}>
-              New builds, custom homes and renovations
+              Find the right starting point for your home
             </h2>
           </div>
           <div data-reveal="right">
@@ -120,14 +137,16 @@ export function HomeServices() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
-            <Link key={s.key} to={SERVICE_LINKS[s.key]} data-reveal className="group block">
+            <Link key={s.key} to={SERVICE_LINKS[s.key]} data-reveal className="group flex flex-col">
               <RefImg image={s.image} className="aspect-[4/5] rounded-lg" />
               <h3 className={`mt-6 ${H3}`}>{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary underline underline-offset-4">
-                Learn more{" "}
+              <p className="mt-2 flex-1 text-base leading-relaxed text-muted-foreground">
+                {s.body}
+              </p>
+              <span className="mt-4 inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4">
+                {s.cta}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
@@ -142,7 +161,7 @@ export function HomeServices() {
   );
 }
 
-/* ---------- 6. Green Mastery Assurance ---------- */
+/* ---------- 6. Our commitment ---------- */
 
 export function HomeAssurance() {
   return (
@@ -172,6 +191,15 @@ export function HomeAssurance() {
             {ASSURANCE.body}
           </p>
           <div data-reveal className="mt-8">
+            <Link
+              to="/about-us"
+              className="group inline-flex items-center gap-2 text-base font-bold text-white underline underline-offset-4 hover:text-gold"
+            >
+              {ASSURANCE.link}
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+          <div data-reveal className="mt-6">
             <Placeholder dark>{PLACEHOLDER.assurance}</Placeholder>
           </div>
         </div>
@@ -255,6 +283,68 @@ export function HomeConsultation() {
             </dl>
           </div>
           <RefTag image={IMAGES.poolRender} className="bottom-4 right-4" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- 10. Frequently asked questions ---------- */
+
+export function HomeFaqs() {
+  const [open, setOpen] = useState<number | null>(0);
+
+  return (
+    <section className="bg-secondary/50 py-24 sm:py-28">
+      <div className="wrap max-w-4xl">
+        <div className="text-center">
+          <Eyebrow>Frequently asked questions</Eyebrow>
+          <h2 data-reveal className={`${H2} mt-4`}>
+            Questions before you start
+          </h2>
+        </div>
+
+        <div className="mt-12 space-y-4">
+          {FAQS.map((faq, i) => {
+            const isOpen = open === i;
+            return (
+              <div
+                key={i}
+                data-reveal
+                className="overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-md"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-serif text-lg font-semibold text-foreground transition-colors hover:bg-muted/30"
+                >
+                  <span>{faq.q}</span>
+                  <Plus
+                    className={`size-5 shrink-0 text-gold transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                    aria-hidden
+                  />
+                </button>
+                {isOpen && (
+                  <div className="border-t border-border/60 px-6 pb-6 pt-4 text-base leading-relaxed text-muted-foreground">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        <div data-reveal className="mt-12 text-center">
+          <Link
+            to="/faqs"
+            className="group inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-gold"
+          >
+            All questions
+            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </div>
     </section>

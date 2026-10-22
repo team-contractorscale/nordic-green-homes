@@ -4,6 +4,7 @@ import { useHomeMotion } from "@/hooks/use-home-motion";
 import {
   HomeAssurance,
   HomeConsultation,
+  HomeFaqs,
   HomeHero,
   HomeIntro,
   HomePillars,
@@ -14,14 +15,17 @@ import {
 import { HomeGuide } from "@/components/home/HomeGuide";
 
 const DESCRIPTION =
-  "Nordic Green Homes: sustainable craftsmanship for families who want more from their forever home. Custom homes, new builds and renovations.";
+  "Nordic Green Homes — a home that looks right and lives well. Sustainable luxury custom homes, new builds and renovations in British Columbia.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nordic Green Homes | Where Sustainability Meets Style" },
+      { title: "Nordic Green Homes | A Home That Looks Right. And Lives Well." },
       { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Nordic Green Homes | Where Sustainability Meets Style" },
+      {
+        property: "og:title",
+        content: "Nordic Green Homes | A Home That Looks Right. And Lives Well.",
+      },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:image", content: IMAGES.hero.src },
       { name: "twitter:image", content: IMAGES.hero.src },
@@ -30,8 +34,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// Section order: Ambient's structure (services → about → process → proof → assurance → guide →
-// consultation) merged with the Web Template homepage rhythm. See DESIGN.md §3.
+// Section order: hero → intro → services → pillars → process → assurance → projects → guide →
+// consultation → FAQs. See DESIGN.md §3.
 function Index() {
   const ref = useHomeMotion<HTMLDivElement>();
   return (
@@ -49,6 +53,7 @@ function Index() {
       <HomeProjects />
       <HomeGuide />
       <HomeConsultation />
+      <HomeFaqs />
     </div>
   );
 }

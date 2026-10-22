@@ -172,131 +172,190 @@ export const IMAGES = {
 } satisfies Record<string, RefImage>;
 
 export const HERO = {
-  eyebrow: "Custom homes · New builds · Renovations",
-  // Nordic Green Design's own line — reuse.
-  titleLead: "Where sustainability",
-  titleAccent: "meets style.",
-  // Adapted from the shared O'Brien / Nordic line "Sustainable craftsmanship for families…".
-  body: "Sustainable craftsmanship for families who want more from their forever home. Thoughtful design and careful building, from the first conversation to the day you move in.",
-  cta: "Book a free consultation",
-  secondary: "See how we build",
+  eyebrow: "Custom home builder BC",
+  titleLead: "A home that looks right.",
+  titleAccent: "And lives well.",
+  body: "Space for the way you live. Materials you want to live with. Comfort that matters as much as the finish.",
+  brand: "Sustainable luxury custom homes",
+  cta: "Discuss your project",
+  secondary: "See the process",
   // Crossfades slowly. Mixed sources on purpose so the client can react to both looks.
   slides: [IMAGES.hero, IMAGES.nordicHaus, IMAGES.obrienKitchen],
 };
 
 export const INTRO = {
+  eyebrow: "Nordic Green Homes",
+  title: "A home for the life you actually lead",
+  lead: "Nordic Green Homes brings the site, your daily life and the practical work of building into one conversation.",
+  body: [
+    "A kitchen with room for everyone. A quiet place to work. Storage where you need it. Light in the rooms you use most.",
+    "The details that make a home yours belong in the conversation from the start. So do the practical questions: what suits the site, what fits the budget and how your choices affect the build.",
+  ],
+  designBuild: {
+    label: "Design and build, considered together",
+    body: "A floorplan, a material palette and a performance goal each affect the others. A larger window changes more than the view. A different layout can change the structure. A finish affects both the look and the upkeep. Thinking about these choices together gives your brief a stronger starting point.",
+  },
+  // Verbatim from the live Nordic site. Fuller owner bios stay on hold until verified.
+  people: "A vision brought to life by Kylie & Lane O'Brien",
   relationship: {
     label: "Design + build",
     body: "Nordic Green Homes builds alongside Nordic Green Design, so the way a home looks and the way it's built are considered from the start.",
   },
-  eyebrow: "Nordic Green Homes",
-  title: "Sustainable craftsmanship for families who demand more from their forever home",
-  // Adapted from the Nordic "About" copy; "since our inception" and "worry-free" style promises removed.
-  body: [
-    "We build homes at the intersection of eco-friendly building and bespoke design: considered, comfortable spaces made to suit the way your family actually lives.",
-    "Every project starts with listening. We take time to understand your site, your priorities and your budget before a single plan is drawn, then carry that same care through to construction.",
-  ],
-  // Verbatim from the live Nordic site. Fuller owner bios stay on hold until verified.
-  people: "A vision brought to life by Kylie & Lane O'Brien",
 };
 
 export const SERVICES = [
   {
-    key: "newBuilds",
-    title: "New builds",
-    body: "Eco-conscious new homes shaped around your lifestyle and values, planned with sustainable building practice in mind from day one.",
-    image: IMAGES.newBuilds,
-  },
-  {
-    key: "customHomes",
-    title: "Custom home design",
-    body: "Homes designed around you: layout, materials and detail worked through with you before construction begins.",
+    key: "luxuryCustomHomes",
+    title: "Luxury Custom Homes",
+    body: "Start with how you want to live, then consider the layout, materials and details that bring it together. Explore the choices that shape a custom home, from the first brief to the relationship between design, budget and buildability.",
+    cta: "Explore Luxury Custom Homes",
     image: IMAGES.customHomes,
   },
   {
-    key: "renovations",
-    title: "Home renovations",
-    body: "Kitchens, bathrooms or whole homes, renovated so they feel new again while respecting how you live in them.",
-    image: IMAGES.renovations,
+    key: "gardenSuites",
+    title: "Garden Suites",
+    body: "Making space for family or planning a separate dwelling? Begin with your property, the way the space will be used and the local rules. Access, services and site conditions all help determine what is possible.",
+    cta: "Explore Garden Suites",
+    image: IMAGES.hausPatio,
+  },
+  {
+    key: "passiveHome",
+    title: "Passive Home Builder BC",
+    body: "Considering a Passive House? Understand how insulation, windows, airtightness and ventilation work together, and what separates passive-home principles from formal building certification.",
+    cta: "Explore Passive Home Builder BC",
+    image: IMAGES.nordicHaus,
+  },
+  {
+    key: "highPerformance",
+    title: "High-Performance Homes",
+    body: "Think beyond the finishes. Explore how the building envelope, windows, ventilation and moisture control relate to the comfort and energy goals in your brief.",
+    cta: "Explore High-Performance Homes",
+    image: IMAGES.newBuilds,
+  },
+  {
+    key: "designInteriors",
+    title: "Design and Interiors",
+    body: "Bring the rooms, materials and everyday details into focus. Consider how you move through the home, where you need light and storage, and which finishes suit the way you live.",
+    cta: "Explore Design and Interiors",
+    image: IMAGES.interior,
   },
 ] as const;
 
-// The four existing pillars — reuse the themes, wording adapted and kept claim-free.
+// The four principles behind a considered home — wording adapted and kept claim-free.
 export const PILLARS = [
   {
-    title: "Sustainability",
-    body: "Sustainable building practice sits at the centre of design, material and construction decisions.",
+    title: "Considered design",
+    body: "Good design has a job to do. Rooms need to work together, storage needs to be useful and materials need to suit everyday use as well as the overall look.",
   },
   {
-    title: "Family",
-    body: "Homes planned around real family life — how you gather, rest, grow and host.",
+    title: "Clear decisions",
+    body: "A change in size, layout or specification can change the cost. Knowing which choices matter helps you weigh the options before settling on a direction.",
   },
   {
-    title: "Bespoke luxury",
-    body: "Considered detail and quality finishes, without excess for its own sake.",
+    title: "Responsible performance",
+    body: "Energy and comfort goals deserve more than a label. The useful questions are what you want to achieve, how it will be assessed and what evidence will show the result.",
   },
   {
-    title: "Faith & integrity",
-    body: "Honest conversations, clear expectations and service rooted in faith and integrity.",
+    title: "Coordinated planning",
+    body: "Design, approvals and construction are connected. Clear responsibilities and early technical input help you understand what needs to happen next.",
   },
 ] as const;
 
-// Eight reference steps grouped into the five stages from the recommended sitemap.
+// Five stages from the recommended sitemap.
 export const PROCESS = [
   {
     title: "Consultation",
-    body: "A free first conversation about your goals, site, timing and budget, so we both know whether we're the right fit.",
+    body: "Start with your site, ideas, timing and budget. Bring the questions you have now, whether you have detailed drawings or are still working out what the home needs to be.",
     includes: ["Consultation"],
   },
   {
-    title: "Design & planning",
-    body: "Your ideas become a plan, working with you — and your architect or designer where you have one — to refine layout and detail.",
+    title: "Design and planning",
+    body: "Turn your priorities into a clearer brief. Consider layout, light, materials and performance goals alongside the site and budget. If you have an architect or designer, establish who is responsible for each part of the work.",
     includes: ["Design"],
   },
   {
-    title: "Materials & approvals",
-    body: "Selecting materials and finishes together, and preparing the permits and approvals your project needs.",
-    includes: ["Material selection", "Permitting"],
+    title: "Materials and approvals",
+    body: "Bring finishes, fixtures and key specifications together with the documents your project needs. The approval path depends on your location, property and design.",
+    includes: ["Materials", "Approvals"],
   },
   {
     title: "Construction",
-    body: "A pre-construction meeting to confirm scope and schedule, then a build with clear, regular communication throughout.",
-    includes: ["Pre-construction", "Construction"],
+    body: "Before site work starts, understand what is included, how changes will be handled and how you will receive updates. Keep the agreed scope and key decisions close throughout the build.",
+    includes: ["Construction"],
   },
   {
-    title: "Handover & ongoing care",
-    body: "A detailed final walkthrough together, and seasonal care advice to help your home stay at its best.",
-    includes: ["Final walkthrough", "Maintenance"],
+    title: "Handover and ongoing care",
+    body: "Get to know your finished home, its systems and the care they need. Handover documents, product information and written warranty terms help you understand what comes next.",
+    includes: ["Handover"],
   },
 ] as const;
 
 export const ASSURANCE = {
   eyebrow: "Our commitment",
-  title: "Green Mastery Assurance",
-  // Adapted: "ensure… exceeds sustainable building standards, including Net-Zero goals" is HELD.
-  body: "Green Mastery Assurance is our commitment to keep sustainable building practice at the heart of every project — in how a home is designed, the materials chosen for it and the way it is built — so it's as kind to the planet as it is to your family.",
+  title: "A considered approach to sustainability",
+  body: "Sustainability belongs in the details. The materials you choose. The energy goals you set. The way the home can adapt as your needs change. Sustainable design involves practical choices with consequences for the whole home. Put those questions alongside appearance, budget and maintenance from the outset.",
+  link: "Explore our approach",
 };
 
 export const GUIDE = {
   eyebrow: "Guide",
-  title: "Future-Proofing Your Home",
-  body: "A homeowner's guide to the ideas worth considering early in a build or renovation.",
+  title: "Future-proofing your home",
+  body: "The best time to think about tomorrow is while you are planning today. What might your home need as your household, technology and daily routines change?",
   // Topic list from the existing guide description (reference). Final contents follow the recovered file.
   topics: [
-    "Smart technology",
-    "Renewable energy",
-    "Water conservation",
-    "Flexible design",
-    "Resilient materials",
+    {
+      title: "Smart technology",
+      body: "Think about the systems you want to use and the wiring or space they may need.",
+    },
+    {
+      title: "Renewable energy",
+      body: "Consider whether renewable energy belongs in your plans and what specialist advice the property needs.",
+    },
+    {
+      title: "Water conservation",
+      body: "Look at fixtures, water use and the practical choices relevant to your site.",
+    },
+    {
+      title: "Flexible design",
+      body: "Consider how a room could serve a different purpose as your needs change.",
+    },
+    {
+      title: "Resilient materials",
+      body: "Weigh appearance alongside exposure, maintenance and expected use.",
+    },
   ],
+  cta: "Explore resources",
 };
 
 export const CONSULTATION = {
   eyebrow: "Start here",
-  title: "Book a free consultation",
-  body: "Tell us about your new build or renovation. We'll talk through your ideas, your site and your timing, and help you understand the next steps.",
-  cta: "Book a free consultation",
+  title: "Discuss your project",
+  body: "Have a site in mind, a set of plans or a few ideas you want to explore? Tell us what you are considering, what matters most and where you need clarity. Start with your property, your priorities and the questions you want answered.",
+  cta: "Discuss your project",
 };
+
+export const FAQS = [
+  {
+    q: "Do I need finished plans before the first conversation?",
+    a: "You can start organising your ideas before you have finished plans. Gather the property details, your priorities, budget context and any surveys, sketches or inspiration you already have.",
+  },
+  {
+    q: "Which service should I start with?",
+    a: "Explore Custom Homes if you are planning a new home, or Garden Suites if you are considering a separate dwelling. For energy and comfort goals, compare Passive House and High-Performance Homes. Design and Interiors is a useful starting point for layout, materials and finishes.",
+  },
+  {
+    q: "Is a high-performance home automatically a Passive House?",
+    a: "\u201cHigh-performance\u201d is a broad term. Passive House is a building standard with specific criteria and a formal certification path. A home can include energy-efficiency goals without being a certified Passive House.",
+  },
+  {
+    q: "Can the website estimate tell me what my home will cost?",
+    a: "A website estimate is not a construction quote. Your site, design, materials, services and project scope all affect the cost. Treat any early range as a starting point for questions, not a fixed price.",
+  },
+  {
+    q: "Can I bring my own architect or designer?",
+    a: "If you already have an architect, designer or plans, include those details in your enquiry. It is important to establish who is responsible for design, approvals and construction before agreeing the next stage.",
+  },
+];
 
 export const NAV = [
   { label: "Home", to: "/" },

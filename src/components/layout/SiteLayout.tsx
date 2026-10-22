@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { NAV, PLACEHOLDER, REFERENCE_BASE, SERVICES } from "@/lib/home-content";
+import { NAV, PLACEHOLDER } from "@/lib/home-content";
 import { Placeholder } from "@/components/home/NordicHome";
 
 export function PreviewBanner() {
@@ -49,7 +49,7 @@ function HeaderCta({ className = "" }: { className?: string }) {
       to="/contact"
       className={`group h-11 items-center gap-2 rounded-full bg-white py-1 pl-5 pr-1 text-sm font-bold text-primary shadow-md shadow-black/0 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg hover:shadow-black/20 ${className}`}
     >
-      Book a free consultation
+      Discuss your project
       <span className="flex size-8 items-center justify-center rounded-full bg-primary text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:rotate-45">
         <ArrowUpRight className="size-4" />
       </span>
@@ -151,16 +151,15 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 export function SiteFooter() {
   return (
     <footer className="bg-primary text-white">
-      <div className="wrap grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr] lg:gap-12">
+      <div className="wrap grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-12">
         <div>
           <img
             src="/brand/nordic-logo-light.png"
             alt="Nordic Green Homes & Design"
             className="w-44"
           />
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/80">
-            Where sustainability meets style. Custom homes, new builds and renovations for families
-            planning their forever home.
+          <p className="mt-5 max-w-xs font-serif text-lg leading-snug text-white/90">
+            A home that looks right. And lives well.
           </p>
         </div>
 
@@ -178,29 +177,39 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <FooterHeading>Services</FooterHeading>
-          <ul className="mt-5 space-y-3">
-            {SERVICES.map((s) => (
-              <li key={s.key}>
-                <Link to="/services" className="text-sm text-white/85 hover:text-gold">
-                  {s.title}
-                </Link>
-              </li>
-            ))}
+          <FooterHeading>Resources</FooterHeading>
+          <ul className="mt-5 space-y-3 text-sm text-white/85">
+            <li>
+              <Link to="/" className="hover:text-gold">
+                Guide
+              </Link>
+            </li>
+            <li>
+              <span className="text-white/60">BC Energy Step Code</span>
+            </li>
+            <li>
+              <Link to="/faqs" className="hover:text-gold">
+                FAQs
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
-          <FooterHeading>Contact</FooterHeading>
+          <FooterHeading>Legal</FooterHeading>
           <ul className="mt-5 space-y-3 text-sm text-white/85">
             <li>
-              {REFERENCE_BASE} <span className="text-white/60">(reference)</span>
+              <Link to="/privacy" className="hover:text-gold">
+                Privacy
+              </Link>
             </li>
             <li>
-              <Placeholder dark>{PLACEHOLDER.phone}</Placeholder>
+              <Link to="/terms" className="hover:text-gold">
+                Terms
+              </Link>
             </li>
-            <li>
-              <Placeholder dark>{PLACEHOLDER.email}</Placeholder>
+            <li className="pt-2">
+              <Placeholder dark>{PLACEHOLDER.legalEntity}</Placeholder>
             </li>
           </ul>
         </div>
@@ -210,7 +219,6 @@ export function SiteFooter() {
         <div className="wrap flex flex-col items-center gap-3 py-5 text-xs text-white/75 lg:flex-row lg:justify-between">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <span>© {new Date().getFullYear()} Nordic Green Homes</span>
-            <Placeholder dark>{PLACEHOLDER.legalEntity}</Placeholder>
             <Link to="/privacy" className="hover:text-white">
               Privacy
             </Link>
@@ -234,7 +242,7 @@ export function StickyMobileCTA() {
         to="/contact"
         className="flex h-11 w-full items-center justify-center gap-2 rounded-full bg-gold text-sm font-bold text-black"
       >
-        Book a free consultation <ArrowRight className="size-4" />
+        Discuss your project <ArrowRight className="size-4" />
       </Link>
     </div>
   );

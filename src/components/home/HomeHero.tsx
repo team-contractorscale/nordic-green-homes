@@ -15,8 +15,8 @@ import { RefTag, imgProps } from "./shared";
  */
 
 const HERO_LINKS = [
-  { label: "New builds", to: "/services/new-builds" },
   { label: "Custom homes", to: "/services/new-builds" },
+  { label: "Garden suites", to: "/services" },
   { label: "Renovations", to: "/services/home-renovations" },
 ] as const;
 
@@ -91,6 +91,12 @@ export function HomeHero() {
             className="mt-6 max-w-[34rem] text-base leading-relaxed text-white/90"
           >
             {HERO.body}
+          </p>
+          <p
+            data-anim="hero-body"
+            className="mt-3 text-sm font-bold uppercase tracking-[0.2em] text-gold/90"
+          >
+            {HERO.brand}
           </p>
 
           <div data-anim="hero-cta" className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">

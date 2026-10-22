@@ -31,10 +31,11 @@ export function HomeProcess() {
               data-anim="reveal"
               className="mt-4 font-serif text-[clamp(2rem,2vw+1rem,3rem)] leading-[1.1] tracking-[-0.01em]"
             >
-              A clear path from first conversation to handover
+              From your first questions to moving in
             </h2>
             <p data-anim="reveal" className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Five stages, laid out up front, so you know what to expect at each step.
+              There is a lot to decide before a home takes shape. These five stages bring the key
+              questions into view.
             </p>
 
             <ol data-stack-nav data-reveal className="relative mt-8 hidden space-y-1 pl-6 lg:block">
@@ -63,7 +64,7 @@ export function HomeProcess() {
             <div data-reveal className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <ConsultationButton />
               <Link to="/process" className={TEXT_LINK}>
-                The full process <ArrowUpRight className="size-4" />
+                See the process <ArrowUpRight className="size-4" />
               </Link>
             </div>
           </div>

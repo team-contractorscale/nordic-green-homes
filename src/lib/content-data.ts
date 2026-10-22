@@ -330,27 +330,23 @@ export const SOURCE_TESTIMONIALS = [
 
 export const FAQS = [
   {
-    q: "What makes a home high-performance?",
-    a: "A high-performance home starts with a tight, well-insulated building envelope, efficient glazing and balanced ventilation, then adds renewable energy systems such as solar where it makes sense for your site. The aim is consistent comfort, cleaner indoor air and lower running costs.",
+    q: "Do I need finished plans before the first conversation?",
+    a: "You can start organising your ideas before you have finished plans. Gather the property details, your priorities, budget context and any surveys, sketches or inspiration you already have.",
   },
   {
-    q: "Who manages the day-to-day build process?",
-    a: "You collaborate directly with Lane O'Brien through every stage — from feasibility and design through permitting, construction, and final walkthrough.",
+    q: "Which service should I start with?",
+    a: "Explore Custom Homes if you are planning a new home, or Garden Suites if you are considering a separate dwelling. For energy and comfort goals, compare Passive House and High-Performance Homes. Design and Interiors is a useful starting point for layout, materials and finishes.",
   },
   {
-    q: "Do you build outside of Chilliwack?",
-    a: "Our service areas for Nordic Green Homes are being confirmed. Reference areas from the source site include the Fraser Valley, Kelowna, Victoria, Abbotsford and surrounding British Columbia regions, depending on project scale and site feasibility.",
+    q: "Is a high-performance home automatically a Passive House?",
+    a: "\u201cHigh-performance\u201d is a broad term. Passive House is a building standard with specific criteria and a formal certification path. A home can include energy-efficiency goals without being a certified Passive House.",
   },
   {
-    q: "Can you help with design and floorplans before construction starts?",
-    a: "Yes. In partnership with Kylie O'Brien and Nordic Green Design, as well as collaborating with your chosen architect or building designer, we provide custom design development, material selections, and plan coordination from step one.",
+    q: "Can the website estimate tell me what my home will cost?",
+    a: "A website estimate is not a construction quote. Your site, design, materials, services and project scope all affect the cost. Treat any early range as a starting point for questions, not a fixed price.",
   },
   {
-    q: "How do you manage permits and municipal building code requirements?",
-    a: "We handle municipal permitting and engineering coordination, with experience working through local building code and energy-step requirements, so the documentation side of your project proceeds without administrative delays.",
-  },
-  {
-    q: "What is the first step to get started?",
-    a: "The best starting point is our complimentary 15-minute discovery call. We discuss your site, budget range, lifestyle goals, and project timeline to determine if we are the right fit for your vision.",
+    q: "Can I bring my own architect or designer?",
+    a: "If you already have an architect, designer or plans, include those details in your enquiry. It is important to establish who is responsible for design, approvals and construction before agreeing the next stage.",
   },
 ];
