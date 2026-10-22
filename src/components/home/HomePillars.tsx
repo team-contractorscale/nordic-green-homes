@@ -1,7 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import { useState, type ReactNode } from "react";
-import { IMAGES, PILLARS, type RefImage } from "@/lib/home-content";
+import { PILLARS, type RefImage, PHOTOS } from "@/lib/home-content";
 import { Eyebrow, RefTag, imgProps } from "./shared";
 
 /* ---------- 4. Pillars — "What guides the work" ----------
@@ -75,10 +73,10 @@ const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
 };
 
 const PILLAR_IMAGE: Record<(typeof PILLARS)[number]["title"], RefImage> = {
-  "Considered design": IMAGES.hausGarden,
-  "Clear decisions": IMAGES.hausSide,
-  "Responsible performance": IMAGES.hausRear,
-  "Coordinated planning": IMAGES.farmhouseRear,
+  "Considered design": PHOTOS.bathTub,
+  "Clear decisions": PHOTOS.bathVanity,
+  "Responsible performance": PHOTOS.kitchen,
+  "Coordinated planning": PHOTOS.shopStairs,
 };
 
 export function HomePillars() {
@@ -100,19 +98,6 @@ export function HomePillars() {
             >
               Four principles behind a considered home
             </h2>
-          </div>
-          <div data-anim="reveal" className="lg:col-span-5">
-            <p className="text-base leading-relaxed text-white/85">
-              The values that shape every decision, from the first sketch to the day you move in.
-              Hover or tap a principle to open it.
-            </p>
-            <Link
-              to="/about-us"
-              className="group mt-4 inline-flex items-center gap-2 text-base font-bold text-white underline underline-offset-4 hover:text-gold"
-            >
-              More about us
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
           </div>
         </div>
 

@@ -1,104 +1,80 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BRAND, FAQS, ASSETS } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight, HelpCircle } from "lucide-react";
-import * as React from "react";
+import { projectPhoto } from "@/lib/home-content";
+import { H2, HomeConsultation } from "@/components/home/NordicHome";
+import { FaqList } from "@/components/page/PageParts";
+
+const DESCRIPTION =
+  "These answers help you understand what to prepare, which questions depend on the property and what the next step can and cannot tell you.";
+
+const FAQS = [
+  {
+    q: "What should I prepare before the first conversation?",
+    a: "Bring the property or proposed location, your project type, broad goals, timing, budget context and any plans, surveys or inspiration you have.",
+  },
+  {
+    q: "What does an estimate show?",
+    a: "It shows an indicative range based on stated assumptions. It is not a quote, approval, contract or promise of final cost.",
+  },
+  {
+    q: "Is an estimate a quote?",
+    a: "No. A quote depends on a defined scope and commercial basis.",
+  },
+  {
+    q: "What is the difference between Passive House and high-performance building?",
+    a: "Passive House is a defined building standard with published criteria. High-performance is broader and needs a project definition.",
+  },
+  {
+    q: "Can every property support a garden suite?",
+    a: "No general website answer can confirm that. Local rules, site conditions, access, servicing and existing buildings all matter.",
+  },
+  {
+    q: "Who handles design and approvals?",
+    a: "The responsible party depends on the responsibilities set out for your project. Confirm this before detailed work begins.",
+  },
+  {
+    q: "What makes project proof useful?",
+    a: "Projects, images, testimonials, plans and results are most useful when their source, permissions and context are clear.",
+  },
+];
+
+const HEADER_IMAGE = projectPhoto("143732770_1946069238868993_8364835802107115038_n-2.jpg");
 
 export const Route = createFileRoute("/faqs")({
   head: () => ({
     meta: [
       { title: "Frequently Asked Questions | Nordic Green Homes" },
-      {
-        name: "description",
-        content:
-          "Answers to common questions about high-performance custom home building, energy codes, remodeling, permits and timelines in British Columbia — internal pilot.",
-      },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Frequently Asked Questions | Nordic Green Homes" },
-      {
-        property: "og:description",
-        content:
-          "Clear answers on high-performance building, the building process, budget transparency and service areas.",
-      },
-      { property: "og:image", content: ASSETS.hero2 },
-      { name: "twitter:image", content: ASSETS.hero2 },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:image", content: HEADER_IMAGE },
+      { name: "twitter:image", content: HEADER_IMAGE },
     ],
   }),
   component: FaqsPage,
 });
 
 function FaqsPage() {
-  const [openIndex, setOpenIndex] = React.useState<number | null>(0);
-
-  const toggleFaq = (idx: number) => {
-    setOpenIndex(openIndex === idx ? null : idx);
-  };
-
   return (
     <div>
       <PageHeader
-        image={ASSETS.heroInterior}
-        imageAlt="Bright, sustainable interior of a Nordic Green home with timber detailing (reference image)"
-        eyebrow="Got Questions? · Draft"
-        title="Frequently Asked Questions"
-        description="Building or renovating a home is a significant investment. Here are answers to common questions about our building practice, process and working together. Service-area and certification details are pending confirmation."
+        image={HEADER_IMAGE}
+        imageAlt="Covered outdoor living space (reference image)"
+        eyebrow="Frequently Asked Questions"
+        title="Questions homeowners ask before starting"
+        description={DESCRIPTION}
       />
 
-      {/* Accordion FAQ list */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-4">
-            {FAQS.map((faq, idx) => {
-              const isOpen = openIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className="bg-card border border-border rounded-lg overflow-hidden transition-all shadow-2xs"
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full py-5 px-6 text-left flex items-center justify-between gap-4 font-serif text-lg font-semibold text-foreground hover:bg-muted/30 transition-colors"
-                    aria-expanded={isOpen}
-                  >
-                    <span className="flex items-center gap-3">
-                      <HelpCircle className="w-5 h-5 text-primary shrink-0" />
-                      <span>{faq.q}</span>
-                    </span>
-                    <span className="text-xl font-mono text-muted-foreground shrink-0">
-                      {isOpen ? "−" : "+"}
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 pb-6 pt-1 text-base text-muted-foreground leading-relaxed border-t border-border/40">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+      <section className="bg-secondary/50 py-24 sm:py-28">
+        <div className="wrap max-w-4xl">
+          <div className="text-center">
+            <h2 className={H2}>Answers to common questions</h2>
           </div>
-
-          <div className="mt-16 text-center bg-muted/40 p-8 rounded-xl border border-border">
-            <h3 className="font-serif text-xl font-bold text-foreground">
-              Have a question not covered here?
-            </h3>
-            <p className="text-base text-muted-foreground mt-2">
-              We're happy to walk through your specific lot, building permits, or architectural
-              ideas.
-            </p>
-            <div className="mt-5">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md bg-primary text-primary-foreground text-sm font-medium shadow hover:bg-primary/90 transition-all"
-              >
-                <span>{BRAND.primaryCtaText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
+          <FaqList items={FAQS} />
         </div>
       </section>
+
+      <HomeConsultation />
     </div>
   );
 }

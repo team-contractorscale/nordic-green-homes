@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { IMAGES, PROCESS, type RefImage } from "@/lib/home-content";
+import { IMAGES, PROCESS, type RefImage, PHOTOS } from "@/lib/home-content";
 import { ConsultationButton, Eyebrow, RefTag, TEXT_LINK, imgProps } from "./shared";
 
 /* ---------- 5. Process — "How we work" ----------
@@ -13,10 +13,10 @@ import { ConsultationButton, Eyebrow, RefTag, TEXT_LINK, imgProps } from "./shar
 
 const STAGE_IMAGE: RefImage[] = [
   IMAGES.interior,
-  IMAGES.customHomes,
-  IMAGES.hausSide,
-  IMAGES.newBuilds,
-  IMAGES.hero,
+  PHOTOS.kitchenCabinets,
+  PHOTOS.shopBays,
+  PHOTOS.shopTrucks,
+  PHOTOS.kitchenRange,
 ];
 
 export function HomeProcess() {
@@ -73,7 +73,7 @@ export function HomeProcess() {
         {/* stacking cards */}
         <ol data-stack className="space-y-6 lg:col-span-8 lg:space-y-10">
           {PROCESS.map((step, i) => {
-            const img = STAGE_IMAGE[i] ?? IMAGES.hero;
+            const img = STAGE_IMAGE[i] ?? PHOTOS.kitchenRange;
             return (
               <li
                 key={step.title}
@@ -87,9 +87,6 @@ export function HomeProcess() {
                       <span className="font-serif text-6xl leading-none text-gold transition-transform duration-500 group-hover:-translate-y-1">
                         0{i + 1}
                       </span>
-                      <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                        Stage {i + 1} of {PROCESS.length}
-                      </span>
                     </div>
                     <h3 className="mt-6 font-serif text-[clamp(1.5rem,1vw+1rem,2rem)] leading-tight text-foreground">
                       {step.title}
@@ -97,16 +94,6 @@ export function HomeProcess() {
                     <p className="mt-3 text-base leading-relaxed text-muted-foreground">
                       {step.body}
                     </p>
-                    <div className="mt-auto flex flex-wrap gap-2 pt-6">
-                      {step.includes.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-sm font-bold text-primary transition-colors duration-300 group-hover:border-gold/40 group-hover:bg-gold/10"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                   <div className="relative min-h-[14rem] overflow-hidden md:min-h-0">
                     <img

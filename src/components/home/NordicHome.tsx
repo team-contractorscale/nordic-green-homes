@@ -1,27 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
-import { useState, type ReactNode } from "react";
-import {
-  ASSURANCE,
-  CONSULTATION,
-  FAQS,
-  IMAGES,
-  INTRO,
-  PLACEHOLDER,
-  REFERENCE_BASE,
-  REFERENCE_SERVICE_AREA,
-  SERVICES,
-} from "@/lib/home-content";
-import {
-  ConsultationButton,
-  Eyebrow,
-  H2,
-  H3,
-  Placeholder,
-  RefImg,
-  RefTag,
-  TEXT_LINK,
-} from "./shared";
+import { useState } from "react";
+import { ASSURANCE, CONSULTATION, FAQS, IMAGES, INTRO, SERVICES, PHOTOS } from "@/lib/home-content";
+import { ConsultationButton, Eyebrow, H2, H3, RefImg, RefTag, TEXT_LINK } from "./shared";
 
 /* Nordic Green Homes — home page barrel + inline sections.
  *
@@ -53,12 +34,24 @@ export function HomeIntro() {
       <div className="wrap grid items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Eyebrow>{INTRO.eyebrow}</Eyebrow>
-          <h2 data-reveal className={`${H2} mt-4`}>
+          <div className="mt-6 space-y-4">
+            {INTRO.lead.map((p, i) => (
+              <p
+                key={p}
+                data-reveal
+                className={
+                  i === 0
+                    ? "text-lg leading-relaxed text-foreground/90"
+                    : "text-base leading-relaxed text-muted-foreground"
+                }
+              >
+                {p}
+              </p>
+            ))}
+          </div>
+          <h2 data-reveal className={`${H2} mt-10`}>
             {INTRO.title}
           </h2>
-          <p data-reveal className="mt-6 text-lg leading-relaxed text-foreground/90">
-            {INTRO.lead}
-          </p>
           <div className="mt-6 space-y-5 text-base leading-relaxed text-muted-foreground">
             {INTRO.body.map((p) => (
               <p key={p} data-reveal>
@@ -72,25 +65,13 @@ export function HomeIntro() {
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
               {INTRO.designBuild.label}
             </p>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              {INTRO.designBuild.body}
-            </p>
-          </div>
-
-          <p data-reveal className="mt-8 font-serif text-xl text-primary">
-            {INTRO.people}
-          </p>
-          <div data-reveal="left" className="mt-4 border-l-2 border-gold/50 pl-5">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              {INTRO.relationship.label}
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              {INTRO.relationship.body}
-            </p>
-            <div className="mt-3">
-              <Placeholder>{PLACEHOLDER.relationship}</Placeholder>
+            <div className="mt-3 space-y-3 text-base leading-relaxed text-muted-foreground">
+              {INTRO.designBuild.body.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
             </div>
           </div>
+
           <div data-reveal className="mt-8">
             <Link to="/about-us" className={TEXT_LINK}>
               About Nordic Green Homes <ArrowUpRight className="size-4" />
@@ -111,14 +92,6 @@ export function HomeIntro() {
 
 /* ---------- 3. Services ---------- */
 
-const SERVICE_LINKS: Record<(typeof SERVICES)[number]["key"], string> = {
-  luxuryCustomHomes: "/services/new-builds",
-  gardenSuites: "/services",
-  passiveHome: "/services",
-  highPerformance: "/services",
-  designInteriors: "/services",
-};
-
 export function HomeServices() {
   return (
     <section className="bg-secondary/70 py-24 sm:py-28">
@@ -130,16 +103,11 @@ export function HomeServices() {
               Find the right starting point for your home
             </h2>
           </div>
-          <div data-reveal="right">
-            <Link to="/services" className={TEXT_LINK}>
-              All services <ArrowUpRight className="size-4" />
-            </Link>
-          </div>
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.slice(0, 3).map((s) => (
-            <Link key={s.key} to={SERVICE_LINKS[s.key]} data-reveal className="group flex flex-col">
+            <Link key={s.key} to={s.to} data-reveal className="group flex flex-col">
               <RefImg image={s.image} className="aspect-[4/5] rounded-lg" />
               <h3 className={`mt-6 ${H3}`}>{s.title}</h3>
               <p className="mt-2 flex-1 text-base leading-relaxed text-muted-foreground">
@@ -151,10 +119,6 @@ export function HomeServices() {
               </span>
             </Link>
           ))}
-        </div>
-
-        <div data-reveal className="mt-12">
-          <Placeholder>{PLACEHOLDER.services}</Placeholder>
         </div>
       </div>
     </section>
@@ -184,12 +148,16 @@ export function HomeAssurance() {
           <h2 data-reveal className={`${H2} mt-4`}>
             {ASSURANCE.title}
           </h2>
-          <p
-            data-reveal
-            className="mt-6 max-w-xl text-base leading-relaxed text-primary-foreground/85"
-          >
-            {ASSURANCE.body}
+          <p data-reveal className="mt-6 font-serif text-xl text-white">
+            {ASSURANCE.subtitle}
           </p>
+          <div className="mt-4 max-w-xl space-y-4 text-base leading-relaxed text-primary-foreground/85">
+            {ASSURANCE.body.map((p) => (
+              <p key={p} data-reveal>
+                {p}
+              </p>
+            ))}
+          </div>
           <div data-reveal className="mt-8">
             <Link
               to="/about-us"
@@ -198,9 +166,6 @@ export function HomeAssurance() {
               {ASSURANCE.link}
               <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
-          </div>
-          <div data-reveal className="mt-6">
-            <Placeholder dark>{PLACEHOLDER.assurance}</Placeholder>
           </div>
         </div>
         <div data-reveal="right" className="lg:col-span-5 lg:col-start-8">
@@ -216,25 +181,17 @@ export function HomeAssurance() {
  * so the page ends in a single consultation moment rather than two stacked green blocks.
  */
 
-function Detail({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <div>
-      <dt className="text-xs font-bold uppercase tracking-[0.2em] text-white/75">{label}</dt>
-      <dd className="mt-2 text-sm text-white">{children}</dd>
-    </div>
-  );
-}
-
 export function HomeConsultation() {
   return (
-    <section className="relative z-10 bg-secondary/50 pt-8">
-      <div className="wrap pb-24">
+    <section className="consult-band relative z-10 pt-8">
+      {/* Offset lives on the wrapper: the reveal animation owns the card's transform. */}
+      <div className="wrap translate-y-16 lg:translate-y-24">
         <div
           data-reveal="scale"
-          className="relative isolate -mb-16 overflow-hidden rounded-2xl text-white shadow-2xl shadow-black/30 lg:-mb-24"
+          className="relative isolate overflow-hidden rounded-2xl text-white shadow-2xl shadow-black/30"
         >
           <img
-            src={IMAGES.poolRender.src}
+            src={PHOTOS.barLounge.src}
             alt=""
             loading="lazy"
             className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -243,46 +200,25 @@ export function HomeConsultation() {
             aria-hidden
             className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(13_61_50/0.95)_0%,rgb(18_85_69/0.85)_45%,rgb(18_85_69/0.55)_100%)]"
           />
-          <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-center lg:gap-16 lg:p-14">
+          <div className="p-8 sm:p-12 lg:p-14">
             <div>
               <Eyebrow dark>{CONSULTATION.eyebrow}</Eyebrow>
               <h2 data-reveal className={`${H2} mt-4`}>
                 {CONSULTATION.title}
               </h2>
-              <p data-reveal className="mt-4 max-w-[34rem] text-base leading-relaxed text-white/90">
-                {CONSULTATION.body}
-              </p>
+              <div className="mt-4 max-w-[34rem] space-y-3 text-base leading-relaxed text-white/90">
+                {CONSULTATION.body.map((p) => (
+                  <p key={p} data-reveal>
+                    {p}
+                  </p>
+                ))}
+              </div>
               <div data-reveal className="mt-8">
                 <ConsultationButton tone="gold" />
               </div>
-              <p className="mt-4 text-xs text-white/70">
-                Internal pilot: enquiry forms and CRM submission are switched off.
-              </p>
             </div>
-
-            <dl
-              data-reveal="right"
-              className="grid gap-6 rounded-lg border border-white/15 p-6 sm:grid-cols-2"
-            >
-              <Detail label="Phone">
-                <Placeholder dark>{PLACEHOLDER.phone}</Placeholder>
-              </Detail>
-              <Detail label="Email">
-                <Placeholder dark>{PLACEHOLDER.email}</Placeholder>
-              </Detail>
-              <Detail label="Based in">
-                {REFERENCE_BASE} <span className="text-white/60">(reference)</span>
-              </Detail>
-              <Detail label="Service area">
-                <span className="text-white/75">{REFERENCE_SERVICE_AREA} (reference)</span>
-              </Detail>
-              <div className="sm:col-span-2">
-                <Placeholder dark>{PLACEHOLDER.serviceArea}</Placeholder>{" "}
-                <Placeholder dark>{PLACEHOLDER.bookingOwner}</Placeholder>
-              </div>
-            </dl>
           </div>
-          <RefTag image={IMAGES.poolRender} className="bottom-4 right-4" />
+          <RefTag image={PHOTOS.barLounge} className="bottom-4 right-4" />
         </div>
       </div>
     </section>
@@ -297,12 +233,9 @@ export function HomeFaqs() {
   return (
     <section className="bg-secondary/50 py-24 sm:py-28">
       <div className="wrap max-w-4xl">
-        <div className="text-center">
-          <Eyebrow>Frequently asked questions</Eyebrow>
-          <h2 data-reveal className={`${H2} mt-4`}>
-            Questions before you start
-          </h2>
-        </div>
+        <h2 data-reveal className={`${H2} text-center`}>
+          Frequently asked questions
+        </h2>
 
         <div className="mt-12 space-y-4">
           {FAQS.map((faq, i) => {
@@ -335,16 +268,6 @@ export function HomeFaqs() {
               </div>
             );
           })}
-        </div>
-
-        <div data-reveal className="mt-12 text-center">
-          <Link
-            to="/faqs"
-            className="group inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-gold"
-          >
-            All questions
-            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
         </div>
       </div>
     </section>

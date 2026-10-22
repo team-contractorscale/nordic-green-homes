@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BRAND, ASSETS } from "@/lib/content-data";
+import { BRAND } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Placeholder } from "@/components/home/NordicHome";
-import { PLACEHOLDER } from "@/lib/home-content";
+import { PLACEHOLDER, projectPhoto } from "@/lib/home-content";
+
+const HEADER_IMAGE = projectPhoto("144076210_1946069355535648_3573319870902758670_n.jpg");
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -19,8 +21,8 @@ export const Route = createFileRoute("/terms")({
         content:
           "Draft terms for the internal Nordic Green Homes pilot — not approved or published.",
       },
-      { property: "og:image", content: ASSETS.hero2 },
-      { name: "twitter:image", content: ASSETS.hero2 },
+      { property: "og:image", content: HEADER_IMAGE },
+      { name: "twitter:image", content: HEADER_IMAGE },
     ],
   }),
   component: TermsPage,
@@ -30,7 +32,7 @@ function TermsPage() {
   return (
     <div>
       <PageHeader
-        image={ASSETS.hero2}
+        image={HEADER_IMAGE}
         imageAlt="Architectural exterior of a sustainable Nordic Green custom home (reference image)"
         eyebrow="Legal · Draft"
         title="Terms & Conditions"

@@ -10,27 +10,37 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqsRouteImport } from './routes/faqs'
-import { Route as Home2RouteImport } from './routes/home-2'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as AboutUsIndexRouteImport } from './routes/about-us.index'
+import { Route as AboutUsOurGuaranteeRouteImport } from './routes/about-us.our-guarantee'
+import { Route as AboutUsWhyChooseUsRouteImport } from './routes/about-us.why-choose-us'
+import { Route as FloorplansIndexRouteImport } from './routes/floorplans.index'
+import { Route as FloorplansModernBelgianFarmhouseRouteImport } from './routes/floorplans.modern-belgian-farmhouse'
+import { Route as FloorplansNordicHausRouteImport } from './routes/floorplans.nordic-haus'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
+import { Route as ResourcesArticleTemplateRouteImport } from './routes/resources.article-template'
+import { Route as ResourcesBcEnergyStepCodeRouteImport } from './routes/resources.bc-energy-step-code'
+import { Route as ResourcesGuideRouteImport } from './routes/resources.guide'
+import { Route as ServiceAreasIndexRouteImport } from './routes/service-areas.index'
+import { Route as ServiceAreasRichmondAndTsawwassenRouteImport } from './routes/service-areas.richmond-and-tsawwassen'
+import { Route as ServiceAreasVancouverIslandRouteImport } from './routes/service-areas.vancouver-island'
+import { Route as ServiceAreasVancouverNorthShoreRouteImport } from './routes/service-areas.vancouver-north-shore'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
-import { Route as ServicesHomeRenovationsRouteImport } from './routes/services.home-renovations'
-import { Route as ServicesNewBuildsRouteImport } from './routes/services.new-builds'
+import { Route as ServicesDesignAndInteriorsRouteImport } from './routes/services.design-and-interiors'
+import { Route as ServicesGardenSuitesRouteImport } from './routes/services.garden-suites'
+import { Route as ServicesHighPerformanceHomesRouteImport } from './routes/services.high-performance-homes'
+import { Route as ServicesLuxuryCustomHomesRouteImport } from './routes/services.luxury-custom-homes'
+import { Route as ServicesPassiveHomeBuilderBcRouteImport } from './routes/services.passive-home-builder-bc'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutUsRoute = AboutUsRouteImport.update({
-  id: '/about-us',
-  path: '/about-us',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -41,11 +51,6 @@ const ContactRoute = ContactRouteImport.update({
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Home2Route = Home2RouteImport.update({
-  id: '/home-2',
-  path: '/home-2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -73,129 +78,329 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
+  id: '/about-us/',
+  path: '/about-us/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutUsOurGuaranteeRoute = AboutUsOurGuaranteeRouteImport.update({
+  id: '/about-us/our-guarantee',
+  path: '/about-us/our-guarantee',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutUsWhyChooseUsRoute = AboutUsWhyChooseUsRouteImport.update({
+  id: '/about-us/why-choose-us',
+  path: '/about-us/why-choose-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FloorplansIndexRoute = FloorplansIndexRouteImport.update({
+  id: '/floorplans/',
+  path: '/floorplans/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FloorplansModernBelgianFarmhouseRoute =
+  FloorplansModernBelgianFarmhouseRouteImport.update({
+    id: '/floorplans/modern-belgian-farmhouse',
+    path: '/floorplans/modern-belgian-farmhouse',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FloorplansNordicHausRoute = FloorplansNordicHausRouteImport.update({
+  id: '/floorplans/nordic-haus',
+  path: '/floorplans/nordic-haus',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/resources/',
+  path: '/resources/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesArticleTemplateRoute =
+  ResourcesArticleTemplateRouteImport.update({
+    id: '/resources/article-template',
+    path: '/resources/article-template',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ResourcesBcEnergyStepCodeRoute =
+  ResourcesBcEnergyStepCodeRouteImport.update({
+    id: '/resources/bc-energy-step-code',
+    path: '/resources/bc-energy-step-code',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ResourcesGuideRoute = ResourcesGuideRouteImport.update({
+  id: '/resources/guide',
+  path: '/resources/guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiceAreasIndexRoute = ServiceAreasIndexRouteImport.update({
+  id: '/service-areas/',
+  path: '/service-areas/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiceAreasRichmondAndTsawwassenRoute =
+  ServiceAreasRichmondAndTsawwassenRouteImport.update({
+    id: '/service-areas/richmond-and-tsawwassen',
+    path: '/service-areas/richmond-and-tsawwassen',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasVancouverIslandRoute =
+  ServiceAreasVancouverIslandRouteImport.update({
+    id: '/service-areas/vancouver-island',
+    path: '/service-areas/vancouver-island',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiceAreasVancouverNorthShoreRoute =
+  ServiceAreasVancouverNorthShoreRouteImport.update({
+    id: '/service-areas/vancouver-north-shore',
+    path: '/service-areas/vancouver-north-shore',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
   id: '/services/',
   path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesHomeRenovationsRoute = ServicesHomeRenovationsRouteImport.update({
-  id: '/services/home-renovations',
-  path: '/services/home-renovations',
+const ServicesDesignAndInteriorsRoute =
+  ServicesDesignAndInteriorsRouteImport.update({
+    id: '/services/design-and-interiors',
+    path: '/services/design-and-interiors',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesGardenSuitesRoute = ServicesGardenSuitesRouteImport.update({
+  id: '/services/garden-suites',
+  path: '/services/garden-suites',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesNewBuildsRoute = ServicesNewBuildsRouteImport.update({
-  id: '/services/new-builds',
-  path: '/services/new-builds',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const ServicesHighPerformanceHomesRoute =
+  ServicesHighPerformanceHomesRouteImport.update({
+    id: '/services/high-performance-homes',
+    path: '/services/high-performance-homes',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesLuxuryCustomHomesRoute =
+  ServicesLuxuryCustomHomesRouteImport.update({
+    id: '/services/luxury-custom-homes',
+    path: '/services/luxury-custom-homes',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesPassiveHomeBuilderBcRoute =
+  ServicesPassiveHomeBuilderBcRouteImport.update({
+    id: '/services/passive-home-builder-bc',
+    path: '/services/passive-home-builder-bc',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about-us': typeof AboutUsRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
-  '/home-2': typeof Home2Route
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/services/home-renovations': typeof ServicesHomeRenovationsRoute
-  '/services/new-builds': typeof ServicesNewBuildsRoute
+  '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
+  '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
+  '/floorplans/nordic-haus': typeof FloorplansNordicHausRoute
+  '/resources/article-template': typeof ResourcesArticleTemplateRoute
+  '/resources/bc-energy-step-code': typeof ResourcesBcEnergyStepCodeRoute
+  '/resources/guide': typeof ResourcesGuideRoute
+  '/service-areas/richmond-and-tsawwassen': typeof ServiceAreasRichmondAndTsawwassenRoute
+  '/service-areas/vancouver-island': typeof ServiceAreasVancouverIslandRoute
+  '/service-areas/vancouver-north-shore': typeof ServiceAreasVancouverNorthShoreRoute
+  '/services/design-and-interiors': typeof ServicesDesignAndInteriorsRoute
+  '/services/garden-suites': typeof ServicesGardenSuitesRoute
+  '/services/high-performance-homes': typeof ServicesHighPerformanceHomesRoute
+  '/services/luxury-custom-homes': typeof ServicesLuxuryCustomHomesRoute
+  '/services/passive-home-builder-bc': typeof ServicesPassiveHomeBuilderBcRoute
+  '/about-us/': typeof AboutUsIndexRoute
+  '/floorplans/': typeof FloorplansIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
+  '/service-areas/': typeof ServiceAreasIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about-us': typeof AboutUsRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
-  '/home-2': typeof Home2Route
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/services/home-renovations': typeof ServicesHomeRenovationsRoute
-  '/services/new-builds': typeof ServicesNewBuildsRoute
+  '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
+  '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
+  '/floorplans/nordic-haus': typeof FloorplansNordicHausRoute
+  '/resources/article-template': typeof ResourcesArticleTemplateRoute
+  '/resources/bc-energy-step-code': typeof ResourcesBcEnergyStepCodeRoute
+  '/resources/guide': typeof ResourcesGuideRoute
+  '/service-areas/richmond-and-tsawwassen': typeof ServiceAreasRichmondAndTsawwassenRoute
+  '/service-areas/vancouver-island': typeof ServiceAreasVancouverIslandRoute
+  '/service-areas/vancouver-north-shore': typeof ServiceAreasVancouverNorthShoreRoute
+  '/services/design-and-interiors': typeof ServicesDesignAndInteriorsRoute
+  '/services/garden-suites': typeof ServicesGardenSuitesRoute
+  '/services/high-performance-homes': typeof ServicesHighPerformanceHomesRoute
+  '/services/luxury-custom-homes': typeof ServicesLuxuryCustomHomesRoute
+  '/services/passive-home-builder-bc': typeof ServicesPassiveHomeBuilderBcRoute
+  '/about-us': typeof AboutUsIndexRoute
+  '/floorplans': typeof FloorplansIndexRoute
+  '/resources': typeof ResourcesIndexRoute
+  '/service-areas': typeof ServiceAreasIndexRoute
   '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about-us': typeof AboutUsRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
-  '/home-2': typeof Home2Route
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/services/home-renovations': typeof ServicesHomeRenovationsRoute
-  '/services/new-builds': typeof ServicesNewBuildsRoute
+  '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
+  '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
+  '/floorplans/nordic-haus': typeof FloorplansNordicHausRoute
+  '/resources/article-template': typeof ResourcesArticleTemplateRoute
+  '/resources/bc-energy-step-code': typeof ResourcesBcEnergyStepCodeRoute
+  '/resources/guide': typeof ResourcesGuideRoute
+  '/service-areas/richmond-and-tsawwassen': typeof ServiceAreasRichmondAndTsawwassenRoute
+  '/service-areas/vancouver-island': typeof ServiceAreasVancouverIslandRoute
+  '/service-areas/vancouver-north-shore': typeof ServiceAreasVancouverNorthShoreRoute
+  '/services/design-and-interiors': typeof ServicesDesignAndInteriorsRoute
+  '/services/garden-suites': typeof ServicesGardenSuitesRoute
+  '/services/high-performance-homes': typeof ServicesHighPerformanceHomesRoute
+  '/services/luxury-custom-homes': typeof ServicesLuxuryCustomHomesRoute
+  '/services/passive-home-builder-bc': typeof ServicesPassiveHomeBuilderBcRoute
+  '/about-us/': typeof AboutUsIndexRoute
+  '/floorplans/': typeof FloorplansIndexRoute
+  '/resources/': typeof ResourcesIndexRoute
+  '/service-areas/': typeof ServiceAreasIndexRoute
   '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about-us'
     | '/contact'
     | '/faqs'
-    | '/home-2'
     | '/privacy'
     | '/process'
     | '/projects'
     | '/sitemap.xml'
     | '/terms'
-    | '/services/home-renovations'
-    | '/services/new-builds'
+    | '/about-us/our-guarantee'
+    | '/about-us/why-choose-us'
+    | '/floorplans/modern-belgian-farmhouse'
+    | '/floorplans/nordic-haus'
+    | '/resources/article-template'
+    | '/resources/bc-energy-step-code'
+    | '/resources/guide'
+    | '/service-areas/richmond-and-tsawwassen'
+    | '/service-areas/vancouver-island'
+    | '/service-areas/vancouver-north-shore'
+    | '/services/design-and-interiors'
+    | '/services/garden-suites'
+    | '/services/high-performance-homes'
+    | '/services/luxury-custom-homes'
+    | '/services/passive-home-builder-bc'
+    | '/about-us/'
+    | '/floorplans/'
+    | '/resources/'
+    | '/service-areas/'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about-us'
     | '/contact'
     | '/faqs'
-    | '/home-2'
     | '/privacy'
     | '/process'
     | '/projects'
     | '/sitemap.xml'
     | '/terms'
-    | '/services/home-renovations'
-    | '/services/new-builds'
+    | '/about-us/our-guarantee'
+    | '/about-us/why-choose-us'
+    | '/floorplans/modern-belgian-farmhouse'
+    | '/floorplans/nordic-haus'
+    | '/resources/article-template'
+    | '/resources/bc-energy-step-code'
+    | '/resources/guide'
+    | '/service-areas/richmond-and-tsawwassen'
+    | '/service-areas/vancouver-island'
+    | '/service-areas/vancouver-north-shore'
+    | '/services/design-and-interiors'
+    | '/services/garden-suites'
+    | '/services/high-performance-homes'
+    | '/services/luxury-custom-homes'
+    | '/services/passive-home-builder-bc'
+    | '/about-us'
+    | '/floorplans'
+    | '/resources'
+    | '/service-areas'
     | '/services'
   id:
     | '__root__'
     | '/'
-    | '/about-us'
     | '/contact'
     | '/faqs'
-    | '/home-2'
     | '/privacy'
     | '/process'
     | '/projects'
     | '/sitemap.xml'
     | '/terms'
-    | '/services/home-renovations'
-    | '/services/new-builds'
+    | '/about-us/our-guarantee'
+    | '/about-us/why-choose-us'
+    | '/floorplans/modern-belgian-farmhouse'
+    | '/floorplans/nordic-haus'
+    | '/resources/article-template'
+    | '/resources/bc-energy-step-code'
+    | '/resources/guide'
+    | '/service-areas/richmond-and-tsawwassen'
+    | '/service-areas/vancouver-island'
+    | '/service-areas/vancouver-north-shore'
+    | '/services/design-and-interiors'
+    | '/services/garden-suites'
+    | '/services/high-performance-homes'
+    | '/services/luxury-custom-homes'
+    | '/services/passive-home-builder-bc'
+    | '/about-us/'
+    | '/floorplans/'
+    | '/resources/'
+    | '/service-areas/'
     | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutUsRoute: typeof AboutUsRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
-  Home2Route: typeof Home2Route
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
-  ServicesHomeRenovationsRoute: typeof ServicesHomeRenovationsRoute
-  ServicesNewBuildsRoute: typeof ServicesNewBuildsRoute
+  AboutUsOurGuaranteeRoute: typeof AboutUsOurGuaranteeRoute
+  AboutUsWhyChooseUsRoute: typeof AboutUsWhyChooseUsRoute
+  FloorplansModernBelgianFarmhouseRoute: typeof FloorplansModernBelgianFarmhouseRoute
+  FloorplansNordicHausRoute: typeof FloorplansNordicHausRoute
+  ResourcesArticleTemplateRoute: typeof ResourcesArticleTemplateRoute
+  ResourcesBcEnergyStepCodeRoute: typeof ResourcesBcEnergyStepCodeRoute
+  ResourcesGuideRoute: typeof ResourcesGuideRoute
+  ServiceAreasRichmondAndTsawwassenRoute: typeof ServiceAreasRichmondAndTsawwassenRoute
+  ServiceAreasVancouverIslandRoute: typeof ServiceAreasVancouverIslandRoute
+  ServiceAreasVancouverNorthShoreRoute: typeof ServiceAreasVancouverNorthShoreRoute
+  ServicesDesignAndInteriorsRoute: typeof ServicesDesignAndInteriorsRoute
+  ServicesGardenSuitesRoute: typeof ServicesGardenSuitesRoute
+  ServicesHighPerformanceHomesRoute: typeof ServicesHighPerformanceHomesRoute
+  ServicesLuxuryCustomHomesRoute: typeof ServicesLuxuryCustomHomesRoute
+  ServicesPassiveHomeBuilderBcRoute: typeof ServicesPassiveHomeBuilderBcRoute
+  AboutUsIndexRoute: typeof AboutUsIndexRoute
+  FloorplansIndexRoute: typeof FloorplansIndexRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
+  ServiceAreasIndexRoute: typeof ServiceAreasIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
@@ -206,13 +411,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about-us': {
-      id: '/about-us'
-      path: '/about-us'
-      fullPath: '/about-us'
-      preLoaderRoute: typeof AboutUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -227,13 +425,6 @@ declare module '@tanstack/react-router' {
       path: '/faqs'
       fullPath: '/faqs'
       preLoaderRoute: typeof FaqsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/home-2': {
-      id: '/home-2'
-      path: '/home-2'
-      fullPath: '/home-2'
-      preLoaderRoute: typeof Home2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -271,6 +462,104 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about-us/': {
+      id: '/about-us/'
+      path: '/about-us'
+      fullPath: '/about-us/'
+      preLoaderRoute: typeof AboutUsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us/our-guarantee': {
+      id: '/about-us/our-guarantee'
+      path: '/about-us/our-guarantee'
+      fullPath: '/about-us/our-guarantee'
+      preLoaderRoute: typeof AboutUsOurGuaranteeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us/why-choose-us': {
+      id: '/about-us/why-choose-us'
+      path: '/about-us/why-choose-us'
+      fullPath: '/about-us/why-choose-us'
+      preLoaderRoute: typeof AboutUsWhyChooseUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/floorplans/': {
+      id: '/floorplans/'
+      path: '/floorplans'
+      fullPath: '/floorplans/'
+      preLoaderRoute: typeof FloorplansIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/floorplans/modern-belgian-farmhouse': {
+      id: '/floorplans/modern-belgian-farmhouse'
+      path: '/floorplans/modern-belgian-farmhouse'
+      fullPath: '/floorplans/modern-belgian-farmhouse'
+      preLoaderRoute: typeof FloorplansModernBelgianFarmhouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/floorplans/nordic-haus': {
+      id: '/floorplans/nordic-haus'
+      path: '/floorplans/nordic-haus'
+      fullPath: '/floorplans/nordic-haus'
+      preLoaderRoute: typeof FloorplansNordicHausRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/resources'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/article-template': {
+      id: '/resources/article-template'
+      path: '/resources/article-template'
+      fullPath: '/resources/article-template'
+      preLoaderRoute: typeof ResourcesArticleTemplateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/bc-energy-step-code': {
+      id: '/resources/bc-energy-step-code'
+      path: '/resources/bc-energy-step-code'
+      fullPath: '/resources/bc-energy-step-code'
+      preLoaderRoute: typeof ResourcesBcEnergyStepCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources/guide': {
+      id: '/resources/guide'
+      path: '/resources/guide'
+      fullPath: '/resources/guide'
+      preLoaderRoute: typeof ResourcesGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas/': {
+      id: '/service-areas/'
+      path: '/service-areas'
+      fullPath: '/service-areas/'
+      preLoaderRoute: typeof ServiceAreasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas/richmond-and-tsawwassen': {
+      id: '/service-areas/richmond-and-tsawwassen'
+      path: '/service-areas/richmond-and-tsawwassen'
+      fullPath: '/service-areas/richmond-and-tsawwassen'
+      preLoaderRoute: typeof ServiceAreasRichmondAndTsawwassenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas/vancouver-island': {
+      id: '/service-areas/vancouver-island'
+      path: '/service-areas/vancouver-island'
+      fullPath: '/service-areas/vancouver-island'
+      preLoaderRoute: typeof ServiceAreasVancouverIslandRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/service-areas/vancouver-north-shore': {
+      id: '/service-areas/vancouver-north-shore'
+      path: '/service-areas/vancouver-north-shore'
+      fullPath: '/service-areas/vancouver-north-shore'
+      preLoaderRoute: typeof ServiceAreasVancouverNorthShoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/': {
       id: '/services/'
       path: '/services'
@@ -278,18 +567,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/home-renovations': {
-      id: '/services/home-renovations'
-      path: '/services/home-renovations'
-      fullPath: '/services/home-renovations'
-      preLoaderRoute: typeof ServicesHomeRenovationsRouteImport
+    '/services/design-and-interiors': {
+      id: '/services/design-and-interiors'
+      path: '/services/design-and-interiors'
+      fullPath: '/services/design-and-interiors'
+      preLoaderRoute: typeof ServicesDesignAndInteriorsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/new-builds': {
-      id: '/services/new-builds'
-      path: '/services/new-builds'
-      fullPath: '/services/new-builds'
-      preLoaderRoute: typeof ServicesNewBuildsRouteImport
+    '/services/garden-suites': {
+      id: '/services/garden-suites'
+      path: '/services/garden-suites'
+      fullPath: '/services/garden-suites'
+      preLoaderRoute: typeof ServicesGardenSuitesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/high-performance-homes': {
+      id: '/services/high-performance-homes'
+      path: '/services/high-performance-homes'
+      fullPath: '/services/high-performance-homes'
+      preLoaderRoute: typeof ServicesHighPerformanceHomesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/luxury-custom-homes': {
+      id: '/services/luxury-custom-homes'
+      path: '/services/luxury-custom-homes'
+      fullPath: '/services/luxury-custom-homes'
+      preLoaderRoute: typeof ServicesLuxuryCustomHomesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/passive-home-builder-bc': {
+      id: '/services/passive-home-builder-bc'
+      path: '/services/passive-home-builder-bc'
+      fullPath: '/services/passive-home-builder-bc'
+      preLoaderRoute: typeof ServicesPassiveHomeBuilderBcRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -297,17 +607,33 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutUsRoute: AboutUsRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
-  Home2Route: Home2Route,
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
-  ServicesHomeRenovationsRoute: ServicesHomeRenovationsRoute,
-  ServicesNewBuildsRoute: ServicesNewBuildsRoute,
+  AboutUsOurGuaranteeRoute: AboutUsOurGuaranteeRoute,
+  AboutUsWhyChooseUsRoute: AboutUsWhyChooseUsRoute,
+  FloorplansModernBelgianFarmhouseRoute: FloorplansModernBelgianFarmhouseRoute,
+  FloorplansNordicHausRoute: FloorplansNordicHausRoute,
+  ResourcesArticleTemplateRoute: ResourcesArticleTemplateRoute,
+  ResourcesBcEnergyStepCodeRoute: ResourcesBcEnergyStepCodeRoute,
+  ResourcesGuideRoute: ResourcesGuideRoute,
+  ServiceAreasRichmondAndTsawwassenRoute:
+    ServiceAreasRichmondAndTsawwassenRoute,
+  ServiceAreasVancouverIslandRoute: ServiceAreasVancouverIslandRoute,
+  ServiceAreasVancouverNorthShoreRoute: ServiceAreasVancouverNorthShoreRoute,
+  ServicesDesignAndInteriorsRoute: ServicesDesignAndInteriorsRoute,
+  ServicesGardenSuitesRoute: ServicesGardenSuitesRoute,
+  ServicesHighPerformanceHomesRoute: ServicesHighPerformanceHomesRoute,
+  ServicesLuxuryCustomHomesRoute: ServicesLuxuryCustomHomesRoute,
+  ServicesPassiveHomeBuilderBcRoute: ServicesPassiveHomeBuilderBcRoute,
+  AboutUsIndexRoute: AboutUsIndexRoute,
+  FloorplansIndexRoute: FloorplansIndexRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
+  ServiceAreasIndexRoute: ServiceAreasIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport

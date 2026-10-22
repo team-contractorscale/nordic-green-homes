@@ -1,7 +1,8 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { CSSProperties } from "react";
-import { GUIDE, PLACEHOLDER } from "@/lib/home-content";
-import { Eyebrow, H2, Placeholder } from "./shared";
+import { GUIDE } from "@/lib/home-content";
+import { Eyebrow, H2 } from "./shared";
 
 /* ---------- 8. Guide — "Future-proofing your home" ----------
  * A 3D book (CSS 3D, so the title stays crisp) on a glowing stage. GSAP in useHomeMotion:
@@ -70,9 +71,6 @@ export function HomeGuide() {
                   <div className="relative">
                     <span aria-hidden className="mx-auto mb-4 block h-px w-10 bg-gold" />
                     <p className="font-serif text-2xl leading-tight">{GUIDE.title}</p>
-                    <p className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-white/60">
-                      Draft cover · placeholder
-                    </p>
                   </div>
                 </div>
                 {/* back */}
@@ -163,18 +161,14 @@ export function HomeGuide() {
           </ul>
 
           <div data-reveal className="mt-8 flex flex-wrap items-center gap-4">
-            <span
-              aria-disabled
-              className="inline-flex h-12 cursor-not-allowed items-center rounded-full border border-primary/30 px-6 text-base font-bold text-primary/60"
+            <Link
+              to="/resources"
+              className="inline-flex h-12 items-center gap-2 rounded-full border border-primary px-6 text-base font-bold text-primary transition-colors hover:bg-primary hover:text-white"
             >
               {GUIDE.cta}
-            </span>
-            <Placeholder>{PLACEHOLDER.guide}</Placeholder>
+              <ArrowRight className="size-4" />
+            </Link>
           </div>
-          <p className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
-            <ArrowRight className="size-3.5 text-gold" aria-hidden />
-            The guide file is being recovered, checked and rebranded before release.
-          </p>
         </div>
       </div>
     </section>

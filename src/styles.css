@@ -189,3 +189,9 @@
     animation: none;
   }
 }
+
+/* The floating "Start here" band has no colour of its own: it picks up the tint of the
+   section directly above it, so the seam is invisible on every page. */
+.bg-secondary\/50 + .consult-band {
+  @apply bg-secondary/50;
+}

@@ -12,21 +12,10 @@
 export const PLACEHOLDER = {
   phone: "[Public phone — pending client confirmation]",
   email: "[Public email — pending client confirmation]",
-  serviceArea: "[Public service area — pending confirmation]",
   legalEntity: "[Legal entity, licence & warranty wording — pending]",
-  bookingOwner: "[Booking & enquiry recipient — pending]",
   relationship:
     "[Nordic Green Homes (new entity) · Nordic Green Design (separate) · O'Brien Contracting remains open during transition — exact public/legal wording pending]",
-  assurance: "[Green Mastery Assurance scope & any net-zero wording — pending approval]",
-  projects: "[Approved project images, names, locations & attribution — pending]",
-  testimonials: "[Approved testimonials — none confirmed yet]",
-  guide: "[Future-Proofing Your Home guide — file to be recovered, checked, rebranded & confirmed]",
-  services: "[Garages & backyard upgrades — held until service priority is confirmed]",
 } as const;
-
-// Reference-only wording seen on both live sites. Shown beside its placeholder, never as fact.
-export const REFERENCE_SERVICE_AREA = "Fraser Valley, Kelowna & Vancouver Island";
-export const REFERENCE_BASE = "Chilliwack, BC";
 
 const OB = "https://obriencontracting.ca/wp-content/uploads";
 const NGD = "https://images.squarespace-cdn.com/content/v1/63731d025a6f0837360c4578";
@@ -106,13 +95,6 @@ export const IMAGES = {
     source: "nordicgreendesign.ca · Modern Belgian Farmhouse plan",
     w: 1920,
   },
-  obrienKitchen: {
-    src: `${OB}/2025/10/Hero-2.png.webp`,
-    alt: "Bright white kitchen with island, glass-front cabinets and timber floor",
-    kind: "Origin unverified",
-    source: "obriencontracting.ca · homepage hero banner (possibly stock)",
-    w: 2240,
-  },
   obrienPoolBar: {
     src: `${OB}/2025/12/143732770_1946069238868993_8364835802107115038_n.jpg`,
     alt: "Covered outdoor bar with stone base, timber ceiling and bar seating beside a patio",
@@ -171,6 +153,74 @@ export const IMAGES = {
   },
 } satisfies Record<string, RefImage>;
 
+// O'Brien Contracting project photos (obriencontracting.ca/projects) — the site's real project imagery.
+const OB_PROJECTS = "https://obriencontracting.ca/wp-content/uploads/2025/12";
+export const projectPhoto = (file: string) => `${OB_PROJECTS}/${file}`;
+const ob = (file: string, alt: string, w: number): RefImage => ({
+  src: projectPhoto(file),
+  alt,
+  kind: "Photo",
+  source: "obriencontracting.ca · Projects",
+  w,
+});
+export const PHOTOS = {
+  shopSide: ob("MKPhoto-1821-1.jpg", "Completed shop building with timber-framed canopy", 1000),
+  shopWide: ob("MKPhoto-1842.jpg", "Three-bay shop building with timber and blue cladding", 1000),
+  shopTrailer: ob("MKPhoto-1848-1.jpg", "Completed shop building exterior", 1000),
+  shopDusk: ob("MKPhoto-1888-1.jpg", "Completed shop building at dusk", 1000),
+  shopStairs: ob("MKPhoto-1892.jpg", "Interior with timber stair and sliding barn door", 1000),
+  shopInterior: ob("MKPhoto-1897-1.jpg", "Bright interior with stair and loft", 1000),
+  shopBays: ob("MKPhoto-1912.jpg", "Interior with overhead doors open", 1000),
+  shopTrucks: ob("MKPhoto-1947-1.jpg", "Completed shop building with bays open", 1000),
+  bathVanity: ob("2020-05-1410.54.13.jpg", "Bathroom with vanity and wall sconces", 1000),
+  bathTub: ob("2020-05-1410.56.35.jpg", "Bathroom with freestanding tub", 1000),
+  cabana: ob(
+    "143732770_1946069238868993_8364835802107115038_n-2.jpg",
+    "Covered outdoor bar beside a stone patio",
+    960,
+  ),
+  barWindow: ob(
+    "143892405_1946069332202317_5054969848558874853_n-1.jpg",
+    "Outdoor bar counter with framed window",
+    720,
+  ),
+  barCovered: ob(
+    "144076210_1946069355535648_3573319870902758670_n.jpg",
+    "Covered outdoor bar with timber ceiling",
+    720,
+  ),
+  barSeating: ob(
+    "144189453_1946069295535654_263749928670396645_n.jpg",
+    "Outdoor bar seating under a timber ceiling",
+    720,
+  ),
+  barLounge: ob(
+    "144228196_1946069278868989_2068492409410308495_n.jpg",
+    "Outdoor bar with seating and stone base",
+    720,
+  ),
+  barStone: ob(
+    "144476719_1946069255535658_4440791575658560592_n.jpg",
+    "Stone-clad outdoor bar counter",
+    720,
+  ),
+  kitchen: ob(
+    "314603326_553240643476346_4953318663269826168_n.jpeg",
+    "Kitchen with white cabinets and stainless appliances",
+    1000,
+  ),
+  kitchenCabinets: ob(
+    "315099227_553240650143012_5160812216121899677_n.jpeg",
+    "White shaker kitchen cabinets",
+    1000,
+  ),
+  kitchenRange: ob(
+    "315249565_553240626809681_1484751327160491613_n.jpeg",
+    "Kitchen range with stainless hood",
+    1000,
+  ),
+};
+
 export const HERO = {
   eyebrow: "Custom home builder BC",
   titleLead: "A home that looks right.",
@@ -180,26 +230,27 @@ export const HERO = {
   cta: "Discuss your project",
   secondary: "See the process",
   // Crossfades slowly. Mixed sources on purpose so the client can react to both looks.
-  slides: [IMAGES.hero, IMAGES.nordicHaus, IMAGES.obrienKitchen],
+  slides: [IMAGES.hero, IMAGES.nordicHaus, IMAGES.hausPatio],
 };
 
 export const INTRO = {
   eyebrow: "Nordic Green Homes",
+  lead: [
+    "Nordic Green Homes brings the site, your daily life and the practical work of building into one conversation.",
+    "For homeowners seeking a sustainable luxury custom home builder BC, the early decisions matter: layout, materials, comfort, performance and what the property can support.",
+    "Your new home starts with what matters to you: the site, your daily routines and the choices that will shape life there.",
+  ],
   title: "A home for the life you actually lead",
-  lead: "Nordic Green Homes brings the site, your daily life and the practical work of building into one conversation.",
   body: [
     "A kitchen with room for everyone. A quiet place to work. Storage where you need it. Light in the rooms you use most.",
     "The details that make a home yours belong in the conversation from the start. So do the practical questions: what suits the site, what fits the budget and how your choices affect the build.",
   ],
   designBuild: {
     label: "Design and build, considered together",
-    body: "A floorplan, a material palette and a performance goal each affect the others. A larger window changes more than the view. A different layout can change the structure. A finish affects both the look and the upkeep. Thinking about these choices together gives your brief a stronger starting point.",
-  },
-  // Verbatim from the live Nordic site. Fuller owner bios stay on hold until verified.
-  people: "A vision brought to life by Kylie & Lane O'Brien",
-  relationship: {
-    label: "Design + build",
-    body: "Nordic Green Homes builds alongside Nordic Green Design, so the way a home looks and the way it's built are considered from the start.",
+    body: [
+      "A floorplan, a material palette and a performance goal each affect the others. A larger window changes more than the view. A different layout can change the structure. A finish affects both the look and the upkeep.",
+      "Thinking about these choices together gives your brief a stronger starting point.",
+    ],
   },
 };
 
@@ -209,35 +260,116 @@ export const SERVICES = [
     title: "Luxury Custom Homes",
     body: "Start with how you want to live, then consider the layout, materials and details that bring it together. Explore the choices that shape a custom home, from the first brief to the relationship between design, budget and buildability.",
     cta: "Explore Luxury Custom Homes",
-    image: IMAGES.customHomes,
+    to: "/services/luxury-custom-homes",
+    image: PHOTOS.shopDusk,
   },
   {
     key: "gardenSuites",
     title: "Garden Suites",
     body: "Making space for family or planning a separate dwelling? Begin with your property, the way the space will be used and the local rules. Access, services and site conditions all help determine what is possible.",
     cta: "Explore Garden Suites",
-    image: IMAGES.hausPatio,
+    to: "/services/garden-suites",
+    image: PHOTOS.cabana,
   },
   {
     key: "passiveHome",
     title: "Passive Home Builder BC",
     body: "Considering a Passive House? Understand how insulation, windows, airtightness and ventilation work together, and what separates passive-home principles from formal building certification.",
     cta: "Explore Passive Home Builder BC",
-    image: IMAGES.nordicHaus,
+    to: "/services/passive-home-builder-bc",
+    image: PHOTOS.shopWide,
   },
   {
     key: "highPerformance",
     title: "High-Performance Homes",
     body: "Think beyond the finishes. Explore how the building envelope, windows, ventilation and moisture control relate to the comfort and energy goals in your brief.",
     cta: "Explore High-Performance Homes",
-    image: IMAGES.newBuilds,
+    to: "/services/high-performance-homes",
+    image: PHOTOS.shopTrucks,
   },
   {
     key: "designInteriors",
     title: "Design and Interiors",
     body: "Bring the rooms, materials and everyday details into focus. Consider how you move through the home, where you need light and storage, and which finishes suit the way you live.",
     cta: "Explore Design and Interiors",
+    to: "/services/design-and-interiors",
     image: IMAGES.interior,
+  },
+] as const;
+
+export const PROJECT_PHOTOS = [
+  "MKPhoto-1821-1.jpg",
+  "MKPhoto-1842.jpg",
+  "MKPhoto-1848-1.jpg",
+  "MKPhoto-1888-1.jpg",
+  "MKPhoto-1892.jpg",
+  "MKPhoto-1897-1.jpg",
+  "MKPhoto-1899.jpg",
+  "MKPhoto-1904.jpg",
+  "MKPhoto-1908.jpg",
+  "MKPhoto-1910-1.jpg",
+  "MKPhoto-1912.jpg",
+  "MKPhoto-1925.jpg",
+  "MKPhoto-1927.jpg",
+  "MKPhoto-1947-1.jpg",
+  "2020-05-1410.53.57.jpg",
+  "2020-05-1410.54.13.jpg",
+  "2020-05-1410.54.29.jpg",
+  "2020-05-1410.56.24.jpg",
+  "2020-05-1410.56.35.jpg",
+  "143732770_1946069238868993_8364835802107115038_n-2.jpg",
+  "143892405_1946069332202317_5054969848558874853_n-1.jpg",
+  "144076210_1946069355535648_3573319870902758670_n.jpg",
+  "144189453_1946069295535654_263749928670396645_n.jpg",
+  "144228196_1946069278868989_2068492409410308495_n.jpg",
+  "144476719_1946069255535658_4440791575658560592_n.jpg",
+  "314603326_553240643476346_4953318663269826168_n.jpeg",
+  "315099227_553240650143012_5160812216121899677_n.jpeg",
+  "315249565_553240626809681_1484751327160491613_n.jpeg",
+].map(projectPhoto);
+
+export const FLOORPLANS = [
+  {
+    key: "nordicHaus",
+    title: "Nordic Haus",
+    to: "/floorplans/nordic-haus",
+    image: IMAGES.nordicHaus,
+    gallery: [
+      IMAGES.nordicHaus,
+      IMAGES.newBuilds,
+      IMAGES.hausPatio,
+      IMAGES.hausSide,
+      IMAGES.hausGarden,
+      IMAGES.hausRear,
+    ],
+  },
+  {
+    key: "modernBelgianFarmhouse",
+    title: "Modern Belgian Farmhouse",
+    to: "/floorplans/modern-belgian-farmhouse",
+    image: IMAGES.customHomes,
+    gallery: [IMAGES.customHomes, IMAGES.hero, IMAGES.poolRender, IMAGES.farmhouseRear],
+  },
+] as const;
+
+export const SERVICE_AREAS = [
+  {
+    key: "northShore",
+    title: "Vancouver North Shore",
+    to: "/service-areas/vancouver-north-shore",
+    image: PHOTOS.barCovered,
+  },
+  {
+    key: "richmondTsawwassen",
+    title: "Richmond and Tsawwassen",
+    to: "/service-areas/richmond-and-tsawwassen",
+    image: PHOTOS.barSeating,
+  },
+  {
+    key: "vancouverIsland",
+    title: "Vancouver Island",
+    to: "/service-areas/vancouver-island",
+    image: PHOTOS.shopSide,
   },
 ] as const;
 
@@ -266,34 +398,33 @@ export const PROCESS = [
   {
     title: "Consultation",
     body: "Start with your site, ideas, timing and budget. Bring the questions you have now, whether you have detailed drawings or are still working out what the home needs to be.",
-    includes: ["Consultation"],
   },
   {
     title: "Design and planning",
     body: "Turn your priorities into a clearer brief. Consider layout, light, materials and performance goals alongside the site and budget. If you have an architect or designer, establish who is responsible for each part of the work.",
-    includes: ["Design"],
   },
   {
     title: "Materials and approvals",
     body: "Bring finishes, fixtures and key specifications together with the documents your project needs. The approval path depends on your location, property and design.",
-    includes: ["Materials", "Approvals"],
   },
   {
     title: "Construction",
     body: "Before site work starts, understand what is included, how changes will be handled and how you will receive updates. Keep the agreed scope and key decisions close throughout the build.",
-    includes: ["Construction"],
   },
   {
     title: "Handover and ongoing care",
     body: "Get to know your finished home, its systems and the care they need. Handover documents, product information and written warranty terms help you understand what comes next.",
-    includes: ["Handover"],
   },
 ] as const;
 
 export const ASSURANCE = {
   eyebrow: "Our commitment",
   title: "A considered approach to sustainability",
-  body: "Sustainability belongs in the details. The materials you choose. The energy goals you set. The way the home can adapt as your needs change. Sustainable design involves practical choices with consequences for the whole home. Put those questions alongside appearance, budget and maintenance from the outset.",
+  subtitle: "Sustainability belongs in the details",
+  body: [
+    "The materials you choose. The energy goals you set. The way the home can adapt as your needs change. Sustainable design involves practical choices with consequences for the whole home.",
+    "Put those questions alongside appearance, budget and maintenance from the outset.",
+  ],
   link: "Explore our approach",
 };
 
@@ -330,7 +461,10 @@ export const GUIDE = {
 export const CONSULTATION = {
   eyebrow: "Start here",
   title: "Discuss your project",
-  body: "Have a site in mind, a set of plans or a few ideas you want to explore? Tell us what you are considering, what matters most and where you need clarity. Start with your property, your priorities and the questions you want answered.",
+  body: [
+    "Have a site in mind, a set of plans or a few ideas you want to explore? Tell us what you are considering, what matters most and where you need clarity.",
+    "Start with your property, your priorities and the questions you want answered.",
+  ],
   cta: "Discuss your project",
 };
 
@@ -345,7 +479,7 @@ export const FAQS = [
   },
   {
     q: "Is a high-performance home automatically a Passive House?",
-    a: "\u201cHigh-performance\u201d is a broad term. Passive House is a building standard with specific criteria and a formal certification path. A home can include energy-efficiency goals without being a certified Passive House.",
+    a: "No. \u201cHigh-performance\u201d is a broad term. Passive House is a building standard with specific criteria and a formal certification path. A home can include energy-efficiency goals without being a certified Passive House.",
   },
   {
     q: "Can the website estimate tell me what my home will cost?",
@@ -357,11 +491,63 @@ export const FAQS = [
   },
 ];
 
+const ABOUT_LINKS = [
+  { label: "Why Choose Us", to: "/about-us/why-choose-us" },
+  { label: "Our Guarantee", to: "/about-us/our-guarantee" },
+  { label: "Process", to: "/process" },
+] as const;
+
+const SERVICE_LINKS = [
+  { label: "Luxury Custom Homes", to: "/services/luxury-custom-homes" },
+  { label: "Garden Suites", to: "/services/garden-suites" },
+  { label: "Passive Home Builder BC", to: "/services/passive-home-builder-bc" },
+  { label: "High-Performance Homes", to: "/services/high-performance-homes" },
+  { label: "Design and Interiors", to: "/services/design-and-interiors" },
+] as const;
+
+const FLOORPLAN_LINKS = [
+  { label: "Nordic Haus", to: "/floorplans/nordic-haus" },
+  { label: "Modern Belgian Farmhouse", to: "/floorplans/modern-belgian-farmhouse" },
+] as const;
+
+const AREA_LINKS = [
+  { label: "Vancouver North Shore", to: "/service-areas/vancouver-north-shore" },
+  { label: "Richmond and Tsawwassen", to: "/service-areas/richmond-and-tsawwassen" },
+  { label: "Vancouver Island", to: "/service-areas/vancouver-island" },
+] as const;
+
 export const NAV = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/about-us" },
-  { label: "Services", to: "/services" },
-  { label: "Process", to: "/process" },
+  { label: "About", to: "/about-us", children: ABOUT_LINKS },
+  { label: "Services", to: "/services", children: SERVICE_LINKS },
+  { label: "Floorplans", to: "/floorplans", children: FLOORPLAN_LINKS },
   { label: "Projects", to: "/projects" },
   { label: "Contact", to: "/contact" },
+] as const;
+
+// Footer columns: the full site map, including pages kept out of the header (service areas, FAQs).
+export const FOOTER_COLUMNS = [
+  {
+    title: "About",
+    links: [
+      { label: "About Us", to: "/about-us" },
+      ...ABOUT_LINKS,
+      { label: "Projects", to: "/projects" },
+      { label: "Contact", to: "/contact" },
+    ],
+  },
+  { title: "Services", links: SERVICE_LINKS },
+  { title: "Floorplans", links: FLOORPLAN_LINKS },
+  { title: "Service Areas", links: AREA_LINKS },
+  {
+    title: "Resources",
+    links: [
+      { label: "Resources", to: "/resources" },
+      { label: "Planning Guide", to: "/resources/guide" },
+      { label: "BC Energy Step Code", to: "/resources/bc-energy-step-code" },
+      { label: "FAQs", to: "/faqs" },
+      { label: "Privacy", to: "/privacy" },
+      { label: "Terms", to: "/terms" },
+    ],
+  },
 ] as const;

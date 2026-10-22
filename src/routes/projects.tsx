@@ -1,28 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BRAND, PROJECTS_GALLERY, ASSETS } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, ImageIcon } from "lucide-react";
-import { Placeholder } from "@/components/home/NordicHome";
-import { PLACEHOLDER } from "@/lib/home-content";
+import { PROJECT_PHOTOS, projectPhoto } from "@/lib/home-content";
+import { H2, HomeConsultation } from "@/components/home/NordicHome";
+
+const DESCRIPTION =
+  "The useful part of a project story is not a polished image by itself. It is the brief, the decisions, the work completed, the evidence available and what another homeowner can learn from the result.";
+
+const HERO = projectPhoto("MKPhoto-1821-1.jpg");
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Verified Projects Gallery | Nordic Green Homes" },
-      {
-        name: "description",
-        content:
-          "Explore verified home renovations, bathrooms, custom garages, and outdoor living projects completed by O'Brien Contracting Ltd. in Fraser Valley, BC.",
-      },
-      { property: "og:title", content: "Verified Projects Gallery | Nordic Green Homes" },
-      {
-        property: "og:description",
-        content:
-          "Real craftsmanship, genuine photography from O'Brien Contracting Ltd. in British Columbia.",
-      },
-      { property: "og:image", content: ASSETS.hero1 },
-      { name: "twitter:image", content: ASSETS.hero1 },
+      { title: "Projects | Nordic Green Homes" },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: "Projects | Nordic Green Homes" },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:image", content: HERO },
+      { name: "twitter:image", content: HERO },
     ],
   }),
   component: ProjectsPage,
@@ -32,87 +26,40 @@ function ProjectsPage() {
   return (
     <div>
       <PageHeader
-        image={ASSETS.hero1}
-        imageAlt="Architectural exterior of a custom home in British Columbia (reference image)"
-        eyebrow="Reference Projects · Pending"
-        title="Reference Work"
-        description="The images shown here are reference material only — from O'Brien Contracting Ltd. projects and related photography. Project names, locations, completion status and attribution are pending verification and are not presented as completed Nordic Green Homes work."
+        image={HERO}
+        imageAlt="Completed home project (reference image)"
+        eyebrow="Projects"
+        title="Projects, documented properly"
+        description={DESCRIPTION}
       />
 
-      {/* Projects Grid */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 flex flex-wrap gap-3">
-            <Placeholder>{PLACEHOLDER.projects}</Placeholder>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS_GALLERY.map((p) => (
-              <div
-                key={p.id}
-                className="bg-card border border-border rounded-xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col group"
-              >
-                <div className="relative aspect-4/3 overflow-hidden bg-muted">
-                  <img
-                    src={p.image}
-                    alt={p.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 text-white text-[11px] font-medium backdrop-blur-xs">
-                    {p.type}
-                  </div>
-                  <span
-                    title="Reference image — not confirmed as completed Nordic Green Homes work."
-                    className="absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-full bg-black/70 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur-sm"
-                  >
-                    <ImageIcon className="w-3 h-3" />
-                    Reference only
-                  </span>
-                </div>
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>
-                        {p.location} <span className="text-muted-foreground/70">(reference)</span>
-                      </span>
-                    </div>
-                    <h2 className="font-serif text-lg font-bold text-foreground">{p.title}</h2>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="inline-flex items-center gap-1 font-medium">
-                      <span className="inline-block size-2 rounded-full bg-gold" aria-hidden />
-                      <span>{p.status}</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Call to action */}
-          <div className="mt-16 bg-muted/50 border border-border rounded-xl p-8 sm:p-12 text-center max-w-3xl mx-auto">
-            <h3 className="font-serif text-2xl font-bold text-foreground">
-              Have a Project in Mind?
-            </h3>
-            <p className="mt-2 text-base text-muted-foreground max-w-lg mx-auto">
-              Whether you're starting with bare land or renovating an existing home, let's explore
-              your possibilities on a 15-minute call.
+      <section className="py-24 sm:py-28">
+        <div className="wrap">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className={H2}>What a useful project story shows</h2>
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+              A useful project story explains the brief, the site context, the work completed, the
+              decisions made and the evidence available. Client words and images should appear only
+              with permission and clear attribution.
             </p>
-            <div className="mt-6">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground text-sm font-medium shadow hover:bg-primary/90 transition-all"
-              >
-                <span>{BRAND.primaryCtaText}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+          </div>
+
+          {/* Masonry via CSS columns — keeps each photo's native aspect ratio. */}
+          <div className="mt-16 columns-1 gap-4 sm:columns-2 lg:columns-3">
+            {PROJECT_PHOTOS.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={`Project photo ${i + 1} (reference image)`}
+                loading="lazy"
+                className="mb-4 w-full break-inside-avoid rounded-lg bg-muted"
+              />
+            ))}
           </div>
         </div>
       </section>
+
+      <HomeConsultation />
     </div>
   );
 }

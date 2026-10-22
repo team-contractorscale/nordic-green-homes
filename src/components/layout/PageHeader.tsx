@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 type PageHeaderProps = {
   image: string;
   imageAlt: string;
-  eyebrow: string;
+  eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   children?: ReactNode;
@@ -38,11 +38,13 @@ export function PageHeader({
       />
       <div className="wrap pt-36 pb-16 text-center sm:pt-44 sm:pb-20">
         <div className="mx-auto max-w-3xl">
-          <p className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-white">
-            <span className="size-1.5 rounded-full bg-gold" aria-hidden />
-            {eyebrow}
-          </p>
-          <h1 className="mt-4 font-serif text-[clamp(2.25rem,3vw+1rem,3.5rem)] leading-[1.05] tracking-[-0.02em]">
+          {eyebrow && (
+            <p className="mb-4 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-white">
+              <span className="size-1.5 rounded-full bg-gold" aria-hidden />
+              {eyebrow}
+            </p>
+          )}
+          <h1 className="font-serif text-[clamp(2.25rem,3vw+1rem,3.5rem)] leading-[1.05] tracking-[-0.02em]">
             {title}
           </h1>
           {description ? (

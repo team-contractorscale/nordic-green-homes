@@ -1,26 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { BRAND, SERVICES, ASSETS } from "@/lib/content-data";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { H3, HomeConsultation, RefImg } from "@/components/home/NordicHome";
+import { SERVICES, PHOTOS } from "@/lib/home-content";
+
+const DESCRIPTION = "Find the right starting point for your home";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Building & Renovation Services | Nordic Green Homes" },
-      {
-        name: "description",
-        content:
-          "New builds, custom home design, whole-home renovations, custom garages and backyard upgrades for British Columbia families. Internal pilot.",
-      },
-      { property: "og:title", content: "Building & Renovation Services | Nordic Green Homes" },
-      {
-        property: "og:description",
-        content:
-          "High-performance builds and thoughtful renovations led by Lane O'Brien in British Columbia — internal pilot.",
-      },
-      { property: "og:image", content: ASSETS.hero2 },
-      { name: "twitter:image", content: ASSETS.hero2 },
+      { title: "Services | Nordic Green Homes" },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: "Services | Nordic Green Homes" },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:image", content: PHOTOS.shopSide.src },
+      { name: "twitter:image", content: PHOTOS.shopSide.src },
     ],
   }),
   component: ServicesOverviewPage,
@@ -30,92 +24,31 @@ function ServicesOverviewPage() {
   return (
     <div>
       <PageHeader
-        image={ASSETS.hero2}
-        imageAlt="Architectural exterior of a custom Nordic Green home with timber and stone detailing (reference image)"
-        eyebrow="What We Do · Draft"
-        title="Services Built to Move Your Soul"
-        description="We manage every detail of your journey — from initial concept and site feasibility to final handover — with disciplined craftsmanship and healthy, considered living. Certification and performance claims are pending confirmation."
+        image={PHOTOS.shopSide.src}
+        imageAlt={PHOTOS.shopSide.alt}
+        eyebrow="What we build"
+        title="Find the right starting point for your home"
       />
 
-      {/* Services Grid */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SERVICES.map((service) => (
-              <div
-                key={service.slug}
-                className="bg-card rounded-lg border border-border shadow-xs hover:shadow-md transition-all flex flex-col overflow-hidden group"
-              >
-                <div className="relative aspect-16/9 overflow-hidden bg-muted">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
-                </div>
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h2 className="font-serif text-xl font-bold text-foreground">
-                      {service.title}
-                    </h2>
-                    <p className="mt-2 text-base text-muted-foreground leading-relaxed">
-                      {service.shortDesc}
-                    </p>
-                    <ul className="mt-4 space-y-2">
-                      {service.features.slice(0, 3).map((feat, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs text-foreground/80">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-border/60">
-                    {service.slug === "new-builds" || service.slug === "home-renovations" ? (
-                      <Link
-                        to={`/services/${service.slug}` as any}
-                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-emerald-700 transition-colors"
-                      >
-                        <span>Explore details</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    ) : (
-                      <Link
-                        to="/contact"
-                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-emerald-700 transition-colors"
-                      >
-                        <span>Inquire about this build</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Consultation CTA Banner */}
-          <div className="mt-16 bg-muted/60 border border-border rounded-xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="max-w-xl text-center md:text-left">
-              <h3 className="font-serif text-2xl font-bold text-foreground">
-                Ready to plan your next building project?
-              </h3>
-              <p className="mt-2 text-base text-muted-foreground">
-                Connect directly with Lane O'Brien to review site feasibility, building goals, and
-                budget expectations.
+      <section className="bg-secondary/50 py-24 sm:py-28">
+        <div className="wrap grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map((s) => (
+            <Link key={s.key} to={s.to} className="group flex flex-col">
+              <RefImg image={s.image} className="aspect-[4/5] rounded-lg" />
+              <h2 className={`mt-6 ${H3}`}>{s.title}</h2>
+              <p className="mt-2 flex-1 text-base leading-relaxed text-muted-foreground">
+                {s.body}
               </p>
-            </div>
-            <Link
-              to="/contact"
-              className="px-6 py-3 rounded-md bg-primary text-primary-foreground font-medium text-sm shadow hover:bg-primary/90 transition-all shrink-0"
-            >
-              {BRAND.primaryCtaText}
+              <span className="mt-4 inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4">
+                {s.cta}
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </span>
             </Link>
-          </div>
+          ))}
         </div>
       </section>
+
+      <HomeConsultation />
     </div>
   );
 }

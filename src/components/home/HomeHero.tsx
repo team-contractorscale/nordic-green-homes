@@ -14,12 +14,6 @@ import { RefTag, imgProps } from "./shared";
  * bounds on every viewport.
  */
 
-const HERO_LINKS = [
-  { label: "Custom homes", to: "/services/new-builds" },
-  { label: "Garden suites", to: "/services" },
-  { label: "Renovations", to: "/services/home-renovations" },
-] as const;
-
 const SLIDE_MS = 7000;
 
 export function HomeHero() {
@@ -70,7 +64,7 @@ export function HomeHero() {
       />
 
       <div className="wrap flex flex-1 items-center pb-44 pt-36 sm:pb-44 lg:pt-40">
-        <div data-hero-content className="max-w-2xl">
+        <div data-hero-content className="max-w-4xl">
           <p
             data-anim="hero-eyebrow"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-md"
@@ -80,7 +74,7 @@ export function HomeHero() {
           </p>
           <h1
             data-anim="hero-title"
-            className="mt-6 font-serif text-[clamp(2.5rem,4vw+1rem,4.25rem)] leading-[1.04] tracking-[-0.03em]"
+            className="mt-6 text-balance font-serif text-[clamp(2.75rem,4.5vw+1rem,5rem)] leading-[1.04] tracking-[-0.03em]"
           >
             {HERO.titleLead}
             <br />
@@ -117,20 +111,6 @@ export function HomeHero() {
               <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
             </a>
           </div>
-
-          <ul data-anim="hero-links" className="mt-10 flex flex-wrap gap-2">
-            {HERO_LINKS.map((l) => (
-              <li key={l.label}>
-                <Link
-                  to={l.to}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/15 px-3.5 py-1.5 text-sm font-bold text-white backdrop-blur-md transition-colors hover:border-gold hover:bg-gold hover:text-black"
-                >
-                  {l.label}
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
 

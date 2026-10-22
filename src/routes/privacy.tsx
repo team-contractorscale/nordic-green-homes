@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BRAND, ASSETS } from "@/lib/content-data";
+import { BRAND } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Placeholder } from "@/components/home/NordicHome";
-import { PLACEHOLDER } from "@/lib/home-content";
+import { PLACEHOLDER, projectPhoto } from "@/lib/home-content";
+
+const HEADER_IMAGE = projectPhoto("MKPhoto-1848-1.jpg");
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -19,8 +21,8 @@ export const Route = createFileRoute("/privacy")({
         content:
           "Draft privacy policy for the internal Nordic Green Homes pilot — not approved or published.",
       },
-      { property: "og:image", content: ASSETS.hero3 },
-      { name: "twitter:image", content: ASSETS.hero3 },
+      { property: "og:image", content: HEADER_IMAGE },
+      { name: "twitter:image", content: HEADER_IMAGE },
     ],
   }),
   component: PrivacyPage,
@@ -30,7 +32,7 @@ function PrivacyPage() {
   return (
     <div>
       <PageHeader
-        image={ASSETS.hero3}
+        image={HEADER_IMAGE}
         imageAlt="Architectural exterior of a sustainable Nordic Green custom home (reference image)"
         eyebrow="Legal · Draft"
         title="Privacy Policy"

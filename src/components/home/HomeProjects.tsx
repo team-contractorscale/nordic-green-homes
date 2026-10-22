@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { IMAGES, PLACEHOLDER, type RefImage } from "@/lib/home-content";
-import { Eyebrow, Placeholder, RefTag, imgProps } from "./shared";
+import { IMAGES, type RefImage, PHOTOS } from "@/lib/home-content";
+import { Eyebrow, RefTag, imgProps } from "./shared";
 
 /* ---------- 7. Selected work ----------
  * Pinned horizontal gallery. Desktop: the section pins and vertical scroll drives the track
@@ -16,11 +16,11 @@ import { Eyebrow, Placeholder, RefTag, imgProps } from "./shared";
 type Item = { image: RefImage; title: string; size: "render" | "photo" | "wide-photo" };
 
 const ITEMS: Item[] = [
-  { image: IMAGES.poolRender, title: "Rear porch & pool", size: "render" },
+  { image: PHOTOS.barWindow, title: "Rear porch & pool", size: "render" },
   { image: IMAGES.entry, title: "Front entry", size: "photo" },
-  { image: IMAGES.hausPatio, title: "Covered patio & living", size: "render" },
+  { image: PHOTOS.cabana, title: "Covered patio & living", size: "render" },
   { image: IMAGES.interior, title: "Media room", size: "wide-photo" },
-  { image: IMAGES.hausRear, title: "Rear terrace", size: "render" },
+  { image: PHOTOS.kitchen, title: "Rear terrace", size: "render" },
   { image: IMAGES.intro, title: "Entry hall arches", size: "photo" },
   { image: IMAGES.renovations, title: "Barn-door hallway", size: "photo" },
 ];
@@ -101,14 +101,6 @@ export function HomeProjects() {
                 className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100"
               />
               <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
-                <div className="translate-y-1 transition-transform duration-500 group-hover:translate-y-0">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">
-                    0{i + 1} · {item.image.kind}
-                  </p>
-                  <p className="mt-1 font-serif text-xl leading-snug text-white sm:text-2xl">
-                    {item.title}
-                  </p>
-                </div>
                 <span className="grid size-10 shrink-0 scale-75 place-items-center rounded-full bg-white text-primary opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100 lg:hidden">
                   <ArrowUpRight className="size-4" />
                 </span>
@@ -116,26 +108,6 @@ export function HomeProjects() {
               <RefTag image={item.image} className="right-3 top-3" />
             </Link>
           ))}
-
-          {/* closing card */}
-          <div className="flex w-[78vw] shrink-0 snap-start flex-col justify-center self-center rounded-lg border border-dashed border-gold/60 bg-gold/5 p-8 sm:w-[22rem]">
-            <p className="font-serif text-2xl leading-snug text-foreground">
-              More completed work, once approved.
-            </p>
-            <div className="mt-4">
-              <Placeholder>{PLACEHOLDER.projects}</Placeholder>
-            </div>
-            <div className="mt-3">
-              <Placeholder>{PLACEHOLDER.testimonials}</Placeholder>
-            </div>
-            <Link
-              to="/projects"
-              className="group mt-6 inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-gold"
-            >
-              View projects
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
-          </div>
         </div>
 
         {/* scrubbed progress line (desktop) */}

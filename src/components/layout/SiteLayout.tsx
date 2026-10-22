@@ -1,9 +1,8 @@
 import * as React from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Menu } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { NAV, PLACEHOLDER } from "@/lib/home-content";
-import { Placeholder } from "@/components/home/NordicHome";
+import { FOOTER_COLUMNS, NAV } from "@/lib/home-content";
 
 export function PreviewBanner() {
   return (
@@ -87,15 +86,37 @@ export function SiteHeader() {
 
           <nav className="hidden items-center gap-1 lg:flex">
             {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                activeOptions={{ exact: item.to === "/" }}
-                className="rounded-full px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-white/15"
-                activeProps={{ className: "!bg-white !text-primary" }}
-              >
-                {item.label}
-              </Link>
+              <div key={item.to} className="group relative">
+                <Link
+                  to={item.to}
+                  activeOptions={{ exact: item.to === "/" }}
+                  className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-white/15"
+                  activeProps={{ className: "!bg-white !text-primary" }}
+                >
+                  {item.label}
+                  {"children" in item && (
+                    <ChevronDown className="size-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
+                  )}
+                </Link>
+                {"children" in item && (
+                  // Hover/focus dropdown; pt-3 bridges the gap so the pointer can reach it.
+                  <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-3 opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <div className="min-w-60 rounded-2xl border border-white/10 bg-primary p-2 shadow-xl shadow-black/20">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.to}
+                          to={child.to}
+                          activeOptions={{ exact: true }}
+                          className="block whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-bold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                          activeProps={{ className: "!bg-white/15 !text-white" }}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -114,16 +135,29 @@ export function SiteHeader() {
                 </SheetTitle>
                 <nav className="flex flex-col px-4 py-4">
                   {NAV.map((item) => (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      onClick={() => setOpen(false)}
-                      activeOptions={{ exact: item.to === "/" }}
-                      className="rounded-full px-4 py-3 text-base font-bold text-white/90 hover:bg-white/10"
-                      activeProps={{ className: "!bg-white !text-primary" }}
-                    >
-                      {item.label}
-                    </Link>
+                    <React.Fragment key={item.to}>
+                      <Link
+                        to={item.to}
+                        onClick={() => setOpen(false)}
+                        activeOptions={{ exact: item.to === "/" || "children" in item }}
+                        className="rounded-full px-4 py-3 text-base font-bold text-white/90 hover:bg-white/10"
+                        activeProps={{ className: "!bg-white !text-primary" }}
+                      >
+                        {item.label}
+                      </Link>
+                      {"children" in item &&
+                        item.children.map((child) => (
+                          <Link
+                            key={child.to}
+                            to={child.to}
+                            onClick={() => setOpen(false)}
+                            className="ml-4 rounded-full px-4 py-2.5 text-sm font-bold text-white/75 hover:bg-white/10"
+                            activeProps={{ className: "!bg-white !text-primary" }}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                    </React.Fragment>
                   ))}
                 </nav>
                 <div className="px-6" onClick={() => setOpen(false)}>
@@ -147,11 +181,11 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Compact four-column footer. The consultation CTA lives once, just above it (HomeConsultation).
+// Site-map footer: brand + one column per section. The consultation CTA floats just above it.
 export function SiteFooter() {
   return (
     <footer className="bg-primary text-white">
-      <div className="wrap grid gap-10 pb-16 pt-32 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-12">
+      <div className="wrap grid gap-10 pb-16 pt-32 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.4fr_repeat(5,1fr)] xl:gap-8">
         <div>
           <img
             src="/brand/nordic-logo-light.png"
@@ -163,56 +197,20 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <div>
-          <FooterHeading>Explore</FooterHeading>
-          <ul className="mt-5 space-y-3">
-            {NAV.map((item) => (
-              <li key={item.to}>
-                <Link to={item.to} className="text-sm text-white/85 hover:text-gold">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <FooterHeading>Resources</FooterHeading>
-          <ul className="mt-5 space-y-3 text-sm text-white/85">
-            <li>
-              <Link to="/" className="hover:text-gold">
-                Guide
-              </Link>
-            </li>
-            <li>
-              <span className="text-white/60">BC Energy Step Code</span>
-            </li>
-            <li>
-              <Link to="/faqs" className="hover:text-gold">
-                FAQs
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <FooterHeading>Legal</FooterHeading>
-          <ul className="mt-5 space-y-3 text-sm text-white/85">
-            <li>
-              <Link to="/privacy" className="hover:text-gold">
-                Privacy
-              </Link>
-            </li>
-            <li>
-              <Link to="/terms" className="hover:text-gold">
-                Terms
-              </Link>
-            </li>
-            <li className="pt-2">
-              <Placeholder dark>{PLACEHOLDER.legalEntity}</Placeholder>
-            </li>
-          </ul>
-        </div>
+        {FOOTER_COLUMNS.map((col) => (
+          <div key={col.title}>
+            <FooterHeading>{col.title}</FooterHeading>
+            <ul className="mt-5 space-y-3">
+              {col.links.map((link) => (
+                <li key={link.to}>
+                  <Link to={link.to} className="text-sm text-white/85 hover:text-gold">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
 
       <div className="border-t border-white/15">
