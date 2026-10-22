@@ -151,7 +151,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 export function SiteFooter() {
   return (
     <footer className="bg-primary text-white">
-      <div className="wrap grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-12">
+      <div className="wrap grid gap-10 pb-16 pt-32 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-12">
         <div>
           <img
             src="/brand/nordic-logo-light.png"

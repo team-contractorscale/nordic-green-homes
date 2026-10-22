@@ -228,10 +228,10 @@ function Detail({ label, children }: { label: string; children: ReactNode }) {
 export function HomeConsultation() {
   return (
     <section className="bg-secondary/50 pt-8">
-      <div className="wrap">
+      <div className="wrap pb-24">
         <div
           data-reveal="scale"
-          className="relative isolate overflow-hidden rounded-xl text-white shadow-2xl shadow-black/20"
+          className="relative isolate -mb-16 overflow-hidden rounded-2xl text-white shadow-2xl shadow-black/30 lg:-mb-24"
         >
           <img
             src={IMAGES.poolRender.src}
