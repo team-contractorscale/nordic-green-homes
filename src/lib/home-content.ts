@@ -10,8 +10,8 @@
 //   the client approves use and attribution.
 
 export const PLACEHOLDER = {
-  phone: "[Public phone — pending client confirmation]",
-  email: "[Public email — pending client confirmation]",
+  phone: "+1 (604) 996-4217",
+  email: "info@nordicgreenhomes.ca",
   legalEntity: "[Legal entity, licence & warranty wording — pending]",
   relationship:
     "[Nordic Green Homes (new entity) · Nordic Green Design (separate) · O'Brien Contracting remains open during transition — exact public/legal wording pending]",

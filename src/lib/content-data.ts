@@ -11,12 +11,11 @@ export const BRAND = {
   sourceCompany: "O'Brien Contracting Ltd.",
   tagline: "Custom Homes & Renovations",
   headline: "Sustainable craftsmanship for families who demand more from their forever home.",
-  // Live contact details are held pending client confirmation — rendered in the
-  // UI as placeholder chips, never as approved Nordic Green Homes contact info.
-  phone: "",
-  phoneFormatted: "[Public phone — pending client confirmation]",
-  phoneTel: "",
-  email: "[Public email — pending client confirmation]",
+  // Confirmed public contact details for Nordic Green Homes.
+  phone: "+1 (604) 996-4217",
+  phoneFormatted: "+1 (604) 996-4217",
+  phoneTel: "+16049964217",
+  email: "info@nordicgreenhomes.ca",
   location: "Chilliwack, BC",
   serviceAreas: [] as string[],
   hours: "9AM - 5PM (Mon-Fri)",

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, ChevronDown, Menu } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Menu, Phone, Mail } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { FOOTER_COLUMNS, NAV } from "@/lib/home-content";
+import { FOOTER_COLUMNS, NAV, PLACEHOLDER } from "@/lib/home-content";
 
 export function PreviewBanner() {
   return (
@@ -195,6 +195,26 @@ export function SiteFooter() {
           <p className="mt-5 max-w-xs font-serif text-lg leading-snug text-white/90">
             A home that looks right. And lives well.
           </p>
+          <ul className="mt-5 space-y-2.5 text-sm text-white/85">
+            <li>
+              <a
+                href={`tel:${PLACEHOLDER.phone.replace(/[^\d+]/g, "")}`}
+                className="inline-flex items-center gap-2.5 transition-colors hover:text-gold"
+              >
+                <Phone className="size-4 text-gold" aria-hidden />
+                {PLACEHOLDER.phone}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${PLACEHOLDER.email}`}
+                className="inline-flex items-center gap-2.5 transition-colors hover:text-gold"
+              >
+                <Mail className="size-4 text-gold" aria-hidden />
+                {PLACEHOLDER.email}
+              </a>
+            </li>
+          </ul>
         </div>
 
         {FOOTER_COLUMNS.map((col) => (

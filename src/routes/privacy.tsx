@@ -79,12 +79,23 @@ function PrivacyPage() {
               Contact & Legal Entity
             </h2>
             <p>
-              Contact details and the exact legal-entity wording for {BRAND.name} are pending client
-              confirmation.
+              For questions about this draft policy or the {BRAND.name} pilot, contact us at{" "}
+              <a
+                href={`mailto:${PLACEHOLDER.email}`}
+                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
+              >
+                {PLACEHOLDER.email}
+              </a>{" "}
+              or{" "}
+              <a
+                href={`tel:${PLACEHOLDER.phone.replace(/[^\d+]/g, "")}`}
+                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
+              >
+                {PLACEHOLDER.phone}
+              </a>
+              . The exact legal-entity wording is pending client confirmation.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Placeholder>{PLACEHOLDER.phone}</Placeholder>
-              <Placeholder>{PLACEHOLDER.email}</Placeholder>
               <Placeholder>{PLACEHOLDER.legalEntity}</Placeholder>
             </div>
           </div>
