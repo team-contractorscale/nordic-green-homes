@@ -40,13 +40,6 @@ function TermsPage() {
       />
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl border border-dashed border-gold bg-gold/5 p-5 mb-8">
-            <Placeholder>
-              [Draft only — legal wording for Nordic Green Homes is pending; do not treat as
-              approved terms.]
-            </Placeholder>
-          </div>
-
           <div className="space-y-6 text-base text-foreground/80 leading-relaxed">
             <p>
               <strong className="text-foreground">Last updated:</strong> [CLIENT TO CONFIRM:
