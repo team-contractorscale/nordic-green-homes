@@ -62,9 +62,6 @@ function PrivacyPage() {
               {BRAND.name} operates this website. The exact legal-entity wording is pending client
               confirmation.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Placeholder>{PLACEHOLDER.legalEntity}</Placeholder>
-            </div>
             <p>
               Contact us at{" "}
               <a

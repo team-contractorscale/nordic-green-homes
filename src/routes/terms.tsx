@@ -63,7 +63,6 @@ function TermsPage() {
               relationship to {BRAND.sourceCompany} are pending client confirmation.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Placeholder>{PLACEHOLDER.legalEntity}</Placeholder>
               <Placeholder>{PLACEHOLDER.relationship}</Placeholder>
             </div>
             <p>
