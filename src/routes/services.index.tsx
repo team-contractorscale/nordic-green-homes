@@ -2,9 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { H3, HomeConsultation, RefImg } from "@/components/home/NordicHome";
-import { SERVICES, PHOTOS } from "@/lib/home-content";
+import { SERVICES, IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION = "Find the right starting point for your home";
+
+const HEADER_IMAGE = IMAGES.nordicHaus.src;
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -13,8 +15,8 @@ export const Route = createFileRoute("/services/")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Services | Nordic Green Homes" },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: PHOTOS.shopSide.src },
-      { name: "twitter:image", content: PHOTOS.shopSide.src },
+      { property: "og:image", content: HEADER_IMAGE },
+      { name: "twitter:image", content: HEADER_IMAGE },
     ],
   }),
   component: ServicesOverviewPage,
@@ -24,8 +26,8 @@ function ServicesOverviewPage() {
   return (
     <div>
       <PageHeader
-        image={PHOTOS.shopSide.src}
-        imageAlt={PHOTOS.shopSide.alt}
+        image={HEADER_IMAGE}
+        imageAlt={IMAGES.nordicHaus.alt}
         eyebrow="What we build"
         title="Find the right starting point for your home"
       />

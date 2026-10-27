@@ -8,7 +8,9 @@ import {
   ListColumns,
   NumberedSteps,
 } from "@/components/page/PageParts";
-import { PHOTOS } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
+
+const HEADER_IMAGE = IMAGES.customHomes.src;
 
 const DESCRIPTION =
   "The strongest custom-home brief connects the property, the household and the construction decisions that will make the design real. Nordic Green Homes is centred on considered design, durable choices and a clear explanation of how scope changes affect the project.";
@@ -100,8 +102,8 @@ export const Route = createFileRoute("/services/luxury-custom-homes")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Luxury Custom Homes | Nordic Green Homes" },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: PHOTOS.shopDusk.src },
-      { name: "twitter:image", content: PHOTOS.shopDusk.src },
+      { property: "og:image", content: HEADER_IMAGE },
+      { name: "twitter:image", content: HEADER_IMAGE },
     ],
   }),
   component: LuxuryCustomHomesPage,
@@ -111,8 +113,8 @@ function LuxuryCustomHomesPage() {
   return (
     <div>
       <PageHeader
-        image={PHOTOS.shopDusk.src}
-        imageAlt={PHOTOS.shopDusk.alt}
+        image={HEADER_IMAGE}
+        imageAlt={IMAGES.customHomes.alt}
         eyebrow="Luxury Custom Homes"
         title="A custom home shaped by the site and the way you live"
         description={DESCRIPTION}

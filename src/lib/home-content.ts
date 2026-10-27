@@ -261,7 +261,8 @@ export const SERVICES = [
     body: "Start with how you want to live, then consider the layout, materials and details that bring it together. Explore the choices that shape a custom home, from the first brief to the relationship between design, budget and buildability.",
     cta: "Explore Luxury Custom Homes",
     to: "/services/luxury-custom-homes",
-    image: PHOTOS.shopDusk,
+    // Board-and-batten farmhouse render — a home, not the shop/garage photo it replaced.
+    image: IMAGES.customHomes,
   },
   {
     key: "gardenSuites",
@@ -269,7 +270,8 @@ export const SERVICES = [
     body: "Making space for family or planning a separate dwelling? Begin with your property, the way the space will be used and the local rules. Access, services and site conditions all help determine what is possible.",
     cta: "Explore Garden Suites",
     to: "/services/garden-suites",
-    image: PHOTOS.cabana,
+    // Garden path render — replaced the pool-bar/cabana photo that read as a bar, not a suite.
+    image: IMAGES.hausGarden,
   },
   {
     key: "passiveHome",
@@ -277,7 +279,8 @@ export const SERVICES = [
     body: "Considering a Passive House? Understand how insulation, windows, airtightness and ventilation work together, and what separates passive-home principles from formal building certification.",
     cta: "Explore Passive Home Builder BC",
     to: "/services/passive-home-builder-bc",
-    image: PHOTOS.shopWide,
+    // Nordic Haus render — replaced the shop/garage photo.
+    image: IMAGES.nordicHaus,
   },
   {
     key: "highPerformance",
@@ -285,7 +288,8 @@ export const SERVICES = [
     body: "Think beyond the finishes. Explore how the building envelope, windows, ventilation and moisture control relate to the comfort and energy goals in your brief.",
     cta: "Explore High-Performance Homes",
     to: "/services/high-performance-homes",
-    image: PHOTOS.shopTrucks,
+    // Rear elevation render — replaced the shop-with-trucks photo.
+    image: IMAGES.hausRear,
   },
   {
     key: "designInteriors",
