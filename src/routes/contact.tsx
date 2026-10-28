@@ -1,15 +1,21 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { H2 } from "@/components/home/NordicHome";
-import { SERVICES, projectPhoto } from "@/lib/home-content";
+import { SERVICES, IMAGES } from "@/lib/home-content";
 import {
   postTrackingEvent,
   getTrackingSessionId,
   TRACKING_IDS,
   CUSTOM_FIELD_IDS,
 } from "@/lib/form-tracking";
-import { MessageCircle, Ruler, Loader2 } from "lucide-react";
+import { MessageCircle, Ruler, Loader2, Phone, Mail } from "lucide-react";
 import * as React from "react";
+import { BRAND } from "@/lib/content-data";
+
+const DIRECT = [
+  { icon: Phone, label: "Call", value: BRAND.phoneFormatted, href: `tel:${BRAND.phoneTel}` },
+  { icon: Mail, label: "Email", value: BRAND.email, href: `mailto:${BRAND.email}` },
+];
 
 const DESCRIPTION =
   "Tell us what you are planning, where the project is located and what you need to understand first. You can begin with a site, a set of plans or an early idea.";
@@ -31,7 +37,7 @@ const FIELD =
   "w-full rounded-md border border-input bg-background px-3.5 py-2.5 text-base text-foreground transition-colors placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none";
 const LABEL = "mb-1.5 block text-sm font-bold text-foreground";
 
-const HEADER_IMAGE = projectPhoto("MKPhoto-1888-1.jpg");
+const HEADER_IMAGE = IMAGES.farmhouseRear.src;
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -122,7 +128,7 @@ function ContactPage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt="Completed building exterior at dusk (reference image)"
+        imageAlt={IMAGES.farmhouseRear.alt}
         eyebrow="Contact"
         title="Start the conversation"
         description={DESCRIPTION}
@@ -130,32 +136,52 @@ function ContactPage() {
 
       <section className="bg-secondary/50 py-24 sm:py-28">
         <div className="wrap grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
-          {/* Left: which conversation, what to include, contact details */}
-          <div>
-            <h2 className={H2}>Choose the conversation that fits</h2>
-            <div className="mt-8 space-y-4">
-              {CONVERSATIONS.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                  <div className="flex items-center gap-3">
-                    <span className="flex size-10 items-center justify-center rounded-full bg-primary text-white">
-                      <Icon className="size-5" aria-hidden />
+          {/* Left: direct contact first, then which conversation fits */}
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <h2 className={H2}>Talk to us directly</h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Prefer a call or an email? Reach us directly, or send the form and we will get back to
+              you to arrange the next step.
+            </p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {DIRECT.map(({ icon: Icon, label, value, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="group flex items-center gap-4 rounded-xl bg-primary p-5 text-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-gold">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs font-bold uppercase tracking-[0.2em] text-white/70">
+                      {label}
                     </span>
-                    <h3 className="font-serif text-xl text-foreground">{title}</h3>
-                  </div>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{body}</p>
-                </div>
+                    <span className="mt-1 block break-words font-serif text-lg group-hover:text-gold">
+                      {value}
+                    </span>
+                  </span>
+                </a>
               ))}
             </div>
 
-            <div className="mt-8 border-l-2 border-gold pl-5">
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
-                What to include
-              </p>
-              <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-                Name, email, phone, project location, project type, current design stage, broad
-                goals, preferred next step and consent.
-              </p>
-            </div>
+            <p className="mt-12 text-sm font-bold uppercase tracking-[0.2em] text-primary">
+              Choose the conversation that fits
+            </p>
+            <ul className="mt-5 space-y-6">
+              {CONVERSATIONS.map(({ icon: Icon, title, body }) => (
+                <li key={title} className="flex gap-4">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-gold/60 text-primary">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="font-serif text-xl text-foreground">{title}</h3>
+                    <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">{body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Right: form */}

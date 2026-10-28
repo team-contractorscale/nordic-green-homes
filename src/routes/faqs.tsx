@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { projectPhoto } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 import { H2, HomeConsultation } from "@/components/home/NordicHome";
 import { FaqList } from "@/components/page/PageParts";
 
@@ -38,7 +38,7 @@ const FAQS = [
   },
 ];
 
-const HEADER_IMAGE = projectPhoto("143732770_1946069238868993_8364835802107115038_n-2.jpg");
+const HEADER_IMAGE = IMAGES.hausGarden.src;
 
 export const Route = createFileRoute("/faqs")({
   head: () => ({
@@ -59,7 +59,7 @@ function FaqsPage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt="Covered outdoor living space (reference image)"
+        imageAlt={IMAGES.hausGarden.alt}
         eyebrow="Frequently Asked Questions"
         title="Questions homeowners ask before starting"
         description={DESCRIPTION}

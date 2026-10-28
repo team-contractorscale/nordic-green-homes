@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { projectPhoto } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 import { H2, HomeConsultation } from "@/components/home/NordicHome";
 import { ClosingSection, FaqList } from "@/components/page/PageParts";
 
@@ -101,7 +101,7 @@ const FAQS = [
   },
 ];
 
-const HEADER_IMAGE = projectPhoto("MKPhoto-1842.jpg");
+const HEADER_IMAGE = IMAGES.newBuilds.src;
 
 export const Route = createFileRoute("/process")({
   head: () => ({
@@ -122,7 +122,7 @@ function ProcessPage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt="Completed building exterior (reference image)"
+        imageAlt={IMAGES.newBuilds.alt}
         title="What a custom home building process in BC should make clear"
         description={DESCRIPTION}
       >

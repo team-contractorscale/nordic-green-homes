@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BRAND } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Placeholder } from "@/components/home/NordicHome";
-import { PLACEHOLDER, projectPhoto } from "@/lib/home-content";
+import { PLACEHOLDER, IMAGES } from "@/lib/home-content";
 
-const HEADER_IMAGE = projectPhoto("144076210_1946069355535648_3573319870902758670_n.jpg");
+const HEADER_IMAGE = IMAGES.hausPatio.src;
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -33,17 +33,16 @@ function TermsPage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt="Architectural exterior of a sustainable Nordic Green custom home (reference image)"
+        imageAlt={IMAGES.hausPatio.alt}
         eyebrow="Legal · Draft"
         title="Terms & Conditions"
-        description="Draft only — last updated January 2026. This internal pilot is unpublished and these terms are not client-approved or in use."
+        description="Draft only — last updated 28 October 2026. This internal pilot is unpublished and these terms are not client-approved or in use."
       />
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 text-base text-foreground/80 leading-relaxed">
             <p>
-              <strong className="text-foreground">Last updated:</strong> [CLIENT TO CONFIRM:
-              effective date]
+              <strong className="text-foreground">Last updated:</strong> 28 October 2026
             </p>
             <p>
               These terms apply to your use of this website, operated by {BRAND.name}. By using the

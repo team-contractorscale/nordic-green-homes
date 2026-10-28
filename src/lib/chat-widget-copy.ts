@@ -18,7 +18,7 @@ export const CHAT_COPY = {
       label: "New Builds & Custom Homes",
       message: "I'd like to learn about new builds and custom homes.",
     },
-    { label: "Home Renovations", message: "I'm interested in a home renovation." },
+    { label: "Garden Suites", message: "I'm interested in a garden suite." },
     { label: "Book a discovery call", message: "I'd like to book a discovery call." },
   ] as ChatQuickReply[],
 

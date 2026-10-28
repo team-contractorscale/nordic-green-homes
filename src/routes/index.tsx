@@ -15,7 +15,7 @@ import {
 import { HomeGuide } from "@/components/home/HomeGuide";
 
 const DESCRIPTION =
-  "Nordic Green Homes — a home that looks right and lives well. Sustainable luxury custom homes, new builds and renovations in British Columbia.";
+  "Nordic Green Homes — a home that looks right and lives well. Sustainable luxury custom homes, new builds and garden suites in British Columbia.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

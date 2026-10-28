@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { PILLARS, type RefImage, PHOTOS } from "@/lib/home-content";
+import { PILLARS, type RefImage, IMAGES } from "@/lib/home-content";
 import { Eyebrow, RefTag, imgProps } from "./shared";
 
 /* ---------- 4. Pillars — "What guides the work" ----------
@@ -73,10 +73,10 @@ const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
 };
 
 const PILLAR_IMAGE: Record<(typeof PILLARS)[number]["title"], RefImage> = {
-  "Considered design": PHOTOS.bathTub,
-  "Clear decisions": PHOTOS.bathVanity,
-  "Responsible performance": PHOTOS.kitchen,
-  "Coordinated planning": PHOTOS.shopStairs,
+  "Considered design": IMAGES.entry,
+  "Clear decisions": IMAGES.office,
+  "Responsible performance": IMAGES.hausSide,
+  "Coordinated planning": IMAGES.farmhouseRear,
 };
 
 export function HomePillars() {

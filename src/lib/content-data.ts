@@ -9,7 +9,7 @@
 export const BRAND = {
   name: "Nordic Green Homes",
   sourceCompany: "O'Brien Contracting Ltd.",
-  tagline: "Custom Homes & Renovations",
+  tagline: "Custom Homes & Garden Suites",
   headline: "Sustainable craftsmanship for families who demand more from their forever home.",
   // Confirmed public contact details for Nordic Green Homes.
   phone: "+1 (604) 996-4217",

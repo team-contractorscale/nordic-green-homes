@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
 import { useState } from "react";
-import { ASSURANCE, CONSULTATION, FAQS, IMAGES, INTRO, SERVICES, PHOTOS } from "@/lib/home-content";
+import { ASSURANCE, CONSULTATION, FAQS, IMAGES, INTRO, SERVICES } from "@/lib/home-content";
 import { ConsultationButton, Eyebrow, H2, H3, RefImg, RefTag, TEXT_LINK } from "./shared";
 
 /* Nordic Green Homes — home page barrel + inline sections.
@@ -106,7 +106,7 @@ export function HomeServices() {
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.slice(0, 3).map((s) => (
+          {SERVICES.map((s) => (
             <Link key={s.key} to={s.to} data-reveal className="group flex flex-col">
               <RefImg image={s.image} className="aspect-[4/5] rounded-lg" />
               <h3 className={`mt-6 ${H3}`}>{s.title}</h3>
@@ -191,7 +191,7 @@ export function HomeConsultation() {
           className="relative isolate overflow-hidden rounded-2xl text-white shadow-2xl shadow-black/30"
         >
           <img
-            src={PHOTOS.barLounge.src}
+            src={IMAGES.hausRear.src}
             alt=""
             loading="lazy"
             className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -218,7 +218,7 @@ export function HomeConsultation() {
               </div>
             </div>
           </div>
-          <RefTag image={PHOTOS.barLounge} className="bottom-4 right-4" />
+          <RefTag image={IMAGES.hausRear} className="bottom-4 right-4" />
         </div>
       </div>
     </section>

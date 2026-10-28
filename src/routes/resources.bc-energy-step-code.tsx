@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { H2, HomeConsultation, TEXT_LINK } from "@/components/home/NordicHome";
 import { ClosingSection, FaqList } from "@/components/page/PageParts";
-import { PHOTOS } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION =
   "The BC Energy Step Code sets performance requirements for energy efficiency in new buildings. Instead of prescribing one fixed combination of products, the performance pathway allows the design and building team to determine how the project will meet the applicable outcome.";
@@ -96,8 +96,8 @@ export const Route = createFileRoute("/resources/bc-energy-step-code")({
         content: "BC Energy Step Code: what homeowners should understand early",
       },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: PHOTOS.shopInterior.src },
-      { name: "twitter:image", content: PHOTOS.shopInterior.src },
+      { property: "og:image", content: IMAGES.hausSide.src },
+      { name: "twitter:image", content: IMAGES.hausSide.src },
     ],
   }),
   component: StepCodeArticle,
@@ -120,8 +120,8 @@ function StepCodeArticle() {
   return (
     <div>
       <PageHeader
-        image={PHOTOS.shopInterior.src}
-        imageAlt={PHOTOS.shopInterior.alt}
+        image={IMAGES.hausSide.src}
+        imageAlt={IMAGES.hausSide.alt}
         title="BC Energy Step Code: what homeowners should understand early"
         description={DESCRIPTION}
       />

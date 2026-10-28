@@ -31,6 +31,7 @@ const ROUTES = [
   { path: "/resources/guide", priority: "0.6" },
   { path: "/resources/bc-energy-step-code", priority: "0.6" },
   { path: "/faqs", priority: "0.6" },
+  { path: "/estimate", priority: "0.8" },
   { path: "/contact", priority: "0.8" },
   { path: "/privacy", priority: "0.3" },
   { path: "/terms", priority: "0.3" },

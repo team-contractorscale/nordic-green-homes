@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { projectPhoto } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 import { HomeConsultation } from "@/components/home/NordicHome";
 import { CardSection, ClosingSection, RELATED } from "@/components/page/PageParts";
 
@@ -26,7 +26,7 @@ const CHECKS = [
 const DESCRIPTION =
   "Building a home involves a long chain of decisions. Before you commit, you should know who is responsible for the contract, what protection applies and where to go if something needs attention after handover.";
 
-const HEADER_IMAGE = projectPhoto("MKPhoto-1947-1.jpg");
+const HEADER_IMAGE = IMAGES.hausSide.src;
 
 export const Route = createFileRoute("/about-us/our-guarantee")({
   head: () => ({
@@ -47,7 +47,7 @@ function OurGuaranteePage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt="Completed building exterior (reference image)"
+        imageAlt={IMAGES.hausSide.alt}
         eyebrow="Our Guarantee"
         title="Protection should be clear before work begins"
         description={DESCRIPTION}

@@ -41,10 +41,11 @@ export function imgProps(image: RefImage, sizes = "100vw") {
 export function RefTag({ image, className = "" }: { image: RefImage; className?: string }) {
   return (
     <span
-      title={`Source: ${image.source}. Not approved for public use.`}
+      title={`Image: ${image.source}`}
       className={`absolute z-10 rounded-full bg-black/70 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm ${className}`}
     >
-      {image.kind} · Reference only
+      {/* Attribution credit. The kind stays visible so renders never read as built work. */}
+      {image.kind} · Nordic Green Design
     </span>
   );
 }

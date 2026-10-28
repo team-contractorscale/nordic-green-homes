@@ -10,17 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConsultRouteImport } from './routes/consult'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ResultRouteImport } from './routes/result'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AboutUsIndexRouteImport } from './routes/about-us.index'
 import { Route as AboutUsOurGuaranteeRouteImport } from './routes/about-us.our-guarantee'
 import { Route as AboutUsWhyChooseUsRouteImport } from './routes/about-us.why-choose-us'
+import { Route as EstimateIndexRouteImport } from './routes/estimate.index'
+import { Route as EstimateCustomHomeRouteImport } from './routes/estimate.custom-home'
+import { Route as EstimateGardenSuiteRouteImport } from './routes/estimate.garden-suite'
 import { Route as FloorplansIndexRouteImport } from './routes/floorplans.index'
 import { Route as FloorplansModernBelgianFarmhouseRouteImport } from './routes/floorplans.modern-belgian-farmhouse'
 import { Route as FloorplansNordicHausRouteImport } from './routes/floorplans.nordic-haus'
@@ -42,6 +47,11 @@ import { Route as ServicesPassiveHomeBuilderBcRouteImport } from './routes/servi
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultRoute = ConsultRouteImport.update({
+  id: '/consult',
+  path: '/consult',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -67,6 +77,11 @@ const ProcessRoute = ProcessRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultRoute = ResultRouteImport.update({
+  id: '/result',
+  path: '/result',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -97,6 +112,21 @@ const AboutUsOurGuaranteeRoute = AboutUsOurGuaranteeRouteImport.update({
 const AboutUsWhyChooseUsRoute = AboutUsWhyChooseUsRouteImport.update({
   id: '/about-us/why-choose-us',
   path: '/about-us/why-choose-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstimateIndexRoute = EstimateIndexRouteImport.update({
+  id: '/estimate/',
+  path: '/estimate/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstimateCustomHomeRoute = EstimateCustomHomeRouteImport.update({
+  id: '/estimate/custom-home',
+  path: '/estimate/custom-home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstimateGardenSuiteRoute = EstimateGardenSuiteRouteImport.update({
+  id: '/estimate/garden-suite',
+  path: '/estimate/garden-suite',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FloorplansIndexRoute = FloorplansIndexRouteImport.update({
@@ -197,16 +227,20 @@ const ServicesPassiveHomeBuilderBcRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
+  '/result': typeof ResultRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/estimate/custom-home': typeof EstimateCustomHomeRoute
+  '/estimate/garden-suite': typeof EstimateGardenSuiteRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
   '/floorplans/nordic-haus': typeof FloorplansNordicHausRoute
   '/resources/article-template': typeof ResourcesArticleTemplateRoute
@@ -221,6 +255,7 @@ export interface FileRoutesByFullPath {
   '/services/luxury-custom-homes': typeof ServicesLuxuryCustomHomesRoute
   '/services/passive-home-builder-bc': typeof ServicesPassiveHomeBuilderBcRoute
   '/about-us/': typeof AboutUsIndexRoute
+  '/estimate/': typeof EstimateIndexRoute
   '/floorplans/': typeof FloorplansIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/service-areas/': typeof ServiceAreasIndexRoute
@@ -228,16 +263,20 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
+  '/result': typeof ResultRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/estimate/custom-home': typeof EstimateCustomHomeRoute
+  '/estimate/garden-suite': typeof EstimateGardenSuiteRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
   '/floorplans/nordic-haus': typeof FloorplansNordicHausRoute
   '/resources/article-template': typeof ResourcesArticleTemplateRoute
@@ -252,6 +291,7 @@ export interface FileRoutesByTo {
   '/services/luxury-custom-homes': typeof ServicesLuxuryCustomHomesRoute
   '/services/passive-home-builder-bc': typeof ServicesPassiveHomeBuilderBcRoute
   '/about-us': typeof AboutUsIndexRoute
+  '/estimate': typeof EstimateIndexRoute
   '/floorplans': typeof FloorplansIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/service-areas': typeof ServiceAreasIndexRoute
@@ -260,16 +300,20 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
+  '/result': typeof ResultRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/estimate/custom-home': typeof EstimateCustomHomeRoute
+  '/estimate/garden-suite': typeof EstimateGardenSuiteRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
   '/floorplans/nordic-haus': typeof FloorplansNordicHausRoute
   '/resources/article-template': typeof ResourcesArticleTemplateRoute
@@ -284,6 +328,7 @@ export interface FileRoutesById {
   '/services/luxury-custom-homes': typeof ServicesLuxuryCustomHomesRoute
   '/services/passive-home-builder-bc': typeof ServicesPassiveHomeBuilderBcRoute
   '/about-us/': typeof AboutUsIndexRoute
+  '/estimate/': typeof EstimateIndexRoute
   '/floorplans/': typeof FloorplansIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/service-areas/': typeof ServiceAreasIndexRoute
@@ -293,16 +338,20 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/consult'
     | '/contact'
     | '/faqs'
     | '/privacy'
     | '/process'
     | '/projects'
+    | '/result'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
+    | '/estimate/custom-home'
+    | '/estimate/garden-suite'
     | '/floorplans/modern-belgian-farmhouse'
     | '/floorplans/nordic-haus'
     | '/resources/article-template'
@@ -317,6 +366,7 @@ export interface FileRouteTypes {
     | '/services/luxury-custom-homes'
     | '/services/passive-home-builder-bc'
     | '/about-us/'
+    | '/estimate/'
     | '/floorplans/'
     | '/resources/'
     | '/service-areas/'
@@ -324,16 +374,20 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/consult'
     | '/contact'
     | '/faqs'
     | '/privacy'
     | '/process'
     | '/projects'
+    | '/result'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
+    | '/estimate/custom-home'
+    | '/estimate/garden-suite'
     | '/floorplans/modern-belgian-farmhouse'
     | '/floorplans/nordic-haus'
     | '/resources/article-template'
@@ -348,6 +402,7 @@ export interface FileRouteTypes {
     | '/services/luxury-custom-homes'
     | '/services/passive-home-builder-bc'
     | '/about-us'
+    | '/estimate'
     | '/floorplans'
     | '/resources'
     | '/service-areas'
@@ -355,16 +410,20 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/consult'
     | '/contact'
     | '/faqs'
     | '/privacy'
     | '/process'
     | '/projects'
+    | '/result'
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
+    | '/estimate/custom-home'
+    | '/estimate/garden-suite'
     | '/floorplans/modern-belgian-farmhouse'
     | '/floorplans/nordic-haus'
     | '/resources/article-template'
@@ -379,6 +438,7 @@ export interface FileRouteTypes {
     | '/services/luxury-custom-homes'
     | '/services/passive-home-builder-bc'
     | '/about-us/'
+    | '/estimate/'
     | '/floorplans/'
     | '/resources/'
     | '/service-areas/'
@@ -387,16 +447,20 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConsultRoute: typeof ConsultRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
   ProjectsRoute: typeof ProjectsRoute
+  ResultRoute: typeof ResultRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
   AboutUsOurGuaranteeRoute: typeof AboutUsOurGuaranteeRoute
   AboutUsWhyChooseUsRoute: typeof AboutUsWhyChooseUsRoute
+  EstimateCustomHomeRoute: typeof EstimateCustomHomeRoute
+  EstimateGardenSuiteRoute: typeof EstimateGardenSuiteRoute
   FloorplansModernBelgianFarmhouseRoute: typeof FloorplansModernBelgianFarmhouseRoute
   FloorplansNordicHausRoute: typeof FloorplansNordicHausRoute
   ResourcesArticleTemplateRoute: typeof ResourcesArticleTemplateRoute
@@ -411,6 +475,7 @@ export interface RootRouteChildren {
   ServicesLuxuryCustomHomesRoute: typeof ServicesLuxuryCustomHomesRoute
   ServicesPassiveHomeBuilderBcRoute: typeof ServicesPassiveHomeBuilderBcRoute
   AboutUsIndexRoute: typeof AboutUsIndexRoute
+  EstimateIndexRoute: typeof EstimateIndexRoute
   FloorplansIndexRoute: typeof FloorplansIndexRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
   ServiceAreasIndexRoute: typeof ServiceAreasIndexRoute
@@ -424,6 +489,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consult': {
+      id: '/consult'
+      path: '/consult'
+      fullPath: '/consult'
+      preLoaderRoute: typeof ConsultRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -459,6 +531,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/result': {
+      id: '/result'
+      path: '/result'
+      fullPath: '/result'
+      preLoaderRoute: typeof ResultRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -501,6 +580,27 @@ declare module '@tanstack/react-router' {
       path: '/about-us/why-choose-us'
       fullPath: '/about-us/why-choose-us'
       preLoaderRoute: typeof AboutUsWhyChooseUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estimate/': {
+      id: '/estimate/'
+      path: '/estimate'
+      fullPath: '/estimate/'
+      preLoaderRoute: typeof EstimateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estimate/custom-home': {
+      id: '/estimate/custom-home'
+      path: '/estimate/custom-home'
+      fullPath: '/estimate/custom-home'
+      preLoaderRoute: typeof EstimateCustomHomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estimate/garden-suite': {
+      id: '/estimate/garden-suite'
+      path: '/estimate/garden-suite'
+      fullPath: '/estimate/garden-suite'
+      preLoaderRoute: typeof EstimateGardenSuiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/floorplans/': {
@@ -627,16 +727,20 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConsultRoute: ConsultRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
   ProjectsRoute: ProjectsRoute,
+  ResultRoute: ResultRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
   AboutUsOurGuaranteeRoute: AboutUsOurGuaranteeRoute,
   AboutUsWhyChooseUsRoute: AboutUsWhyChooseUsRoute,
+  EstimateCustomHomeRoute: EstimateCustomHomeRoute,
+  EstimateGardenSuiteRoute: EstimateGardenSuiteRoute,
   FloorplansModernBelgianFarmhouseRoute: FloorplansModernBelgianFarmhouseRoute,
   FloorplansNordicHausRoute: FloorplansNordicHausRoute,
   ResourcesArticleTemplateRoute: ResourcesArticleTemplateRoute,
@@ -652,6 +756,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesLuxuryCustomHomesRoute: ServicesLuxuryCustomHomesRoute,
   ServicesPassiveHomeBuilderBcRoute: ServicesPassiveHomeBuilderBcRoute,
   AboutUsIndexRoute: AboutUsIndexRoute,
+  EstimateIndexRoute: EstimateIndexRoute,
   FloorplansIndexRoute: FloorplansIndexRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
   ServiceAreasIndexRoute: ServiceAreasIndexRoute,

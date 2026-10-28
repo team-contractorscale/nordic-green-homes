@@ -8,7 +8,7 @@ import {
   ListColumns,
   SplitIntro,
 } from "@/components/page/PageParts";
-import { PHOTOS } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION =
   "“High-performance home” is useful only when the project explains what performance means. It may involve energy demand, comfort, airtightness, moisture management, durability or another measurable priority. A broad label is not a substitute for a brief, model, test or certification.";
@@ -94,8 +94,8 @@ export const Route = createFileRoute("/services/high-performance-homes")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "High-Performance Homes | Nordic Green Homes" },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: PHOTOS.shopTrucks.src },
-      { name: "twitter:image", content: PHOTOS.shopTrucks.src },
+      { property: "og:image", content: IMAGES.hausRear.src },
+      { name: "twitter:image", content: IMAGES.hausRear.src },
     ],
   }),
   component: HighPerformancePage,
@@ -105,8 +105,8 @@ function HighPerformancePage() {
   return (
     <div>
       <PageHeader
-        image={PHOTOS.shopTrucks.src}
-        imageAlt={PHOTOS.shopTrucks.alt}
+        image={IMAGES.hausRear.src}
+        imageAlt={IMAGES.hausRear.alt}
         eyebrow="High-Performance Homes"
         title="High performance starts with a project definition"
         description={DESCRIPTION}

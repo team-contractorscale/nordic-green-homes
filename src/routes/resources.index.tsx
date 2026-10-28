@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { H2, HomeConsultation } from "@/components/home/NordicHome";
 import { RelatedPages } from "@/components/page/PageParts";
-import { IMAGES, PHOTOS } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION =
   "Use the resources hub to understand the questions that affect a project before detailed design or construction decisions are locked in.";
@@ -31,7 +31,7 @@ const FEATURED = [
     body: "Understand why location, permit date, design decisions and technical review matter.",
     cta: "Read the article",
     to: "/resources/bc-energy-step-code",
-    image: PHOTOS.shopInterior,
+    image: IMAGES.hausSide,
   },
 ] as const;
 

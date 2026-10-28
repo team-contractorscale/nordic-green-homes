@@ -2,12 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { H2 } from "@/components/home/NordicHome";
 import { CheckCircle2, ArrowRight, ArrowUpRight, Clock, Mail } from "lucide-react";
-import { projectPhoto } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION =
   "Thank you for reaching out to Nordic Green Homes. We have received your project enquiry and will be in touch shortly to arrange the next step.";
 
-const HEADER_IMAGE = projectPhoto("MKPhoto-1888-1.jpg");
+const HEADER_IMAGE = IMAGES.farmhouseRear.src;
 
 const NEXT_STEPS = [
   {
@@ -42,7 +42,7 @@ function ThankYouPage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt="Completed building exterior at dusk (reference image)"
+        imageAlt={IMAGES.farmhouseRear.alt}
         eyebrow="Thank you"
         title="Your enquiry is in"
         description={DESCRIPTION}

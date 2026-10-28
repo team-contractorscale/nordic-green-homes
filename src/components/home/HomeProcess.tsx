@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { IMAGES, PROCESS, type RefImage, PHOTOS } from "@/lib/home-content";
+import { IMAGES, PROCESS, type RefImage } from "@/lib/home-content";
 import { ConsultationButton, Eyebrow, RefTag, TEXT_LINK, imgProps } from "./shared";
 
 /* ---------- 5. Process — "How we work" ----------
@@ -13,10 +13,10 @@ import { ConsultationButton, Eyebrow, RefTag, TEXT_LINK, imgProps } from "./shar
 
 const STAGE_IMAGE: RefImage[] = [
   IMAGES.interior,
-  PHOTOS.kitchenCabinets,
-  PHOTOS.shopBays,
-  PHOTOS.shopTrucks,
-  PHOTOS.kitchenRange,
+  IMAGES.office,
+  IMAGES.newBuilds,
+  IMAGES.hausSide,
+  IMAGES.hausPatio,
 ];
 
 export function HomeProcess() {
@@ -73,7 +73,7 @@ export function HomeProcess() {
         {/* stacking cards */}
         <ol data-stack className="space-y-6 lg:col-span-8 lg:space-y-10">
           {PROCESS.map((step, i) => {
-            const img = STAGE_IMAGE[i] ?? PHOTOS.kitchenRange;
+            const img = STAGE_IMAGE[i] ?? IMAGES.hausPatio;
             return (
               <li
                 key={step.title}

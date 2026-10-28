@@ -17,7 +17,6 @@ export const PLACEHOLDER = {
     "[Nordic Green Homes (new entity) · Nordic Green Design (separate) · O'Brien Contracting remains open during transition — exact public/legal wording pending]",
 } as const;
 
-const OB = "https://obriencontracting.ca/wp-content/uploads";
 const NGD = "https://images.squarespace-cdn.com/content/v1/63731d025a6f0837360c4578";
 
 export type RefImage = {
@@ -95,20 +94,6 @@ export const IMAGES = {
     source: "nordicgreendesign.ca · Modern Belgian Farmhouse plan",
     w: 1920,
   },
-  obrienPoolBar: {
-    src: `${OB}/2025/12/143732770_1946069238868993_8364835802107115038_n.jpg`,
-    alt: "Covered outdoor bar with stone base, timber ceiling and bar seating beside a patio",
-    kind: "Photo",
-    source: "obriencontracting.ca · O'Brien Contracting project",
-    w: 960,
-  },
-  obrienReno: {
-    src: `${OB}/2025/12/314603326_553240643476346_4953318663269826168_n.jpeg`,
-    alt: "Renovated kitchen with white shaker cabinets, stone-look backsplash and gas range",
-    kind: "Photo",
-    source: "obriencontracting.ca · O'Brien Contracting project",
-    w: 1000,
-  },
   office: {
     src: `${NGD}/3d0f1b89-3fcf-466c-b53f-46f692ead5e2/IMG_5333.WEBP?format=1500w`,
     alt: "Home office with sage-green walls, built-in shelving and garden door",
@@ -152,74 +137,6 @@ export const IMAGES = {
     w: 1920,
   },
 } satisfies Record<string, RefImage>;
-
-// O'Brien Contracting project photos (obriencontracting.ca/projects) — the site's real project imagery.
-const OB_PROJECTS = "https://obriencontracting.ca/wp-content/uploads/2025/12";
-export const projectPhoto = (file: string) => `${OB_PROJECTS}/${file}`;
-const ob = (file: string, alt: string, w: number): RefImage => ({
-  src: projectPhoto(file),
-  alt,
-  kind: "Photo",
-  source: "obriencontracting.ca · Projects",
-  w,
-});
-export const PHOTOS = {
-  shopSide: ob("MKPhoto-1821-1.jpg", "Completed shop building with timber-framed canopy", 1000),
-  shopWide: ob("MKPhoto-1842.jpg", "Three-bay shop building with timber and blue cladding", 1000),
-  shopTrailer: ob("MKPhoto-1848-1.jpg", "Completed shop building exterior", 1000),
-  shopDusk: ob("MKPhoto-1888-1.jpg", "Completed shop building at dusk", 1000),
-  shopStairs: ob("MKPhoto-1892.jpg", "Interior with timber stair and sliding barn door", 1000),
-  shopInterior: ob("MKPhoto-1897-1.jpg", "Bright interior with stair and loft", 1000),
-  shopBays: ob("MKPhoto-1912.jpg", "Interior with overhead doors open", 1000),
-  shopTrucks: ob("MKPhoto-1947-1.jpg", "Completed shop building with bays open", 1000),
-  bathVanity: ob("2020-05-1410.54.13.jpg", "Bathroom with vanity and wall sconces", 1000),
-  bathTub: ob("2020-05-1410.56.35.jpg", "Bathroom with freestanding tub", 1000),
-  cabana: ob(
-    "143732770_1946069238868993_8364835802107115038_n-2.jpg",
-    "Covered outdoor bar beside a stone patio",
-    960,
-  ),
-  barWindow: ob(
-    "143892405_1946069332202317_5054969848558874853_n-1.jpg",
-    "Outdoor bar counter with framed window",
-    720,
-  ),
-  barCovered: ob(
-    "144076210_1946069355535648_3573319870902758670_n.jpg",
-    "Covered outdoor bar with timber ceiling",
-    720,
-  ),
-  barSeating: ob(
-    "144189453_1946069295535654_263749928670396645_n.jpg",
-    "Outdoor bar seating under a timber ceiling",
-    720,
-  ),
-  barLounge: ob(
-    "144228196_1946069278868989_2068492409410308495_n.jpg",
-    "Outdoor bar with seating and stone base",
-    720,
-  ),
-  barStone: ob(
-    "144476719_1946069255535658_4440791575658560592_n.jpg",
-    "Stone-clad outdoor bar counter",
-    720,
-  ),
-  kitchen: ob(
-    "314603326_553240643476346_4953318663269826168_n.jpeg",
-    "Kitchen with white cabinets and stainless appliances",
-    1000,
-  ),
-  kitchenCabinets: ob(
-    "315099227_553240650143012_5160812216121899677_n.jpeg",
-    "White shaker kitchen cabinets",
-    1000,
-  ),
-  kitchenRange: ob(
-    "315249565_553240626809681_1484751327160491613_n.jpeg",
-    "Kitchen range with stainless hood",
-    1000,
-  ),
-};
 
 export const HERO = {
   eyebrow: "Custom home builder BC",
@@ -301,37 +218,6 @@ export const SERVICES = [
   },
 ] as const;
 
-export const PROJECT_PHOTOS = [
-  "MKPhoto-1821-1.jpg",
-  "MKPhoto-1842.jpg",
-  "MKPhoto-1848-1.jpg",
-  "MKPhoto-1888-1.jpg",
-  "MKPhoto-1892.jpg",
-  "MKPhoto-1897-1.jpg",
-  "MKPhoto-1899.jpg",
-  "MKPhoto-1904.jpg",
-  "MKPhoto-1908.jpg",
-  "MKPhoto-1910-1.jpg",
-  "MKPhoto-1912.jpg",
-  "MKPhoto-1925.jpg",
-  "MKPhoto-1927.jpg",
-  "MKPhoto-1947-1.jpg",
-  "2020-05-1410.53.57.jpg",
-  "2020-05-1410.54.13.jpg",
-  "2020-05-1410.54.29.jpg",
-  "2020-05-1410.56.24.jpg",
-  "2020-05-1410.56.35.jpg",
-  "143732770_1946069238868993_8364835802107115038_n-2.jpg",
-  "143892405_1946069332202317_5054969848558874853_n-1.jpg",
-  "144076210_1946069355535648_3573319870902758670_n.jpg",
-  "144189453_1946069295535654_263749928670396645_n.jpg",
-  "144228196_1946069278868989_2068492409410308495_n.jpg",
-  "144476719_1946069255535658_4440791575658560592_n.jpg",
-  "314603326_553240643476346_4953318663269826168_n.jpeg",
-  "315099227_553240650143012_5160812216121899677_n.jpeg",
-  "315249565_553240626809681_1484751327160491613_n.jpeg",
-].map(projectPhoto);
-
 export const FLOORPLANS = [
   {
     key: "nordicHaus",
@@ -361,19 +247,19 @@ export const SERVICE_AREAS = [
     key: "northShore",
     title: "Vancouver North Shore",
     to: "/service-areas/vancouver-north-shore",
-    image: PHOTOS.barCovered,
+    image: IMAGES.hausSide,
   },
   {
     key: "richmondTsawwassen",
     title: "Richmond and Tsawwassen",
     to: "/service-areas/richmond-and-tsawwassen",
-    image: PHOTOS.barSeating,
+    image: IMAGES.newBuilds,
   },
   {
     key: "vancouverIsland",
     title: "Vancouver Island",
     to: "/service-areas/vancouver-island",
-    image: PHOTOS.shopSide,
+    image: IMAGES.nordicHaus,
   },
 ] as const;
 
@@ -530,28 +416,34 @@ export const NAV = [
 ] as const;
 
 // Footer columns: the full site map, including pages kept out of the header (service areas, FAQs).
+// Four columns of link groups; short groups share a column. Privacy/Terms live in the bottom bar.
 export const FOOTER_COLUMNS = [
-  {
-    title: "About",
-    links: [
-      { label: "About Us", to: "/about-us" },
-      ...ABOUT_LINKS,
-      { label: "Projects", to: "/projects" },
-      { label: "Contact", to: "/contact" },
-    ],
-  },
-  { title: "Services", links: SERVICE_LINKS },
-  { title: "Floorplans", links: FLOORPLAN_LINKS },
-  { title: "Service Areas", links: AREA_LINKS },
-  {
-    title: "Resources",
-    links: [
-      { label: "Resources", to: "/resources" },
-      { label: "Planning Guide", to: "/resources/guide" },
-      { label: "BC Energy Step Code", to: "/resources/bc-energy-step-code" },
-      { label: "FAQs", to: "/faqs" },
-      { label: "Privacy", to: "/privacy" },
-      { label: "Terms", to: "/terms" },
-    ],
-  },
+  [
+    {
+      title: "About",
+      links: [
+        { label: "About Us", to: "/about-us" },
+        ...ABOUT_LINKS,
+        { label: "Projects", to: "/projects" },
+        { label: "Contact", to: "/contact" },
+      ],
+    },
+  ],
+  [{ title: "Services", links: SERVICE_LINKS }],
+  [
+    { title: "Floorplans", links: FLOORPLAN_LINKS },
+    { title: "Service Areas", links: AREA_LINKS },
+  ],
+  [
+    {
+      title: "Resources",
+      links: [
+        { label: "Instant Estimate", to: "/estimate" },
+        { label: "Resources", to: "/resources" },
+        { label: "Planning Guide", to: "/resources/guide" },
+        { label: "BC Energy Step Code", to: "/resources/bc-energy-step-code" },
+        { label: "FAQs", to: "/faqs" },
+      ],
+    },
+  ],
 ] as const;

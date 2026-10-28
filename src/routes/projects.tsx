@@ -1,12 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { PROJECT_PHOTOS, projectPhoto } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 import { H2, HomeConsultation } from "@/components/home/NordicHome";
+import { RefTag, imgProps } from "@/components/home/shared";
 
 const DESCRIPTION =
   "The useful part of a project story is not a polished image by itself. It is the brief, the decisions, the work completed, the evidence available and what another homeowner can learn from the result.";
 
-const HERO = projectPhoto("MKPhoto-1821-1.jpg");
+const HERO = IMAGES.poolRender.src;
+
+// Nordic Green Design renders and design work only. Real Nordic project stories replace these once approved.
+const GALLERY = Object.values(IMAGES);
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -27,7 +31,7 @@ function ProjectsPage() {
     <div>
       <PageHeader
         image={HERO}
-        imageAlt="Completed home project (reference image)"
+        imageAlt={IMAGES.poolRender.alt}
         eyebrow="Projects"
         title="Projects, documented properly"
         description={DESCRIPTION}
@@ -46,14 +50,18 @@ function ProjectsPage() {
 
           {/* Masonry via CSS columns — keeps each photo's native aspect ratio. */}
           <div className="mt-16 columns-1 gap-4 sm:columns-2 lg:columns-3">
-            {PROJECT_PHOTOS.map((src, i) => (
-              <img
-                key={src}
-                src={src}
-                alt={`Project photo ${i + 1} (reference image)`}
-                loading="lazy"
-                className="mb-4 w-full break-inside-avoid rounded-lg bg-muted"
-              />
+            {GALLERY.map((image) => (
+              <div
+                key={image.src}
+                className="relative mb-4 break-inside-avoid overflow-hidden rounded-lg bg-muted"
+              >
+                <img
+                  {...imgProps(image, "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw")}
+                  loading="lazy"
+                  className="w-full"
+                />
+                <RefTag image={image} className="left-3 top-3" />
+              </div>
             ))}
           </div>
         </div>

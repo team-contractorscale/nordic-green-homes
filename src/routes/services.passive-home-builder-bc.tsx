@@ -9,7 +9,7 @@ import {
   ListColumns,
   SplitIntro,
 } from "@/components/page/PageParts";
-import { PHOTOS } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION =
   "Passive House is a building standard with published criteria and a quality-assurance process. A project may also use passive-home principles without pursuing certification. Decide which path is intended and what evidence supports the wording.";
@@ -96,8 +96,8 @@ export const Route = createFileRoute("/services/passive-home-builder-bc")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Passive Home Builder BC | Nordic Green Homes" },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: PHOTOS.shopTrailer.src },
-      { name: "twitter:image", content: PHOTOS.shopTrailer.src },
+      { property: "og:image", content: IMAGES.nordicHaus.src },
+      { name: "twitter:image", content: IMAGES.nordicHaus.src },
     ],
   }),
   component: PassiveHomePage,
@@ -107,8 +107,8 @@ function PassiveHomePage() {
   return (
     <div>
       <PageHeader
-        image={PHOTOS.shopTrailer.src}
-        imageAlt={PHOTOS.shopTrailer.alt}
+        image={IMAGES.nordicHaus.src}
+        imageAlt={IMAGES.nordicHaus.alt}
         eyebrow="Passive Home Builder BC"
         title="Passive House starts with a defined standard, not a label"
         description={DESCRIPTION}

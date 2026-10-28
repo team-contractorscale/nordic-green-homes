@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { H3, HomeConsultation, RefImg } from "@/components/home/NordicHome";
-import { SERVICE_AREAS, PHOTOS } from "@/lib/home-content";
+import { SERVICE_AREAS, IMAGES } from "@/lib/home-content";
 
 export const Route = createFileRoute("/service-areas/")({
   head: () => ({
     meta: [
       { title: "Service Areas | Nordic Green Homes" },
       { property: "og:title", content: "Service Areas | Nordic Green Homes" },
-      { property: "og:image", content: PHOTOS.barStone.src },
-      { name: "twitter:image", content: PHOTOS.barStone.src },
+      { property: "og:image", content: IMAGES.newBuilds.src },
+      { name: "twitter:image", content: IMAGES.newBuilds.src },
     ],
   }),
   component: ServiceAreasPage,
@@ -19,8 +19,8 @@ function ServiceAreasPage() {
   return (
     <div>
       <PageHeader
-        image={PHOTOS.barStone.src}
-        imageAlt={PHOTOS.barStone.alt}
+        image={IMAGES.newBuilds.src}
+        imageAlt={IMAGES.newBuilds.alt}
         title="Service Areas"
       />
 

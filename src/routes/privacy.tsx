@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { PLACEHOLDER, projectPhoto } from "@/lib/home-content";
+import { PLACEHOLDER, IMAGES } from "@/lib/home-content";
 
-const HEADER_IMAGE = projectPhoto("MKPhoto-1848-1.jpg");
+const HEADER_IMAGE = IMAGES.hausRear.src;
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -32,17 +32,16 @@ function PrivacyPage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt="Architectural exterior of a sustainable Nordic Green custom home (reference image)"
+        imageAlt={IMAGES.hausRear.alt}
         eyebrow="Legal · Draft"
         title="Privacy Policy"
-        description="Draft only — last updated January 2026. This internal pilot is unpublished and this policy is not client-approved or in use."
+        description="Draft only — last updated 28 October 2026. This internal pilot is unpublished and this policy is not client-approved or in use."
       />
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 text-base text-foreground/80 leading-relaxed">
             <p>
-              <strong className="text-foreground">Last updated:</strong> [CLIENT TO CONFIRM:
-              effective date]
+              <strong className="text-foreground">Last updated:</strong> 28 October 2026
             </p>
             <p>
               This policy explains how {BRAND.name} collects, uses and protects personal information

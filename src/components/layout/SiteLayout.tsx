@@ -45,10 +45,10 @@ function Wordmark() {
 function HeaderCta({ className = "" }: { className?: string }) {
   return (
     <Link
-      to="/contact"
+      to="/estimate"
       className={`group h-11 items-center gap-2 rounded-full bg-white py-1 pl-5 pr-1 text-sm font-bold text-primary shadow-md shadow-black/0 transition-all duration-300 hover:scale-[1.04] hover:shadow-lg hover:shadow-black/20 ${className}`}
     >
-      Discuss your project
+      Online Estimate
       <span className="flex size-8 items-center justify-center rounded-full bg-primary text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:rotate-45">
         <ArrowUpRight className="size-4" />
       </span>
@@ -181,56 +181,67 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Site-map footer: brand + one column per section. The consultation CTA floats just above it.
+// Footer: brand panel (logo, contact, CTA) beside a four-column site map. Extra top padding only
+// when the floating consultation card overlaps the footer seam.
 export function SiteFooter() {
   return (
-    <footer className="bg-primary text-white">
-      <div className="wrap grid gap-10 pb-16 pt-32 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.4fr_repeat(5,1fr)] xl:gap-8">
-        <div>
-          <img
-            src="/brand/nordic-logo-light.png"
-            alt="Nordic Green Homes & Design"
-            className="w-44"
-          />
-          <p className="mt-5 max-w-xs font-serif text-lg leading-snug text-white/90">
+    <footer className="bg-primary text-white [main:has(.consult-band)+&]:pt-20 lg:[main:has(.consult-band)+&]:pt-28">
+      <div className="wrap grid gap-12 py-14 lg:grid-cols-12 lg:gap-0 lg:py-16">
+        {/* brand panel */}
+        <div className="lg:col-span-4 lg:border-r lg:border-white/15 lg:pr-12">
+          <Wordmark />
+          <p className="mt-6 font-serif text-xl leading-snug text-white/90">
             A home that looks right. And lives well.
           </p>
-          <ul className="mt-5 space-y-2.5 text-sm text-white/85">
+          <ul className="mt-6 divide-y divide-white/10 rounded-xl border border-white/15 bg-white/5 text-sm">
             <li>
               <a
                 href={`tel:${PLACEHOLDER.phone.replace(/[^\d+]/g, "")}`}
-                className="inline-flex items-center gap-2.5 transition-colors hover:text-gold"
+                className="flex items-center gap-3 px-4 py-3 transition-colors hover:text-gold"
               >
-                <Phone className="size-4 text-gold" aria-hidden />
+                <Phone className="size-4 shrink-0 text-gold" aria-hidden />
                 {PLACEHOLDER.phone}
               </a>
             </li>
             <li>
               <a
                 href={`mailto:${PLACEHOLDER.email}`}
-                className="inline-flex items-center gap-2.5 transition-colors hover:text-gold"
+                className="flex items-center gap-3 px-4 py-3 transition-colors hover:text-gold"
               >
-                <Mail className="size-4 text-gold" aria-hidden />
+                <Mail className="size-4 shrink-0 text-gold" aria-hidden />
                 {PLACEHOLDER.email}
               </a>
             </li>
           </ul>
+          <Link
+            to="/contact"
+            className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-gold px-5 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
+          >
+            Discuss your project <ArrowRight className="size-4" />
+          </Link>
         </div>
 
-        {FOOTER_COLUMNS.map((col) => (
-          <div key={col.title}>
-            <FooterHeading>{col.title}</FooterHeading>
-            <ul className="mt-5 space-y-3">
-              {col.links.map((link) => (
-                <li key={link.to}>
-                  <Link to={link.to} className="text-sm text-white/85 hover:text-gold">
-                    {link.label}
-                  </Link>
-                </li>
+        {/* site map */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4 lg:col-span-8 lg:pl-12">
+          {FOOTER_COLUMNS.map((groups) => (
+            <div key={groups[0].title} className="space-y-8">
+              {groups.map((group) => (
+                <div key={group.title}>
+                  <FooterHeading>{group.title}</FooterHeading>
+                  <ul className="mt-4 space-y-2.5 border-t border-white/15 pt-4">
+                    {group.links.map((link) => (
+                      <li key={link.to}>
+                        <Link to={link.to} className="text-sm text-white/80 hover:text-gold">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="border-t border-white/15">

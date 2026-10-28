@@ -9,7 +9,7 @@ import {
   NumberedSteps,
   SplitIntro,
 } from "@/components/page/PageParts";
-import { PHOTOS } from "@/lib/home-content";
+import { IMAGES } from "@/lib/home-content";
 
 const DESCRIPTION =
   "A garden suite, coach house or laneway home can add flexible space, but the label alone does not tell you whether a project is allowed, practical or within budget. The property, municipality, access, existing services and intended use all shape the next step.";
@@ -97,8 +97,8 @@ export const Route = createFileRoute("/services/garden-suites")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Garden Suites | Nordic Green Homes" },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: PHOTOS.cabana.src },
-      { name: "twitter:image", content: PHOTOS.cabana.src },
+      { property: "og:image", content: IMAGES.hausGarden.src },
+      { name: "twitter:image", content: IMAGES.hausGarden.src },
     ],
   }),
   component: GardenSuitesPage,
@@ -108,8 +108,8 @@ function GardenSuitesPage() {
   return (
     <div>
       <PageHeader
-        image={PHOTOS.cabana.src}
-        imageAlt={PHOTOS.cabana.alt}
+        image={IMAGES.hausGarden.src}
+        imageAlt={IMAGES.hausGarden.alt}
         eyebrow="Garden Suites"
         title="A secondary home starts with the property"
         description={DESCRIPTION}

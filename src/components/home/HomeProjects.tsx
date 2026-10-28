@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { IMAGES, type RefImage, PHOTOS } from "@/lib/home-content";
+import { IMAGES, type RefImage } from "@/lib/home-content";
 import { Eyebrow, RefTag, imgProps } from "./shared";
 
 /* ---------- 7. Selected work ----------
@@ -16,11 +16,11 @@ import { Eyebrow, RefTag, imgProps } from "./shared";
 type Item = { image: RefImage; title: string; size: "render" | "photo" | "wide-photo" };
 
 const ITEMS: Item[] = [
-  { image: PHOTOS.barWindow, title: "Rear porch & pool", size: "render" },
+  { image: IMAGES.poolRender, title: "Rear porch & pool", size: "render" },
   { image: IMAGES.entry, title: "Front entry", size: "photo" },
-  { image: PHOTOS.cabana, title: "Covered patio & living", size: "render" },
+  { image: IMAGES.hausPatio, title: "Covered patio & living", size: "render" },
   { image: IMAGES.interior, title: "Media room", size: "wide-photo" },
-  { image: PHOTOS.kitchen, title: "Rear terrace", size: "render" },
+  { image: IMAGES.farmhouseRear, title: "Rear terrace", size: "render" },
   { image: IMAGES.intro, title: "Entry hall arches", size: "photo" },
   { image: IMAGES.renovations, title: "Barn-door hallway", size: "photo" },
 ];
