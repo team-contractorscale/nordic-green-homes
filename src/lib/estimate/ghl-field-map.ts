@@ -11,6 +11,8 @@ export const ghlFieldMap: Record<string, string> = {
   // ── Computed / meta (auto-set by the app) ──
   projectType: "QhNOcjRK349mkqOPg9U4", // Project Type (dropdown)
   estimateLow: "5lTQLNCuc38KxPQ6jv4m", // Quote (number)
+  estimateHigh: "mPVcjGGiVtRrwjE7VrGj", // Estimate – High (text)
+  estimateRange: "Q57C7AXxa2nHTxWW1tk2", // Quote Range (text)
   propertyLocation: "MmloWfeY4uxourKWTLin", // Property Location (large text)
   details: "CZnRAdMA3DtectHXwtA4", // Project Details (large text)
 
@@ -49,6 +51,8 @@ export const ghlMergeTagMap: Record<string, string> = {
   budget: "{{contact.estimated_budget}}",
   projectType: "{{contact.project_type}}",
   estimateLow: "{{contact.quote}}",
+  estimateHigh: "{{contact.estimate_high}}",
+  estimateRange: "{{contact.quote_range}}",
   propertyLocation: "{{contact.property_location}}",
   details: "{{contact.project_details}}",
   bedrooms: "{{contact.bedrooms}}",
