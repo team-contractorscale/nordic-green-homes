@@ -73,13 +73,37 @@ export const ghlMergeTagMap: Record<string, string> = {
 
 // Dropdown fields only store a value that matches one of their options; /audit flags any survey
 // option that doesn't. Copied from the same API read.
+// Dropdown fields only store a value that matches one of their options; /audit flags any survey
+// option that doesn't. These must match the options configured in HighLevel for the three fields
+// the client created (budget, timeline, projectType). Re-sync after any HighLevel option change.
 export const ghlFieldOptions: Record<string, readonly string[]> = {
-  timeline: ["Immediately (1-3 months)", "3 - 6 months", "6 - 12 months", "Planning for next year"],
-  budget: ["$100k - $250k (Renovations)", "$250k - $500k", "$500k - $1M", "$1M - $2M+"],
+  // "When would you like to get started?" — sent by both estimate surveys
+  timeline: [
+    "As Soon As Possible",
+    "Within 3-6 Months",
+    "Within 6-12 Months",
+    "Just Gathering Information",
+  ],
+  // "What is your estimated budget?" — sent by both estimate surveys (custom-home + garden-suite ranges)
+  budget: [
+    "$300,000 - $450,000",
+    "$450,000 - $600,000",
+    "$600,000 - $800,000",
+    "$800,000+",
+    "$1,000,000 - $1,500,000",
+    "$1,500,000 - $2,000,000",
+    "$2,000,000 - $3,000,000",
+    "$3,000,000 - $4,000,000",
+    "$4,000,000+",
+  ],
+  // "Project Type" — sent by estimate surveys (survey.label) AND the contact form (SERVICES titles)
   projectType: [
-    "New Build / Custom Home",
-    "Home Renovation / Addition",
-    "Custom Garage Build",
-    "Backyard Upgrade / Pool Bar",
+    "Luxury Custom Home",
+    "Garden Suite",
+    "Luxury Custom Homes",
+    "Garden Suites",
+    "Passive Home Builder BC",
+    "High-Performance Homes",
+    "Design and Interiors",
   ],
 };

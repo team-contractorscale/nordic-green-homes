@@ -24,6 +24,7 @@ import {
 import { ghlFieldMap, ghlFieldOptions, ghlMergeTagMap } from "@/lib/estimate/ghl-field-map";
 import { pricing } from "@/lib/estimate/pricing";
 import { getSurvey } from "@/lib/estimate/surveys";
+import { SERVICES } from "@/lib/home-content";
 
 // Internal estimate setup audit, ported from CS-Web-Template's /audit. Gated by the login cookie
 // in start.ts; noindex and blocked in robots.txt.
@@ -32,8 +33,14 @@ const allLabels: Record<string, string> = { ...fieldLabels, ...computedFieldLabe
 
 function makeField(key: string, note?: string) {
   const options = ghlFieldOptions[key];
+  // projectType is sent by both the estimate surveys (survey.label) and the contact form
+  // (SERVICES titles), so check every value the app actually writes against the GHL dropdown.
   const sent =
-    key === "projectType" ? surveyOrder.map((t) => getSurvey(t).label) : optionValues(key);
+    key === "projectType"
+      ? Array.from(
+          new Set([...surveyOrder.map((t) => getSurvey(t).label), ...SERVICES.map((s) => s.title)]),
+        )
+      : optionValues(key);
   const rejected = options ? sent.filter((v) => !options.includes(v)) : [];
   return {
     key,
