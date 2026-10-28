@@ -108,4 +108,8 @@ export const CUSTOM_FIELD_IDS = {
   estimatedBudget: "Xv5zDcrcW98GWT8nHBJJ",
   propertyLocation: "MmloWfeY4uxourKWTLin",
   projectDetails: "CZnRAdMA3DtectHXwtA4",
+  // Contact form — individual fields (registered 2026-10-28)
+  designStage: "ZnW2JK4XlTMRwqJLZc7u",
+  projectGoals: "A7M2x1w4arz0D4MFJaY2",
+  preferredNextStep: "4e7aAYQmutKHr2eNsX82",
 } as const;

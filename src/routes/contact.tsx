@@ -112,8 +112,17 @@ function ContactPage() {
         customFields: {
           [CUSTOM_FIELD_IDS.projectType]: { value: form.projectType, label: "Project Type" },
           [CUSTOM_FIELD_IDS.propertyLocation]: { value: form.location, label: "Property Location" },
+          [CUSTOM_FIELD_IDS.designStage]: {
+            value: form.designStage,
+            label: "Current Design Stage",
+          },
+          [CUSTOM_FIELD_IDS.preferredNextStep]: {
+            value: form.nextStep,
+            label: "Preferred Next Step",
+          },
+          [CUSTOM_FIELD_IDS.projectGoals]: { value: form.goals, label: "Project Goals" },
           [CUSTOM_FIELD_IDS.projectDetails]: {
-            value: `Design stage: ${form.designStage}\nPreferred next step: ${form.nextStep}\n\n${form.goals}`,
+            value: form.goals ? `Goals: ${form.goals}` : "",
             label: "Project Details",
           },
         },
