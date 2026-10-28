@@ -5,6 +5,7 @@ import {
   createRootRouteWithContext,
   redirect,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -134,6 +135,20 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const hydrated = useHydrated();
+  // Internal tools (/audit, /audit-login) render bare, without the public site chrome.
+  const internal = useRouterState({
+    select: (s) => s.location.pathname.startsWith("/audit"),
+  });
+
+  if (internal) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <div className="min-h-screen font-sans antialiased text-foreground">
+          <Outlet />
+        </div>
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

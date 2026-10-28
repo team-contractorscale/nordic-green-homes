@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuditRouteImport } from './routes/audit'
+import { Route as AuditLoginRouteImport } from './routes/audit-login'
 import { Route as ConsultRouteImport } from './routes/consult'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqsRouteImport } from './routes/faqs'
@@ -23,6 +25,7 @@ import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AboutUsIndexRouteImport } from './routes/about-us.index'
 import { Route as AboutUsOurGuaranteeRouteImport } from './routes/about-us.our-guarantee'
 import { Route as AboutUsWhyChooseUsRouteImport } from './routes/about-us.why-choose-us'
+import { Route as ApiAuditLoginRouteImport } from './routes/api.audit-login'
 import { Route as EstimateIndexRouteImport } from './routes/estimate.index'
 import { Route as EstimateCustomHomeRouteImport } from './routes/estimate.custom-home'
 import { Route as EstimateGardenSuiteRouteImport } from './routes/estimate.garden-suite'
@@ -47,6 +50,16 @@ import { Route as ServicesPassiveHomeBuilderBcRouteImport } from './routes/servi
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditLoginRoute = AuditLoginRouteImport.update({
+  id: '/audit-login',
+  path: '/audit-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConsultRoute = ConsultRouteImport.update({
@@ -112,6 +125,11 @@ const AboutUsOurGuaranteeRoute = AboutUsOurGuaranteeRouteImport.update({
 const AboutUsWhyChooseUsRoute = AboutUsWhyChooseUsRouteImport.update({
   id: '/about-us/why-choose-us',
   path: '/about-us/why-choose-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuditLoginRoute = ApiAuditLoginRouteImport.update({
+  id: '/api/audit-login',
+  path: '/api/audit-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstimateIndexRoute = EstimateIndexRouteImport.update({
@@ -227,6 +245,8 @@ const ServicesPassiveHomeBuilderBcRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/audit-login': typeof AuditLoginRoute
   '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
@@ -239,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/api/audit-login': typeof ApiAuditLoginRoute
   '/estimate/custom-home': typeof EstimateCustomHomeRoute
   '/estimate/garden-suite': typeof EstimateGardenSuiteRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
@@ -263,6 +284,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/audit-login': typeof AuditLoginRoute
   '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
@@ -275,6 +298,7 @@ export interface FileRoutesByTo {
   '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/api/audit-login': typeof ApiAuditLoginRoute
   '/estimate/custom-home': typeof EstimateCustomHomeRoute
   '/estimate/garden-suite': typeof EstimateGardenSuiteRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
@@ -300,6 +324,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
+  '/audit-login': typeof AuditLoginRoute
   '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
@@ -312,6 +338,7 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
+  '/api/audit-login': typeof ApiAuditLoginRoute
   '/estimate/custom-home': typeof EstimateCustomHomeRoute
   '/estimate/garden-suite': typeof EstimateGardenSuiteRoute
   '/floorplans/modern-belgian-farmhouse': typeof FloorplansModernBelgianFarmhouseRoute
@@ -338,6 +365,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/audit'
+    | '/audit-login'
     | '/consult'
     | '/contact'
     | '/faqs'
@@ -350,6 +379,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
+    | '/api/audit-login'
     | '/estimate/custom-home'
     | '/estimate/garden-suite'
     | '/floorplans/modern-belgian-farmhouse'
@@ -374,6 +404,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/audit'
+    | '/audit-login'
     | '/consult'
     | '/contact'
     | '/faqs'
@@ -386,6 +418,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
+    | '/api/audit-login'
     | '/estimate/custom-home'
     | '/estimate/garden-suite'
     | '/floorplans/modern-belgian-farmhouse'
@@ -410,6 +443,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/audit'
+    | '/audit-login'
     | '/consult'
     | '/contact'
     | '/faqs'
@@ -422,6 +457,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/about-us/our-guarantee'
     | '/about-us/why-choose-us'
+    | '/api/audit-login'
     | '/estimate/custom-home'
     | '/estimate/garden-suite'
     | '/floorplans/modern-belgian-farmhouse'
@@ -447,6 +483,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuditRoute: typeof AuditRoute
+  AuditLoginRoute: typeof AuditLoginRoute
   ConsultRoute: typeof ConsultRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
@@ -459,6 +497,7 @@ export interface RootRouteChildren {
   ThankYouRoute: typeof ThankYouRoute
   AboutUsOurGuaranteeRoute: typeof AboutUsOurGuaranteeRoute
   AboutUsWhyChooseUsRoute: typeof AboutUsWhyChooseUsRoute
+  ApiAuditLoginRoute: typeof ApiAuditLoginRoute
   EstimateCustomHomeRoute: typeof EstimateCustomHomeRoute
   EstimateGardenSuiteRoute: typeof EstimateGardenSuiteRoute
   FloorplansModernBelgianFarmhouseRoute: typeof FloorplansModernBelgianFarmhouseRoute
@@ -489,6 +528,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit-login': {
+      id: '/audit-login'
+      path: '/audit-login'
+      fullPath: '/audit-login'
+      preLoaderRoute: typeof AuditLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/consult': {
@@ -580,6 +633,13 @@ declare module '@tanstack/react-router' {
       path: '/about-us/why-choose-us'
       fullPath: '/about-us/why-choose-us'
       preLoaderRoute: typeof AboutUsWhyChooseUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/audit-login': {
+      id: '/api/audit-login'
+      path: '/api/audit-login'
+      fullPath: '/api/audit-login'
+      preLoaderRoute: typeof ApiAuditLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estimate/': {
@@ -727,6 +787,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuditRoute: AuditRoute,
+  AuditLoginRoute: AuditLoginRoute,
   ConsultRoute: ConsultRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
@@ -739,6 +801,7 @@ const rootRouteChildren: RootRouteChildren = {
   ThankYouRoute: ThankYouRoute,
   AboutUsOurGuaranteeRoute: AboutUsOurGuaranteeRoute,
   AboutUsWhyChooseUsRoute: AboutUsWhyChooseUsRoute,
+  ApiAuditLoginRoute: ApiAuditLoginRoute,
   EstimateCustomHomeRoute: EstimateCustomHomeRoute,
   EstimateGardenSuiteRoute: EstimateGardenSuiteRoute,
   FloorplansModernBelgianFarmhouseRoute: FloorplansModernBelgianFarmhouseRoute,

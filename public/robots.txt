@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /resources/article-template
+Disallow: /audit
+Disallow: /audit-login
 
 Sitemap: https://nordic-green-homes.vibepreview.app/sitemap.xml

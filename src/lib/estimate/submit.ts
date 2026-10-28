@@ -1,28 +1,44 @@
 import { computeEstimate, formatCurrency } from "./calculate";
+import { STANDARD_FIELD_KEYS } from "./field-mapping";
 import { flattenAnswers, summarizeAnswers } from "./flatten-answers";
+import { ghlFieldMap } from "./ghl-field-map";
 import type { Answers, Survey } from "./types";
-import {
-  CUSTOM_FIELD_IDS,
-  TRACKING_IDS,
-  getTrackingSessionId,
-  postTrackingEvent,
-} from "@/lib/form-tracking";
+import { TRACKING_IDS, getTrackingSessionId, postTrackingEvent } from "@/lib/form-tracking";
 
 // Sends a completed estimate through the same CRM tracking the contact form uses, so it obeys
-// PILOT_CRM_ENABLED and lands in the same HighLevel location.
+// PILOT_CRM_ENABLED and lands in the same HighLevel location. Like CS-Web-Template's
+// buildGhlPayload: every answer whose key has an id in ghlFieldMap goes to its own custom field,
+// plus the computed fields (project type, estimate low/high/range, location, details).
 export function submitEstimateLead(survey: Survey, answers: Answers) {
   const flat = flattenAnswers(survey, answers);
   const result = computeEstimate(survey, answers);
-  const range =
-    result.basis === "unavailable"
-      ? "Not calculated"
-      : `${formatCurrency(result.low)} – ${formatCurrency(result.high)}`;
-  const location = [flat["address1"], flat["city"], flat["state"], flat["postalCode"]]
+  const hasRange = result.basis !== "unavailable";
+
+  flat["projectType"] = survey.label;
+  // Leave the numeric fields unset rather than writing a misleading 0.
+  if (hasRange) {
+    flat["estimateLow"] = String(result.low);
+    flat["estimateHigh"] = String(result.high);
+  }
+  flat["estimateRange"] = hasRange
+    ? `${formatCurrency(result.low)} – ${formatCurrency(result.high)}`
+    : "Pending consult";
+  flat["propertyLocation"] = [flat["address1"], flat["city"], flat["state"], flat["postalCode"]]
     .filter(Boolean)
     .join(", ");
-  const details = summarizeAnswers(survey, answers)
-    .map((i) => `${i.label}: ${i.value}`)
-    .join("\n");
+  flat["details"] = [
+    `Instant estimate: ${flat["estimateRange"]}`,
+    "",
+    ...summarizeAnswers(survey, answers).map((i) => `${i.label}: ${i.value}`),
+  ].join("\n");
+
+  const customFields: Record<string, { value: string; label: string }> = {};
+  for (const [key, value] of Object.entries(flat)) {
+    const id = ghlFieldMap[key];
+    if (value && id && !(STANDARD_FIELD_KEYS as readonly string[]).includes(key)) {
+      customFields[id] = { value, label: key };
+    }
+  }
 
   postTrackingEvent(
     {
@@ -64,17 +80,6 @@ export function submitEstimateLead(survey: Survey, answers: Answers) {
         formName: `${survey.label} Estimate`,
       },
     },
-    {
-      customFields: {
-        [CUSTOM_FIELD_IDS.projectType]: { value: survey.label, label: "Project Type" },
-        [CUSTOM_FIELD_IDS.targetTimeline]: { value: flat["timeline"], label: "Target Timeline" },
-        [CUSTOM_FIELD_IDS.estimatedBudget]: { value: flat["budget"], label: "Estimated Budget" },
-        [CUSTOM_FIELD_IDS.propertyLocation]: { value: location, label: "Property Location" },
-        [CUSTOM_FIELD_IDS.projectDetails]: {
-          value: `Instant estimate: ${range}\n\n${details}`,
-          label: "Project Details",
-        },
-      },
-    },
+    { customFields },
   );
 }
