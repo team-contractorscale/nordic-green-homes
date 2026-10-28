@@ -12,8 +12,17 @@ export interface MappedField {
   note?: string;
 }
 
-// ── Standard fields: contact sub-fields, sent to HighLevel's native contact fields. ──
-export const STANDARD_FIELD_KEYS = ["firstName", "lastName", "email", "phone"] as const;
+// ── Standard fields: contact and address sub-fields, sent to HighLevel's native contact fields. ──
+export const STANDARD_FIELD_KEYS = [
+  "firstName",
+  "lastName",
+  "email",
+  "phone",
+  "address1",
+  "city",
+  "state",
+  "postalCode",
+] as const;
 
 const standardSeen = new Map<string, string>();
 for (const type of surveyOrder) {
