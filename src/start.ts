@@ -1,25 +1,6 @@
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
-import {
-  AUDIT_COOKIE,
-  AUDIT_LOGIN_PATH,
-  authToken,
-  isProtectedPath,
-  readCookie,
-} from "./lib/audit-auth";
 import { renderErrorPage } from "./lib/error-page";
-
-// Gates the internal /audit tool behind a login cookie; unauthenticated visitors go to the
-// /audit-login form (same as CS-Web-Template's middleware.ts).
-const auditMiddleware = createMiddleware().server(async ({ request, pathname, next }) => {
-  if (isProtectedPath(pathname) && readCookie(request, AUDIT_COOKIE) !== (await authToken())) {
-    const url = new URL(request.url);
-    const login = new URL(AUDIT_LOGIN_PATH, url);
-    login.searchParams.set("next", pathname + url.search);
-    return Response.redirect(login, 302);
-  }
-  return next();
-});
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -44,5 +25,5 @@ const csrfMiddleware = createCsrfMiddleware({
 });
 
 export const startInstance = createStart(() => ({
-  requestMiddleware: [errorMiddleware, auditMiddleware, csrfMiddleware],
+  requestMiddleware: [errorMiddleware, csrfMiddleware],
 }));
