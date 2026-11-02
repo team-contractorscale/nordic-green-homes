@@ -123,6 +123,12 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Contractor Scale feedback widget — loads globally on every page */}
+        <script
+          src="https://feedback.contractorscale.com/w.js"
+          data-site="3780e64c-6388-487f-ba9b-fcdf04514490"
+          async
+        />
       </head>
       <body>
         {children}
