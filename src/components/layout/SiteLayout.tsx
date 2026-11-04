@@ -4,17 +4,6 @@ import { ArrowRight, ArrowUpRight, ChevronDown, Phone, Mail } from "lucide-react
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { CTA, FOOTER_COLUMNS, NAV, PLACEHOLDER } from "@/lib/home-content";
 
-export function PreviewBanner() {
-  return (
-    <div className="relative z-[60] bg-brand-dark px-4 py-2 text-center text-xs text-white/85">
-      <span className="mr-2 inline-flex items-center rounded-full bg-gold px-2.5 py-0.5 font-bold text-black">
-        Internal pilot
-      </span>
-      Unpublished, not client-approved. Forms and CRM submission are disabled.
-    </div>
-  );
-}
-
 // Tree mark cropped (in CSS) from the supplied transparent logo PNG + typeset name — a temporary
 // horizontal lockup until the client supplies an icon-only / horizontal logo file.
 function Wordmark() {

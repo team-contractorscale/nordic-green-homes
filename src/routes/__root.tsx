@@ -13,12 +13,7 @@ import { lazy, Suspense, useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportVibeError } from "../lib/vibe-error-reporting";
-import {
-  PreviewBanner,
-  SiteHeader,
-  SiteFooter,
-  StickyMobileCTA,
-} from "../components/layout/SiteLayout";
+import { SiteHeader, SiteFooter, StickyMobileCTA } from "../components/layout/SiteLayout";
 import { useHydrated } from "../hooks/use-hydrated";
 import { PILOT_CRM_ENABLED } from "../lib/form-tracking";
 import { REDIRECTS } from "../lib/redirects";
@@ -91,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "robots", content: "noindex, nofollow" }, // Staging noindex protection
+      { name: "robots", content: "index, follow" },
       { name: "author", content: "Nordic Green Homes" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -159,7 +154,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col pb-[4.25rem] font-sans antialiased text-foreground bg-primary lg:pb-0">
-        <PreviewBanner />
         <SiteHeader />
         <main className="flex-1 bg-background">
           <Outlet />

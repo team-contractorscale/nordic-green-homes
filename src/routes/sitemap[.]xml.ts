@@ -1,11 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// Static route manifest for the Nordic Green Homes internal pilot.
-// Only public-facing leaf routes are listed. The site is noindex'd (see
-// __root.tsx) and remains an unpublished private preview, but a valid
-// /sitemap.xml must still resolve so the route does not return the app
-// shell / 404 during launch review.
-const BASE = "https://nordic-green-homes.vibepreview.app";
+// Static route manifest for the Nordic Green Homes site.
+// Only public-facing leaf routes are listed. Internal tools (/audit,
+// /audit-login) and draft templates (/resources/article-template) are excluded.
+const BASE = "https://www.nordicgreenhomes.ca";
 
 const ROUTES = [
   { path: "/", priority: "1.0" },

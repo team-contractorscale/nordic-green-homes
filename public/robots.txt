@@ -4,4 +4,4 @@ Disallow: /resources/article-template
 Disallow: /audit
 Disallow: /audit-login
 
-Sitemap: https://nordic-green-homes.vibepreview.app/sitemap.xml
+Sitemap: https://www.nordicgreenhomes.ca/sitemap.xml
