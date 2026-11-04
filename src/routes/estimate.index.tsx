@@ -1,16 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Home, Plus, Trees } from "lucide-react";
-import { useState } from "react";
-import { PageHeader } from "@/components/layout/PageHeader";
-import { H2, imgProps } from "@/components/home/shared";
-import { EstimateSidebar } from "@/components/estimate/estimate-sidebar";
+import { ArrowUpRight, Home, Trees } from "lucide-react";
 import { IMAGES } from "@/lib/home-content";
+import { useHomeMotion } from "@/hooks/use-home-motion";
+import { imgProps } from "@/components/home/shared";
+import {
+  HEADING,
+  HeroBackdrop,
+  HeroTitle,
+  Kicker,
+  ScrollProgress,
+  SectionIndicator,
+} from "@/components/home/kit";
+import { HomeFaqs } from "@/components/home/HomeSections";
+import { EstimateSidebar } from "@/components/estimate/estimate-sidebar";
 import { typeToPath } from "@/lib/estimate/surveys";
 
+/* Instant Estimate (step 1 of the estimate funnel) — homepage design language and motion.
+ * Copy is the existing estimate copy. Order: hero with the three steps as its rail (dark) →
+ * choose a project (two photo panels + the shared sidebar) → FAQs.
+ * Survey routes (typeToPath) and EstimateSidebar behaviour are unchanged.
+ */
+
+const TITLE = "Instant Estimate | Nordic Green Homes";
 const DESCRIPTION =
   "Answer a few questions about your custom home or garden suite and see an indicative price range on the spot. No obligation, no waiting on a callback.";
-
-const HEADER_IMAGE = IMAGES.hero.src;
 
 const PROJECTS = [
   {
@@ -66,63 +79,128 @@ const FAQS = [
 export const Route = createFileRoute("/estimate/")({
   head: () => ({
     meta: [
-      { title: "Instant Estimate | Nordic Green Homes" },
+      { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Instant Estimate | Nordic Green Homes" },
+      { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: HEADER_IMAGE },
-      { name: "twitter:image", content: HEADER_IMAGE },
+      { property: "og:image", content: IMAGES.hero.src },
+      { name: "twitter:image", content: IMAGES.hero.src },
     ],
   }),
   component: EstimatePage,
 });
 
 function EstimatePage() {
-  const [open, setOpen] = useState<number | null>(0);
-
+  const ref = useHomeMotion<HTMLDivElement>();
   return (
-    <div>
-      <PageHeader
-        image={HEADER_IMAGE}
-        imageAlt={IMAGES.hero.alt}
-        eyebrow="Instant estimate"
-        title="See an indicative range in minutes"
-        description={DESCRIPTION}
-      />
+    <div ref={ref} className="home-root">
+      <ScrollProgress />
+      <SectionIndicator />
 
-      <section className="bg-secondary/50 py-20 sm:py-24">
-        <div className="wrap flex flex-col gap-8 lg:flex-row lg:items-start">
-          <div className="min-w-0 flex-1">
-            <p className="text-[11px] font-bold tracking-[0.2em] text-primary uppercase">
-              Step 1 of 3
+      {/* ---------- Hero: heading + the three steps as its rail ---------- */}
+      <section
+        data-section="Instant estimate"
+        className="grain relative isolate overflow-hidden bg-overlay text-white"
+      >
+        <HeroBackdrop image={IMAGES.hero} />
+        <div className="wrap pt-36 lg:pt-44">
+          <div data-hero-copy className="grid gap-10 pb-14 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <p
+                data-anim="fade"
+                className="flex items-center gap-4 text-xs font-bold uppercase tracking-[0.24em] text-white/80"
+              >
+                <span aria-hidden className="h-px w-10 bg-gold" />
+                Instant estimate
+              </p>
+              <HeroTitle
+                lines={["See an indicative", "range in minutes."]}
+                max="5.25rem"
+                className="mt-7"
+              />
+            </div>
+            <p
+              data-anim="fade"
+              className="text-base leading-relaxed text-white/85 sm:text-lg lg:col-span-5"
+            >
+              {DESCRIPTION}
             </p>
-            <h2 className={`${H2} mt-3`}>What are you planning to build?</h2>
-            <p className="mt-3 text-base text-muted-foreground">Choose a project to get started.</p>
+          </div>
+          <div className="relative">
+            <span
+              data-rule
+              aria-hidden
+              className="absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 origin-left bg-white/20"
+            />
+            <ol className="grid md:grid-cols-3">
+              {STEPS.map((s, i) => (
+                <li
+                  key={s.title}
+                  data-anim="stat"
+                  className="border-l border-white/15 py-6 pl-5 pr-4 lg:py-8"
+                >
+                  <span className="text-xs font-bold tracking-[0.2em] text-gold">
+                    Step 0{i + 1}
+                  </span>
+                  <span className="mt-2 block font-serif text-xl leading-tight sm:text-2xl">
+                    {s.title}
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-white/70">{s.body}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {PROJECTS.map(({ to, label, blurb, image, icon: Icon }) => (
+      {/* ---------- Step 1: choose a project ---------- */}
+      <section data-section="Choose a project" className="bg-secondary py-20 sm:py-24">
+        <div className="wrap flex flex-col gap-10 lg:flex-row lg:items-start">
+          <div className="min-w-0 flex-1">
+            <Kicker>Step 1 of 3</Kicker>
+            <h2 data-split className={`${HEADING} mt-6`}>
+              What are you planning to build?
+            </h2>
+            <p data-reveal className="mt-4 text-base text-muted-foreground sm:text-lg">
+              Choose a project to get started.
+            </p>
+
+            <div className="mt-10 grid gap-px bg-slate/15 sm:grid-cols-2">
+              {PROJECTS.map(({ to, label, blurb, image, icon: Icon }, i) => (
                 <Link
                   key={to}
                   to={to}
-                  className="group relative flex h-[280px] flex-col justify-end overflow-hidden rounded-lg shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:h-[340px]"
+                  data-door={i === 0 ? "left" : "right"}
+                  className="group relative isolate flex min-h-[22rem] flex-col justify-end overflow-hidden p-6 text-white sm:min-h-[28rem] sm:p-8"
                 >
                   <img
-                    {...imgProps(image, "(min-width: 640px) 40vw, 100vw")}
+                    data-door-img
+                    {...imgProps(image, "(min-width: 640px) 35vw, 100vw")}
                     alt={label}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 -z-20 h-full w-full object-cover brightness-[0.8] transition-[filter,scale] duration-700 group-hover:scale-[1.04] group-hover:brightness-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                  <span className="absolute top-4 right-4 flex size-10 items-center justify-center rounded-full bg-white text-primary transition-colors duration-300 group-hover:bg-gold group-hover:text-black">
-                    <Icon className="size-5" />
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 -z-10 bg-gradient-to-t from-overlay via-overlay/40 to-transparent"
+                  />
+                  <span className="absolute right-5 top-5 grid size-11 place-items-center border border-white/30 text-gold transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
+                    <Icon className="size-5" aria-hidden />
                   </span>
-                  <div className="relative p-5 sm:p-6">
-                    <h3 className="font-serif text-2xl text-white">{label}</h3>
-                    <p className="mt-1 text-sm text-white/80">{blurb}</p>
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-gold">
+                  <span className="text-xs font-bold tracking-[0.2em] text-gold">0{i + 1}</span>
+                  <span className="mt-2 font-serif text-[clamp(1.75rem,1.4vw+1rem,2.5rem)] leading-tight">
+                    {label}
+                  </span>
+                  <span className="mt-2 text-sm text-white/80">{blurb}</span>
+                  <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-gold">
+                    <span className="relative">
                       Start estimate
-                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                      <span
+                        aria-hidden
+                        className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
+                      />
                     </span>
-                  </div>
+                    <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:rotate-45" />
+                  </span>
                 </Link>
               ))}
             </div>
@@ -131,60 +209,7 @@ function EstimatePage() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-28">
-        <div className="wrap">
-          <h2 className={`${H2} text-center`}>Three steps to your range</h2>
-          <ol className="mt-12 grid gap-6 md:grid-cols-3">
-            {STEPS.map((step, i) => (
-              <li
-                key={step.title}
-                className="rounded-xl border border-border bg-card p-7 shadow-sm"
-              >
-                <span className="flex size-11 items-center justify-center rounded-full bg-primary font-serif text-lg text-white">
-                  {i + 1}
-                </span>
-                <h3 className="mt-5 font-serif text-xl text-foreground">{step.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-muted-foreground">{step.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="bg-secondary/50 py-24 sm:py-28">
-        <div className="wrap max-w-4xl">
-          <h2 className={`${H2} text-center`}>Before you start</h2>
-          <div className="mt-12 space-y-4">
-            {FAQS.map((faq, i) => {
-              const isOpen = open === i;
-              return (
-                <div
-                  key={faq.q}
-                  className="overflow-hidden rounded-lg border border-border bg-card shadow-sm"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-serif text-lg text-foreground transition-colors hover:bg-muted/30"
-                  >
-                    <span>{faq.q}</span>
-                    <Plus
-                      className={`size-5 shrink-0 text-gold transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
-                      aria-hidden
-                    />
-                  </button>
-                  {isOpen && (
-                    <div className="border-t border-border/60 px-6 pb-6 pt-4 text-base leading-relaxed text-muted-foreground">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <HomeFaqs items={FAQS} />
     </div>
   );
 }

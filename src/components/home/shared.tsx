@@ -38,14 +38,16 @@ export function imgProps(image: RefImage, sizes = "100vw") {
   return { src: image.src, srcSet: srcSetFor(image), sizes, alt: image.alt };
 }
 
+// Image caption: names the plan or collection the image comes from ("Nordic Haus plan",
+// "Design portfolio"), so concept renders read as plans, not finished builds.
 export function RefTag({ image, className = "" }: { image: RefImage; className?: string }) {
+  const label = image.source.split(" · ")[1] ?? image.source;
   return (
     <span
-      title={`Image: ${image.source}`}
-      className={`absolute z-10 rounded-full bg-black/70 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm ${className}`}
+      className={`absolute z-10 inline-flex items-center gap-2 bg-overlay/70 px-3 py-1.5 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm ${className}`}
     >
-      {/* Attribution credit. The kind stays visible so renders never read as built work. */}
-      {image.kind} · Nordic Green Design
+      <span aria-hidden className="h-px w-3 bg-gold" />
+      {label}
     </span>
   );
 }

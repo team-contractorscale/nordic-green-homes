@@ -1,18 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FloorplanPage } from "@/components/page/PageParts";
+import { ConceptPage } from "@/components/floorplans/ConceptPage";
 import { FLOORPLANS } from "@/lib/home-content";
 
+// Copy: client-supplied Nordic Haus content (2026-11-04); SEO from the 3 November manifest.
 const PLAN = FLOORPLANS[0];
-
+const TITLE = "Nordic Haus Home Concept | Nordic Green Homes";
 const DESCRIPTION =
-  "Nordic Haus is a concept for discussing the shape and feel of a home before the details are fixed. Use the plan as a starting point for questions about how the rooms connect, how the home sits on the property and what needs to change for your household.";
+  "Explore Nordic Haus as a home concept. Review site fit, design information, responsibilities and permitted use before relying on a plan.";
 
 export const Route = createFileRoute("/floorplans/nordic-haus")({
   head: () => ({
     meta: [
-      { title: "Nordic Haus Floorplan | Nordic Green Homes" },
+      { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Nordic Haus Floorplan | Nordic Green Homes" },
+      { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:image", content: PLAN.image.src },
       { name: "twitter:image", content: PLAN.image.src },
@@ -23,23 +24,29 @@ export const Route = createFileRoute("/floorplans/nordic-haus")({
 
 function NordicHausPage() {
   return (
-    <FloorplanPage
-      title={PLAN.title}
+    <ConceptPage
+      index={1}
+      name={PLAN.title}
       headline="A calm starting point for a custom home"
-      description={DESCRIPTION}
+      intro="Nordic Haus is a concept for discussing the shape and feel of a home before the details are fixed. Use the plan as a starting point for questions about how the rooms connect, how the home sits on the property and what needs to change for your household."
       note="The concept is not a promise that the layout suits your site or can be built at a particular price. Site conditions, local requirements, structural design, services and your brief all affect the final result."
       gallery={PLAN.gallery}
-      lists={[
+      credits={[
+        { label: "Interior design", value: "Nordic Green Design" },
+        { label: "Drafting", value: "Bronson Design" },
+      ]}
+      sections={[
         {
           title: "Make the concept yours",
-          intro:
+          paragraphs: [
             "Start with the way you live. Which spaces need privacy? Where do you want morning light? How much storage, flexibility or connection to the outdoors do you need?",
-          outro:
             "From there, review the plan with the property in mind. Access, orientation, setbacks, topography, servicing and approvals may all change the design.",
+          ],
         },
         {
           title: "What to confirm before you choose a plan",
-          items: [
+          paragraphs: [],
+          list: [
             "The current dimensions and specifications.",
             "Which drawings or files are included.",
             "What may be changed for the site and brief.",

@@ -129,6 +129,15 @@ export const IMAGES = {
     source: "nordicgreendesign.ca · Nordic Haus plan",
     w: 1920,
   },
+  // Homepage hero background (client-directed 2026-11-04). Self-hosted copy of
+  // obriencontracting.ca/wp-content/uploads/2025/12/bg-obrien.png; likely stock, so never caption it as built work.
+  heroPhoto: {
+    src: "/home/hero-1920.jpg",
+    alt: "Two-storey modern home with white render, vertical timber cladding and a glass balcony",
+    kind: "Origin unverified",
+    source: "obriencontracting.ca · supplied hero background",
+    w: 1920,
+  },
   farmhouseRear: {
     src: `${NGD}/a370208d-18d0-4a81-93f2-629f2c909642/23-10-06+-+Rear+Right+Perspective.jpg?format=2500w`,
     alt: "Concept render of a stone and board-and-batten farmhouse with a covered rear porch",
@@ -138,37 +147,37 @@ export const IMAGES = {
   },
 } satisfies Record<string, RefImage>;
 
+// Homepage copy below follows the client-supplied homepage content (2026-11-04).
+const AREAS = "Vancouver, West Van, North Van, Richmond, Tsawwassen and Vancouver Island";
+
+export const CTA = {
+  estimate: { label: "Get your ballpark estimate", to: "/estimate" },
+  call: { label: "Book a 15-minute call with Lane", to: "/contact" },
+} as const;
+
 export const HERO = {
-  eyebrow: "Custom home builder BC",
-  titleLead: "A home that looks right.",
-  titleAccent: "And lives well.",
-  body: "Space for the way you live. Materials you want to live with. Comfort that matters as much as the finish.",
-  brand: "Sustainable luxury custom homes",
-  cta: "Discuss your project",
-  secondary: "See the process",
-  // Crossfades slowly. Mixed sources on purpose so the client can react to both looks.
+  eyebrow: "Nordic Green Homes",
+  // Three masked lines so no word sits alone; the last line is the gold accent.
+  titleLines: ["Sustainable luxury.", "Built around", "your life."],
+  body: "A home with presence, purpose and room for the life you want to lead. Nordic Green Homes brings building and design together, so the way your home looks, feels and works is considered from the start.",
+  quote: { text: "We provide sustainable luxury. And that's it.", by: "Lane" },
+  image: IMAGES.heroPhoto,
+  // Square slider in the hero (bottom right, above service 05). Large 1920px renders only.
   slides: [IMAGES.hero, IMAGES.nordicHaus, IMAGES.hausPatio],
 };
 
-export const INTRO = {
-  eyebrow: "Nordic Green Homes",
-  lead: [
-    "Nordic Green Homes brings the site, your daily life and the practical work of building into one conversation.",
-    "For homeowners seeking a sustainable luxury custom home builder BC, the early decisions matter: layout, materials, comfort, performance and what the property can support.",
-    "Your new home starts with what matters to you: the site, your daily routines and the choices that will shape life there.",
-  ],
-  title: "A home for the life you actually lead",
-  body: [
-    "A kitchen with room for everyone. A quiet place to work. Storage where you need it. Light in the rooms you use most.",
-    "The details that make a home yours belong in the conversation from the start. So do the practical questions: what suits the site, what fits the budget and how your choices affect the build.",
-  ],
-  designBuild: {
-    label: "Design and build, considered together",
-    body: [
-      "A floorplan, a material palette and a performance goal each affect the others. A larger window changes more than the view. A different layout can change the structure. A finish affects both the look and the upkeep.",
-      "Thinking about these choices together gives your brief a stronger starting point.",
-    ],
-  },
+export const BUDGET = {
+  eyebrow: "Design and budget",
+  title: "A luxury build can go wrong before ground is broken",
+  manifesto:
+    "The plans are beautiful. You've pictured the kitchen, the windows, and the way the house sits on the land. Then someone prices the build, and the design is well beyond what you intended to spend.",
+  cause:
+    "It happens when plans get drawn before anyone has priced them. More rooms, more glazing, a bigger footprint: each decision changes what it takes to build the home.",
+  story:
+    "Lane describes a shop quoted at $300,000 that became a $500,000 shop as the design grew. His point is simple:",
+  quote: "Every change you make changes your price point.",
+  close:
+    "Bring the budget into the design conversation early. Start with a ballpark, then work through the choices with us while there's still room to shape them. The estimate is an early planning range, not a construction quote.",
 };
 
 export const SERVICES = [
@@ -218,6 +227,54 @@ export const SERVICES = [
   },
 ] as const;
 
+// Homepage service copy (SERVICES above stays as-is for /services, /contact and the audit).
+export const HOME_SERVICES = {
+  title: "Custom homes in Vancouver and beyond",
+  areas: `We build for homeowners in ${AREAS}.`,
+  items: [
+    {
+      key: "luxuryCustomHomes",
+      title: "Luxury Custom Homes",
+      body: "A home designed around your routines, your taste and your site. Bring the big ideas into focus alongside the practical work of building them.",
+      cta: "Explore Luxury Custom Homes",
+      to: "/services/luxury-custom-homes",
+      image: IMAGES.customHomes,
+    },
+    {
+      key: "gardenSuites",
+      title: "Garden Suites",
+      body: "More room for family, guests or a separate household. Start with what you want the space to do and how it can work on your property.",
+      cta: "Explore Garden Suites",
+      to: "/services/garden-suites",
+      image: IMAGES.hausGarden,
+    },
+    {
+      key: "passiveHome",
+      title: "Passive-Home Principles",
+      body: "Comfort, insulation, airtightness and ventilation, considered as one system. Explore passive-home principles and how they differ from formal Passive House certification.",
+      cta: "Explore Passive-Home Principles",
+      to: "/services/passive-home-builder-bc",
+      image: IMAGES.nordicHaus,
+    },
+    {
+      key: "highPerformance",
+      title: "High-Performance Homes",
+      body: "Put the way your home feels alongside the way it looks. Bring energy use, year-round comfort and durable construction into the design brief.",
+      cta: "Explore High-Performance Homes",
+      to: "/services/high-performance-homes",
+      image: IMAGES.hausRear,
+    },
+    {
+      key: "designInteriors",
+      title: "Design and Interiors",
+      body: "Rooms that flow. Materials with warmth and character. Details that feel like you. Explore the design perspective Kylie brings through Nordic Green Design.",
+      cta: "Explore Design and Interiors",
+      to: "/services/design-and-interiors",
+      image: IMAGES.interior,
+    },
+  ],
+} as const;
+
 export const FLOORPLANS = [
   {
     key: "nordicHaus",
@@ -264,88 +321,65 @@ export const SERVICE_AREAS = [
 ] as const;
 
 // The four principles behind a considered home — wording adapted and kept claim-free.
-export const PILLARS = [
-  {
-    title: "Considered design",
-    body: "Good design has a job to do. Rooms need to work together, storage needs to be useful and materials need to suit everyday use as well as the overall look.",
-  },
-  {
-    title: "Clear decisions",
-    body: "A change in size, layout or specification can change the cost. Knowing which choices matter helps you weigh the options before settling on a direction.",
-  },
-  {
-    title: "Responsible performance",
-    body: "Energy and comfort goals deserve more than a label. The useful questions are what you want to achieve, how it will be assessed and what evidence will show the result.",
-  },
-  {
-    title: "Coordinated planning",
-    body: "Design, approvals and construction are connected. Clear responsibilities and early technical input help you understand what needs to happen next.",
-  },
-] as const;
-
-// Five stages from the recommended sitemap.
-export const PROCESS = [
-  {
-    title: "Consultation",
-    body: "Start with your site, ideas, timing and budget. Bring the questions you have now, whether you have detailed drawings or are still working out what the home needs to be.",
-  },
-  {
-    title: "Design and planning",
-    body: "Turn your priorities into a clearer brief. Consider layout, light, materials and performance goals alongside the site and budget. If you have an architect or designer, establish who is responsible for each part of the work.",
-  },
-  {
-    title: "Materials and approvals",
-    body: "Bring finishes, fixtures and key specifications together with the documents your project needs. The approval path depends on your location, property and design.",
-  },
-  {
-    title: "Construction",
-    body: "Before site work starts, understand what is included, how changes will be handled and how you will receive updates. Keep the agreed scope and key decisions close throughout the build.",
-  },
-  {
-    title: "Handover and ongoing care",
-    body: "Get to know your finished home, its systems and the care they need. Handover documents, product information and written warranty terms help you understand what comes next.",
-  },
-] as const;
-
-export const ASSURANCE = {
-  eyebrow: "Our commitment",
-  title: "A considered approach to sustainability",
-  subtitle: "Sustainability belongs in the details",
-  body: [
-    "The materials you choose. The energy goals you set. The way the home can adapt as your needs change. Sustainable design involves practical choices with consequences for the whole home.",
-    "Put those questions alongside appearance, budget and maintenance from the outset.",
+export const PILLARS = {
+  title: "Four pillars. One way of building.",
+  items: [
+    {
+      title: "Sustainable",
+      body: "Make thoughtful choices about materials, energy and the life of the home. Sustainability belongs in the design, not as an afterthought.",
+    },
+    {
+      title: "Family",
+      body: "Build around the people who will live here. Shared meals, quiet mornings, growing children and visiting family all have a place in the brief.",
+    },
+    {
+      title: "Luxury",
+      body: "Choose the spaces, finishes and details that matter to you. The result should feel considered, personal and a pleasure to come home to.",
+    },
+    {
+      title: "Faith",
+      body: "Care, honesty and respect guide how we work and how we treat people.",
+    },
   ],
-  link: "Explore our approach",
+} as const;
+
+export const TIME = {
+  eyebrow: "Building and design, together",
+  title: "A home that gives you more time for living",
+  subtitle: "Your home matters. So does everything else in your life.",
+  body: [
+    "As Lane puts it, busy clients have \u201cstuff far more important than making a little tile selection.\u201d You want a beautiful result without every detail becoming another job on your list.",
+    "We bring the building and design perspectives into the same conversation. The layout, materials, comfort, and finish can be considered together, with your priorities guiding the decisions.",
+  ],
 };
 
-export const GUIDE = {
-  eyebrow: "Guide",
-  title: "Future-proofing your home",
-  body: "The best time to think about tomorrow is while you are planning today. What might your home need as your household, technology and daily routines change?",
-  // Topic list from the existing guide description (reference). Final contents follow the recovered file.
-  topics: [
-    {
-      title: "Smart technology",
-      body: "Think about the systems you want to use and the wiring or space they may need.",
-    },
-    {
-      title: "Renewable energy",
-      body: "Consider whether renewable energy belongs in your plans and what specialist advice the property needs.",
-    },
-    {
-      title: "Water conservation",
-      body: "Look at fixtures, water use and the practical choices relevant to your site.",
-    },
-    {
-      title: "Flexible design",
-      body: "Consider how a room could serve a different purpose as your needs change.",
-    },
-    {
-      title: "Resilient materials",
-      body: "Weigh appearance alongside exposure, maintenance and expected use.",
-    },
+export const TEAM = {
+  eyebrow: "Lane and Kylie",
+  title: "Meet the builder-and-designer couple behind Nordic",
+  body: [
+    "Lane is the builder. Kylie is the designer behind Nordic Green Design. Together, they bring a practical eye for construction and a considered eye for interiors to the home you want to create.",
+    "For them, sustainable luxury is personal: a home that feels good to live in, makes thoughtful use of materials and gives family life room to unfold.",
   ],
-  cta: "Explore resources",
+  // Self-hosted copy of obriencontracting.ca/wp-content/uploads/2025/12/obrien-lane.png.webp
+  // (client-directed 2026-11-04). 580×645.
+  photo: {
+    src: "/home/lane.webp",
+    alt: "Kylie and Lane standing together in front of green foliage",
+  },
+  // Plate order matches the photo: Kylie on the left, Lane on the right.
+  people: [
+    { name: "Kylie", role: "The designer · Nordic Green Design" },
+    { name: "Lane", role: "The builder" },
+  ],
+  cta: "Meet Lane and Kylie",
+};
+
+export const START = {
+  eyebrow: "Start here",
+  title: "Your ideas. A practical starting point.",
+  body: "Start with the estimator to put a ballpark beside your ideas. Then book a short call with Lane to talk about the property, your priorities and the next step.",
+  note: "We work alongside your architect or designer. Bring your plans to the call.",
+  process: "See our process",
 };
 
 export const CONSULTATION = {
@@ -360,37 +394,34 @@ export const CONSULTATION = {
 
 export const FAQS = [
   {
-    q: "Do I need finished plans before the first conversation?",
-    a: "You can start organising your ideas before you have finished plans. Gather the property details, your priorities, budget context and any surveys, sketches or inspiration you already have.",
-  },
-  {
-    q: "Which service should I start with?",
-    a: "Explore Custom Homes if you are planning a new home, or Garden Suites if you are considering a separate dwelling. For energy and comfort goals, compare Passive House and High-Performance Homes. Design and Interiors is a useful starting point for layout, materials and finishes.",
-  },
-  {
-    q: "Is a high-performance home automatically a Passive House?",
-    a: "No. \u201cHigh-performance\u201d is a broad term. Passive House is a building standard with specific criteria and a formal certification path. A home can include energy-efficiency goals without being a certified Passive House.",
-  },
-  {
-    q: "Can the website estimate tell me what my home will cost?",
-    a: "A website estimate is not a construction quote. Your site, design, materials, services and project scope all affect the cost. Treat any early range as a starting point for questions, not a fixed price.",
+    q: "Do I need finished plans before we speak?",
+    a: "No. Bring your ideas, your property details and any sketches or plans you already have. We can start with what you know now.",
   },
   {
     q: "Can I bring my own architect or designer?",
-    a: "If you already have an architect, designer or plans, include those details in your enquiry. It is important to establish who is responsible for design, approvals and construction before agreeing the next stage.",
+    a: "We work alongside your architect or designer. Bring your plans to the call.",
+  },
+  {
+    q: "Where do you build?",
+    a: `${AREAS}.`,
+  },
+  {
+    q: "What does the ballpark estimate tell me?",
+    a: "It gives you an early range to help connect your ideas with a budget. Your site, design, size and selections shape the next conversation and the project-specific pricing.",
   },
 ];
 
 const ABOUT_LINKS = [
   { label: "Why Choose Us", to: "/about-us/why-choose-us" },
-  { label: "Our Guarantee", to: "/about-us/our-guarantee" },
+  { label: "Our approach", to: "/about-us/our-approach" },
   { label: "Process", to: "/process" },
+  { label: "FAQs", to: "/faqs" },
 ] as const;
 
 const SERVICE_LINKS = [
   { label: "Luxury Custom Homes", to: "/services/luxury-custom-homes" },
   { label: "Garden Suites", to: "/services/garden-suites" },
-  { label: "Passive Home Builder BC", to: "/services/passive-home-builder-bc" },
+  { label: "Passive-Home Principles", to: "/services/passive-home-builder-bc" },
   { label: "High-Performance Homes", to: "/services/high-performance-homes" },
   { label: "Design and Interiors", to: "/services/design-and-interiors" },
 ] as const;
@@ -415,7 +446,7 @@ export const NAV = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
-// Footer columns: the full site map, including pages kept out of the header (service areas, FAQs).
+// Footer columns: the full site map, including pages kept out of the header (service areas).
 // Four columns of link groups; short groups share a column. Privacy/Terms live in the bottom bar.
 export const FOOTER_COLUMNS = [
   [
@@ -442,7 +473,6 @@ export const FOOTER_COLUMNS = [
         { label: "Resources", to: "/resources" },
         { label: "Planning Guide", to: "/resources/guide" },
         { label: "BC Energy Step Code", to: "/resources/bc-energy-step-code" },
-        { label: "FAQs", to: "/faqs" },
       ],
     },
   ],

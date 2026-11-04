@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { HeroTitle, titleLines } from "@/components/home/kit";
 
 type PageHeaderProps = {
   image: string;
@@ -44,9 +45,13 @@ export function PageHeader({
               {eyebrow}
             </p>
           )}
-          <h1 className="font-serif text-[clamp(2.25rem,3vw+1rem,3.5rem)] leading-[1.05] tracking-[-0.02em]">
-            {title}
-          </h1>
+          {typeof title === "string" ? (
+            <HeroTitle lines={titleLines(title)} max="3.5rem" center className="w-full" />
+          ) : (
+            <h1 className="font-serif text-[clamp(2.25rem,3vw+1rem,3.5rem)] leading-[1.05] tracking-[-0.02em]">
+              {title}
+            </h1>
+          )}
           {description ? (
             <p className="mt-5 text-base leading-relaxed text-white/85 sm:text-lg">{description}</p>
           ) : null}

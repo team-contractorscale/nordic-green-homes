@@ -24,7 +24,7 @@ const ROUTES = [
   { path: "/service-areas/vancouver-island", priority: "0.7" },
   { path: "/about-us", priority: "0.7" },
   { path: "/about-us/why-choose-us", priority: "0.6" },
-  { path: "/about-us/our-guarantee", priority: "0.6" },
+  { path: "/about-us/our-approach", priority: "0.6" },
   { path: "/process", priority: "0.7" },
   { path: "/projects", priority: "0.7" },
   { path: "/resources", priority: "0.6" },

@@ -1,178 +1,96 @@
-import { useState, type ReactNode } from "react";
+import { Gem, HeartHandshake, Leaf, Users, type LucideIcon } from "lucide-react";
+import type { PointerEvent } from "react";
 import { PILLARS, type RefImage, IMAGES } from "@/lib/home-content";
-import { Eyebrow, RefTag, imgProps } from "./shared";
+import { RefTag, imgProps } from "./shared";
+import { HEADING, Kicker } from "./kit";
 
 /* ---------- 4. Pillars — "What guides the work" ----------
- * Expanding image panels on a deep-green band. Desktop: four panels in a row; the hovered /
- * focused / tapped one grows (flex-grow) to reveal its principle, the rest collapse to slim
- * columns with a vertical title. Mobile: stacked cards, everything visible.
- * Only 1920px renders are used here — the panels are large, smaller photos would blur.
- * GSAP (useHomeMotion): panels rise in with a staggered clip reveal ([data-pillar]).
+ * Highwater "Why" hairline bento: 1px gaps on a slate ground; the heading fills the first two
+ * cells, the four pillars fill the rest. Scroll-in (useHomeMotion): tiles fold down from their
+ * top edge in a staggered wave and the outlined numbers rise out of a mask. Hover (fine
+ * pointer): the tile tilts toward the cursor and its photo opens as a circle from the entry
+ * point (CSS --x/--y + clip-path transition); text turns white, the number fills gold. Nothing
+ * reflows. Touch shows the photo permanently. All four pillars are always readable.
  */
 
-const PILLAR_MARK: Record<(typeof PILLARS)[number]["title"], ReactNode> = {
-  "Considered design": (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M15.5 8.5l-2 5-5 2 2-5 5-2Z" />
-    </svg>
-  ),
-  "Clear decisions": (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <circle cx="12" cy="12" r="9" />
-      <path d="M8 12l3 3 5-5" />
-    </svg>
-  ),
-  "Responsible performance": (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M12 21a9 9 0 1 1 9-9" />
-      <path d="M12 12l4-3" />
-      <circle cx="12" cy="12" r="1" />
-    </svg>
-  ),
-  "Coordinated planning": (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <rect x="4" y="4" width="6" height="6" rx="1" />
-      <rect x="14" y="4" width="6" height="6" rx="1" />
-      <rect x="4" y="14" width="6" height="6" rx="1" />
-      <rect x="14" y="14" width="6" height="6" rx="1" />
-    </svg>
-  ),
+export type Pillar = (typeof PILLARS.items)[number]["title"];
+
+export const PILLAR_MARK: Record<Pillar, LucideIcon> = {
+  Sustainable: Leaf,
+  Family: Users,
+  Luxury: Gem,
+  Faith: HeartHandshake,
 };
 
-const PILLAR_IMAGE: Record<(typeof PILLARS)[number]["title"], RefImage> = {
-  "Considered design": IMAGES.entry,
-  "Clear decisions": IMAGES.office,
-  "Responsible performance": IMAGES.hausSide,
-  "Coordinated planning": IMAGES.farmhouseRear,
+export const PILLAR_IMAGE: Record<Pillar, RefImage> = {
+  Sustainable: IMAGES.hausSide,
+  Family: IMAGES.hausPatio,
+  Luxury: IMAGES.entry,
+  Faith: IMAGES.hausGarden,
 };
 
-export function HomePillars() {
-  const [active, setActive] = useState(0);
+// Circle origin for the photo reveal = where the pointer entered the tile.
+function setOrigin(e: PointerEvent<HTMLElement>) {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--x", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--y", `${e.clientY - r.top}px`);
+}
 
+type Props = {
+  title?: string;
+  items?: readonly { title: Pillar; body: string }[];
+};
+
+export function HomePillars({ title = PILLARS.title, items = PILLARS.items }: Props = {}) {
   return (
-    <section className="relative overflow-hidden bg-brand-dark py-24 text-white sm:py-28">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_40%_50%_at_10%_0%,rgb(187_137_92/0.16),transparent_60%),radial-gradient(ellipse_50%_60%_at_100%_100%,rgb(18_85_69/0.7),transparent_65%)]"
-      />
-      <div className="wrap relative">
-        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <Eyebrow dark>What guides the work</Eyebrow>
-            <h2
-              data-anim="reveal"
-              className="mt-4 font-serif text-[clamp(2rem,2vw+1rem,3rem)] leading-[1.1] tracking-[-0.01em]"
-            >
-              Four principles behind a considered home
+    <section data-section="What guides the work" className="bg-secondary py-24 sm:py-28">
+      <div className="wrap">
+        <div className="grid gap-px border border-slate/15 bg-slate/15 [perspective:1400px] sm:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col justify-end bg-secondary p-8 sm:col-span-2 lg:p-12">
+            <Kicker>What guides the work</Kicker>
+            <h2 data-split className={`${HEADING} mt-6 max-w-2xl`}>
+              {title}
             </h2>
           </div>
-        </div>
 
-        <div className="mt-12 grid gap-4 lg:flex lg:h-[34rem] lg:gap-3">
-          {PILLARS.map((p, i) => {
-            const open = i === active;
+          {items.map((p, i) => {
             const img = PILLAR_IMAGE[p.title];
+            const Mark = PILLAR_MARK[p.title];
             return (
-              <button
+              <article
                 key={p.title}
-                type="button"
-                data-pillar
-                aria-expanded={open}
-                onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-                onClick={() => setActive(i)}
-                style={{ flexGrow: open ? 4 : 1 }}
-                className="group relative isolate h-[22rem] min-w-0 basis-0 overflow-hidden rounded-lg text-left outline-none ring-gold/70 transition-[flex-grow] duration-700 ease-[cubic-bezier(.2,.8,.2,1)] focus-visible:ring-2 lg:h-auto"
+                data-tile
+                onPointerEnter={setOrigin}
+                className="group relative isolate flex min-h-[20rem] flex-col overflow-hidden bg-background p-8 [--x:50%] [--y:50%] lg:min-h-[24rem] lg:p-10"
               >
-                <img
-                  {...imgProps(img, "(min-width: 1024px) 60vw, 100vw")}
-                  loading="lazy"
-                  className={`absolute inset-0 -z-20 h-full w-full object-cover transition-transform duration-[1200ms] ${
-                    open ? "scale-100" : "scale-110"
-                  }`}
-                />
-                <div
-                  aria-hidden
-                  className={`absolute inset-0 -z-10 bg-gradient-to-t transition-opacity duration-700 ${
-                    open
-                      ? "from-black/85 via-brand-dark/40 to-transparent"
-                      : "from-brand-dark/95 via-brand-dark/70 to-brand-dark/40 max-lg:from-black/85 max-lg:via-brand-dark/40 max-lg:to-transparent"
-                  }`}
-                />
+                <div className="absolute inset-0 -z-10 [clip-path:circle(0%_at_var(--x)_var(--y))] transition-[clip-path] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[clip-path:circle(150%_at_var(--x)_var(--y))] pointer-coarse:[clip-path:none]">
+                  <img
+                    {...imgProps(img, "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw")}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-brand-dark/80" />
+                  <RefTag image={img} className="bottom-4 right-4" />
+                </div>
 
-                {/* top row: index + mark */}
-                <div className="absolute inset-x-5 top-5 flex items-center justify-between gap-3">
-                  <span className="font-serif text-3xl leading-none text-gold">0{i + 1}</span>
-                  <span className="grid size-11 place-items-center rounded-full border border-white/20 bg-white/10 text-gold backdrop-blur-md transition-transform duration-500 group-hover:rotate-12">
-                    <span className="size-5">{PILLAR_MARK[p.title]}</span>
+                <div className="flex items-start justify-between gap-4">
+                  <span className="block overflow-hidden">
+                    <span
+                      data-num
+                      className="block font-serif text-6xl leading-none text-transparent transition-colors duration-500 [-webkit-text-stroke:1px_var(--slate)] group-hover:text-gold group-hover:[-webkit-text-stroke:1px_var(--gold)] pointer-coarse:text-gold pointer-coarse:[-webkit-text-stroke:1px_var(--gold)]"
+                    >
+                      0{i + 1}
+                    </span>
                   </span>
+                  <Mark aria-hidden className="size-7 text-gold" strokeWidth={1.4} />
                 </div>
-
-                {/* collapsed: vertical title (desktop only) */}
-                <span
-                  aria-hidden
-                  className={`absolute bottom-6 left-1/2 hidden -translate-x-1/2 whitespace-nowrap font-serif text-2xl text-white transition-opacity duration-300 [writing-mode:vertical-rl] rotate-180 lg:block ${
-                    open ? "opacity-0" : "opacity-100 delay-200"
-                  }`}
-                >
+                <h3 className="mt-auto pt-10 font-serif text-2xl leading-tight text-foreground transition-colors duration-500 group-hover:text-white pointer-coarse:text-white">
                   {p.title}
-                </span>
-
-                {/* open: title + body */}
-                <div
-                  className={`absolute inset-x-5 bottom-5 transition-all duration-500 lg:inset-x-7 lg:bottom-7 ${
-                    open
-                      ? "translate-y-0 opacity-100 delay-200"
-                      : "lg:pointer-events-none lg:translate-y-6 lg:opacity-0"
-                  }`}
-                >
-                  <span className="mb-4 block h-px w-12 bg-gold" aria-hidden />
-                  <h3 className="font-serif text-[clamp(1.75rem,1.5vw+1rem,2.25rem)] leading-tight">
-                    {p.title}
-                  </h3>
-                  <p className="mt-3 max-w-md text-base leading-relaxed text-white/90">{p.body}</p>
-                </div>
-
-                <RefTag
-                  image={img}
-                  className={`right-5 top-[4.75rem] transition-opacity duration-500 ${
-                    open ? "opacity-100" : "lg:opacity-0"
-                  }`}
-                />
-              </button>
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-white/85 pointer-coarse:text-white/85">
+                  {p.body}
+                </p>
+              </article>
             );
           })}
         </div>

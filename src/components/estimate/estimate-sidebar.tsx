@@ -23,7 +23,7 @@ export function EstimateSidebar({
   const hasEstimate = !!result && result.basis !== "unavailable";
 
   return (
-    <aside className="flex w-full shrink-0 flex-col overflow-hidden rounded-[var(--radius-lg)] border border-border bg-background shadow-sm lg:sticky lg:top-28 lg:w-[320px] lg:self-start xl:w-[360px]">
+    <aside className="flex w-full shrink-0 flex-col overflow-hidden border border-border border-t-2 border-t-gold bg-background shadow-xl shadow-brand-dark/10 lg:sticky lg:top-28 lg:w-[320px] lg:self-start xl:w-[360px]">
       <div className="border-b border-border px-7 py-6">
         <p className="font-serif text-xl text-primary">{BRAND.name}</p>
         <p className="mt-1 text-sm text-muted-foreground">Sustainable luxury homes, BC</p>
@@ -49,7 +49,7 @@ export function EstimateSidebar({
 
       <div className="divide-y divide-border px-7">
         <a href={`tel:${BRAND.phoneTel}`} className="group flex items-center gap-4 py-5">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary text-primary">
+          <span className="flex size-10 shrink-0 items-center justify-center border border-gold/60 text-gold">
             <Phone className="size-4" />
           </span>
           <span>
@@ -62,7 +62,7 @@ export function EstimateSidebar({
           </span>
         </a>
         <a href={`mailto:${BRAND.email}`} className="group flex items-center gap-4 py-5">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary text-primary">
+          <span className="flex size-10 shrink-0 items-center justify-center border border-gold/60 text-gold">
             <Mail className="size-4" />
           </span>
           <span className="min-w-0">
@@ -76,7 +76,7 @@ export function EstimateSidebar({
         </a>
       </div>
 
-      <div className="mt-auto bg-primary px-7 py-6">
+      <div className="mt-auto bg-brand-dark px-7 py-6">
         <p className="text-[10px] font-bold tracking-[0.2em] text-gold uppercase">
           What happens next
         </p>

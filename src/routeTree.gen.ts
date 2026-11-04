@@ -23,7 +23,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as AboutUsIndexRouteImport } from './routes/about-us.index'
-import { Route as AboutUsOurGuaranteeRouteImport } from './routes/about-us.our-guarantee'
+import { Route as AboutUsOurApproachRouteImport } from './routes/about-us.our-approach'
 import { Route as AboutUsWhyChooseUsRouteImport } from './routes/about-us.why-choose-us'
 import { Route as ApiAuditLoginRouteImport } from './routes/api.audit-login'
 import { Route as EstimateIndexRouteImport } from './routes/estimate.index'
@@ -117,9 +117,9 @@ const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
   path: '/about-us/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutUsOurGuaranteeRoute = AboutUsOurGuaranteeRouteImport.update({
-  id: '/about-us/our-guarantee',
-  path: '/about-us/our-guarantee',
+const AboutUsOurApproachRoute = AboutUsOurApproachRouteImport.update({
+  id: '/about-us/our-approach',
+  path: '/about-us/our-approach',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutUsWhyChooseUsRoute = AboutUsWhyChooseUsRouteImport.update({
@@ -257,7 +257,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
+  '/about-us/our-approach': typeof AboutUsOurApproachRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
   '/api/audit-login': typeof ApiAuditLoginRoute
   '/estimate/custom-home': typeof EstimateCustomHomeRoute
@@ -296,7 +296,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
+  '/about-us/our-approach': typeof AboutUsOurApproachRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
   '/api/audit-login': typeof ApiAuditLoginRoute
   '/estimate/custom-home': typeof EstimateCustomHomeRoute
@@ -336,7 +336,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/thank-you': typeof ThankYouRoute
-  '/about-us/our-guarantee': typeof AboutUsOurGuaranteeRoute
+  '/about-us/our-approach': typeof AboutUsOurApproachRoute
   '/about-us/why-choose-us': typeof AboutUsWhyChooseUsRoute
   '/api/audit-login': typeof ApiAuditLoginRoute
   '/estimate/custom-home': typeof EstimateCustomHomeRoute
@@ -377,7 +377,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
-    | '/about-us/our-guarantee'
+    | '/about-us/our-approach'
     | '/about-us/why-choose-us'
     | '/api/audit-login'
     | '/estimate/custom-home'
@@ -416,7 +416,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
-    | '/about-us/our-guarantee'
+    | '/about-us/our-approach'
     | '/about-us/why-choose-us'
     | '/api/audit-login'
     | '/estimate/custom-home'
@@ -455,7 +455,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/thank-you'
-    | '/about-us/our-guarantee'
+    | '/about-us/our-approach'
     | '/about-us/why-choose-us'
     | '/api/audit-login'
     | '/estimate/custom-home'
@@ -495,7 +495,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ThankYouRoute: typeof ThankYouRoute
-  AboutUsOurGuaranteeRoute: typeof AboutUsOurGuaranteeRoute
+  AboutUsOurApproachRoute: typeof AboutUsOurApproachRoute
   AboutUsWhyChooseUsRoute: typeof AboutUsWhyChooseUsRoute
   ApiAuditLoginRoute: typeof ApiAuditLoginRoute
   EstimateCustomHomeRoute: typeof EstimateCustomHomeRoute
@@ -621,11 +621,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutUsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about-us/our-guarantee': {
-      id: '/about-us/our-guarantee'
-      path: '/about-us/our-guarantee'
-      fullPath: '/about-us/our-guarantee'
-      preLoaderRoute: typeof AboutUsOurGuaranteeRouteImport
+    '/about-us/our-approach': {
+      id: '/about-us/our-approach'
+      path: '/about-us/our-approach'
+      fullPath: '/about-us/our-approach'
+      preLoaderRoute: typeof AboutUsOurApproachRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about-us/why-choose-us': {
@@ -799,7 +799,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ThankYouRoute: ThankYouRoute,
-  AboutUsOurGuaranteeRoute: AboutUsOurGuaranteeRoute,
+  AboutUsOurApproachRoute: AboutUsOurApproachRoute,
   AboutUsWhyChooseUsRoute: AboutUsWhyChooseUsRoute,
   ApiAuditLoginRoute: ApiAuditLoginRoute,
   EstimateCustomHomeRoute: EstimateCustomHomeRoute,

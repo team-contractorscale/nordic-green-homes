@@ -1,124 +1,125 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { IMAGES, type RefImage } from "@/lib/home-content";
-import { Eyebrow, RefTag, imgProps } from "./shared";
+import { RefTag, imgProps } from "./shared";
+import { HEADING, Kicker, LineLink } from "./kit";
 
-/* ---------- 7. Selected work ----------
- * Pinned horizontal gallery. Desktop: the section pins and vertical scroll drives the track
- * sideways (GSAP, [data-hscroll] / [data-hscroll-track] / [data-hscroll-bar] in useHomeMotion),
- * with a gold "View" cursor that follows the pointer over cards ([data-hcursor]).
- * Below lg: a native swipeable row with scroll-snap.
- *
- * Card sizes follow each file's native width so nothing is upscaled: ~960px photos are shown at
- * <= 480 CSS px (sharp on 2x screens), 1920px renders can go wider.
+/* ---------- 8. Selected work ----------
+ * Even gallery: every frame is the same 4:5 size (4 across on lg, 2 on sm). The seven images
+ * plus a matching "View projects" tile fill two clean rows. Each frame wipes open as it enters
+ * ([data-reveal-img]). Hover: the image eases in to full colour, the title and index slide up,
+ * gold corner ticks frame it, and a gold "View" cursor follows the pointer ([data-hcursor]).
  */
 
-type Item = { image: RefImage; title: string; size: "render" | "photo" | "wide-photo" };
+type Item = { image: RefImage; title: string };
 
 const ITEMS: Item[] = [
-  { image: IMAGES.poolRender, title: "Rear porch & pool", size: "render" },
-  { image: IMAGES.entry, title: "Front entry", size: "photo" },
-  { image: IMAGES.hausPatio, title: "Covered patio & living", size: "render" },
-  { image: IMAGES.interior, title: "Media room", size: "wide-photo" },
-  { image: IMAGES.farmhouseRear, title: "Rear terrace", size: "render" },
-  { image: IMAGES.intro, title: "Entry hall arches", size: "photo" },
-  { image: IMAGES.renovations, title: "Barn-door hallway", size: "photo" },
+  { image: IMAGES.poolRender, title: "Rear porch & pool" },
+  { image: IMAGES.entry, title: "Front entry" },
+  { image: IMAGES.hausPatio, title: "Covered patio & living" },
+  { image: IMAGES.interior, title: "Media room" },
+  { image: IMAGES.farmhouseRear, title: "Rear terrace" },
+  { image: IMAGES.intro, title: "Entry hall arches" },
+  { image: IMAGES.renovations, title: "Barn-door hallway" },
 ];
 
-const SIZE = {
-  render: "w-[82vw] sm:w-[34rem] lg:w-[44rem] aspect-[3/2]",
-  "wide-photo": "w-[82vw] sm:w-[30rem] lg:w-[36rem] aspect-[4/3]",
-  photo: "w-[78vw] sm:w-[26rem] lg:w-[30rem] aspect-[3/2]",
-} as const;
+const TICK =
+  "absolute size-4 border-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100";
+
+function Tile({ item, index }: { item: Item; index: number }) {
+  return (
+    <Link
+      to="/projects"
+      data-hcard
+      className="group relative block aspect-[4/5] overflow-hidden bg-muted"
+    >
+      <div data-reveal-img className="absolute inset-0 overflow-hidden">
+        <img
+          {...imgProps(item.image, "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw")}
+          loading="lazy"
+          className="h-full w-full object-cover saturate-[0.85] transition-[scale,filter] duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06] group-hover:saturate-100"
+        />
+      </div>
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-100"
+      />
+      <span aria-hidden className={`${TICK} left-3 top-3 border-l border-t`} />
+      <span aria-hidden className={`${TICK} bottom-3 right-3 border-b border-r`} />
+      <RefTag image={item.image} className="right-3 top-3" />
+      <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4 text-white">
+        <div className="overflow-hidden">
+          <p className="translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:translate-y-[130%] lg:group-hover:translate-y-0">
+            <span className="block text-[0.62rem] font-bold tracking-[0.22em] text-gold">
+              {String(index).padStart(2, "0")}
+            </span>
+            <span className="mt-1 block font-serif text-xl leading-tight sm:text-2xl">
+              {item.title}
+            </span>
+          </p>
+        </div>
+        <span className="grid size-9 shrink-0 place-items-center border border-white/40 transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
+          <ArrowUpRight className="size-4" />
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 export function HomeProjects() {
   return (
-    <section data-hscroll className="relative overflow-hidden bg-background py-24 sm:py-28 lg:py-0">
+    <section
+      data-gallery
+      data-section="Selected work"
+      className="relative overflow-hidden bg-background py-24 sm:py-32"
+    >
       {/* pointer-follow "View" cursor (desktop, fine pointers only) */}
       <span
         data-hcursor
         aria-hidden
-        className="pointer-events-none absolute left-0 top-0 z-30 hidden size-24 -translate-x-1/2 -translate-y-1/2 scale-0 place-items-center rounded-full bg-gold text-sm font-bold text-black [@media(hover:hover)]:lg:grid"
+        className="pointer-events-none absolute left-0 top-0 z-30 hidden size-24 -translate-x-1/2 -translate-y-1/2 scale-0 place-items-center bg-gold text-xs font-bold uppercase tracking-[0.18em] text-black [@media(hover:hover)]:lg:grid"
       >
         View
       </span>
 
-      {/* oversized outline word drifting behind the track (desktop) */}
-      <p
-        data-hscroll-bg
-        aria-hidden
-        className="pointer-events-none absolute bottom-[6vh] left-0 hidden select-none whitespace-nowrap font-serif text-[15vw] leading-none text-transparent [-webkit-text-stroke:1px_rgb(18_85_69/0.14)] lg:block"
-      >
-        Selected work · Design &amp; build · Selected work
-      </p>
-
-      <div className="relative flex min-h-0 flex-col lg:h-[100svh] lg:justify-center lg:pt-16">
-        <div
-          data-hscroll-track
-          className="flex snap-x snap-mandatory items-end gap-5 overflow-x-auto px-5 pb-4 sm:px-8 lg:snap-none lg:gap-8 lg:overflow-visible lg:pb-0 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] lg:pr-[10vw] [scrollbar-width:none]"
-        >
-          {/* intro panel — first item in the track */}
-          <div className="w-[82vw] shrink-0 snap-start self-center sm:w-[24rem] lg:w-[26rem]">
-            <Eyebrow>Selected work</Eyebrow>
-            <h2
-              data-anim="reveal"
-              className="mt-4 font-serif text-[clamp(2rem,2vw+1rem,3rem)] leading-[1.1] tracking-[-0.01em]"
-            >
+      <div className="wrap">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <Kicker>Selected work</Kicker>
+            <h2 data-split className={`${HEADING} mt-6`}>
               Design and build, in detail
             </h2>
-            <p data-anim="reveal" className="mt-4 text-base leading-relaxed text-muted-foreground">
+          </div>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <p data-reveal className="text-base leading-relaxed text-muted-foreground">
               A covered porch. A framed view. An entry that opens into the home. Explore the spaces
               and details that catch your eye as you gather ideas for your own brief.
             </p>
-            <Link
-              to="/projects"
-              className="group mt-6 inline-flex items-center gap-2 text-base font-bold text-primary underline underline-offset-4 hover:text-gold"
-            >
-              View projects
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
-            <p className="mt-4 hidden items-center gap-2 text-sm font-bold text-primary lg:flex">
-              Keep scrolling <ArrowRight className="size-4 animate-pulse" />
-            </p>
+            <div data-reveal className="mt-6">
+              <LineLink to="/projects">View projects</LineLink>
+            </div>
           </div>
-
-          {ITEMS.map((item, i) => (
-            <Link
-              key={item.image.src}
-              to="/projects"
-              data-hcard
-              className={`group relative block shrink-0 snap-start overflow-hidden rounded-lg bg-muted ${SIZE[item.size]} ${
-                i % 2 ? "lg:mb-24" : ""
-              }`}
-            >
-              <img
-                {...imgProps(item.image, item.size === "render" ? "44rem" : "36rem")}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-100"
-              />
-              <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
-                <span className="grid size-10 shrink-0 scale-75 place-items-center rounded-full bg-white text-primary opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100 lg:hidden">
-                  <ArrowUpRight className="size-4" />
-                </span>
-              </div>
-              <RefTag image={item.image} className="right-3 top-3" />
-            </Link>
-          ))}
         </div>
 
-        {/* scrubbed progress line (desktop) */}
-        <div className="wrap mt-10 hidden lg:block">
-          <div className="h-px w-full bg-border">
-            <div
-              data-hscroll-bar
-              className="h-px w-full origin-left bg-gold"
-              style={{ transform: "scaleX(0)" }}
-            />
-          </div>
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+          {ITEMS.map((item, i) => (
+            <Tile key={item.image.src} item={item} index={i + 1} />
+          ))}
+          <Link
+            to="/projects"
+            data-reveal
+            className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden bg-brand-dark p-7 text-white"
+          >
+            <span className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-gold">
+              {String(ITEMS.length + 1).padStart(2, "0")} · More
+            </span>
+            <span>
+              <span className="block font-serif text-3xl leading-tight">View all projects</span>
+              <span className="mt-6 grid size-12 place-items-center border border-white/30 transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
+                <ArrowUpRight className="size-5 transition-transform duration-500 group-hover:rotate-45" />
+              </span>
+            </span>
+          </Link>
         </div>
       </div>
     </section>

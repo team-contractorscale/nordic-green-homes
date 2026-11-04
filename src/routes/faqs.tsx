@@ -1,11 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader } from "@/components/layout/PageHeader";
-import { IMAGES } from "@/lib/home-content";
-import { H2, HomeConsultation } from "@/components/home/NordicHome";
-import { FaqList } from "@/components/page/PageParts";
+import { ArrowDown } from "lucide-react";
+import { CTA, IMAGES } from "@/lib/home-content";
+import { useHomeMotion } from "@/hooks/use-home-motion";
+import {
+  HEADING,
+  Kicker,
+  LineLink,
+  ScrollProgress,
+  SectionIndicator,
+  SweepLink,
+  HeroTitle,
+  HeroBackdrop,
+} from "@/components/home/kit";
 
+/* FAQs (listed under About) — homepage design language and motion. Copy is the client-supplied
+ * FAQs content (2026-11-04); SEO from the 3 November manifest.
+ * Order: hero with the question index (dark) → every answer open, one row per question →
+ * the two CTAs. Answers are always visible (no accordion) so the page reads and indexes fully.
+ */
+
+const TITLE = "Custom Home Planning FAQs | Nordic Green Homes";
 const DESCRIPTION =
-  "These answers help you understand what to prepare, which questions depend on the property and what the next step can and cannot tell you.";
+  "Find answers about early planning, estimates, design responsibilities, garden suites and performance terminology.";
 
 const FAQS = [
   {
@@ -38,43 +54,127 @@ const FAQS = [
   },
 ];
 
-const HEADER_IMAGE = IMAGES.hausGarden.src;
+const pad = (n: number) => String(n).padStart(2, "0");
 
 export const Route = createFileRoute("/faqs")({
   head: () => ({
     meta: [
-      { title: "Frequently Asked Questions | Nordic Green Homes" },
+      { title: TITLE },
       { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Frequently Asked Questions | Nordic Green Homes" },
+      { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:image", content: HEADER_IMAGE },
-      { name: "twitter:image", content: HEADER_IMAGE },
     ],
   }),
   component: FaqsPage,
 });
 
 function FaqsPage() {
+  const ref = useHomeMotion<HTMLDivElement>();
   return (
-    <div>
-      <PageHeader
-        image={HEADER_IMAGE}
-        imageAlt={IMAGES.hausGarden.alt}
-        eyebrow="Frequently Asked Questions"
-        title="Questions homeowners ask before starting"
-        description={DESCRIPTION}
-      />
+    <div ref={ref} className="home-root">
+      <ScrollProgress />
+      <SectionIndicator />
 
-      <section className="bg-secondary/50 py-24 sm:py-28">
-        <div className="wrap max-w-4xl">
-          <div className="text-center">
-            <h2 className={H2}>Answers to common questions</h2>
+      {/* ---------- Hero: heading + question index ---------- */}
+      <section
+        data-section="FAQs"
+        className="grain relative isolate overflow-hidden bg-overlay text-white"
+      >
+        <HeroBackdrop image={IMAGES.farmhouseRear} />
+        <div className="wrap grid min-h-svh items-center gap-14 pb-20 pt-36 lg:grid-cols-12 lg:pt-40">
+          <div data-hero-copy className="lg:col-span-6">
+            <p
+              data-anim="fade"
+              className="flex items-center gap-4 text-xs font-bold uppercase tracking-[0.24em] text-white/80"
+            >
+              <span aria-hidden className="h-px w-10 bg-gold" />
+              Frequently asked questions
+            </p>
+            <HeroTitle
+              lines={["Questions homeowners", "ask before starting."]}
+              max="5rem"
+              className="mt-7"
+            />
+            <p
+              data-anim="fade"
+              className="mt-8 max-w-[34rem] text-base leading-relaxed text-white/85 sm:text-lg"
+            >
+              These answers help you understand what to prepare, which questions depend on the
+              property and what the next step can and cannot tell you.
+            </p>
           </div>
-          <FaqList items={FAQS} />
+
+          <nav aria-label="Questions on this page" className="lg:col-span-5 lg:col-start-8">
+            <p
+              data-anim="fade"
+              className="text-[0.62rem] font-bold uppercase tracking-[0.24em] text-gold"
+            >
+              {pad(FAQS.length)} questions
+            </p>
+            <span
+              data-rule
+              aria-hidden
+              className="mt-4 block h-px w-full origin-left bg-white/20"
+            />
+            <ol>
+              {FAQS.map((f, i) => (
+                <li key={f.q} data-anim="stat" className="border-b border-white/10">
+                  <a
+                    href={`#q-${i + 1}`}
+                    className="group flex items-baseline gap-4 py-3 transition-colors duration-300 hover:text-gold"
+                  >
+                    <span className="text-xs font-bold tracking-[0.2em] text-gold">
+                      {pad(i + 1)}
+                    </span>
+                    <span className="flex-1 font-serif text-lg leading-snug transition-transform duration-500 group-hover:translate-x-1.5">
+                      {f.q}
+                    </span>
+                    <ArrowDown className="size-3.5 shrink-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
         </div>
       </section>
 
-      <HomeConsultation />
+      {/* ---------- Answers: question left, answer right, all open ---------- */}
+      <section data-section="Answers" className="bg-background py-24 sm:py-28">
+        <div className="wrap">
+          <Kicker>Answers</Kicker>
+          <h2 data-split className={`${HEADING} mt-6`}>
+            Answers to common questions
+          </h2>
+
+          <dl className="mt-14 border-t border-border">
+            {FAQS.map((f, i) => (
+              <div
+                key={f.q}
+                id={`q-${i + 1}`}
+                data-reveal
+                className="group grid scroll-mt-28 gap-4 border-b border-border py-10 transition-colors duration-500 hover:bg-secondary/40 lg:grid-cols-12 lg:gap-12 lg:px-6 lg:py-12"
+              >
+                <dt className="flex gap-5 lg:col-span-6">
+                  <span className="pt-2 text-xs font-bold tracking-[0.2em] text-gold">
+                    {pad(i + 1)}
+                  </span>
+                  <span className="font-serif text-[clamp(1.5rem,1.2vw+1rem,2.25rem)] leading-tight">
+                    {f.q}
+                  </span>
+                </dt>
+                <dd className="border-l-2 border-gold/0 pl-9 text-base leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:border-gold sm:text-lg lg:col-span-5 lg:col-start-8 lg:pl-6">
+                  {f.a}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div data-reveal className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-5">
+            <SweepLink to={CTA.estimate.to}>{CTA.estimate.label}</SweepLink>
+            <LineLink to={CTA.call.to}>{CTA.call.label}</LineLink>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

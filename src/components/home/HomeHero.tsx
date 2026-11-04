@@ -1,169 +1,248 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Leaf } from "lucide-react";
-import { useEffect, useState } from "react";
-import { HERO, IMAGES } from "@/lib/home-content";
+import { animate, type JSAnimation } from "animejs";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { CTA, HERO, HOME_SERVICES } from "@/lib/home-content";
 import { RefTag, imgProps } from "./shared";
+import { LineLink, SweepLink, HeroTitle } from "./kit";
 
 /* ---------- 1. Hero ----------
- * Full-bleed photo slideshow in Nordic colours. Readability comes from a
- * brand-green gradient behind the copy, not from the photo.
+ * Highwater-style single cinematic hero (no slides). The supplied photo is bright (white render,
+ * blue sky), so legibility comes from layered deep-green scrims: a left gradient on lg (flat on
+ * small screens), plus top fade for the header and bottom fade for the services rail. The house
+ * is a wide 2.5:1 frame, so the crop is set per breakpoint: on lg the tree sits under the copy
+ * (extra contrast) and the balcony + timber cladding stay clear on the right; mobile centres the balcony.
  *
- * Slide navigation: image thumbnails with softly rounded (16px) corners. Each thumb indicates the active slide (gold
- * ring + full opacity + gold edge) and controls it on click. The nav is
- * absolutely positioned inside the section, so it always stays within the hero
- * bounds on every viewport.
+ * H1 runs as three masked lines ("Sustainable luxury. / Built around / your life.") so no word is
+ * ever left alone on a line; the middle line steps in on lg for an editorial stagger.
+ *
+ * Motion (useHomeMotion): photo settles out of a blur + zoom, headline lines rise out of masks,
+ * then copy, rule and rail. `[data-anim]` is hidden by CSS only for motion-OK + JS visitors;
+ * everyone else gets the finished hero at once. Scroll: photo parallax, copy lifts and fades.
  */
 
-const SLIDE_MS = 7000;
+const SLIDE_MS = 6000;
+const HIDDEN = "inset(0% 0% 0% 100%)";
 
-export function HomeHero() {
+/* Square slider (lg+), bottom right above service 05. Anime.js drives it: the incoming slide
+ * wipes in from the right while its image settles from a zoom, and a gold progress line times
+ * autoplay (paused on hover / focus, off for reduced motion; the arrows always work). */
+function HeroSlider() {
   const slides = HERO.slides;
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  const bar = useRef<HTMLSpanElement>(null);
+  const prev = useRef(0);
+  const timer = useRef<JSAnimation | null>(null);
+  const hold = useRef(false);
+
+  const go = (step: number) => setActive((i) => (i + step + slides.length) % slides.length);
 
   useEffect(() => {
-    // No autoplay for reduced-motion users; thumbnails still work.
-    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = window.setTimeout(() => setActive((i) => (i + 1) % slides.length), SLIDE_MS);
-    return () => window.clearTimeout(t);
-  }, [active, paused, slides.length]);
+    const items = root.current?.querySelectorAll<HTMLElement>("[data-slide]");
+    const from = prev.current;
+    const cur = items?.[active];
+    if (!items || !cur || from === active) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    items.forEach((el, i) => {
+      el.style.zIndex = i === active ? "2" : i === from ? "1" : "0";
+    });
+    animate(cur, {
+      clipPath: [HIDDEN, "inset(0% 0% 0% 0%)"],
+      duration: reduce ? 0 : 1100,
+      ease: "inOutExpo",
+    });
+    const img = cur.querySelector("img");
+    if (img) animate(img, { scale: [1.25, 1], duration: reduce ? 0 : 1600, ease: "outExpo" });
+    prev.current = active;
+  }, [active]);
+
+  useEffect(() => {
+    const b = bar.current;
+    if (!b || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    timer.current = animate(b, {
+      scaleX: [0, 1],
+      duration: SLIDE_MS,
+      ease: "linear",
+      onComplete: () => go(1),
+    });
+    if (hold.current) timer.current.pause();
+    return () => {
+      timer.current?.pause();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- restart the timer per slide only
+  }, [active]);
+
+  const pause = () => {
+    hold.current = true;
+    timer.current?.pause();
+  };
+  const resume = () => {
+    hold.current = false;
+    timer.current?.resume();
+  };
 
   return (
-    <section
-      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-primary text-white"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+    <div
+      role="group"
+      aria-roledescription="carousel"
+      aria-label="Featured designs"
+      onMouseEnter={pause}
+      onMouseLeave={resume}
+      onFocus={pause}
+      onBlur={resume}
     >
-      {slides.map((img, i) => (
-        <div
-          key={img.src}
-          data-parallax
-          aria-hidden={i !== active}
-          className={`absolute inset-0 -z-20 transition-opacity duration-[1200ms] ${
-            i === active ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img
-            {...imgProps(img, "100vw")}
-            alt={i === 0 ? img.alt : ""}
-            className={`h-full w-full object-cover transition-transform duration-[8000ms] ease-out ${
-              i === active ? "scale-105" : "scale-100"
-            }`}
-            fetchPriority={i === 0 ? "high" : "low"}
-          />
-        </div>
-      ))}
-      {/* brand-green gradient: solid behind the copy, clear over the photo */}
       <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(13_61_50/0.95)_0%,rgb(18_85_69/0.85)_32%,rgb(18_85_69/0.35)_62%,rgb(18_85_69/0.05)_100%)] max-lg:bg-[linear-gradient(180deg,rgb(13_61_50/0.75)_0%,rgb(18_85_69/0.7)_45%,rgb(13_61_50/0.92)_100%)]"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/35 to-transparent"
-      />
-
-      <div className="wrap flex flex-1 items-center pb-44 pt-36 sm:pb-44 lg:pt-40">
-        <div data-hero-content className="max-w-4xl">
-          <p
-            data-anim="hero-eyebrow"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur-md"
-          >
-            <Leaf className="size-4 text-gold" aria-hidden />
-            {HERO.eyebrow}
-          </p>
-          <h1
-            data-anim="hero-title"
-            className="mt-6 text-balance font-serif text-[clamp(2.75rem,4.5vw+1rem,5rem)] leading-[1.04] tracking-[-0.03em]"
-          >
-            {HERO.titleLead}
-            <br />
-            <span className="text-gold">{HERO.titleAccent}</span>
-          </h1>
-          <p
-            data-anim="hero-body"
-            className="mt-6 max-w-[34rem] text-base leading-relaxed text-white/90"
-          >
-            {HERO.body}
-          </p>
-          <p
-            data-anim="hero-body"
-            className="mt-3 text-sm font-bold uppercase tracking-[0.2em] text-gold/90"
-          >
-            {HERO.brand}
-          </p>
-
-          <div data-anim="hero-cta" className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <Link
-              to="/contact"
-              className="group inline-flex h-14 items-center gap-4 rounded-full border border-white/40 bg-white/10 py-1.5 pl-6 pr-1.5 text-base font-bold text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.04] hover:bg-white/20"
-            >
-              {HERO.cta}
-              <span className="flex size-11 items-center justify-center rounded-full bg-gold text-black transition-transform duration-300 group-hover:rotate-45">
-                <ArrowRight className="size-4" />
-              </span>
-            </Link>
-            <a
-              href="#process"
-              className="group inline-flex items-center gap-2 text-base font-bold text-white underline underline-offset-4 hover:text-white/85"
-            >
-              {HERO.secondary}
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* slide controls: large rounded image thumbnails — pinned inside the hero, always visible */}
-      <div
-        data-anim="hero-nav"
-        className="absolute bottom-7 left-1/2 flex -translate-x-1/2 items-center gap-4 lg:bottom-auto lg:left-auto lg:right-12 lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2"
-        role="group"
-        aria-label="Hero images"
+        ref={root}
+        className="relative aspect-square overflow-hidden bg-brand-dark shadow-2xl shadow-black/40"
       >
-        <div className="flex items-center gap-4 lg:flex-col">
-          {slides.map((img, i) => (
+        {slides.map((s, i) => (
+          <div
+            key={s.src}
+            data-slide
+            aria-hidden={i !== active}
+            className="absolute inset-0 overflow-hidden"
+            style={i === 0 ? undefined : { clipPath: HIDDEN }}
+          >
+            <img
+              {...imgProps(s, "20vw")}
+              loading={i === 0 ? "eager" : "lazy"}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        ))}
+        <RefTag image={slides[active] ?? HERO.image} className="left-3 top-3 z-10" />
+      </div>
+      <div className="relative h-px bg-white/20">
+        <span ref={bar} aria-hidden className="absolute inset-0 origin-left scale-x-0 bg-gold" />
+      </div>
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <p className="min-w-0 truncate text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/80">
+          <span className="text-gold">0{active + 1}</span> / 0{slides.length} ·{" "}
+          {slides[active]?.source.split(" · ")[1]}
+        </p>
+        <div className="flex shrink-0 gap-1.5">
+          {[-1, 1].map((step) => (
             <button
-              key={img.src}
+              key={step}
               type="button"
-              onClick={() => setActive(i)}
-              aria-label={`Show image ${i + 1} of ${slides.length}: ${img.alt}`}
-              aria-current={i === active}
-              className={`group relative block h-20 w-28 overflow-hidden rounded-md outline-none ring-1 ring-white/20 transition-all duration-500 hover:ring-2 hover:ring-white/70 lg:h-28 lg:w-44 ${
-                i === active ? "ring-2 ring-gold ring-offset-2 ring-offset-primary" : ""
-              }`}
+              onClick={() => go(step)}
+              aria-label={step < 0 ? "Previous image" : "Next image"}
+              className="grid size-8 place-items-center border border-white/25 text-white transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-black"
             >
-              <img
-                {...imgProps(img, "176px")}
-                alt=""
-                aria-hidden
-                loading={i === 0 ? "eager" : "lazy"}
-                className={`h-full w-full object-cover transition-all duration-700 ${
-                  i === active ? "opacity-100" : "opacity-50 group-hover:opacity-95"
-                }`}
-              />
-              {i === active && (
-                <span aria-hidden className="absolute inset-0 rounded-md ring-4 ring-gold/20" />
-              )}
+              {step < 0 ? <ArrowLeft className="size-3.5" /> : <ArrowRight className="size-3.5" />}
             </button>
           ))}
         </div>
       </div>
+    </div>
+  );
+}
 
-      <RefTag
-        image={slides[active] ?? IMAGES.hero}
-        className="bottom-[4.5rem] right-4 sm:bottom-24 sm:right-6"
-      />
+export function HomeHero() {
+  const img = HERO.image;
+  return (
+    <section
+      data-section="Home"
+      className="grain relative isolate overflow-hidden bg-overlay text-white"
+    >
+      <div data-anim="photo" className="absolute inset-0 -z-10 overflow-hidden">
+        <div data-photo-inner className="absolute inset-x-0 -inset-y-[6%]">
+          <img
+            src={img.src}
+            srcSet="/home/hero-1024.jpg 1024w, /home/hero-1920.jpg 1920w"
+            sizes="100vw"
+            alt={img.alt}
+            fetchPriority="high"
+            className="h-full w-full object-cover object-[36%_center] lg:object-[20%_center]"
+          />
+        </div>
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-overlay/65 lg:bg-transparent lg:bg-gradient-to-r lg:from-overlay/90 lg:via-overlay/60 lg:to-overlay/5"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-overlay/70 to-transparent"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-overlay via-overlay/70 to-transparent"
+        />
+      </div>
 
-      {/* curved bottom edge into the white section below */}
-      <svg
-        aria-hidden
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-        className="absolute inset-x-0 bottom-0 h-14 w-full fill-background sm:h-20"
-      >
-        <path d="M0 70C180 115 360 120 540 96S900 20 1080 30s300 50 360 62V120H0Z" />
-      </svg>
+      <div className="wrap flex min-h-svh flex-col pt-32 lg:pt-36">
+        <div className="grid flex-1 items-center gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)]">
+          <div data-hero-copy className="py-6 lg:py-14">
+            <p
+              data-anim="fade"
+              className="flex items-center gap-4 text-xs font-bold uppercase tracking-[0.24em] text-white/80"
+            >
+              <span aria-hidden className="h-px w-10 bg-gold" />
+              {HERO.eyebrow}
+            </p>
+
+            <HeroTitle lines={HERO.titleLines} max="5.25rem" indent className="mt-7" />
+
+            <p
+              data-anim="fade"
+              className="mt-8 max-w-[32rem] text-base leading-relaxed text-white/85 sm:text-lg"
+            >
+              {HERO.body}
+            </p>
+            <figure data-anim="fade" className="mt-6 max-w-[32rem] border-l-2 border-gold pl-5">
+              <blockquote className="font-serif text-xl leading-snug text-white sm:text-2xl">
+                &ldquo;{HERO.quote.text}&rdquo;
+              </blockquote>
+              <figcaption className="mt-2 text-xs font-bold uppercase tracking-[0.24em] text-gold">
+                &mdash; {HERO.quote.by}
+              </figcaption>
+            </figure>
+
+            <div data-anim="fade" className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
+              <SweepLink to={CTA.estimate.to}>{CTA.estimate.label}</SweepLink>
+              <LineLink to={CTA.call.to} dark>
+                {CTA.call.label}
+              </LineLink>
+            </div>
+          </div>
+
+          <div className="relative hidden h-[min(64svh,620px)] lg:block">
+            <p
+              data-anim="fade"
+              className="absolute right-0 top-4 flex items-center gap-3 text-[0.62rem] font-bold uppercase tracking-[0.22em] text-white/80"
+            >
+              <span aria-hidden className="h-px w-8 bg-gold" />
+              Vancouver &amp; Vancouver Island
+            </p>
+          </div>
+        </div>
+
+        {/* services rail — Highwater's stats band, carrying real links instead of figures */}
+        <nav aria-label="Services" className="relative mt-6">
+          {/* square slider: sits directly above rail item 05 (lg) */}
+          <div data-anim="fade" className="absolute bottom-full right-0 mb-8 hidden w-1/5 lg:block">
+            <HeroSlider />
+          </div>
+          <span
+            data-rule
+            aria-hidden
+            className="absolute left-1/2 top-0 h-px w-screen -translate-x-1/2 origin-left bg-white/20"
+          />
+          <ul className="grid grid-cols-2 pt-2 sm:grid-cols-3 lg:grid-cols-5 lg:pt-0">
+            {HOME_SERVICES.items.map((s, i) => (
+              <li key={s.key} data-anim="stat" className="border-l border-white/15 pl-4 lg:pl-5">
+                <Link to={s.to} className="group block py-5 pr-3 lg:py-7">
+                  <span className="text-xs font-bold tracking-[0.2em] text-gold">0{i + 1}</span>
+                  <span className="mt-2 block font-serif text-lg leading-tight text-white transition-colors duration-300 group-hover:text-gold sm:text-xl">
+                    {s.title}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </section>
   );
 }
