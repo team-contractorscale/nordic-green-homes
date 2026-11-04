@@ -266,7 +266,7 @@ export function ChatWidget() {
 
   return (
     <div className="font-sans">
-      {/* Launcher */}
+      {/* Launcher — sits above the mobile sticky CTA bar (which is ~60px tall) */}
       <button
         type="button"
         onClick={() => {
@@ -281,7 +281,7 @@ export function ChatWidget() {
         }}
         aria-label={CHAT_COPY.ariaLauncher}
         aria-expanded={isOpen}
-        className="group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg ring-1 ring-black/5 transition-all hover:scale-105 hover:bg-primary/90 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 lg:bottom-6 lg:right-6"
+        className="group fixed bottom-[4.75rem] right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg ring-1 ring-black/5 transition-all hover:scale-105 hover:bg-primary/90 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 lg:bottom-6 lg:right-6"
       >
         {isOpen ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
         {state.unreadCount ? (
@@ -291,20 +291,20 @@ export function ChatWidget() {
         ) : null}
       </button>
 
-      {/* Teaser bubble */}
+      {/* Teaser bubble (sits above the launcher; clears the mobile sticky CTA) */}
       {!isOpen && !clientError ? (
-        <div className="fixed bottom-24 right-5 z-40 hidden max-w-[15rem] rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground shadow-lg lg:block lg:right-6">
+        <div className="fixed bottom-36 right-5 z-40 hidden max-w-[15rem] rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground shadow-lg lg:bottom-24 lg:block lg:right-6">
           <p className="text-xs leading-snug">{CHAT_COPY.teaser}</p>
         </div>
       ) : null}
 
-      {/* Panel */}
+      {/* Panel — sits above the launcher; clears the mobile sticky CTA */}
       {isOpen ? (
         <div
           role="dialog"
           aria-modal="true"
           aria-label={CHAT_COPY.ariaOpenPanel}
-          className="fixed bottom-24 right-4 z-50 flex w-[calc(100vw-2rem)] max-w-[390px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl lg:right-6"
+          className="fixed bottom-[8.5rem] right-4 z-50 flex w-[calc(100vw-2rem)] max-w-[390px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl lg:bottom-24 lg:right-6"
           style={{ height: "min(640px, 100dvh - 7rem)" }}
         >
           <div ref={anchorRef} className="contents" aria-hidden="true" />
