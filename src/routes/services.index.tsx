@@ -123,18 +123,28 @@ function ServicesOverviewPage() {
           <p className="mt-5 max-w-4xl text-base leading-relaxed">
             Before you choose a path, consider:
           </p>
-          <p className="mt-5 max-w-4xl text-base leading-relaxed">
-            <strong>What are you building?</strong> A new home, secondary dwelling or
-            performance-led project.
-            <strong>What does the property require?</strong> Site, access, services, approvals and
-            technical checks.
-            <strong>What changes scope or cost?</strong> Size, structure, materials, services,
-            performance goals and approvals.
-            <strong>What evidence is needed?</strong> Advice, modelling, testing, approval or
-            certification.
-            <strong>What happens next?</strong> Start with a ballpark estimate, then a 15-minute
-            call with Lane. Private preliminary planning may follow the call.
-          </p>
+          <ul className="mt-5 max-w-4xl space-y-4 text-base leading-relaxed">
+            <li>
+              <strong>What are you building?</strong> A new home, secondary dwelling or
+              performance-led project.
+            </li>
+            <li>
+              <strong>What does the property require?</strong> Site, access, services, approvals and
+              technical checks.
+            </li>
+            <li>
+              <strong>What changes scope or cost?</strong> Size, structure, materials, services,
+              performance goals and approvals.
+            </li>
+            <li>
+              <strong>What evidence is needed?</strong> Advice, modelling, testing, approval or
+              certification.
+            </li>
+            <li>
+              <strong>What happens next?</strong> Start with a ballpark estimate, then a 15-minute
+              call with Lane. Private preliminary planning may follow the call.
+            </li>
+          </ul>
         </div>
       </section>
       <section className="bg-secondary/40 py-16">

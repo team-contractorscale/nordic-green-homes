@@ -31,8 +31,9 @@ function ServiceAreasPage() {
             Tsawwassen and Vancouver Island.
           </p>
           <p>
-            Bring the address, site information and priorities so we can discuss the design, access,
-            services and approvals that matter to your project.
+            Your property and the way you want to live shape the conversation. Bring your plans,
+            site information and priorities so we can discuss the design, access, services and
+            approvals that matter to your project.
           </p>
           <p>
             Project suitability and delivery arrangements are agreed for the specific property and
