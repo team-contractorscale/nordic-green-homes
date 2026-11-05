@@ -30,7 +30,7 @@ function response(body: string, status: number) {
 }
 export default {
   async fetch(request: Request, env: Env, ctx: unknown) {
-    const url = new URL(request.url());
+    const url = new URL(request.url);
     if (url.pathname === "/__review") {
       const token = url.searchParams.get("token") ?? "";
       if (!(await authorised(token, env)))
