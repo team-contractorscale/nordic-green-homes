@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown } from "lucide-react";
 import { CTA } from "@/lib/home-content";
@@ -88,24 +89,12 @@ const PROJECTS: Project[] = [
   },
 ];
 
-// The five things the copy says a useful project story explains.
-const STORY = [
-  "The brief",
-  "The site context",
-  "The work completed",
-  "The decisions made",
-  "The evidence available",
-];
-
 const pad = (n: number) => String(n).padStart(2, "0");
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/projects"),
       { property: "og:image", content: "/projects/shop-2.jpg" },
       { name: "twitter:image", content: "/projects/shop-2.jpg" },
     ],
@@ -148,14 +137,18 @@ function ProjectsHero() {
             <span aria-hidden className="h-px w-10 bg-gold" />
             Projects
           </p>
-          <HeroTitle lines={["Projects,", "documented properly."]} max="5.25rem" className="mt-7" />
+          <HeroTitle
+            lines={["Home concepts and", "design inspiration"]}
+            max="5.25rem"
+            className="mt-7"
+          />
           <p
             data-anim="fade"
             className="mt-8 max-w-[34rem] text-base leading-relaxed text-white/85 sm:text-lg"
           >
-            The useful part of a project story is not a polished image by itself. It is the brief,
-            the decisions, the work completed, the evidence available and what another homeowner can
-            learn from the result.
+            Explore the ideas behind Nordic Haus and Modern Belgian Farmhouse, and the design
+            perspective Kylie brings through Nordic Green Design. Use the layouts, spaces and
+            material direction to start a conversation about your own home.
           </p>
         </div>
 
@@ -211,43 +204,44 @@ function ProjectsHero() {
  */
 function StoryShows() {
   return (
-    <section data-section="A useful project story" className="bg-background py-24 sm:py-28">
+    <section data-section="Concepts and design" className="bg-background py-24">
       <div className="wrap">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-6">
-            <Kicker>Documented properly</Kicker>
-            <h2 data-split className={`${HEADING} mt-6`}>
-              What a useful project story shows
-            </h2>
-          </div>
-          <div className="lg:col-span-5 lg:col-start-8">
-            <p data-reveal className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-              A useful project story explains the brief, the site context, the work completed, the
-              decisions made and the evidence available.
+        <div className="grid gap-12 lg:grid-cols-3">
+          <article>
+            <h2 className="font-serif text-3xl">Nordic Haus</h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              A Nordic/Scandinavian concept with warm timber tones, four upstairs bedrooms and a
+              garden around the main living area. Explore how the plan connects everyday spaces with
+              the outdoors.
             </p>
-            <p
-              data-reveal="left"
-              className="mt-6 border-l-2 border-gold pl-5 font-serif text-xl leading-snug"
-            >
-              Client words and images should appear only with permission and clear attribution.
+            <LineLink to="/floorplans/nordic-haus">Explore Nordic Haus</LineLink>
+          </article>
+          <article>
+            <h2 className="font-serif text-3xl">Modern Belgian Farmhouse</h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Sweeping rooflines, layered textures, a vaulted great room and a main-floor primary
+              suite give this European-inspired concept its character.
             </p>
-          </div>
+            <LineLink to="/floorplans/modern-belgian-farmhouse">
+              Explore Modern Belgian Farmhouse
+            </LineLink>
+          </article>
+          <article>
+            <h2 className="font-serif text-3xl">Design and interiors</h2>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+              Kylie brings her design perspective through Nordic Green Design. From floorplans and
+              material selections to furnishings and lighting, the starting point is the way you
+              want the home to feel and work.
+            </p>
+            <LineLink to="/services/design-and-interiors">Explore Design and interiors</LineLink>
+          </article>
         </div>
-
-        <ol className="mt-14 grid border-t border-border sm:grid-cols-2 lg:grid-cols-5">
-          {STORY.map((item, i) => (
-            <li
-              key={item}
-              data-reveal
-              className="border-b border-border py-6 pr-4 sm:border-r sm:pl-5 lg:[&:nth-child(5n)]:border-r-0"
-            >
-              <span className="text-xs font-bold tracking-[0.2em] text-gold">{pad(i + 1)}</span>
-              <span className="mt-3 block font-serif text-2xl leading-tight">{item}</span>
-            </li>
-          ))}
-        </ol>
-
-        <div data-reveal className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5">
+        <p className="mt-10 border-l-2 border-gold pl-5 text-base">
+          The home concepts are design references, not completed Nordic Green Homes builds. Interior
+          design: Nordic Green Design. Drafting: Bronson Design for Nordic Haus and Old Clayburn
+          Design for Modern Belgian Farmhouse.
+        </p>
+        <div className="mt-10 flex flex-wrap gap-8">
           <SweepLink to={CTA.estimate.to}>{CTA.estimate.label}</SweepLink>
           <LineLink to={CTA.call.to}>{CTA.call.label}</LineLink>
         </div>

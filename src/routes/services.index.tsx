@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { SERVICES, IMAGES } from "@/lib/home-content";
@@ -18,10 +19,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/services"),
       { property: "og:image", content: IMAGES.nordicHaus.src },
       { name: "twitter:image", content: IMAGES.nordicHaus.src },
     ],
@@ -46,7 +44,7 @@ function ServicesOverviewPage() {
               What we build
             </p>
             <HeroTitle
-              lines={["Find the right", "starting point", "for your home."]}
+              lines={["Choose the path", "that fits", "your project"]}
               max="5.5rem"
               indent
               className="mt-7"
@@ -62,6 +60,11 @@ function ServicesOverviewPage() {
       </section>
 
       <section className="bg-background py-20 sm:py-24">
+        <p className="wrap mb-12 max-w-4xl text-lg leading-relaxed">
+          The right starting point depends on your property, the type of home you want and the
+          decisions already made. Explore the route that best matches your project, then bring your
+          questions into the first conversation.
+        </p>
         <ul className="wrap grid gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:gap-8">
           {SERVICES.map((s, i) => (
             <li key={s.key} data-reveal className={i < 3 ? "lg:col-span-2" : "lg:col-span-3"}>
@@ -113,6 +116,76 @@ function ServicesOverviewPage() {
             </li>
           ))}
         </ul>
+      </section>
+      <section className="bg-secondary/40 py-16">
+        <div className="wrap">
+          <h2 className="font-serif text-3xl">Questions to ask about your project</h2>
+          <p className="mt-5 max-w-4xl text-base leading-relaxed">
+            Before you choose a path, consider:
+          </p>
+          <p className="mt-5 max-w-4xl text-base leading-relaxed">
+            <strong>What are you building?</strong> A new home, secondary dwelling or
+            performance-led project.
+            <strong>What does the property require?</strong> Site, access, services, approvals and
+            technical checks.
+            <strong>What changes scope or cost?</strong> Size, structure, materials, services,
+            performance goals and approvals.
+            <strong>What evidence is needed?</strong> Advice, modelling, testing, approval or
+            certification.
+            <strong>What happens next?</strong> Start with a ballpark estimate, then a 15-minute
+            call with Lane. Private preliminary planning may follow the call.
+          </p>
+        </div>
+      </section>
+      <section className="bg-secondary/40 py-16">
+        <div className="wrap">
+          <h2 className="font-serif text-3xl">Start with your project</h2>
+          <p className="mt-5 max-w-4xl text-base leading-relaxed">
+            Share the site and project brief. Use an indicative range only within its stated
+            assumptions. Use the consultation to identify fit and open questions. Confirm design,
+            documentation, approvals and construction responsibilities in writing.
+          </p>
+        </div>
+      </section>
+      <section className="bg-background py-16">
+        <div className="wrap">
+          <h2 className="font-serif text-3xl">Frequently asked questions</h2>
+          <article className="mt-8">
+            <h3 className="font-serif text-2xl">Which service should I start with?</h3>
+            <p className="mt-4 text-base leading-relaxed">
+              Start with the project type. A new custom home fits the luxury custom homes route. A
+              detached secondary dwelling fits the garden suites route. A defined performance target
+              may fit the passive-home or high-performance route.
+            </p>
+          </article>
+          <article className="mt-8">
+            <h3 className="font-serif text-2xl">Can I bring an existing architect or designer?</h3>
+            <p className="mt-4 text-base leading-relaxed">
+              We work alongside your architect or designer. Bring your plans to the call. Your
+              project scope will confirm design, coordination and approval responsibilities.
+            </p>
+          </article>
+          <article className="mt-8">
+            <h3 className="font-serif text-2xl">When should I use the estimate?</h3>
+            <p className="mt-4 text-base leading-relaxed">
+              Use it as an early planning aid, with its assumptions and outputs clearly stated. It
+              does not replace site review, professional advice or a quote.
+            </p>
+          </article>
+          <article className="mt-8">
+            <h3 className="font-serif text-2xl">
+              Why are Passive House and high-performance separate?
+            </h3>
+            <p className="mt-4 text-base leading-relaxed">
+              Passive House refers to a defined standard and verification framework.
+              High-performance is broader and needs a project-specific definition.
+            </p>
+          </article>
+          <div className="mt-10 flex flex-wrap gap-6">
+            <Link to="/estimate">Get your ballpark estimate</Link>
+            <Link to="/contact">Request a 15-minute call with Lane</Link>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -10,7 +10,7 @@ type TrackingImageDataField = { dataUrl?: string; label: string };
 
 // Internal pilot: nothing may reach the live CRM until the enquiry workflow is tested and approved.
 // Gates every form submission (postTrackingEvent) and the chat widget mount in __root.tsx.
-export const PILOT_CRM_ENABLED = true;
+export const PILOT_CRM_ENABLED = import.meta.env["VITE_PRIVATE_REVIEW"] !== "true";
 
 const TRACKING_ENDPOINT = "https://backend.leadconnectorhq.com/external-tracking/events";
 
@@ -97,7 +97,9 @@ export const getTrackingSessionId = () => {
   try {
     const sid = document.cookie.match(/(?:^|;\s*)__vibe_sid=([0-9a-f-]{36})(?:;|$)/)?.[1];
     if (sid) return sid;
-  } catch {}
+  } catch {
+    // Storage access can be denied in an embedded browser. Use a fresh session ID.
+  }
   return crypto.randomUUID();
 };
 

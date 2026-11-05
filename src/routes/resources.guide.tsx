@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { IMAGES } from "@/lib/home-content";
 import { useHomeMotion } from "@/hooks/use-home-motion";
@@ -54,10 +55,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export const Route = createFileRoute("/resources/guide")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "A Practical Guide to Planning Your Custom Home" },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/resources/guide"),
       { property: "og:image", content: IMAGES.office.src },
       { name: "twitter:image", content: IMAGES.office.src },
     ],
@@ -182,6 +180,45 @@ function GuidePage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section data-section="Beyond move-in" className="bg-background py-20">
+        <div className="wrap">
+          <h2 className="font-serif text-4xl">Think beyond the first move-in day</h2>
+          <div className="mt-8 grid gap-x-12 lg:grid-cols-2">
+            <article className="py-6">
+              <h3 className="font-serif text-2xl">Rooms that can change with you</h3>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Consider how a room might serve different needs over time: working from home,
+                visiting family or changing storage needs. Bring those possibilities into the layout
+                brief.
+              </p>
+            </article>
+            <article className="py-6">
+              <h3 className="font-serif text-2xl">Water and everyday use</h3>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Include water use in conversations about fixtures, landscaping and household
+                routines. Compare options against your needs and local conditions rather than
+                assuming a saving.
+              </p>
+            </article>
+            <article className="py-6">
+              <h3 className="font-serif text-2xl">Energy systems as options, not inclusions</h3>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Solar, geothermal, energy storage and smart controls are topics to discuss with the
+                appropriate specialists. Suitability, cost and any benefit depend on the property,
+                design and system. They are not standard Nordic inclusions.
+              </p>
+            </article>
+            <article className="py-6">
+              <h3 className="font-serif text-2xl">Materials for the long term</h3>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                Consider maintenance, repair and replacement alongside the initial look of a
+                material. Ask how each choice fits the way you intend to use the home.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 

@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
+import { loadState } from "@/lib/estimate/state";
+import { hasValidEstimate } from "@/lib/estimate/has-valid-estimate";
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Clock, PlayCircle, RefreshCcw, TrendingUp, X } from "lucide-react";
-import { Eyebrow, H2, Placeholder, imgProps } from "@/components/home/shared";
+import { ArrowRight, Check, Clock, RefreshCcw, TrendingUp, X } from "lucide-react";
+import { Eyebrow, H2, imgProps } from "@/components/home/shared";
 import { IMAGES } from "@/lib/home-content";
 
 // Bridge page between the estimate wizard and /result (same order as CS-Web-Template's funnel):
@@ -87,25 +91,28 @@ const CALL_STEPS = [
 
 export const Route = createFileRoute("/consult")({
   head: () => ({
-    meta: [
-      { title: "Your Complimentary 15-Minute Call | Nordic Green Homes" },
-      { name: "description", content: DESCRIPTION },
-      { name: "robots", content: "noindex, nofollow" },
-    ],
+    meta: [...acceptedMetadata("/consult"), { name: "robots", content: "noindex, nofollow" }],
   }),
   component: ConsultPage,
 });
 
 // The one CTA repeated down the page, always to /result (as in the template funnel).
+function useEstimateReady() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(hasValidEstimate(loadState().result)), []);
+  return ready;
+}
+
 function ResultButton({ tone = "gold" }: { tone?: "gold" | "green" }) {
+  const ready = useEstimateReady();
   return (
     <Link
-      to="/result"
+      to={ready ? "/result" : "/estimate"}
       className={`group inline-flex h-12 items-center gap-3 rounded-full py-1 pl-6 pr-1.5 text-base font-bold shadow-md transition-all duration-300 hover:scale-[1.04] hover:shadow-lg ${
         tone === "gold" ? "bg-gold text-black" : "bg-primary text-white"
       }`}
     >
-      See my estimate
+      {ready ? "See my estimate" : "Get your ballpark estimate"}
       <span
         className={`flex size-9 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5 group-hover:rotate-45 ${
           tone === "gold" ? "bg-primary text-white" : "bg-gold text-black"
@@ -118,6 +125,7 @@ function ResultButton({ tone = "gold" }: { tone?: "gold" | "green" }) {
 }
 
 function ConsultPage() {
+  const ready = useEstimateReady();
   return (
     <div>
       {/* 1. Hero + video from Lane */}
@@ -137,8 +145,9 @@ function ConsultPage() {
               Don&rsquo;t finalize a design before you know what it could cost
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
-              Your estimate is ready. Before you see it, here is why the number becomes useful once
-              it is tested against your property, and how a short call with Lane does that.
+              {ready
+                ? "Your estimate is ready. Before you see it, here is why the number becomes useful once it is tested against your property, and how a short call with Lane does that."
+                : "Start with your ballpark estimate, then request a call. Sending an enquiry requests a conversation; it does not reserve a time in a calendar."}
             </p>
             <div className="mt-8">
               <ResultButton />
@@ -146,8 +155,14 @@ function ConsultPage() {
           </div>
           <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/20 bg-black/40 shadow-2xl">
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center">
-              <PlayCircle className="size-16 text-gold" aria-hidden />
-              <Placeholder dark>[Video from Lane — pending]</Placeholder>
+              <div className="p-8 text-left">
+                <h2 className="font-serif text-2xl">Bring your property, plans and priorities</h2>
+                <p className="mt-5 text-base leading-relaxed text-white/85">
+                  A first conversation can clarify the project type, site, priorities, current
+                  design stage and the questions that need answering next. It is an initial
+                  conversation, not a feasibility result, quote or approval.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -338,14 +353,14 @@ function ConsultPage() {
             />
             <div className="absolute inset-0 -z-10 bg-primary/90" />
             <div className="flex justify-center">
-              <Eyebrow dark>Your estimate is ready</Eyebrow>
+              <Eyebrow dark>{ready ? "Your estimate is ready" : "Start with your project"}</Eyebrow>
             </div>
             <h2 className={`${H2} mx-auto mt-4 max-w-3xl`}>
               Take the guesswork out of the first decision
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/85">
-              See your range, then book a complimentary 15-minute call with Lane to test it against
-              your property. There is no obligation to go further.
+              Start with your ballpark estimate, then request a call. Sending an enquiry requests a
+              conversation; it does not reserve a time in a calendar.
             </p>
             <div className="mt-8 flex justify-center">
               <ResultButton />

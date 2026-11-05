@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { AreaPage } from "@/components/page/PageParts";
 import { SERVICE_AREAS } from "@/lib/home-content";
@@ -10,10 +11,7 @@ const DESCRIPTION =
 export const Route = createFileRoute("/service-areas/vancouver-island")({
   head: () => ({
     meta: [
-      { title: "Vancouver Island | Nordic Green Homes" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Vancouver Island | Nordic Green Homes" },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/service-areas/vancouver-island"),
       { property: "og:image", content: AREA.image.src },
       { name: "twitter:image", content: AREA.image.src },
     ],
@@ -34,7 +32,7 @@ function VancouverIslandPage() {
           intro:
             "Share the part of Vancouver Island where the property is located, the type of home or secondary dwelling you are considering and what is known about access, services, site conditions and approvals.\n\nExisting plans, survey information, inspiration and performance goals can help define the early questions.",
           outro:
-            "Coverage, travel requirements and project suitability depend on the property and written scope. This page does not promise island-wide availability or a local project history.",
+            "Project suitability, travel and delivery arrangements are agreed for your property and scope.",
         },
         {
           title: "Make the next step useful",

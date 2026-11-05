@@ -21,7 +21,7 @@ export const BRAND = {
   hours: "9AM - 5PM (Mon-Fri)",
   directors: "Lane & Kylie O'Brien",
   directorTitle: "Founder & Builder | Interior Design Partner (Nordic Green Design)",
-  primaryCtaText: "Book a complimentary 15-minute discovery call",
+  primaryCtaText: "Request a 15-minute call with Lane",
   freePdfGuideUrl:
     "https://storage.googleapis.com/msgsndr/yHohxdtdZLdf0DUv8x7z/media/6969d656b34b64593cfb3166.pdf",
 };

@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { CTA, IMAGES, type RefImage } from "@/lib/home-content";
@@ -41,29 +42,29 @@ const BRIEF = [
 
 const AREAS: { title: string; body: string; image: RefImage }[] = [
   {
-    title: "Spatial planning",
-    body: "Room relationships, circulation, storage and the way spaces support everyday routines.",
+    title: "Floorplans and cabinet drawings",
+    body: "Detailed floorplans, plus cabinet drawings for each space, shaped around your style and needs.",
     image: IMAGES.intro,
   },
   {
-    title: "Materials and finish direction",
-    body: "A coordinated view of colour, texture, fixtures and finishes, considered alongside maintenance, availability and budget.",
+    title: "Material selections",
+    body: "Guidance on how different materials and products perform and suit your home, so choosing is easier.",
     image: IMAGES.entry,
   },
   {
-    title: "Kitchens, bathrooms and joinery",
-    body: "Functional requirements, layout and coordination with the wider design. Cabinetry drawings, procurement and supplier management depend on the agreed scope.",
+    title: "Space planning, 3D renderings and visualization",
+    body: "3D renderings let you see the design before it's built: how rooms connect, where natural light falls and how your family might use each space.",
     image: IMAGES.office,
   },
   {
-    title: "Lighting and ceiling design",
-    body: "Ambience, task needs and coordination with the architecture and services. Your written scope should list the exact deliverables.",
-    image: IMAGES.interior,
+    title: "Interior decorating: furnishings and finishes",
+    body: "Furniture, decor and textiles chosen to suit your style and furnish the finished home.",
+    image: IMAGES.hausPatio,
   },
   {
-    title: "Visualization and documentation",
-    body: "Floorplans, renderings, schedules or other documentation may support decisions, but the provider, level of detail and purpose must be clear.",
-    image: IMAGES.hausPatio,
+    title: "Lighting and ceiling design",
+    body: "The right amount and type of lighting for each space, together with the details of the ceiling profile.\n\nYour written scope confirms which of these services are included, who provides each one and what you receive.",
+    image: IMAGES.interior,
   },
 ];
 
@@ -108,10 +109,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export const Route = createFileRoute("/services/design-and-interiors")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/services/design-and-interiors"),
       { property: "og:image", content: IMAGES.interior.src },
       { name: "twitter:image", content: IMAGES.interior.src },
     ],
@@ -142,7 +140,7 @@ function DesignInteriorsPage() {
               Design &amp; Interiors
             </p>
             <HeroTitle
-              lines={["What custom home", "design in BC", "should make clear."]}
+              lines={["Interiors shaped", "around your life"]}
               max="5rem"
               indent
               className="mt-7"
@@ -250,8 +248,15 @@ function DesignInteriorsPage() {
           <div className="lg:col-span-7">
             <Kicker>Your project scope</Kicker>
             <h2 data-split className={`${HEADING} mt-6`}>
-              Design areas to discuss in your project scope
+              Design services through Nordic Green Design
             </h2>
+            <p className="mt-6 text-lg">
+              Kylie's design company, Nordic Green Design, offers five hands-on services.
+            </p>
+            <p className="mt-4 text-base text-muted-foreground">
+              Your written scope confirms which of these services are included, who provides each
+              one and what you receive.
+            </p>
             <ol className="mt-12 border-t border-border">
               {AREAS.map((a, i) => (
                 <li key={a.title} data-stage className="border-b border-border py-10 lg:py-14">

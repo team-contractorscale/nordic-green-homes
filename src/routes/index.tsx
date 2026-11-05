@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { IMAGES } from "@/lib/home-content";
 import { useHomeMotion } from "@/hooks/use-home-motion";
@@ -22,13 +23,7 @@ const DESCRIPTION =
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      {
-        property: "og:title",
-        content: TITLE,
-      },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/"),
       { property: "og:image", content: IMAGES.hero.src },
       { name: "twitter:image", content: IMAGES.hero.src },
     ],

@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, Trees } from "lucide-react";
 import { IMAGES } from "@/lib/home-content";
@@ -53,7 +54,7 @@ const STEPS = [
   },
   {
     title: "Talk it through with Lane",
-    body: "Book a complimentary 15-minute call to test the range against your property and brief.",
+    body: "Request a 15-minute call with Lane to test the range against your property and brief.",
   },
 ];
 
@@ -79,10 +80,7 @@ const FAQS = [
 export const Route = createFileRoute("/estimate/")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/estimate"),
       { property: "og:image", content: IMAGES.hero.src },
       { name: "twitter:image", content: IMAGES.hero.src },
     ],

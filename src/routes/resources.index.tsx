@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { IMAGES, type RefImage } from "@/lib/home-content";
@@ -24,6 +25,10 @@ const DESCRIPTION =
 
 // Topics from the brief; each links to the page that covers it.
 const TOPICS = [
+  {
+    label: "Adaptable rooms, water use, energy-system options and long-term material care.",
+    to: "/resources/guide",
+  },
   { label: "Custom home planning, site and brief.", to: "/resources/guide" },
   { label: "Garden suites and local terminology.", to: "/services/garden-suites" },
   {
@@ -67,10 +72,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export const Route = createFileRoute("/resources/")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/resources"),
       { property: "og:image", content: IMAGES.office.src },
       { name: "twitter:image", content: IMAGES.office.src },
     ],

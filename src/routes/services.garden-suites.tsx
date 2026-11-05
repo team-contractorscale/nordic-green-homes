@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, BedDouble, Briefcase, Check, House, Users } from "lucide-react";
 import { CTA, IMAGES } from "@/lib/home-content";
@@ -104,10 +105,7 @@ const FAQS = [
 export const Route = createFileRoute("/services/garden-suites")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/services/garden-suites"),
       { property: "og:image", content: HERO_IMAGE.src },
       { name: "twitter:image", content: HERO_IMAGE.src },
     ],
