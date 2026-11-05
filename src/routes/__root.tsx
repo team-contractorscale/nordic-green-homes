@@ -9,13 +9,11 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportVibeError } from "../lib/vibe-error-reporting";
 import { SiteHeader, SiteFooter, StickyMobileCTA } from "../components/layout/SiteLayout";
-import { useHydrated } from "../hooks/use-hydrated";
-import { PILOT_CRM_ENABLED } from "../lib/form-tracking";
 import { REDIRECTS } from "../lib/redirects";
 
 function NotFoundComponent() {
@@ -135,7 +133,6 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const hydrated = useHydrated();
   // Internal tools (/audit, /audit-login) render bare, without the public site chrome.
   const internal = useRouterState({
     select: (s) => s.location.pathname.startsWith("/audit"),
@@ -160,16 +157,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
         <StickyMobileCTA />
-        {hydrated && PILOT_CRM_ENABLED ? (
-          <Suspense fallback={null}>
-            <LazyChatWidget />
-          </Suspense>
-        ) : null}
       </div>
     </QueryClientProvider>
   );
 }
-
-const LazyChatWidget = lazy(() =>
-  import("../components/chat/ChatWidget").then((m) => ({ default: m.ChatWidget })),
-);
