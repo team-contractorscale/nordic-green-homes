@@ -114,10 +114,6 @@ export const Route = createFileRoute("/resources/bc-energy-step-code")({
   head: () => ({
     meta: [
       ...acceptedMetadata("/resources/bc-energy-step-code"),
-      {
-        property: "og:title",
-        content: "BC Energy Step Code: what homeowners should understand early",
-      },
       { property: "og:image", content: IMAGES.hausSide.src },
       { name: "twitter:image", content: IMAGES.hausSide.src },
     ],
