@@ -1,3 +1,4 @@
+import { hasValidEstimate } from "@/lib/estimate/has-valid-estimate";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Calculator, Calendar, CheckCircle2, Loader2, Phone } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -134,7 +135,7 @@ function ResultPage() {
   }, []);
 
   const result = state.result;
-  const hasResult = !!result && result.basis !== "unavailable";
+  const hasResult = hasValidEstimate(result);
   const showResult = !calculating && hasResult;
   const midpoint =
     hasResult && result
@@ -246,7 +247,7 @@ function ResultPage() {
                     <span className="flex size-9 items-center justify-center rounded-full bg-gold text-black transition-transform group-hover:scale-110">
                       <Calendar className="size-4" />
                     </span>
-                    <span className="text-sm font-bold">Book your call</span>
+                    <span className="text-sm font-bold">Request a 15-minute call with Lane</span>
                     <span className="text-xs text-white/60">Complimentary, 15 minutes</span>
                   </Link>
                 </div>

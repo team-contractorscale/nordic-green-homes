@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown } from "lucide-react";
 import { CTA, IMAGES } from "@/lib/home-content";
@@ -58,12 +59,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 export const Route = createFileRoute("/faqs")({
   head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-    ],
+    meta: [...acceptedMetadata("/faqs")],
   }),
   component: FaqsPage,
 });

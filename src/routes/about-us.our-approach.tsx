@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { CTA, IMAGES, type RefImage } from "@/lib/home-content";
@@ -42,10 +43,7 @@ const STEPS = [
 export const Route = createFileRoute("/about-us/our-approach")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: BODY },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: BODY },
+      ...acceptedMetadata("/about-us/our-approach"),
       { property: "og:image", content: IMAGES.customHomes.src },
       { name: "twitter:image", content: IMAGES.customHomes.src },
     ],

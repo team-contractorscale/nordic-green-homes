@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { FLOORPLANS, IMAGES } from "@/lib/home-content";
@@ -27,10 +28,7 @@ const LEAD =
 export const Route = createFileRoute("/floorplans/")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/floorplans"),
       { property: "og:image", content: FLOORPLANS[0].image.src },
       { name: "twitter:image", content: FLOORPLANS[0].image.src },
     ],
@@ -103,6 +101,14 @@ function FloorplansPage() {
               <span className="text-xs font-bold uppercase tracking-[0.22em] text-gold">
                 Home concept 0{i + 1} · {plan.gallery.length} renders
               </span>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-white/90">
+                {
+                  [
+                    "A calm Nordic/Scandinavian concept of 2,580 sq ft, excluding the garage, with four bedrooms upstairs, 2.5 bathrooms, 10-foot main-living-area ceilings, a biophilic garden and a detached two-car garage. Any coach-house option needs property-specific design and approval checks.",
+                    "A European-inspired concept with sweeping rooflines and layered textures. The published plan lists 7,639 sq ft with the basement, or 4,812 sq ft without it, five bedrooms, a main-floor primary suite and a three-car garage. A vaulted great room, formal dining room and a basement or full crawl-space option give you different ways to shape the brief.",
+                  ][i]
+                }
+              </p>
               <span className="mt-3 flex items-end justify-between gap-6">
                 <span className="relative font-serif text-[clamp(2.5rem,3.6vw+1rem,4.75rem)] leading-[0.95] tracking-[-0.03em]">
                   {plan.title}

@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { AreaPage } from "@/components/page/PageParts";
 import { SERVICE_AREAS } from "@/lib/home-content";
@@ -5,15 +6,12 @@ import { SERVICE_AREAS } from "@/lib/home-content";
 const AREA = SERVICE_AREAS[0];
 
 const DESCRIPTION =
-  "Every property brings its own questions. On the North Shore, your project conversation may need to account for the site, access, slope, services, local requirements and the way the home should sit within its surroundings.";
+  "Tell us whether your property is in Vancouver, West Vancouver or North Vancouver, and bring the site details and plans you already have. Access, slope, servicing and municipal requirements need to be considered for that property.";
 
 export const Route = createFileRoute("/service-areas/vancouver-north-shore")({
   head: () => ({
     meta: [
-      { title: "Vancouver North Shore | Nordic Green Homes" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Vancouver North Shore | Nordic Green Homes" },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/service-areas/vancouver-north-shore"),
       { property: "og:image", content: AREA.image.src },
       { name: "twitter:image", content: AREA.image.src },
     ],
@@ -25,9 +23,8 @@ function NorthShorePage() {
   return (
     <AreaPage
       title={AREA.title}
-      headline="Plan carefully for a North Shore property"
+      headline={AREA.title}
       description={DESCRIPTION}
-      note="The first step is not to assume what can be built. It is to understand the property and identify the information needed for a responsible next step."
       image={AREA.image}
       lists={[
         {
@@ -35,7 +32,7 @@ function NorthShorePage() {
           intro:
             "Share the address, project type, existing plans, survey information and the priorities that matter to your household. Tell us whether you are considering a custom home, a secondary dwelling or a performance-led brief.",
           outro:
-            "The municipality, site conditions, travel requirements and available services must be confirmed for the specific project. This page does not promise approval, local project history or coverage across the whole North Shore.",
+            "Your property, municipal requirements and agreed scope guide the design and delivery arrangements.",
         },
         {
           title: "A project conversation grounded in the site",

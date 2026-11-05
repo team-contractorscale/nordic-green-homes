@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 import { CTA, IMAGES, TEAM } from "@/lib/home-content";
@@ -48,10 +49,7 @@ const FAQS = [
 export const Route = createFileRoute("/services/luxury-custom-homes")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/services/luxury-custom-homes"),
       { property: "og:image", content: HERO_IMAGE.src },
       { name: "twitter:image", content: HERO_IMAGE.src },
     ],
@@ -377,7 +375,7 @@ function LuxuryCustomHomesPage() {
       <HomeFaqs items={FAQS} />
       <HomeClosing
         title="Put a ballpark beside your ideas"
-        body="Start with an estimate, then book 15 minutes with Lane. Bring your property details, priorities and any plans you already have."
+        body="Start with an estimate, then request a 15-minute call with Lane. Bring your property details, priorities and any plans you already have."
         note={null}
         link={null}
         contact

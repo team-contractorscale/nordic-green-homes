@@ -1,3 +1,4 @@
+import { PRIVATE_REVIEW } from "@/lib/private-review";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -84,7 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "robots", content: "index, follow" },
+      { name: "robots", content: PRIVATE_REVIEW ? "noindex, nofollow" : "index, follow" },
       { name: "author", content: "Nordic Green Homes" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -117,11 +118,13 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         {/* Contractor Scale feedback widget — loads globally on every page */}
-        <script
-          src="https://feedback.contractorscale.com/w.js"
-          data-site="b6cd082e-da00-4741-8ee7-41d97d5173e2"
-          async
-        />
+        {!PRIVATE_REVIEW && (
+          <script
+            src="https://feedback.contractorscale.com/w.js"
+            data-site="b6cd082e-da00-4741-8ee7-41d97d5173e2"
+            async
+          />
+        )}
       </head>
       <body>
         {children}
@@ -150,7 +153,23 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col pb-[4.25rem] font-sans antialiased text-foreground bg-primary lg:pb-0">
+      <div
+        onSubmitCapture={
+          PRIVATE_REVIEW
+            ? (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                window.alert("Internal review only. Enquiries and uploads are disabled.");
+              }
+            : undefined
+        }
+        className="min-h-screen flex flex-col pb-[4.25rem] font-sans antialiased text-foreground bg-primary lg:pb-0"
+      >
+        {PRIVATE_REVIEW && (
+          <div className="fixed bottom-0 left-0 z-[100] bg-black px-3 py-1 text-xs text-white">
+            Internal review · submissions disabled · not approved for publication
+          </div>
+        )}
         <SiteHeader />
         <main className="flex-1 bg-background">
           <Outlet />

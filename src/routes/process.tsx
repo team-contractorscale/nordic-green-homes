@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, CornerDownRight } from "lucide-react";
 import { CTA, IMAGES } from "@/lib/home-content";
@@ -138,10 +139,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/process"),
       { property: "og:image", content: IMAGES.newBuilds.src },
       { name: "twitter:image", content: IMAGES.newBuilds.src },
     ],

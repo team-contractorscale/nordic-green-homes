@@ -44,7 +44,7 @@ export function ConceptPage({
   note: string;
   gallery: readonly RefImage[];
   credits: { label: string; value: string }[];
-  sections: [ConceptSection, ConceptSection];
+  sections: ConceptSection[];
 }) {
   const ref = useHomeMotion<HTMLDivElement>();
   const [cover, ...renders] = gallery as [RefImage, ...RefImage[]];

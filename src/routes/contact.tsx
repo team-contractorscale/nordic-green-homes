@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { CTA, SERVICES, IMAGES } from "@/lib/home-content";
 import { useHomeMotion } from "@/hooks/use-home-motion";
@@ -54,10 +55,7 @@ const HEADER_IMAGE = IMAGES.farmhouseRear.src;
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: SEO_DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: SEO_DESCRIPTION },
+      ...acceptedMetadata("/contact"),
       { property: "og:image", content: HEADER_IMAGE },
       { name: "twitter:image", content: HEADER_IMAGE },
     ],
@@ -225,6 +223,10 @@ function ContactPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-6 text-base text-white/85">
+              Hours: Monday to Friday, 9 a.m. to 5 p.m.
+            </p>
+            <p className="mt-2 text-base text-white/85">Based in Chilliwack, BC</p>
           </div>
         </div>
       </section>

@@ -19,7 +19,10 @@ export const CHAT_COPY = {
       message: "I'd like to learn about new builds and custom homes.",
     },
     { label: "Garden Suites", message: "I'm interested in a garden suite." },
-    { label: "Book a discovery call", message: "I'd like to book a discovery call." },
+    {
+      label: "Request a 15-minute call with Lane",
+      message: "I'd like to request a 15-minute call with Lane.",
+    },
   ] as ChatQuickReply[],
 
   // Composer

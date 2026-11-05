@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Check } from "lucide-react";
 import type { ReactNode } from "react";
@@ -112,13 +113,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export const Route = createFileRoute("/resources/bc-energy-step-code")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      {
-        property: "og:title",
-        content: "BC Energy Step Code: what homeowners should understand early",
-      },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/resources/bc-energy-step-code"),
       { property: "og:image", content: IMAGES.hausSide.src },
       { name: "twitter:image", content: IMAGES.hausSide.src },
     ],

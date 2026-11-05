@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, Link, type LinkProps } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { CTA, IMAGES, TEAM, type RefImage } from "@/lib/home-content";
@@ -57,7 +58,7 @@ const PEOPLE = [
     name: "Kylie",
     role: "Designer, Nordic Green Design",
     body: [
-      "Kylie is the founder and lead designer of Nordic Green Design. Born and raised in BC, she moved from a background in law into interior design, completing her certification through the Interior Design Institute while on maternity leave with their oldest child.",
+      "Kylie is the founder and lead designer of Nordic Green Design. Born and raised in BC, she moved from a background in law into interior design.",
       "Her influences include Modern Farmhouse and English- and Belgian-inspired homes. She pays close attention to the sustainability and quality of materials, and to the details that make a space fit a family's needs and style.",
       "For Kylie, a beautiful interior is personal. The rooms, textures and finishes should belong to the people who live there, not just look right together.",
     ],
@@ -133,17 +134,14 @@ const FAQS = [
   },
   {
     q: "Where should we start?",
-    a: "Get a ballpark estimate, then book a 15-minute call with Lane to talk about what you have in mind.",
+    a: "Get a ballpark estimate, then request a 15-minute call with Lane to talk about what you have in mind.",
   },
 ];
 
 export const Route = createFileRoute("/about-us/")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/about-us"),
       { property: "og:image", content: TEAM.photo.src },
       { name: "twitter:image", content: TEAM.photo.src },
     ],

@@ -152,7 +152,7 @@ const AREAS = "Vancouver, West Van, North Van, Richmond, Tsawwassen and Vancouve
 
 export const CTA = {
   estimate: { label: "Get your ballpark estimate", to: "/estimate" },
-  call: { label: "Book a 15-minute call with Lane", to: "/contact" },
+  call: { label: "Request a 15-minute call with Lane", to: "/contact" },
 } as const;
 
 export const HERO = {
@@ -184,7 +184,7 @@ export const SERVICES = [
   {
     key: "luxuryCustomHomes",
     title: "Luxury Custom Homes",
-    body: "Start with how you want to live, then consider the layout, materials and details that bring it together. Explore the choices that shape a custom home, from the first brief to the relationship between design, budget and buildability.",
+    body: "Planning a new home around a specific site, brief and set of priorities? Start here. The early discussion brings design, materials, performance goals and construction scope into one conversation.",
     cta: "Explore Luxury Custom Homes",
     to: "/services/luxury-custom-homes",
     // Board-and-batten farmhouse render — a home, not the shop/garage photo it replaced.
@@ -193,7 +193,7 @@ export const SERVICES = [
   {
     key: "gardenSuites",
     title: "Garden Suites",
-    body: "Making space for family or planning a separate dwelling? Begin with your property, the way the space will be used and the local rules. Access, services and site conditions all help determine what is possible.",
+    body: "A detached or secondary dwelling needs the property, intended use and local requirements considered together. Bring the address and any site information you have so the project questions can be identified early.",
     cta: "Explore Garden Suites",
     to: "/services/garden-suites",
     // Garden path render — replaced the pool-bar/cabana photo that read as a bar, not a suite.
@@ -201,9 +201,9 @@ export const SERVICES = [
   },
   {
     key: "passiveHome",
-    title: "Passive Home Builder BC",
-    body: "Considering a Passive House? Understand how insulation, windows, airtightness and ventilation work together, and what separates passive-home principles from formal building certification.",
-    cta: "Explore Passive Home Builder BC",
+    title: "Passive-Home Principles",
+    body: "Interested in Passive House principles, certification or a more airtight, comfortable home? This route explains how envelope, glazing, ventilation, airtightness and thermal bridges fit into the discussion. Passive-home principles are not the same as a certification claim. Any formal pathway needs a defined target, responsible professionals and a verification method for the project.",
+    cta: "Explore Passive-Home Principles",
     to: "/services/passive-home-builder-bc",
     // Nordic Haus render — replaced the shop/garage photo.
     image: IMAGES.nordicHaus,
@@ -211,7 +211,7 @@ export const SERVICES = [
   {
     key: "highPerformance",
     title: "High-Performance Homes",
-    body: "Think beyond the finishes. Explore how the building envelope, windows, ventilation and moisture control relate to the comfort and energy goals in your brief.",
+    body: "If comfort, energy use or the building envelope is central to your brief, define the outcome you want before choosing the technical pathway. Modelling, documentation and verification should match that outcome.",
     cta: "Explore High-Performance Homes",
     to: "/services/high-performance-homes",
     // Rear elevation render — replaced the shop-with-trucks photo.
@@ -220,7 +220,7 @@ export const SERVICES = [
   {
     key: "designInteriors",
     title: "Design and Interiors",
-    body: "Bring the rooms, materials and everyday details into focus. Consider how you move through the home, where you need light and storage, and which finishes suit the way you live.",
+    body: "Kylie brings the design perspective through her separate company, Nordic Green Design: floorplans and cabinet drawings; material selections; space planning, 3D renderings and visualization; interior decorating with furnishings and finishes; and lighting and ceiling design. Your written project scope confirms which services are included, who provides them and what you receive.",
     cta: "Explore Design and Interiors",
     to: "/services/design-and-interiors",
     image: IMAGES.interior,
@@ -302,7 +302,7 @@ export const FLOORPLANS = [
 export const SERVICE_AREAS = [
   {
     key: "northShore",
-    title: "Vancouver North Shore",
+    title: "Vancouver, West Vancouver and North Vancouver",
     to: "/service-areas/vancouver-north-shore",
     image: IMAGES.hausSide,
   },
@@ -377,7 +377,7 @@ export const TEAM = {
 export const START = {
   eyebrow: "Start here",
   title: "Your ideas. A practical starting point.",
-  body: "Start with the estimator to put a ballpark beside your ideas. Then book a short call with Lane to talk about the property, your priorities and the next step.",
+  body: "Start with the estimator to put a ballpark beside your ideas. Then request a short call with Lane to talk about the property, your priorities and the next step.",
   note: "We work alongside your architect or designer. Bring your plans to the call.",
   process: "See our process",
 };
@@ -432,7 +432,10 @@ const FLOORPLAN_LINKS = [
 ] as const;
 
 const AREA_LINKS = [
-  { label: "Vancouver North Shore", to: "/service-areas/vancouver-north-shore" },
+  {
+    label: "Vancouver, West Vancouver and North Vancouver",
+    to: "/service-areas/vancouver-north-shore",
+  },
   { label: "Richmond and Tsawwassen", to: "/service-areas/richmond-and-tsawwassen" },
   { label: "Vancouver Island", to: "/service-areas/vancouver-island" },
 ] as const;

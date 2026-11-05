@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { ConceptPage } from "@/components/floorplans/ConceptPage";
 import { FLOORPLANS } from "@/lib/home-content";
@@ -11,10 +12,7 @@ const DESCRIPTION =
 export const Route = createFileRoute("/floorplans/modern-belgian-farmhouse")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/floorplans/modern-belgian-farmhouse"),
       { property: "og:image", content: PLAN.image.src },
       { name: "twitter:image", content: PLAN.image.src },
     ],
@@ -44,12 +42,30 @@ function ModernBelgianFarmhousePage() {
           ],
         },
         {
+          title: "Inside the concept",
+          paragraphs: [
+            "Sweeping rooflines and layered textures give this concept its European character. A vaulted great room connects with an open-plan layout, while a formal dining room offers a separate place to gather.",
+            "The main-floor primary suite has a walk-in closet. An office near the foyer, a pantry with a preparation area, main-floor laundry and mudroom, and a covered patio add practical spaces around the main rooms.",
+          ],
+        },
+        {
+          title: "Plan at a glance",
+          paragraphs: [
+            "The published lower-level concept includes space for a home gym, theatre room, games room and wine cellar. Review these options with the design team as part of your project scope.\nThese are concept details, not a completed Nordic Green Homes build or a promise that the plan will suit your property. Review the current drawings and project requirements before relying on the layout.",
+          ],
+          list: [
+            "Published area: 7,639 sq ft with the basement, or 4,812 sq ft without the basement.",
+            "Bedrooms: five, including a main-floor primary suite.",
+            "Garage: three-car.",
+            "Lower-level options: a basement or full crawl space, to be considered with the site and design team.",
+          ],
+        },
+        {
           title: "Before you choose this concept",
           paragraphs: [
             "Confirm the current plan information, dimensions, specifications, images, ownership and permitted use. Ask which parts can be changed and who is responsible for design, approvals and construction.",
+            "The concept is not a construction quote or evidence of an achieved net-zero result. Discuss site fit, the drawings you need and any changes before choosing a plan.",
           ],
-          outro:
-            "No price, size, room count, garage, performance or net-zero claim is included until the plan information supplied for the home and rights have been checked.",
         },
       ]}
     />

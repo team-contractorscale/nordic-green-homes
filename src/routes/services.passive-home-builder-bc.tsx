@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, Gauge, Grid2x2, Layers, Thermometer, Wind } from "lucide-react";
 import { IMAGES } from "@/lib/home-content";
@@ -109,12 +110,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 export const Route = createFileRoute("/services/passive-home-builder-bc")({
   head: () => ({
-    meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-    ],
+    meta: [...acceptedMetadata("/services/passive-home-builder-bc")],
   }),
   component: PassiveHomePage,
 });

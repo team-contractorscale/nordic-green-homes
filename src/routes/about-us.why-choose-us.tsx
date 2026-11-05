@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute, type LinkProps } from "@tanstack/react-router";
 import { CTA, IMAGES } from "@/lib/home-content";
 import { useHomeMotion } from "@/hooks/use-home-motion";
@@ -82,10 +83,7 @@ const RELATED_LINKS = [
 export const Route = createFileRoute("/about-us/why-choose-us")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/about-us/why-choose-us"),
       { property: "og:image", content: HERO_IMAGE.src },
       { name: "twitter:image", content: HERO_IMAGE.src },
     ],

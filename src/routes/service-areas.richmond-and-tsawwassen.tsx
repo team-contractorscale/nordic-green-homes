@@ -1,3 +1,4 @@
+import { acceptedMetadata } from "@/lib/accepted-metadata";
 import { createFileRoute } from "@tanstack/react-router";
 import { AreaPage } from "@/components/page/PageParts";
 import { SERVICE_AREAS } from "@/lib/home-content";
@@ -10,10 +11,7 @@ const DESCRIPTION =
 export const Route = createFileRoute("/service-areas/richmond-and-tsawwassen")({
   head: () => ({
     meta: [
-      { title: "Richmond and Tsawwassen | Nordic Green Homes" },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: "Richmond and Tsawwassen | Nordic Green Homes" },
-      { property: "og:description", content: DESCRIPTION },
+      ...acceptedMetadata("/service-areas/richmond-and-tsawwassen"),
       { property: "og:image", content: AREA.image.src },
       { name: "twitter:image", content: AREA.image.src },
     ],
@@ -35,7 +33,7 @@ function RichmondTsawwassenPage() {
           intro:
             "Share any survey, site plan, existing drawings or property information you have. Explain the spaces you need, how the household will use them and any comfort, efficiency or material priorities.",
           outro:
-            "Coverage and project suitability depend on the property, written scope and local requirements. This page does not promise a permit outcome, local expertise or a particular delivery area.",
+            "Project suitability and delivery arrangements are agreed for your property, scope and local requirements.",
         },
         {
           title: "Make the next decision clearer",
