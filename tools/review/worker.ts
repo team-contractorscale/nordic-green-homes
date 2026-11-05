@@ -48,7 +48,7 @@ export default {
       request.headers.get("Cookie")?.match(/(?:^|;\s*)__Host-nordic_review=([^;]*)/)?.[1] ?? "";
     if (!(await authorised(token, env)))
       return response("Private internal review. Access link required.", 401);
-    if (!["GET", "HEAD"].includes(request.method()))
+    if (!["GET", "HEAD"].includes(request.method))
       return response("Submissions are disabled in this review.", 405);
     if (
       held.test(url.pathname) ||
