@@ -360,11 +360,10 @@ export const TEAM = {
     "Lane is the builder. Kylie is the designer behind Nordic Green Design. Together, they bring a practical eye for construction and a considered eye for interiors to the home you want to create.",
     "For them, sustainable luxury is personal: a home that feels good to live in, makes thoughtful use of materials and gives family life room to unfold.",
   ],
-  // Self-hosted copy of obriencontracting.ca/wp-content/uploads/2025/12/obrien-lane.png.webp
-  // (client-directed 2026-11-04). 580×645.
+  // High-resolution photo of Kylie and Lane wearing branded Nordic Green Homes & Design apparel.
   photo: {
-    src: "/home/lane.webp",
-    alt: "Kylie and Lane standing together in front of green foliage",
+    src: "https://vibe.filesafe.space/1792226139280090093/attachments/2df7fea3-71f4-4f83-a5dd-d91e4455c469.png",
+    alt: "Kylie and Lane smiling together wearing Nordic Green Homes & Design apparel in front of green foliage",
   },
   // Plate order matches the photo: Kylie on the left, Lane on the right.
   people: [
