@@ -1,24 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BRAND } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { PLACEHOLDER, IMAGES } from "@/lib/home-content";
+import { COMPANY, IMAGES } from "@/lib/home-content";
 
 const HEADER_IMAGE = IMAGES.hausRear.src;
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy (Draft) | Nordic Green Homes" },
+      { title: "Privacy Policy | Nordic Green Homes" },
       {
         name: "description",
         content:
-          "Draft privacy policy for the unpublished Nordic Green Homes internal pilot. Not client-approved or in use.",
+          "Privacy Policy for Nordic Green Homes Inc. — how we collect, use and protect personal information submitted through nordicgreenhomes.ca.",
       },
-      { property: "og:title", content: "Privacy Policy (Draft) | Nordic Green Homes" },
+      { property: "og:title", content: "Privacy Policy | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Draft privacy policy for the internal Nordic Green Homes pilot — not approved or published.",
+          "Privacy Policy for Nordic Green Homes Inc. — how we collect, use and protect personal information submitted through nordicgreenhomes.ca.",
       },
       { property: "og:image", content: HEADER_IMAGE },
       { name: "twitter:image", content: HEADER_IMAGE },
@@ -33,139 +33,152 @@ function PrivacyPage() {
       <PageHeader
         image={HEADER_IMAGE}
         imageAlt={IMAGES.hausRear.alt}
-        eyebrow="Legal · Draft"
+        eyebrow="Legal"
         title="Privacy Policy"
-        description="Draft only — last updated 28 October 2026. This internal pilot is unpublished and this policy is not client-approved or in use."
+        description="Effective 28 October 2026. How we collect, use and protect your personal information."
       />
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 text-base text-foreground/80 leading-relaxed">
             <p>
-              <strong className="text-foreground">Last updated:</strong> 28 October 2026
+              <strong className="text-foreground">Effective date:</strong> 28 October 2026
             </p>
             <p>
-              This policy explains how {BRAND.name} collects, uses and protects personal information
-              submitted through this website.
+              {COMPANY.legalEntity} operates nordicgreenhomes.ca. This policy explains how we handle
+              personal information collected through our website and related enquiries.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">Who we are</h2>
             <p>
-              {BRAND.name} operates this website. The exact legal-entity wording is pending client
-              confirmation.
-            </p>
-            <p>
-              Contact us at{" "}
-              <a
-                href={`mailto:${PLACEHOLDER.email}`}
-                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
-              >
-                {PLACEHOLDER.email}
-              </a>{" "}
-              or{" "}
-              <a
-                href={`tel:${PLACEHOLDER.phone.replace(/[^\d+]/g, "")}`}
-                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
-              >
-                {PLACEHOLDER.phone}
-              </a>{" "}
-              for privacy questions.
-            </p>
-
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">What we collect</h2>
-            <p>
-              Information submitted through the website may include your name, phone number, email
-              address, project location, project type and other details you choose to share — for
-              example whether you have land or plans, rough timing, a rough budget, or answers given
-              in our online estimate tool.
-            </p>
-            <p>
-              The website may also collect basic use information through cookies and similar browser
-              storage, as described under Cookies and tracking below.
-            </p>
-
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Why we collect it</h2>
-            <p>
-              To respond to enquiries, discuss and provide building services, follow up where
-              requested, operate and improve the website and understand which pages are useful.
+              {COMPANY.legalEntity} operates nordicgreenhomes.ca. This policy explains how we handle
+              personal information collected through our website and related enquiries.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Who we share it with
+              Information we collect
             </h2>
             <p>
-              We do not sell personal information. Service providers may help operate the website,
-              manage enquiries, provide CRM or lead follow-up, analyse website use or deliver
-              advertising. Information may also be shared when required by law.
+              When you contact us or use an enquiry or estimate tool, we collect the information you
+              provide. This may include your name, email address, telephone number, project
+              location, project type, proposed timing, budget and answers about your plans or
+              property. Please provide only information relevant to your enquiry.
+            </p>
+            <p>
+              Website services may also collect technical information, such as your IP address,
+              browser information, pages visited, referring website and campaign identifiers
+              associated with your visit.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Cookies and tracking
+              How we use information
             </h2>
             <p>
-              <strong className="text-foreground">Enquiry management:</strong> when you submit a
-              form, your details are sent to our customer relationship management (CRM) system so we
-              can respond and follow up. Our CRM provider's tracking script also runs on this
-              website to connect form submissions with how visitors found us; it may set cookies.
+              We use personal information to respond to enquiries, discuss your project, provide
+              information or services you request, manage our communications and maintain website
+              security. Referral and campaign information helps us understand where enquiries
+              originate.
             </p>
             <p>
-              <strong className="text-foreground">Advertising attribution:</strong> if you arrive
-              from an advertisement or a tracked link, this website stores the campaign details from
-              that link (such as UTM tags and Google or Facebook click identifiers), the page you
-              landed on and the referring website in your browser's local storage. These details are
-              sent with any form you submit, so we can see which advertising is useful.
-            </p>
-            <p>
-              <strong className="text-foreground">Site features:</strong> the website also uses your
-              browser's session storage to remember your progress in the estimate tool and to avoid
-              showing the same pop-up twice. This is cleared when you close the browser tab.
-            </p>
-            <p>
-              This website does not currently run a separate analytics service or a cookie consent
-              tool. You can manage or delete cookies and stored site data at any time through your
-              browser settings; blocking them may affect how some parts of the site work.
+              Any optional marketing communications are handled separately from your project
+              enquiry. You can ask us to stop marketing communications using the unsubscribe option
+              provided or by contacting us.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Storage and security
+              Cookies and browser storage
             </h2>
             <p>
-              Enquiries are stored in our CRM, which is operated by an overseas provider, so your
-              information may be stored and processed outside Canada. This website is hosted on
-              Cloudflare, which also processes website requests — including IP addresses — for
-              delivery and security, and may do so outside Canada.
+              Cookies and similar browser storage may support website features, remember estimate
+              progress and associate an enquiry with its referral or advertising source. Your
+              browser also connects to services that deliver website features, fonts and images.
             </p>
             <p>
-              We take reasonable steps to protect personal information from loss and from
-              unauthorised access, use or disclosure, and only give access to the people who need it
-              to respond to and manage your enquiry.
-            </p>
-            <p>
-              We keep enquiry information for [CLIENT TO CONFIRM: retention period], then delete or
-              anonymise it unless we need to keep it to provide services or meet legal obligations.
+              You can manage cookies and stored website data through your browser settings.
+              Restricting storage may affect some features. Any additional choices offered through
+              the website apply to the relevant optional tracking.
             </p>
 
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Your rights</h2>
+            <h2 className="font-serif text-lg font-bold text-foreground mt-6">
+              Sharing and processing
+            </h2>
             <p>
-              You can ask what personal information we hold about you and ask for it to be
-              corrected. Contact us at{" "}
+              Authorised personnel and service providers may handle information to deliver website
+              hosting, enquiry management, customer relationship management, communications and
+              website support. Sharing is limited to the relevant purpose, your consent, or
+              circumstances permitted or required by law.
+            </p>
+            <p>
+              Some service providers may store or process information outside Canada. Information
+              processed in another country may be subject to that country's laws and lawful access
+              requirements.
+            </p>
+
+            <h2 className="font-serif text-lg font-bold text-foreground mt-6">
+              Retention and security
+            </h2>
+            <p>
+              We retain personal information for as long as reasonably needed for the purposes
+              described above and applicable legal or business requirements. When retention is no
+              longer necessary, information is securely destroyed or de-identified, subject to
+              applicable retention obligations.
+            </p>
+            <p>
+              We use reasonable safeguards appropriate to the information's sensitivity. No internet
+              transmission or storage system can be guaranteed completely secure.
+            </p>
+
+            <h2 className="font-serif text-lg font-bold text-foreground mt-6">
+              Your choices, access and concerns
+            </h2>
+            <p>
+              You may request access to your personal information, request correction, or withdraw
+              consent where applicable. We may need to verify your identity. Legal restrictions or
+              retention requirements may affect what we can provide or delete; withdrawing consent
+              may also affect services we can offer.
+            </p>
+            <p>
+              Please contact us first with privacy questions or complaints. You may also contact the
+              Office of the Information and Privacy Commissioner for British Columbia at{" "}
               <a
-                href={`mailto:${PLACEHOLDER.email}`}
+                href="https://www.oipc.bc.ca"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
               >
-                {PLACEHOLDER.email}
-              </a>{" "}
-              or{" "}
-              <a
-                href={`tel:${PLACEHOLDER.phone.replace(/[^\d+]/g, "")}`}
-                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
-              >
-                {PLACEHOLDER.phone}
+                oipc.bc.ca
               </a>
               .
             </p>
 
+            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Privacy contact</h2>
+            <p>
+              Attention: Privacy Officer, {COMPANY.legalEntity}
+              <br />
+              Email:{" "}
+              <a
+                href={`mailto:${COMPANY.email}`}
+                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
+              >
+                {COMPANY.email}
+              </a>
+              <br />
+              Telephone:{" "}
+              <a
+                href={`tel:${COMPANY.phone.replace(/[^\d+]/g, "")}`}
+                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
+              >
+                {COMPANY.phone}
+              </a>
+              <br />
+              Address: {COMPANY.address}
+            </p>
+
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">Updates</h2>
-            <p>The latest version of this policy will be published on this page.</p>
+            <p>
+              We may update this policy to reflect changes in our practices or legal requirements.
+              The effective date above identifies the current version. Where required, we will
+              provide additional notice or obtain consent for a new use of personal information.
+            </p>
           </div>
         </div>
       </section>

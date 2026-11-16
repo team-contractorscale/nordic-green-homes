@@ -2,24 +2,23 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BRAND } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Placeholder } from "@/components/home/NordicHome";
-import { PLACEHOLDER, IMAGES } from "@/lib/home-content";
+import { PLACEHOLDER, COMPANY, IMAGES } from "@/lib/home-content";
 
 const HEADER_IMAGE = IMAGES.hausPatio.src;
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions (Draft) | Nordic Green Homes" },
+      { title: "Terms & Conditions | Nordic Green Homes" },
       {
         name: "description",
         content:
-          "Draft terms for the unpublished Nordic Green Homes internal pilot. Not client-approved or in use.",
+          "Terms & Conditions for nordicgreenhomes.ca, operated by Nordic Green Homes Inc. Your use of this website is governed by these terms.",
       },
-      { property: "og:title", content: "Terms & Conditions (Draft) | Nordic Green Homes" },
+      { property: "og:title", content: "Terms & Conditions | Nordic Green Homes" },
       {
         property: "og:description",
-        content:
-          "Draft terms for the internal Nordic Green Homes pilot — not approved or published.",
+        content: "Terms & Conditions for nordicgreenhomes.ca, operated by Nordic Green Homes Inc.",
       },
       { property: "og:image", content: HEADER_IMAGE },
       { name: "twitter:image", content: HEADER_IMAGE },
@@ -34,25 +33,26 @@ function TermsPage() {
       <PageHeader
         image={HEADER_IMAGE}
         imageAlt={IMAGES.hausPatio.alt}
-        eyebrow="Legal · Draft"
+        eyebrow="Legal"
         title="Terms & Conditions"
-        description="Draft only — last updated 28 October 2026. This internal pilot is unpublished and these terms are not client-approved or in use."
+        description="Effective 28 October 2026. The terms that govern your use of nordicgreenhomes.ca."
       />
       <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 text-base text-foreground/80 leading-relaxed">
             <p>
-              <strong className="text-foreground">Last updated:</strong> 28 October 2026
+              <strong className="text-foreground">Effective date:</strong> 28 October 2026
             </p>
             <p>
-              These terms apply to your use of this website, operated by {BRAND.name}. By using the
-              website, you agree to them.
+              These terms apply to your use of this website, operated by {COMPANY.legalEntity}. By
+              using the website, you agree to them.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">Who we are</h2>
             <p>
-              {BRAND.name} operates this website. The exact legal-entity wording and any
-              relationship to {BRAND.sourceCompany} are pending client confirmation.
+              {COMPANY.legalEntity} operates nordicgreenhomes.ca. Nordic Green Homes is a new
+              entity; Nordic Green Design operates separately alongside it, and{" "}
+              {BRAND.sourceCompany} remains open during the transition.
             </p>
             <div className="flex flex-wrap gap-3">
               <Placeholder>{PLACEHOLDER.relationship}</Placeholder>
@@ -60,17 +60,17 @@ function TermsPage() {
             <p>
               Contact us at{" "}
               <a
-                href={`mailto:${PLACEHOLDER.email}`}
+                href={`mailto:${COMPANY.email}`}
                 className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
               >
-                {PLACEHOLDER.email}
+                {COMPANY.email}
               </a>{" "}
               or{" "}
               <a
-                href={`tel:${PLACEHOLDER.phone.replace(/[^\d+]/g, "")}`}
+                href={`tel:${COMPANY.phone.replace(/[^\d+]/g, "")}`}
                 className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
               >
-                {PLACEHOLDER.phone}
+                {COMPANY.phone}
               </a>{" "}
               with any questions about these terms.
             </p>

@@ -10,11 +10,21 @@
 //   the client approves use and attribution.
 
 export const PLACEHOLDER = {
+  // Confirmed 2026-11-16 (Privacy Policy).
   phone: "+1 (604) 996-4217",
   email: "info@nordicgreenhomes.ca",
-  legalEntity: "[Legal entity, licence & warranty wording — pending]",
+  legalEntity: "Nordic Green Homes Inc.",
+  address: "#12, 6029 Promontory Road, Chilliwack, BC, Canada",
   relationship:
     "[Nordic Green Homes (new entity) · Nordic Green Design (separate) · O'Brien Contracting remains open during transition — exact public/legal wording pending]",
+} as const;
+
+// Confirmed company details (legal entity, contact, address — approved 2026-11-16).
+export const COMPANY = {
+  legalEntity: "Nordic Green Homes Inc.",
+  phone: "+1 (604) 996-4217",
+  email: "info@nordicgreenhomes.ca",
+  address: "#12, 6029 Promontory Road, Chilliwack, BC, Canada",
 } as const;
 
 const NGD = "https://images.squarespace-cdn.com/content/v1/63731d025a6f0837360c4578";
