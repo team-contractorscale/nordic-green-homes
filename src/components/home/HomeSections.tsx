@@ -154,13 +154,11 @@ export function HomeTeam() {
 
 // Aspect ratios only from sm up: on phones a min-height alone keeps panels within the viewport.
 const DOOR_LAYOUT = [
-  "sm:aspect-[4/3] lg:col-span-3 lg:aspect-[16/11]",
-  "sm:aspect-[4/3] lg:col-span-3 lg:aspect-[16/11]",
-  "sm:aspect-[4/3] lg:col-span-2 lg:aspect-[4/5]",
-  "sm:aspect-[4/3] lg:col-span-2 lg:aspect-[4/5]",
-  "sm:col-span-2 sm:aspect-[16/9] lg:col-span-2 lg:aspect-[4/5]",
+  "sm:aspect-[4/3] lg:col-span-1 lg:aspect-[4/3]",
+  "sm:aspect-[4/3] lg:col-span-1 lg:aspect-[4/3]",
+  "sm:aspect-[4/3] lg:col-span-1 lg:aspect-[4/3]",
 ];
-const DOOR_FROM = ["left", "right", "up", "up", "up"];
+const DOOR_FROM = ["left", "up", "right"];
 const BRACKET =
   "absolute size-6 border-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100";
 
@@ -181,8 +179,8 @@ export function HomeServices() {
           </p>
         </div>
 
-        <div className="group/doors mt-14 grid grid-cols-1 gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-6">
-          {HOME_SERVICES.items.map((s, i) => (
+        <div className="group/doors mt-14 grid grid-cols-1 gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          {HOME_SERVICES.items.slice(0, 3).map((s, i) => (
             <Link
               key={s.key}
               to={s.to}

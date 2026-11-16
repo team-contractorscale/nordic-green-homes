@@ -15,6 +15,7 @@ import { Route as AuditLoginRouteImport } from './routes/audit-login'
 import { Route as ConsultRouteImport } from './routes/consult'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as Home2RouteImport } from './routes/home-2'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as ProjectsRouteImport } from './routes/projects'
@@ -75,6 +76,11 @@ const ContactRoute = ContactRouteImport.update({
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Home2Route = Home2RouteImport.update({
+  id: '/home-2',
+  path: '/home-2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -250,6 +256,7 @@ export interface FileRoutesByFullPath {
   '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
+  '/home-2': typeof Home2Route
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
@@ -289,6 +296,7 @@ export interface FileRoutesByTo {
   '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
+  '/home-2': typeof Home2Route
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
@@ -329,6 +337,7 @@ export interface FileRoutesById {
   '/consult': typeof ConsultRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
+  '/home-2': typeof Home2Route
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/projects': typeof ProjectsRoute
@@ -370,6 +379,7 @@ export interface FileRouteTypes {
     | '/consult'
     | '/contact'
     | '/faqs'
+    | '/home-2'
     | '/privacy'
     | '/process'
     | '/projects'
@@ -409,6 +419,7 @@ export interface FileRouteTypes {
     | '/consult'
     | '/contact'
     | '/faqs'
+    | '/home-2'
     | '/privacy'
     | '/process'
     | '/projects'
@@ -448,6 +459,7 @@ export interface FileRouteTypes {
     | '/consult'
     | '/contact'
     | '/faqs'
+    | '/home-2'
     | '/privacy'
     | '/process'
     | '/projects'
@@ -488,6 +500,7 @@ export interface RootRouteChildren {
   ConsultRoute: typeof ConsultRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
+  Home2Route: typeof Home2Route
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
   ProjectsRoute: typeof ProjectsRoute
@@ -563,6 +576,13 @@ declare module '@tanstack/react-router' {
       path: '/faqs'
       fullPath: '/faqs'
       preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-2': {
+      id: '/home-2'
+      path: '/home-2'
+      fullPath: '/home-2'
+      preLoaderRoute: typeof Home2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -792,6 +812,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConsultRoute: ConsultRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
+  Home2Route: Home2Route,
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
   ProjectsRoute: ProjectsRoute,

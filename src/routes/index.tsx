@@ -15,9 +15,9 @@ import { HomePillars } from "@/components/home/HomePillars";
 import { HomeAssurance } from "@/components/home/HomeAssurance";
 import { HomeProjects } from "@/components/home/HomeProjects";
 
-const TITLE = "Nordic Green Homes | Sustainable Luxury. Built Around Your Life.";
+const TITLE = "Nordic Green Homes | A Home That Looks Right. And Lives Well.";
 const DESCRIPTION =
-  "A home with presence, purpose and room for the life you want to lead. Sustainable luxury custom homes in Vancouver, West Van, North Van, Richmond, Tsawwassen and Vancouver Island.";
+  "Space for the way you live. Materials you want to live with. Comfort that matters as much as the finish. Sustainable luxury custom homes in British Columbia.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

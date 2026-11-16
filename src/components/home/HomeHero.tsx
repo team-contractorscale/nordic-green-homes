@@ -116,24 +116,18 @@ function HeroSlider() {
       <div className="relative h-px bg-white/20">
         <span ref={bar} aria-hidden className="absolute inset-0 origin-left scale-x-0 bg-gold" />
       </div>
-      <div className="mt-3 flex items-center justify-between gap-3">
-        <p className="min-w-0 truncate text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/80">
-          <span className="text-gold">0{active + 1}</span> / 0{slides.length} ·{" "}
-          {slides[active]?.source.split(" · ")[1]}
-        </p>
-        <div className="flex shrink-0 gap-1.5">
-          {[-1, 1].map((step) => (
-            <button
-              key={step}
-              type="button"
-              onClick={() => go(step)}
-              aria-label={step < 0 ? "Previous image" : "Next image"}
-              className="grid size-8 place-items-center border border-white/25 text-white transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-black"
-            >
-              {step < 0 ? <ArrowLeft className="size-3.5" /> : <ArrowRight className="size-3.5" />}
-            </button>
-          ))}
-        </div>
+      <div className="mt-3 flex items-center justify-end gap-1.5">
+        {[-1, 1].map((step) => (
+          <button
+            key={step}
+            type="button"
+            onClick={() => go(step)}
+            aria-label={step < 0 ? "Previous image" : "Next image"}
+            className="grid size-8 place-items-center border border-white/25 text-white transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-black"
+          >
+            {step < 0 ? <ArrowLeft className="size-3.5" /> : <ArrowRight className="size-3.5" />}
+          </button>
+        ))}
       </div>
     </div>
   );

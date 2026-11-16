@@ -166,10 +166,10 @@ export const CTA = {
 } as const;
 
 export const HERO = {
-  eyebrow: "Nordic Green Homes",
+  eyebrow: "Custom home builder BC",
   // Three masked lines so no word sits alone; the last line is the gold accent.
-  titleLines: ["Sustainable luxury.", "Built around", "your life."],
-  body: "A home with presence, purpose and room for the life you want to lead. Nordic Green Homes brings building and design together, so the way your home looks, feels and works is considered from the start.",
+  titleLines: ["A home that", "looks right.", "And lives well."],
+  body: "Space for the way you live. Materials you want to live with. Comfort that matters as much as the finish.",
   quote: { text: "We provide sustainable luxury. And that's it.", by: "Lane" },
   image: IMAGES.heroPhoto,
   // Square slider in the hero (bottom right, above service 05). Large 1920px renders only.
