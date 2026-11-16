@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BRAND } from "@/lib/content-data";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { Placeholder } from "@/components/home/NordicHome";
-import { PLACEHOLDER, COMPANY, IMAGES } from "@/lib/home-content";
+import { COMPANY, IMAGES } from "@/lib/home-content";
 
-const HEADER_IMAGE = IMAGES.hausPatio.src;
+const HEADER_IMAGE = IMAGES.hausRear.src;
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -32,7 +30,7 @@ function TermsPage() {
     <div>
       <PageHeader
         image={HEADER_IMAGE}
-        imageAlt={IMAGES.hausPatio.alt}
+        imageAlt={IMAGES.hausRear.alt}
         eyebrow="Legal"
         title="Terms & Conditions"
         description="Effective 28 October 2026. The terms that govern your use of nordicgreenhomes.ca."
@@ -43,124 +41,85 @@ function TermsPage() {
             <p>
               <strong className="text-foreground">Effective date:</strong> 28 October 2026
             </p>
-            <p>
-              These terms apply to your use of this website, operated by {COMPANY.legalEntity}. By
-              using the website, you agree to them.
-            </p>
 
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Who we are</h2>
+            <h2 className="font-serif text-lg font-bold text-foreground mt-6">About these terms</h2>
             <p>
-              {COMPANY.legalEntity} operates nordicgreenhomes.ca. Nordic Green Homes is a new
-              entity; Nordic Green Design operates separately alongside it, and{" "}
-              {BRAND.sourceCompany} remains open during the transition.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Placeholder>{PLACEHOLDER.relationship}</Placeholder>
-            </div>
-            <p>
-              Contact us at{" "}
-              <a
-                href={`mailto:${COMPANY.email}`}
-                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
-              >
-                {COMPANY.email}
-              </a>{" "}
-              or{" "}
-              <a
-                href={`tel:${COMPANY.phone.replace(/[^\d+]/g, "")}`}
-                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
-              >
-                {COMPANY.phone}
-              </a>{" "}
-              with any questions about these terms.
+              These terms apply to nordicgreenhomes.ca, operated by {COMPANY.legalEntity}. They
+              concern use of the website, not the terms of a construction or design contract.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Using this website
+              Website information
             </h2>
             <p>
-              This website gives general information about our building services, custom homes,
-              garden suites, renovations and past projects, and lets you contact us. Nothing on it
-              is an offer or a contract. You agree to use the website only for lawful purposes.
-            </p>
-            <p>
-              The information is general in nature and is not building, design, engineering,
-              planning, legal or financial advice for your project. What applies to your project —
-              including permits, site requirements and costs — depends on its details and is
-              confirmed during the design and pricing process.
+              The website provides general information to help you explore and plan a possible
+              project. It is not project-specific building, engineering, planning, legal or
+              financial advice. Site conditions, municipal requirements, design decisions and the
+              agreed scope must be assessed for your individual project.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Estimates and pricing
+              Estimates and project agreements
             </h2>
             <p>
-              Any price range shown by our online estimate tool is an indicative figure based only
-              on the answers you give. It is not a quote, a contract or a guarantee of final cost.
+              Online estimates and price ranges are preliminary planning information based on the
+              information supplied and the assumptions explained with the estimate. They are not a
+              quotation, offer to build, fixed-price agreement or guarantee of final cost.
             </p>
             <p>
-              Pricing for your project is only set out in a written quote and contract with{" "}
-              {BRAND.name}. Where a fixed-price contract is agreed, that contract sets out what is
-              included and what you will pay.
+              Project scope, inclusions, exclusions, price, payment terms, schedule and
+              responsibilities are established through the applicable written agreement with the
+              contracting entity identified in that agreement. Submitting a website enquiry does not
+              create a construction or design contract.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              House plans, brochures and images
+              Plans, images and project examples
             </h2>
             <p>
-              House plans, floor plans and brochures on this website are provided for your personal
-              information when considering a build with {BRAND.name}. They remain the property of{" "}
-              {BRAND.name} or its design partners and may not be copied, altered or used to build
-              without our written agreement.
+              Plans and concept drawings are provided for information, not as approved construction
+              documents. Dimensions, specifications and illustrated features must be checked against
+              the final project documents. Renders and concept images are illustrative and may show
+              optional features or items outside a project's agreed scope.
             </p>
             <p>
-              Floor areas, dimensions, room counts and other specifications are indicative. Plans
-              can be adapted to suit your site and needs, and final details are confirmed in the
-              agreed design. Renders and artist's impressions are illustrative, and items shown in
-              images — such as decks, landscaping, furniture and finishes — may not be included.
+              Project descriptions, testimonials and performance discussions are specific to their
+              stated context. They do not guarantee the same cost, programme, performance or
+              certification for another project. Refer to the stated credits and project roles;
+              material shown on this website should not be assumed to be work performed solely by{" "}
+              {COMPANY.legalEntity}.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Projects and reviews
+              Intellectual property and acceptable use
             </h2>
             <p>
-              Project descriptions, photos and client reviews show past work. Every project is
-              different, and they are not a promise of a particular result, timeframe or cost for
-              your project.
+              Website materials remain subject to the rights of their respective owners and
+              licensors. Viewing a plan or downloading information does not grant permission to
+              reproduce, modify, distribute or build from it. Obtain the necessary written
+              permission or licence from the relevant rights holder.
+            </p>
+            <p>
+              Use the website lawfully. Do not attempt unauthorised access, interfere with its
+              operation or submit malicious or misleading material.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Links to other websites
+              External links and website availability
             </h2>
             <p>
-              This website links to websites run by others, such as municipalities, government
-              agencies and partners. We are not responsible for their content, accuracy or privacy
-              practices.
+              Third-party websites are governed by their own terms and privacy practices. We do not
+              control their content. Website information may change, and uninterrupted availability
+              or error-free content cannot be guaranteed. Contact us to confirm information
+              important to your project.
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
-              Intellectual property
+              Your legal rights and privacy
             </h2>
             <p>
-              The content of this website — including text, photos, plans, graphics and logos —
-              belongs to {BRAND.name} or its licensors and may not be reproduced or used without
-              permission, except for viewing and personal, non-commercial use.
-            </p>
-
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Liability</h2>
-            <p>
-              We take reasonable care to keep this website accurate and up to date, but we do not
-              guarantee that it is complete, current or free of errors. To the extent permitted by
-              law, {BRAND.name} is not liable for any loss arising from your use of this website or
-              your reliance on its general information.
-            </p>
-            <p>
-              Nothing in these terms limits any rights you have under applicable consumer protection
-              laws where those laws apply.
-            </p>
-
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Privacy</h2>
-            <p>
-              How we handle personal information submitted through this website is explained in our{" "}
+              Nothing in these terms excludes rights or protections that cannot lawfully be
+              excluded. Personal information is handled as described in our{" "}
               <a
                 href="/privacy"
                 className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
@@ -169,18 +128,36 @@ function TermsPage() {
               </a>
               .
             </p>
-
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Governing law</h2>
             <p>
-              These terms are governed by the laws of the Province of British Columbia and the
-              federal laws of Canada applicable therein, and the British Columbia courts have
-              jurisdiction.
+              These terms are governed by the laws of British Columbia and the federal laws of
+              Canada applicable there, subject to any mandatory protections that apply to you.
             </p>
 
-            <h2 className="font-serif text-lg font-bold text-foreground mt-6">Updates</h2>
+            <h2 className="font-serif text-lg font-bold text-foreground mt-6">
+              Contact and updates
+            </h2>
             <p>
-              We may update these terms from time to time. The latest version will be published on
-              this page.
+              {COMPANY.legalEntity}
+              <br />
+              <a
+                href={`mailto:${COMPANY.email}`}
+                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
+              >
+                {COMPANY.email}
+              </a>{" "}
+              |{" "}
+              <a
+                href={`tel:${COMPANY.phone.replace(/[^\d+]/g, "")}`}
+                className="font-medium text-foreground underline underline-offset-2 hover:text-primary"
+              >
+                {COMPANY.phone}
+              </a>
+              <br />
+              {COMPANY.address}
+            </p>
+            <p>
+              We may update these website terms. The effective date above identifies the current
+              version. Website updates do not amend an existing signed project agreement.
             </p>
           </div>
         </div>
