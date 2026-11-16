@@ -7,16 +7,17 @@ const HEADER_IMAGE = IMAGES.hausRear.src;
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions | Nordic Green Homes" },
+      { title: "Website Terms of Use | Nordic Green Homes" },
       {
         name: "description",
         content:
-          "Terms & Conditions for nordicgreenhomes.ca, operated by Nordic Green Homes Inc. Your use of this website is governed by these terms.",
+          "Terms for using the Nordic Green Homes website, including estimates, plans, images, intellectual property and project information.",
       },
-      { property: "og:title", content: "Terms & Conditions | Nordic Green Homes" },
+      { property: "og:title", content: "Website Terms of Use | Nordic Green Homes" },
       {
         property: "og:description",
-        content: "Terms & Conditions for nordicgreenhomes.ca, operated by Nordic Green Homes Inc.",
+        content:
+          "Terms for using the Nordic Green Homes website, including estimates, plans, images, intellectual property and project information.",
       },
       { property: "og:image", content: HEADER_IMAGE },
       { name: "twitter:image", content: HEADER_IMAGE },
@@ -32,7 +33,7 @@ function TermsPage() {
         image={HEADER_IMAGE}
         imageAlt={IMAGES.hausRear.alt}
         eyebrow="Legal"
-        title="Terms & Conditions"
+        title="Website Terms of Use"
         description="Effective 28 October 2026. The terms that govern your use of nordicgreenhomes.ca."
       />
       <section className="py-16 md:py-24 bg-background">

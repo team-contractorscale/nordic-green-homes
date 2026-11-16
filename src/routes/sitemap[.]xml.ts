@@ -3,7 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 // Static route manifest for the Nordic Green Homes site.
 // Only public-facing leaf routes are listed. Internal tools (/audit,
 // /audit-login) and draft templates (/resources/article-template) are excluded.
-const BASE = "https://www.nordicgreenhomes.ca";
+// <loc> uses the final non-www host. <lastmod> is omitted unless a genuine
+// content-modification date is known — never stamp "today" on every URL.
+const BASE = "https://nordicgreenhomes.ca";
 
 const ROUTES = [
   { path: "/", priority: "1.0" },
@@ -35,8 +37,6 @@ const ROUTES = [
   { path: "/terms", priority: "0.3" },
 ] as const;
 
-const NOW = new Date().toISOString().slice(0, 10);
-
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${ROUTES.map(
   (r) =>
-    `  <url>\n    <loc>${BASE}${r.path}</loc>\n    <lastmod>${NOW}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`,
+    `  <url>\n    <loc>${BASE}${r.path}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`,
 ).join("\n")}
 </urlset>
 `;

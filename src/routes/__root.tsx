@@ -111,11 +111,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+// Page-specific canonical: https://nordicgreenhomes.ca + the final path (no trailing slash,
+// except the homepage). Emitted in the initial SSR HTML and kept consistent after navigation.
+function useCanonical() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const path = pathname === "/" ? "" : pathname.replace(/\/+$/, "");
+  return `https://nordicgreenhomes.ca${path}`;
+}
+
 function RootShell({ children }: { children: ReactNode }) {
+  const canonical = useCanonical();
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <link rel="canonical" href={canonical} />
         {/* Contractor Scale feedback widget — loads globally on every page */}
         <script
           src="https://feedback.contractorscale.com/w.js"

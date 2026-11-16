@@ -12,13 +12,13 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "Privacy Policy for Nordic Green Homes Inc. — how we collect, use and protect personal information submitted through nordicgreenhomes.ca.",
+          "How Nordic Green Homes Inc. collects, uses and protects personal information, including website enquiries and your privacy choices.",
       },
       { property: "og:title", content: "Privacy Policy | Nordic Green Homes" },
       {
         property: "og:description",
         content:
-          "Privacy Policy for Nordic Green Homes Inc. — how we collect, use and protect personal information submitted through nordicgreenhomes.ca.",
+          "How Nordic Green Homes Inc. collects, uses and protects personal information, including website enquiries and your privacy choices.",
       },
       { property: "og:image", content: HEADER_IMAGE },
       { name: "twitter:image", content: HEADER_IMAGE },
