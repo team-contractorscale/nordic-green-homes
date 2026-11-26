@@ -102,8 +102,8 @@ export function HomeTeam() {
               <img
                 src={TEAM.photo.src}
                 alt={TEAM.photo.alt}
-                width={580}
-                height={645}
+                width={1160}
+                height={1740}
                 loading="lazy"
                 className="h-full w-full object-cover object-top"
               />
