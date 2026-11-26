@@ -370,15 +370,15 @@ export const TEAM = {
     "Lane is the builder. Kylie is the designer behind Nordic Green Design. Together, they bring a practical eye for construction and a considered eye for interiors to the home you want to create.",
     "For them, sustainable luxury is personal: a home that feels good to live in, makes thoughtful use of materials and gives family life room to unfold.",
   ],
-  // High-resolution photo of Kylie and Lane wearing branded Nordic Green Homes & Design apparel.
+  // Client-supplied DSC_5040.jpg, received in Work 15 November 2026.
   photo: {
-    src: "https://vibe.filesafe.space/1792226139280090093/attachments/2df7fea3-71f4-4f83-a5dd-d91e4455c469.png",
-    alt: "Kylie and Lane smiling together wearing Nordic Green Homes & Design apparel in front of green foliage",
+    src: "/team/lane-and-kylie.webp",
+    alt: "Lane and Kylie seated together holding red mugs in front of a decorated fireplace",
   },
-  // Plate order matches the photo: Kylie on the left, Lane on the right.
+  // Plate order matches DSC_5040: Lane on the left, Kylie on the right.
   people: [
-    { name: "Kylie", role: "The designer · Nordic Green Design" },
     { name: "Lane", role: "The builder" },
+    { name: "Kylie", role: "The designer · Nordic Green Design" },
   ],
   cta: "Meet Lane and Kylie",
 };

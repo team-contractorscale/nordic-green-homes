@@ -45,6 +45,7 @@ const HERO = {
 const PEOPLE = [
   {
     name: "Lane",
+    photo: { src: "/team/lane-portrait.webp", alt: "Lane standing outdoors beside a field" },
     role: "Builder",
     body: [
       "Raised in Saskatchewan and drawn to life in BC, Lane brings a carpenter's understanding of how a home comes together.",
@@ -55,6 +56,10 @@ const PEOPLE = [
   },
   {
     name: "Kylie",
+    photo: {
+      src: "/team/kylie-portrait.webp",
+      alt: "Kylie standing outdoors wearing a hat and denim jacket",
+    },
     role: "Designer, Nordic Green Design",
     body: [
       "Kylie is the founder and lead designer of Nordic Green Design. Born and raised in BC, she moved from a background in law into interior design, completing her certification through the Interior Design Institute while on maternity leave with their oldest child.",
@@ -189,8 +194,8 @@ function AboutHero() {
         <img
           src={TEAM.photo.src}
           alt={TEAM.photo.alt}
-          width={580}
-          height={645}
+          width={1160}
+          height={1740}
           fetchPriority="high"
           className="h-full w-full object-cover object-top"
         />
@@ -270,6 +275,14 @@ function People() {
             >
               <div className="lg:col-span-5">
                 <div className="lg:sticky lg:top-32">
+                  <img
+                    src={p.photo.src}
+                    alt={p.photo.alt}
+                    width={427}
+                    height={640}
+                    loading="lazy"
+                    className="mb-7 aspect-[2/3] w-52 max-w-full object-cover sm:w-60"
+                  />
                   <span className="text-xs font-bold tracking-[0.2em] text-gold">0{i + 1}</span>
                   <h3
                     data-split
@@ -329,39 +342,54 @@ function Partners() {
             ))}
           </div>
         </div>
-        <div className="group/doors grid gap-px bg-white/10 sm:grid-cols-2 lg:col-span-7">
-          {PARTNERS.links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              data-door={l.side}
-              className="group relative isolate flex aspect-[4/5] min-w-0 flex-col justify-end overflow-hidden bg-overlay p-6 transition-opacity duration-500 group-has-[a:hover]/doors:opacity-50 hover:!opacity-100 sm:p-8"
-            >
-              <img
-                data-door-img
-                {...imgProps(l.image, "(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw")}
-                loading="lazy"
-                className="absolute inset-0 -z-20 h-full w-full object-cover brightness-[0.7] saturate-[0.8] transition-[filter,scale] duration-700 group-hover:scale-[1.04] group-hover:brightness-100 group-hover:saturate-100"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10 bg-gradient-to-t from-overlay via-overlay/50 to-transparent"
-              />
-              <RefTag image={l.image} className="left-4 top-4" />
-              <span className="flex items-end justify-between gap-4">
-                <span className="relative font-serif text-2xl leading-tight sm:text-3xl">
-                  {l.label}
-                  <span
-                    aria-hidden
-                    className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
-                  />
+        <div className="space-y-8 lg:col-span-7">
+          <figure>
+            <img
+              src="/team/lane-kylie-family.webp"
+              alt="Lane and Kylie with their three children in front of a decorated fireplace"
+              width={1440}
+              height={1440}
+              loading="lazy"
+              className="aspect-square h-auto w-full object-contain"
+            />
+            <figcaption className="mt-4 text-sm text-white/70">
+              Lane, Kylie and their family.
+            </figcaption>
+          </figure>
+          <div className="group/doors grid gap-px bg-white/10 sm:grid-cols-2">
+            {PARTNERS.links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                data-door={l.side}
+                className="group relative isolate flex aspect-[4/5] min-w-0 flex-col justify-end overflow-hidden bg-overlay p-6 transition-opacity duration-500 group-has-[a:hover]/doors:opacity-50 hover:!opacity-100 sm:p-8"
+              >
+                <img
+                  data-door-img
+                  {...imgProps(l.image, "(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw")}
+                  loading="lazy"
+                  className="absolute inset-0 -z-20 h-full w-full object-cover brightness-[0.7] saturate-[0.8] transition-[filter,scale] duration-700 group-hover:scale-[1.04] group-hover:brightness-100 group-hover:saturate-100"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 -z-10 bg-gradient-to-t from-overlay via-overlay/50 to-transparent"
+                />
+                <RefTag image={l.image} className="left-4 top-4" />
+                <span className="flex items-end justify-between gap-4">
+                  <span className="relative font-serif text-2xl leading-tight sm:text-3xl">
+                    {l.label}
+                    <span
+                      aria-hidden
+                      className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
+                    />
+                  </span>
+                  <span className="grid size-10 shrink-0 place-items-center border border-white/30 transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
+                    <ArrowUpRight className="size-4" />
+                  </span>
                 </span>
-                <span className="grid size-10 shrink-0 place-items-center border border-white/30 transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
-                  <ArrowUpRight className="size-4" />
-                </span>
-              </span>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
