@@ -43,11 +43,6 @@ function PrivacyPage() {
             <p>
               <strong className="text-foreground">Effective date:</strong> 28 October 2026
             </p>
-            <p>
-              {COMPANY.legalEntity} operates nordicgreenhomes.ca. This policy explains how we handle
-              personal information collected through our website and related enquiries.
-            </p>
-
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">Who we are</h2>
             <p>
               {COMPANY.legalEntity} operates nordicgreenhomes.ca. This policy explains how we handle
