@@ -185,7 +185,7 @@ export function HomeServices() {
               key={s.key}
               to={s.to}
               data-door={DOOR_FROM[i]}
-              className={`group relative isolate flex min-h-[26rem] min-w-0 flex-col justify-end overflow-hidden bg-overlay p-6 transition-opacity duration-500 group-has-[a:hover]/doors:opacity-45 hover:!opacity-100 sm:p-8 ${DOOR_LAYOUT[i]}`}
+              className={`group relative isolate flex min-h-[26rem] w-full min-w-0 flex-col justify-end overflow-hidden bg-overlay p-6 transition-opacity duration-500 group-has-[a:hover]/doors:opacity-45 hover:!opacity-100 sm:p-8 ${DOOR_LAYOUT[i]}`}
             >
               <img
                 data-door-img

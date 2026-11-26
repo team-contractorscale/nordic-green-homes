@@ -45,7 +45,7 @@ function TermsPage() {
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">About these terms</h2>
             <p>
-              These terms apply to nordicgreenhomes.ca, operated by {COMPANY.legalEntity}. They
+              These terms apply to nordicgreenhomes.ca, operated by {COMPANY.legalEntity} They
               concern use of the website, not the terms of a construction or design contract.
             </p>
 
@@ -88,7 +88,7 @@ function TermsPage() {
               stated context. They do not guarantee the same cost, programme, performance or
               certification for another project. Refer to the stated credits and project roles;
               material shown on this website should not be assumed to be work performed solely by{" "}
-              {COMPANY.legalEntity}.
+              {COMPANY.legalEntity}
             </p>
 
             <h2 className="font-serif text-lg font-bold text-foreground mt-6">
