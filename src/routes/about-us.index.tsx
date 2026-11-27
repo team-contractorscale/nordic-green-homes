@@ -273,7 +273,7 @@ function People() {
               key={p.name}
               className="grid gap-10 border-b border-border py-14 lg:grid-cols-12 lg:gap-16 lg:py-20"
             >
-              {/* Image column — fills the full 5-col span, much larger than before */}
+              {/* Image column — sticky on the left, just the portrait */}
               <div className="lg:col-span-5">
                 <div className="lg:sticky lg:top-32">
                   <img
@@ -284,35 +284,35 @@ function People() {
                     loading="lazy"
                     className="aspect-[4/5] w-full max-w-full rounded-sm object-cover object-top"
                   />
-                  <span className="mt-6 block text-xs font-bold tracking-[0.2em] text-gold">
-                    0{i + 1}
-                  </span>
-                  <h3
-                    data-split
-                    className="mt-3 font-serif text-[clamp(3.5rem,8vw,7rem)] leading-[0.9] tracking-[-0.04em]"
-                  >
-                    {p.name}
-                  </h3>
-                  <p className="mt-4 flex items-center gap-4 text-xs font-bold uppercase tracking-[0.24em] text-slate">
-                    <span aria-hidden className="h-px w-10 bg-gold" />
-                    {p.role}
-                  </p>
                 </div>
               </div>
-              {/* Text column — sits right next to the image (col 6–12), no gap column */}
-              <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-7 lg:pl-4">
-                {p.body.map((para) => (
-                  <p key={para} data-reveal>
-                    {para}
-                  </p>
-                ))}
-                {p.quote && (
-                  <figure data-reveal="left" className="!mt-8 border-l-2 border-gold pl-6">
-                    <blockquote className="font-serif text-[clamp(1.75rem,1.6vw+1rem,2.5rem)] leading-[1.15] text-foreground">
-                      &ldquo;{p.quote}&rdquo;
-                    </blockquote>
-                  </figure>
-                )}
+              {/* Content column — big name at the top, then role, body and quote */}
+              <div className="lg:col-span-7 lg:pl-4">
+                <span className="block text-xs font-bold tracking-[0.2em] text-gold">0{i + 1}</span>
+                <h3
+                  data-split
+                  className="mt-3 font-serif text-[clamp(3.5rem,8vw,7rem)] leading-[0.9] tracking-[-0.04em]"
+                >
+                  {p.name}
+                </h3>
+                <p className="mt-4 flex items-center gap-4 text-xs font-bold uppercase tracking-[0.24em] text-slate">
+                  <span aria-hidden className="h-px w-10 bg-gold" />
+                  {p.role}
+                </p>
+                <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  {p.body.map((para) => (
+                    <p key={para} data-reveal>
+                      {para}
+                    </p>
+                  ))}
+                  {p.quote && (
+                    <figure data-reveal="left" className="!mt-8 border-l-2 border-gold pl-6">
+                      <blockquote className="font-serif text-[clamp(1.75rem,1.6vw+1rem,2.5rem)] leading-[1.15] text-foreground">
+                        &ldquo;{p.quote}&rdquo;
+                      </blockquote>
+                    </figure>
+                  )}
+                </div>
               </div>
             </article>
           ))}
