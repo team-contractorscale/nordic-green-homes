@@ -271,8 +271,9 @@ function People() {
           {PEOPLE.map((p, i) => (
             <article
               key={p.name}
-              className="grid gap-8 border-b border-border py-14 lg:grid-cols-12 lg:gap-12 lg:py-20"
+              className="grid gap-10 border-b border-border py-14 lg:grid-cols-12 lg:gap-16 lg:py-20"
             >
+              {/* Image column — fills the full 5-col span, much larger than before */}
               <div className="lg:col-span-5">
                 <div className="lg:sticky lg:top-32">
                   <img
@@ -281,22 +282,25 @@ function People() {
                     width={427}
                     height={640}
                     loading="lazy"
-                    className="mb-7 aspect-[2/3] w-52 max-w-full object-cover sm:w-60"
+                    className="aspect-[4/5] w-full max-w-full rounded-sm object-cover object-top"
                   />
-                  <span className="text-xs font-bold tracking-[0.2em] text-gold">0{i + 1}</span>
+                  <span className="mt-6 block text-xs font-bold tracking-[0.2em] text-gold">
+                    0{i + 1}
+                  </span>
                   <h3
                     data-split
-                    className="mt-3 font-serif text-[clamp(4rem,9vw,8.5rem)] leading-[0.9] tracking-[-0.04em]"
+                    className="mt-3 font-serif text-[clamp(3.5rem,8vw,7rem)] leading-[0.9] tracking-[-0.04em]"
                   >
                     {p.name}
                   </h3>
-                  <p className="mt-5 flex items-center gap-4 text-xs font-bold uppercase tracking-[0.24em] text-slate">
+                  <p className="mt-4 flex items-center gap-4 text-xs font-bold uppercase tracking-[0.24em] text-slate">
                     <span aria-hidden className="h-px w-10 bg-gold" />
                     {p.role}
                   </p>
                 </div>
               </div>
-              <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-6 lg:col-start-7">
+              {/* Text column — sits right next to the image (col 6–12), no gap column */}
+              <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg lg:col-span-7 lg:pl-4">
                 {p.body.map((para) => (
                   <p key={para} data-reveal>
                     {para}
@@ -328,13 +332,14 @@ function Partners() {
       data-section="Partners"
       className="grain relative bg-overlay py-24 text-white sm:py-32"
     >
-      <div className="wrap grid gap-14 lg:grid-cols-12 lg:items-center">
-        <div className="lg:col-span-5">
+      <div className="wrap grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-20">
+        {/* Left — story (col 1-6, wider than before so it balances the image) */}
+        <div className="lg:col-span-6">
           <Kicker dark>Building and design</Kicker>
           <h2 data-split className={`${HEADING} mt-6`}>
             {PARTNERS.title}
           </h2>
-          <div className="mt-6 space-y-5 text-base leading-relaxed text-white/80">
+          <div className="mt-6 max-w-xl space-y-5 text-base leading-relaxed text-white/80 sm:text-lg">
             {PARTNERS.body.map((p) => (
               <p key={p} data-reveal>
                 {p}
@@ -342,7 +347,8 @@ function Partners() {
             ))}
           </div>
         </div>
-        <div className="space-y-8 lg:col-span-7">
+        {/* Right — family photo + two doors (col 7-12, equal weight to the story) */}
+        <div className="space-y-8 lg:col-span-6">
           <figure>
             <img
               src="/team/lane-kylie-family.webp"
@@ -350,7 +356,7 @@ function Partners() {
               width={1440}
               height={1440}
               loading="lazy"
-              className="aspect-square h-auto w-full object-contain"
+              className="aspect-[4/3] h-auto w-full rounded-sm object-cover"
             />
             <figcaption className="mt-4 text-sm text-white/70">
               Lane, Kylie and their family.
