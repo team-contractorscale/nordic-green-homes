@@ -271,7 +271,7 @@ function People() {
           {PEOPLE.map((p, i) => (
             <article
               key={p.name}
-              className="grid gap-10 border-b border-border py-14 lg:grid-cols-12 lg:gap-16 lg:py-20"
+              className="grid gap-10 border-b border-border py-14 lg:grid-cols-12 lg:items-center lg:gap-16 lg:py-20"
             >
               {/* Image column — sticky on the left, just the portrait */}
               <div className="lg:col-span-5">
