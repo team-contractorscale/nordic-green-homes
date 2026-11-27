@@ -330,77 +330,76 @@ function Partners() {
   return (
     <section
       data-section="Partners"
-      className="grain relative bg-overlay py-24 text-white sm:py-32"
+      className="grain relative bg-overlay pt-24 text-white sm:pt-32"
     >
-      <div className="wrap space-y-16 lg:space-y-24">
-        {/* Top — story on the left, family photo on the right */}
-        <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-20">
-          {/* Left — story */}
-          <div className="lg:col-span-6">
-            <Kicker dark>Building and design</Kicker>
-            <h2 data-split className={`${HEADING} mt-6`}>
-              {PARTNERS.title}
-            </h2>
-            <div className="mt-6 max-w-xl space-y-5 text-base leading-relaxed text-white/80 sm:text-lg">
-              {PARTNERS.body.map((p) => (
-                <p key={p} data-reveal>
-                  {p}
-                </p>
-              ))}
-            </div>
-          </div>
-          {/* Right — family photo */}
-          <div className="lg:col-span-6">
-            <figure>
-              <img
-                src="/team/lane-kylie-family.webp"
-                alt="Lane and Kylie with their three children in front of a decorated fireplace"
-                width={1440}
-                height={1440}
-                loading="lazy"
-                className="aspect-[4/3] h-auto w-full rounded-sm object-cover"
-              />
-              <figcaption className="mt-4 text-sm text-white/70">
-                Lane, Kylie and their family.
-              </figcaption>
-            </figure>
+      {/* Top — story + family photo, centred in the container */}
+      <div className="wrap grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-20">
+        {/* Left — story */}
+        <div className="lg:col-span-6">
+          <Kicker dark>Building and design</Kicker>
+          <h2 data-split className={`${HEADING} mt-6`}>
+            {PARTNERS.title}
+          </h2>
+          <div className="mt-6 max-w-xl space-y-5 text-base leading-relaxed text-white/80 sm:text-lg">
+            {PARTNERS.body.map((p) => (
+              <p key={p} data-reveal>
+                {p}
+              </p>
+            ))}
           </div>
         </div>
-        {/* Full-width — two doors spanning the entire container */}
-        <div className="group/doors grid gap-px bg-white/10 sm:grid-cols-2">
-          {PARTNERS.links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              data-door={l.side}
-              className="group relative isolate flex aspect-[16/9] min-w-0 flex-col justify-end overflow-hidden bg-overlay p-8 transition-opacity duration-500 group-has-[a:hover]/doors:opacity-50 hover:!opacity-100 sm:p-12"
-            >
-              <img
-                data-door-img
-                {...imgProps(l.image, "(min-width: 1024px) 50vw, 100vw")}
-                loading="lazy"
-                className="absolute inset-0 -z-20 h-full w-full object-cover brightness-[0.7] saturate-[0.8] transition-[filter,scale] duration-700 group-hover:scale-[1.04] group-hover:brightness-100 group-hover:saturate-100"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10 bg-gradient-to-t from-overlay via-overlay/50 to-transparent"
-              />
-              <RefTag image={l.image} className="left-6 top-6" />
-              <span className="flex items-end justify-between gap-4">
-                <span className="relative font-serif text-3xl leading-tight sm:text-4xl">
-                  {l.label}
-                  <span
-                    aria-hidden
-                    className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
-                  />
-                </span>
-                <span className="grid size-12 shrink-0 place-items-center border border-white/30 transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
-                  <ArrowUpRight className="size-5" />
-                </span>
+        {/* Right — family photo */}
+        <div className="lg:col-span-6">
+          <figure>
+            <img
+              src="/team/lane-kylie-family.webp"
+              alt="Lane and Kylie with their three children in front of a decorated fireplace"
+              width={1440}
+              height={1440}
+              loading="lazy"
+              className="aspect-[4/3] h-auto w-full rounded-sm object-cover"
+            />
+            <figcaption className="mt-4 text-sm text-white/70">
+              Lane, Kylie and their family.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      {/* Full-bleed doors — no container padding, no bottom padding */}
+      <div className="group/doors mt-16 grid gap-px bg-white/10 sm:grid-cols-2 sm:mt-24">
+        {PARTNERS.links.map((l) => (
+          <Link
+            key={l.to}
+            to={l.to}
+            data-door={l.side}
+            className="group relative isolate flex aspect-[16/9] min-w-0 flex-col justify-end overflow-hidden bg-overlay p-8 transition-opacity duration-500 group-has-[a:hover]/doors:opacity-50 hover:!opacity-100 sm:p-12"
+          >
+            <img
+              data-door-img
+              {...imgProps(l.image, "(min-width: 1024px) 50vw, 100vw")}
+              loading="lazy"
+              className="absolute inset-0 -z-20 h-full w-full object-cover brightness-[0.7] saturate-[0.8] transition-[filter,scale] duration-700 group-hover:scale-[1.04] group-hover:brightness-100 group-hover:saturate-100"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 bg-gradient-to-t from-overlay via-overlay/50 to-transparent"
+            />
+            <RefTag image={l.image} className="left-6 top-6" />
+            <span className="flex items-end justify-between gap-4">
+              <span className="relative font-serif text-3xl leading-tight sm:text-4xl">
+                {l.label}
+                <span
+                  aria-hidden
+                  className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
+                />
               </span>
-            </Link>
-          ))}
-        </div>
+              <span className="grid size-12 shrink-0 place-items-center border border-white/30 transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-black">
+                <ArrowUpRight className="size-5" />
+              </span>
+            </span>
+          </Link>
+        ))}
       </div>
     </section>
   );
